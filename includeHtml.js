@@ -1,0 +1,27 @@
+const includeHTML = () => {
+    const docs = document.querySelectorAll("*");
+    docs.forEach((e) => {
+        const file = e.dataset.includeHtml;
+        if (!file) return;
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) e.outerHTML = xhr.responseText;
+            e.removeAttribute("include-html");
+        }
+        xhr.open("GET", file, true);
+        xhr.send();
+    });
+}
+const activateNav = () => {
+    const navList = document.querySelectorAll(".nav-button");
+    console.log(navList);
+    navList.forEach(e => {
+        const href = e.getAttribute("href").split("/");
+        const location = window.location.pathname.split(("/"));
+        if (href[href.length -1] === location[location.length -1]) e.classList.add("active");
+    });
+}
+window.addEventListener('DOMContentLoaded', () => {
+    includeHTML();
+    setTimeout(activateNav, 100);
+});

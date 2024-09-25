@@ -1,0 +1,9 @@
+@import "header.css";
+@import "header.css";
+
+:root {
+    --main-color : #F4761B;
+}
+.active {
+    color: vaR(--main-color) !important;
+}
