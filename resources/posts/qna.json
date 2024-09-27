@@ -1,0 +1,32 @@
+[
+  {
+    "index": 1,
+    "title": "문의 제목 1",
+    "answer": "답변 제목 1"
+  },
+  {
+    "index": 2,
+    "title": "문의 제목 2",
+    "answer": "답변 제목 2"
+  },
+  {
+    "index": 3,
+    "title": "문의 제목 3",
+    "answer": "답변 제목 3"
+  },
+  {
+    "index": 4,
+    "title": "문의 제목 4",
+    "answer": "답변 제목 4"
+  },
+  {
+    "index": 5,
+    "title": "문의 제목 5",
+    "answer": "답변 제목 5"
+  },
+  {
+    "index": 6,
+    "title": "문의 제목 6",
+    "answer": "답변 제목 6"
+  }
+]

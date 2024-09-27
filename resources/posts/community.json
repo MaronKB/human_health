@@ -1,0 +1,44 @@
+[
+  {
+    "index": 1,
+    "category": "temp",
+    "title": "제목1",
+    "nickname": "test_user",
+    "date": "2024-09-27"
+  },
+  {
+    "index": 2,
+    "category": "temp",
+    "title": "제목2",
+    "nickname": "test_user",
+    "date": "2024-09-27"
+  },
+  {
+    "index": 3,
+    "category": "temp",
+    "title": "제목3",
+    "nickname": "test_user",
+    "date": "2024-09-27"
+  },
+  {
+    "index": 4,
+    "category": "temp",
+    "title": "제목4",
+    "nickname": "test_user",
+    "date": "2024-09-27"
+  },
+  {
+    "index": 5,
+    "category": "temp",
+    "title": "제목5",
+    "nickname": "test_user",
+    "date": "2024-09-27"
+  },
+  {
+    "index": 6,
+    "category": "temp",
+    "title": "제목6",
+    "nickname": "test_user",
+    "date": "2024-09-27"
+  }
+]

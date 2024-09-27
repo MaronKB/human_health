@@ -9,7 +9,100 @@
 <body>
 <header data-include-html="./header.html"></header>
 <main>
-
+    <section id="introduce" class="main-section">
+        <div>
+            <h2>소개 문구 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse molestie aliquam tellus. Nullam laoreet molestie orci, quis interdum orci volutpat auctor. Nam pellentesque facilisis mi quis convallis. Donec venenatis scelerisque bibendum. Aliquam eu mi ligula. Donec congue hendrerit diam, et tincidunt eros euismod vel. Vestibulum egestas finibus nulla non elementum. Duis venenatis purus id tempus pulvinar. Sed facilisis, leo et dapibus condimentum, orci metus vestibulum ipsum, non porta neque diam non est. Morbi eu purus quis elit tempus finibus at a erat.</p>
+            <p>Morbi lacinia mi et nisl vulputate suscipit. Curabitur et ipsum mollis, hendrerit nulla in, rutrum turpis. Donec ullamcorper rhoncus blandit. Phasellus id congue nisl. Nam semper luctus nunc, sit amet pulvinar sapien luctus quis. Nunc accumsan lorem mi, congue convallis ipsum malesuada feugiat. Pellentesque non mi lorem. Donec finibus est nec nunc placerat, a commodo nibh bibendum. In sed neque purus. Sed volutpat posuere eros eget pellentesque. Praesent molestie eleifend elit, ac interdum mi egestas ac.</p>
+        </div>
+        <div>
+            <h2>소개 문구 2</h2>
+            <p>Proin sollicitudin nisl felis, eu viverra libero accumsan id. Nullam tincidunt purus mi, ac ultricies risus vulputate sed. Nulla ut ultrices arcu, condimentum semper sem. Integer venenatis nulla ut elit finibus, eu efficitur velit sodales. Nullam blandit mauris ligula, et ultrices magna luctus at. In enim odio, fermentum id velit et, sagittis volutpat dolor. Proin euismod, est a pellentesque accumsan, lacus elit pharetra turpis, id sagittis turpis diam et augue. Donec tempus a sem in commodo. Phasellus elementum neque sit amet nisi luctus, vel posuere orci hendrerit. Donec pharetra, lacus at ornare condimentum, velit nisi pretium dui, id dignissim mauris sem vel mauris. Donec dapibus velit fermentum nunc euismod tristique. Vestibulum tincidunt fringilla aliquam. Duis blandit bibendum metus, sit amet iaculis lectus hendrerit ut. Donec fermentum nisl magna, ut sollicitudin est tempor eu. Nunc commodo ligula et vehicula accumsan.</p>
+        </div>
+    </section>
+    <section class="main-section communications">
+        <div id="main-community" class="main-communication">
+            <h2>커뮤니티</h2>
+            <ul id="main-community-list" class="main-communication-list"></ul>
+        </div>
+        <div id="main-qna" class="main-communication">
+            <h2>Q&A</h2>
+            <ul id="main-qna-list" class="main-communication-list"></ul>
+        </div>
+    </section>
 </main>
+<script>
+    const getJsonData = (type) => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = () => {
+            if (xhttp.readyState !== 4 || xhttp.status !== 200) return;
+            const arr = JSON.parse(xhttp.responseText).slice(0, (type === "community") ? 6 : 3);
+            injectHtml(type, arr);
+        }
+        xhttp.open("GET", `resources/posts/${type}.json`, true);
+        xhttp.send();
+    }
+    const injectHtml = (type, data) => {
+        const _html = data.map(e => {
+            if (type === "community") {
+                const index = document.createElement("span");
+                index.className = "main-community-index";
+                index.innerText = e.index;
+
+                const category = document.createElement("span");
+                category.className = "main-community-category";
+                category.innerText = e.category;
+
+                const title = document.createElement("span");
+                title.className = "main-community-title";
+                title.innerText = e.title;
+
+                const nickname = document.createElement("span");
+                nickname.className = "main-community-nickname";
+                nickname.innerText = e.nickname;
+
+                const date = document.createElement("span");
+                date.className = "main-community-date";
+                date.innerText = e.date;
+
+                const a = document.createElement("a");
+                a.append(index, category, title, nickname, date);
+
+                const list = document.createElement("li");
+                list.className = "main-community-entry main-communication-entry";
+                list.append(a);
+
+                return list;
+            }
+            else {
+                const question = document.createElement("span");
+                question.className = "main-qna-q";
+                question.innerText = e.title;
+
+                const answer = document.createElement("span");
+                answer.className = "main-qna-a";
+                answer.innerText = e.answer;
+
+                const a = document.createElement("a");
+                a.append(question, answer);
+
+                const list = document.createElement("li");
+                list.className = "main-qna-entry main-communication-entry";
+                list.append(a);
+
+                return list;
+            }
+        });
+        const target = document.querySelector(`#main-${type}-list`);
+        target.childNodes.forEach(e => {
+            e.remove();
+        });
+        target.append(..._html);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+        getJsonData("community");
+        getJsonData("qna");
+    });
+</script>
 </body>
 </html>

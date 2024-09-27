@@ -1,0 +1,98 @@
+.main-section {
+    margin: 20px 0;
+}
+#introduce {
+
+}
+
+#introduce > div {
+    background-color: #eeeeee;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+#introduce > div > h2 {
+    margin: 0 0 20px 0;
+}
+#introduce > div > p {
+    font-size: 14px;
+}
+
+.communications {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.main-communication {
+    flex: 1;
+    background-color: #eeeeee;
+    padding: 20px 0;
+}
+.main-communication > h2 {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+.main-communication-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.main-communication-entry {
+    padding: 0 20px;
+}
+.main-communication-entry:nth-child(2n-1) {
+    background-color: white;
+}
+.main-communication-entry > a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.main-communication-entry > a > span {
+    font-size: 14px;
+}
+.main-community-entry {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.main-community-entry > a {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.main-community-title {
+    flex: 1;
+    font-weight: bold;
+}
+
+.main-qna-entry {
+    height: 72px;
+    border-bottom: 1px solid lightgray;
+}
+.main-qna-entry > a {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.main-qna-entry > a > span {
+    flex: none;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: none;
+}
+.main-qna-q {
+}
+.main-qna-a {
+    padding-left: 10px;
+}
+.main-qna-a::before {
+    content: "ㄴ";
+}
