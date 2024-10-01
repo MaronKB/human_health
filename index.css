@@ -1,6 +1,7 @@
 @import "header.css";
 @import "main.css";
 @import "login.css";
+@import "user.css";
 
 @font-face {
     font-family: 'NEXON Lv1 Gothic OTF';
@@ -33,6 +34,8 @@ body {
     margin: 0;
 }
 a {
+    color: inherit;
+    text-decoration: none;
     cursor: pointer;
 }
 a.active,
@@ -40,6 +43,7 @@ a:hover {
     color: vaR(--main-color);
 }
 main {
+    position: relative;
     width: 100vw;
     max-width: var(--max-width);
     padding: 0 20px;
@@ -54,4 +58,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 button {
     font-family: var(--gothic-bold);
+}
+
+input:focus {
+    outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+progress {
+    -webkit-appearance: none;
+}
+progress::-webkit-progress-bar {
+    background: transparent;
+}
+progress::-webkit-progress-value {
+    background: var(--main-color);
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

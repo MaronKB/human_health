@@ -1,33 +1,68 @@
-#login-section {
+.back {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: 160px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    background: white;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+.back > i {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--gothic-bold);
+    font-style: normal;
+    font-size: 10px;
+    color: white;
+    background: black;
+    border-radius: 5px;
+}
+.back:hover > i {
+    background: var(--main-color);
+}
+.back > h4 {
+    margin: 0 auto;
+}
+.login-section {
     width: 100vw;
     max-width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
     background: linear-gradient(135deg, white 35%, var(--main-color) 35% 65%, white 65%);
 }
-#login-form {
-    width: 400px;
-    height: 640px;
+.login-form {
+    width: fit-content;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background: linear-gradient(135deg, white 90%, var(--main-color) 90%);
-    padding: 50px;
+    background: white;
+    padding: 50px 70px;
     border-radius: 30px;
     box-shadow: 5px 10px 20px #0003;
 }
-#login-form > h2 {
-    font-size: 36px;
-    margin: 0 0 30px 0;
+.login-form > h2 {
+    font-size: 28px;
+    margin: 0 0 20px 0;
 }
-#login-form > h2 > span {
+.login-form > h2 > span {
     color: var(--main-color);
 }
 .login-input {
+    position: relative;
     width: 260px;
     display: flex;
     flex-direction: column;
@@ -48,6 +83,27 @@
     border-radius: 20px;
     box-shadow: 2px 5px 10px #0003;
 }
+#change-nickname {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background: #eee;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 2px 5px 10px #0003;
+    margin: 5px;
+    cursor: pointer;
+}
+#change-nickname:hover {
+    color: white;
+    background: var(--main-color);
+}
 .login-input > div {
     width: 100%;
     display: flex;
@@ -62,7 +118,7 @@
 .login-input > div a {
     text-decoration-line: underline;
 }
-#login-buttons {
+.login-buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,7 +126,7 @@
     gap: 10px;
     margin-top: auto;
 }
-#login {
+.login {
     width: 240px;
     height: 40px;
     font-size: 16px;
@@ -82,17 +138,15 @@
     margin: 0 0 10px 0;
     cursor: pointer;
 }
-#login:hover {
+.login:hover {
     color: white;
     background: var(--main-color);
 }
-#register,
-#forgot-password {
+.login-buttons > a {
     font-size: 12px;
     color: gray;
     text-decoration: none;
 }
-#register:hover,
-#forgot-password:hover {
+.login-buttons > a:hover {
     color: var(--main-color);
 }
