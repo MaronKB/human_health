@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HH 로그인</title>
+    <script src="includeHtml.js"></script>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+<main class="max">
+    <section id="login-section">
+        <form id="login-form">
+            <h2>LOG<span>IN</span></h2>
+            <div class="login-input">
+                <label for="email">이메일</label>
+                <input id="email" type="email" placeholder="example@humanhealth.com" required/>
+            </div>
+            <div class="login-input">
+                <label for="password">비밀번호</label>
+                <input id="password" type="password" placeholder="password" required/>
+            </div>
+            <div class="login-input">
+                <div>
+                    <input id="remember-me" type="checkbox">
+                    <label for="remember-me">로그인 유지</label>
+                </div>
+            </div>
+            <div id="login-buttons">
+                <button id="login" type="submit">로그인</button>
+                <a id="register" href="./register.html">회원가입</a>
+                <a id="forgot-password" href="./forgot-password.html">이메일 찾기 / 비밀번호 찾기</a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+<script></script>
+</html>

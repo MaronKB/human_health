@@ -1,7 +1,23 @@
 @import "header.css";
 @import "main.css";
+@import "login.css";
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 :root {
+    --gothic-normal: 'NEXON Lv1 Gothic OTF', sans-serif;
+    --gothic-bold: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
     --max-width: 900px;
     --main-color : #F4761B;
 }
@@ -13,6 +29,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: var(--gothic-normal);
     margin: 0;
 }
 a {
@@ -27,6 +44,14 @@ main {
     max-width: var(--max-width);
     padding: 0 20px;
 }
+main.max {
+    max-width: unset;
+    padding: 0;
+}
 h1, h2, h3, h4, h5, h6 {
+    font-family: var(--gothic-bold);
     margin: 0;
+}
+button {
+    font-family: var(--gothic-bold);
 }
