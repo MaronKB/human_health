@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HH 식단</title>
+    <script src="includeHtml.js"></script>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <main>
+        <header data-include-html="./header.html"></header>
+        <body>
+            <div class="side-input">
+                <h4>날짜 선택 : </h4>
+                <input type="date" id="start-date" value="2024-10-04" />
+            </div>
+            <table>
+                <tr>
+                    총 섭취 칼로리      KCal
+                    <button type="submit" id="add-data" value="+">+</button>
+                </tr>
+                
+                <tr>
+                    <th>식품명</th>
+                    <th>식사구분</th>
+                    <th>탄수화물</th>
+                    <th>단백질</th>
+                    <th>지방</th>
+                </tr>
+            </table>
+    </main>
+</body>
+
+</html>
