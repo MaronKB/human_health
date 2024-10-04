@@ -7,5 +7,5 @@ npm install http-server -g
 ```
 ### http-server 실행
 ```
-npm install http-server -g
+npx http-server
 ```
