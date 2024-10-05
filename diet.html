@@ -6,31 +6,69 @@
     <title>HH 식단</title>
     <script src="includeHtml.js"></script>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="diet.css" />
+    <script src="diet.js" defer></script>
 </head>
 
 <body>
+    <header data-include-html="./header.html"></header>
     <main>
-        <header data-include-html="./header.html"></header>
-        <body>
+        <section>
             <div class="side-input">
-                <h4>날짜 선택 : </h4>
+                <h4>날짜 선택 :</h4>
                 <input type="date" id="start-date" value="2024-10-04" />
             </div>
             <table>
-                <tr>
-                    총 섭취 칼로리      KCal
-                    <button type="submit" id="add-data" value="+">+</button>
-                </tr>
-                
-                <tr>
-                    <th>식품명</th>
-                    <th>식사구분</th>
-                    <th>탄수화물</th>
-                    <th>단백질</th>
-                    <th>지방</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th colspan="5">
+                            <div class="table-header">
+                                <span>총 섭취 칼로리</span>
+                                <button type="button" id="add-data" onclick="addRow()">+</button>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>식품명</th>
+                        <th>식사구분</th>
+                        <th>탄수화물</th>
+                        <th>단백질</th>
+                        <th>지방</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>예: 닭가슴살</td>
+                        <td>점심</td>
+                        <td>10g</td>
+                        <td>20g</td>
+                        <td>5g</td>
+                    </tr>
+                </tbody>
             </table>
+        </section>
     </main>
+
+    <!-- 모달 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>식품 추가</h2>
+            <label for="search-food"></label>
+            <input type="text" id="search-food" placeholder="Search"><br><br>
+            <label for="food-name">식품명:</label>
+            <input type="text" id="food-name" required><br><br>
+            <label for="meal-type">식사구분:</label>
+            <input type="text" id="meal-type" required><br><br>
+            <label for="carbs">탄수화물:</label>
+            <input type="number" id="carbs" required><br><br>
+            <label for="protein">단백질:</label>
+            <input type="number" id="protein" required><br><br>
+            <label for="fat">지방:</label>
+            <input type="number" id="fat" required><br><br>
+            <button onclick="submitData()">+</button>
+        </div>
+    </div>
 </body>
 
 </html>
