@@ -1,0 +1,65 @@
+human_health
+├── footer.css 
+├── footer.html // 푸터
+├── header.css
+├── header.html // 헤더
+├── includeHtml.js // 헤더와 푸터를 페이지에 임포트하는 스크립트
+├── index.css // 모든 페이지에서 공통으로 적용되는 스타일시트
+├── index.html // 인덱스 파일. main.html로 리다이렉트(http-server 호환용)
+├── README.md // 개발 코멘트 및 라이선싱 표기
+├── pages // 각 페이지 html, css, js 파일들
+│   ├── activity.css
+│   ├── activity.html // 활동
+│   ├── activity.js
+│   ├── community.css
+│   ├── community.html // 식단
+│   ├── community.js
+│   ├── diet.css
+│   ├── diet.html // 식단
+│   ├── diet.js
+│   ├── forgot-password.css
+│   ├── forgot-password.html // 비밀번호 찾기
+│   ├── forgot-password.js
+│   ├── login.css
+│   ├── login.html // 로그인
+│   ├── login.js
+│   ├── main.css
+│   ├── main.html // 메인
+│   ├── qna.css
+│   ├── qna.html // Q&A
+│   ├── qna.js
+│   ├── register.css
+│   ├── register.html // 회원가입
+│   ├── register.js
+│   ├── user-info.css
+│   ├── user-info.html // 회원정보
+│   ├── user-info.js
+│   ├── user.css
+│   ├── user.html // 유저
+│   ├── user.js
+│   ├── vital.css
+│   ├── vital.html // 건강정보
+│   └── vital.js
+└── resources
+    ├── images // 페이지 삽입용 이미지
+    │  ├── lock.png
+    │  ├── logo.png
+    │  └── search.png
+    ├── temp-db // 데이터베이스를 임시로 대체할 json 파일
+    │  ├── admin.json
+    │  ├── activity.json
+    │  ├── activity-list.json
+    │  ├── community.json
+    │  ├── diet.json
+    │  ├── diet-list.json
+    │  ├── qna.json
+    │  ├── user-profile.json
+    │  └── user.json
+    ├── user-uploads // 백엔드 저장공간을 임시로 대체할 폴더
+    │  ├── uploaded_(타임스탬프)_(랜덤 문자열).png
+    │  ├── uploaded_(타임스탬프)_(랜덤 문자열).mp4
+    │  └── ...
+    └── videos // 건강정보의 추천 영상
+        ├── recommand_01.mp4
+        ├── recommand_02.mp4
+        └── ...
