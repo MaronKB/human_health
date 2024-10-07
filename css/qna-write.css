@@ -1,36 +1,36 @@
-.qna-title {
+.qna_write_title {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-.qna-title input {
+.qna_write_title input {
     width: 100%;
     height: 35px;
     font-size: 25px;
     color: black;
 }
 
-.qna-check {
+.qna_write_check {
     font-size: 20px;
     margin-bottom: 20px;
 }
 
-.qna-content {
+.qna_write_content {
     margin-bottom: 20px;
 }
 
-.qna-content textarea {
+.qna_write_content textarea {
     width: 100%;
     height: 400px;
     font-size: 20px;
 }
 
-.qna-button {
+.qna_write_button {
     text-align: center;
 }
 
-.qna-button button {
+.qna_write_button button {
     width: 12%;
     height: 35px;
     background-color: #f4761b;
