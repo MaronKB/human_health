@@ -1,7 +1,5 @@
 @import "header.css";
-@import "css/main.css";
-@import "css/login.css";
-@import "css/user.css";
+@import "main.css";
 
 @font-face {
     font-family: 'NEXON Lv1 Gothic OTF';
