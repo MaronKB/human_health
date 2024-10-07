@@ -10,7 +10,7 @@ main {
     text-align: center;
 }
 
-table {
+.diet-table {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
