@@ -91,7 +91,6 @@ input[type="date"] {
 .act-table-add {
     display: flex;
     justify-content: flex-end; 
-    /* flex-direction: column; */
     margin: 0px;
     align-items: center;
     height: px;
@@ -176,4 +175,19 @@ input[type="date"] {
     margin-top: 20px;
     font-size: 0.9em;
     color: #555;
+}
+
+.act-save {
+    display: block;
+    margin: 20px auto; 
+    padding: 10px 20px;
+    background-color: #F4761B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.act-save:hover {
+    background-color: #b8721c;
 }

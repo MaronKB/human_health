@@ -2,18 +2,50 @@
 main {
     width: 100%;
     max-width: 1200px;
-    margin: 20px auto;
+    margin:  50px auto;
 }
-
-.side-input {
+.diet-kcal {
+    width: 50%;
+    background: white;
+    /* padding: 15px 20px; */
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+    margin: 10px 20px 0 20px;
+    transform: translate(-6%, 70%);
+    /* height: 100px; */
+}
+.diet-kcal > h3 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    color: var(--main-color);
+}
+.diet-kcal p {
+    font-size: 15px;
+    margin: 0;
+    text-align: center;
+}
+.diet-kcal span {
+    font-weight: bold;
+    color: var(--main-color);
+    font-size: 45px;
+}
+.date-input {
+    border: #b8721c;
     margin-bottom: 20px;
     text-align: center;
 }
 
-table {
+.diet-table {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
 }
 
 th, td {
@@ -41,11 +73,6 @@ button:hover {
     background-color: #45a049;
 }
 
-.table-header {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-}
 
 .modal {
     display: none; 
@@ -126,4 +153,5 @@ button:hover {
 .graph-texts {
     width: 100%;
     display: flex;
+
 }
