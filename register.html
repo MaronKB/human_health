@@ -5,6 +5,7 @@
     <title>HH 로그인</title>
     <script src="js/includeHtml.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/register.css"/>
 </head>
 <body>
 <main class="max">
@@ -31,16 +32,16 @@
             <div class="login-input">
                 <span>이메일 수신 동의</span>
                 <div>
-                    <input id="agree" name="subscribe" type="radio" placeholder="text" value="true" checked/>
+                    <input id="agree" name="subscribe" type="radio" value="true" checked/>
                     <label for="agree">동의</label>
-                    <input id="disagree" name="subscribe" type="radio" placeholder="text" value="false"/>
+                    <input id="disagree" name="subscribe" type="radio" value="false"/>
                     <label for="disagree">거부</label>
                 </div>
             </div>
             <div class="login-input">
                 <div>
                     <input id="accept" type="checkbox">
-                    <label for="accept"><a>이용약관</a> 및 <a>개인정보 취급방침</a>에 동의합니다.</label>
+                    <label for="accept"><a href="#" onclick="showTerms('terms')">이용약관</a> 및 <a href="#" onclick="showTerms('privacy')">개인정보 취급방침</a>에 동의합니다.</label>
                 </div>
             </div>
             <div class="login-buttons">
@@ -49,6 +50,67 @@
         </form>
     </section>
 </main>
+
+<!-- 팝업 창 -->
+<div id="popup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 id="popup-title"></h2>
+        <p id="popup-text"></p>
+    </div>
+</div>
+
+<script>
+    function showTerms(type) {
+        const popup = document.getElementById('popup');
+        const title = document.getElementById('popup-title');
+        const text = document.getElementById('popup-text');
+
+        if (type === 'terms') {
+            title.innerText = '이용약관';
+            text.innerText = '배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다.';
+        } else if (type === 'privacy') {
+            title.innerText = '개인정보 취급방침';
+            text.innerText = '배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다.';
+        }
+
+        popup.style.display = 'block'; // 팝업 창 보이기
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'none'; // 팝업 창 숨기기
+    }
+</script>
+
+<style>
+    .popup {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        width: 400px;
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+</style>
 </body>
-<script></script>
 </html>
