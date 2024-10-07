@@ -45,3 +45,50 @@ window.onclick = function(event) {
         closeModal();
     }
 }
+
+function selectActivity(activity, intensity) {
+    document.getElementById('selectedActivity').textContent = activity;
+}
+
+function saveActivity() {
+    const activity = document.getElementById('selectedActivity').textContent;
+    const hours = document.getElementById('hours').value;
+    if (activity === "선택하세요") {
+        alert("활동을 선택하세요.");
+        return;
+    }
+    alert(`활동: ${activity}, 시간: ${hours} hours 저장되었습니다.`);
+}
+
+let link = document.getElementsByClassName("link");
+
+let currentValue = 1;
+function activeLink(){
+    for(l of link){
+        l.classList.remove("active");
+    }
+    event.target.classList.add("active");
+    currentValue = event.target.value;
+}
+
+function backBtn() {
+    if(currentValue > 1){
+        for(l of link){
+            l.classList.remove("active");
+        }
+
+        currentValue--;
+        link[currentValue-1].classList.add("active");
+    }
+}
+
+function nextBtn() {
+    if(currentValue < 6){
+        for(l of link){
+            l.classList.remove("active");
+        }
+
+        currentValue++;
+        link[currentValue-1].classList.add("active");
+    }
+}

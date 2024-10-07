@@ -6,6 +6,9 @@
     box-sizing: border-box;
 }
 
+.act-search {
+}
+
 input[type="date"] {
     background-color: #F4761B;
     padding: 10px;
@@ -179,7 +182,7 @@ input[type="date"] {
 
 .act-save {
     display: block;
-    margin: 20px auto; 
+    margin: 20px 20px 20px auto; 
     padding: 10px 20px;
     background-color: #F4761B;
     color: white;
@@ -190,4 +193,69 @@ input[type="date"] {
 
 .act-save:hover {
     background-color: #b8721c;
+}
+
+.act-container {
+    width: 100%;
+    height: 4vh;
+    background: linear-gradient(white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-0%, -300%);
+}
+
+.act-pagination {
+    display: flex;
+    align-items: center;
+    color: #383838;
+    padding: 10px 40px;
+}
+
+ul {
+    margin: 20px 30px;
+}
+
+ul li {
+    display: inline-block;
+    margin: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 20%;
+    text-align: center;
+    font-size: 13px;
+    line-height: 32px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+ul li.active {
+    color: #fff;
+    background-image: linear-gradient(#F4761B, #F4761B);
+    background-repeat: no-repeat;
+}
+
+.act-btn1, .act-btn2 {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #383838;
+    background-color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.act-btn1 img {
+    width: 24px;
+    margin-right: 10px;
+    size: 20cap;
+}
+
+.act-btn2 img{
+    width: 24px;
+    margin-left: 10px;
+    transform: rotate(180deg);
 }

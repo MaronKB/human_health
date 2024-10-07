@@ -1,10 +1,10 @@
 function addRow() {
     // 모달 열기
-    document.getElementById("myModal").style.display = "block";
+    document.getElementById("dietModal").style.display = "block";
 }
 
 function closeModal() {
-    document.getElementById("myModal").style.display = "none";
+    document.getElementById("dietModal").style.display = "none";
 }
 
 function submitData() {
@@ -40,7 +40,7 @@ function submitData() {
 }
     // 모달 외부에서 닫기
 window.onclick = function(event) {
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById("dietModal");
     if (event.target === modal) {
         closeModal();
     }
