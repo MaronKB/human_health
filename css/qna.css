@@ -9,7 +9,7 @@
 }
 
 .board_list td {
-    height: 50px;
+    height: 40px;
     font-size: 15px;
     border-bottom: 2px solid lightslategray;
 }
@@ -27,11 +27,19 @@
 }
 
 .board_page {
-    width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
-.board_page td {
-    width: 8%;
+.board_page li {
+    display: inline-block;
+}
+
+.board_page li a {
+    display: block;
+    width: 60px;
     font-size: 15px;
+}
+
+.board_page li a.active {
+    color: #f4761b;
 }

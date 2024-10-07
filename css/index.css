@@ -75,9 +75,13 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
     background: var(--main-color);
 }
-.flex-row {
+.box {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 15px 20px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
 }

@@ -1,9 +1,9 @@
-
 main {
     width: 100%;
     max-width: 1200px;
-    margin:  50px auto;
+    margin: 50px auto;
 }
+
 .diet-kcal {
     width: 50%;
     background: white;
@@ -15,48 +15,81 @@ main {
     transform: translate(-6%, 70%);
     /* height: 100px; */
 }
-.diet-kcal > h3 {
+
+.diet-kcal>h3 {
     font-size: 18px;
     margin: 0 0 5px 0;
     color: var(--main-color);
 }
+
 .diet-kcal p {
     font-size: 15px;
     margin: 0;
     text-align: center;
 }
+
 .diet-kcal span {
     font-weight: bold;
     color: var(--main-color);
     font-size: 45px;
 }
-.date-input {
-    border: #b8721c;
-    margin-bottom: 20px;
-    text-align: center;
+
+input[type="date"] {
+    background-color: #F4761B;
+    padding: 10px;
+    position: absolute;
+    /* transform: translate(-370%, -250%); */
+     /* top: 20%; */
+    left: 5%; 
+    margin: 25px 10px 0 20px;
+    font-family: "Roboto Mono",monospace;
+    color: #ffffff;
+    font-size: 13px;
+    border: 1px solid #eeeeee;
+    outline: none;
+    border-radius: 6px;
 }
 
-.diet-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
 
 .table-header {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
+    border-radius: 10px;
+    /* background-color: #fff; */
 }
 
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.diet-table {
+    border-collapse:inherit; 
+    border-radius: 10px; 
+    width: 100%; 
+    /* background-color: #F4761B; */
 }
 
-th {
-    background-color: #f4f4f4;
+.diet-th1 {
+    background-color: #F4761B;
+}
+.diet-table th,
+.diet-table td {
+    border: 1px solid #c4ae9f; 
+    padding: 10px; /* 셀 안쪽 여백 */
+    text-align: center; /* 텍스트 정렬 */
+    border-radius: 10px; 
+}
+.recommended-intake {
+    display: flex;
+    justify-content: space-between; /* 박스 사이의 간격 */
+    margin-top: 20px; /* 그래프와 박스 사이의 여백 */
 }
 
+.intake-box {
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 15px; /* 안쪽 여백 */
+    text-align: center; /* 가운데 정렬 */
+    width: 100%; /* 박스 너비 */
+    background-color: #f9f9f9; /* 배경색 */
+}
 button {
     padding: 10px;
     border: none;
@@ -64,7 +97,8 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 50%; /* 동그란 버튼 */
+    border-radius: 50%;
+    /* 동그란 버튼 */
     width: 40px;
     height: 40px;
 }
@@ -74,50 +108,54 @@ button:hover {
 }
 
 
-.modal {
-    display: none; 
+.diet-modal {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; 
-    background-color: rgb(0, 0, 0); 
-    background-color: rgba(0, 0, 0, 0.4); 
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
 
-.modal-content {
+.diet-modal-content {
     background-color: #fefefe;
-    margin: 5% auto; 
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; 
+    width: 80%;
 }
 
-.close {
+.diet-close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.diet-close:hover,
+.diet-close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
 .diet-graphs {
-    width: 50%;
+    display: flex;
+    width: 100%;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     display: inline-block;
 
 }
+
 .diet-graph {
+    flex: 1;
+    margin: 0 10px;
     grid-column: 1 / 3;
     display: flex;
     flex-direction: column;
@@ -125,6 +163,7 @@ button:hover {
     align-items: center;
     gap: 10px;
 }
+
 .graph {
     width: 100%;
     display: flex;
@@ -136,18 +175,25 @@ button:hover {
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
 }
+
 .graph-header {
-    width: 80px;
+    width: 100px;
 }
 
 .graph-body {
+    width: 100%;
     position: relative;
-    flex: 1;
+    flex: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2px;
+}
+.graph-target {
+    appearance: none;
+    width: 800px;
+    height: 30px;
 }
 
 .graph-texts {
