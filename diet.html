@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 식단</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/diet.css" />
     <script src="js/includeHtml.js"></script>
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/diet.css" />
     <script src="js/diet.js" defer></script>
 </head>
 
 <body>
     <header data-include-html="./header.html"></header>
     <div class="date-input">
-        <input type="date" id="start-date" value="2024-10-04">
+        <input type="date" id="start-date" value="연도-월-일">
     </div>
     <section class="diet-kcal">
         <h3>총 섭취 칼로리</h3>
@@ -88,23 +88,32 @@
     </main>
 
     <!-- 모달 -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
+    <div id="myModal" class="diet-modal">
+        <div class="diet-modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>식품 추가</h2>
             <label for="search-food"></label>
             <input type="text" id="search-food" placeholder="Search"><br><br>
-            <label for="food-name">식품명:</label>
-            <input type="text" id="food-name" required><br><br>
-            <label for="meal-type">식사구분:</label>
-            <input type="text" id="meal-type" required><br><br>
-            <label for="carbs">탄수화물:</label>
-            <input type="number" id="carbs" required><br><br>
-            <label for="protein">단백질:</label>
-            <input type="number" id="protein" required><br><br>
-            <label for="fat">지방:</label>
-            <input type="number" id="fat" required><br><br>
-            <button onclick="submitData()">+</button>
+            <table>
+                <tr>
+                    <th>음식</th>
+                    <th>기준량g</th>
+                    <th>탄수화물g</th>
+                    <th>단백질g</th>
+                    <th>지방g</th>
+                </tr>
+                <label for="food-name">음식</label>
+                <input type="text" id="food-name" required><br><br>
+                <label for="meal-type">식사구분:</label>
+                <input type="text" id="meal-type" required><br><br>
+                <label for="carbs">탄수화물:</label>
+                <input type="number" id="carbs" required><br><br>
+                <label for="protein">단백질:</label>
+                <input type="number" id="protein" required><br><br>
+                <label for="fat">지방:</label>
+                <input type="number" id="fat" required><br><br>
+                <button onclick="submitData()">+</button>
+            </table>
         </div>
     </div>
 </body>
