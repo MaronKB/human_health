@@ -1,12 +1,13 @@
 function addRow() {
-    // 모달 열기
     document.getElementById("dietModal").style.display = "block";
 }
 
 function closeModal() {
-    document.getElementById("dietModal").style.display = "none";
+    const modal = document.getElementById("dietModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
 }
-
 function submitData() {
     //입력 데이터 가져오기
     const foodName = document.getElementById("food-name").value;
@@ -38,14 +39,13 @@ function submitData() {
     document.getElementById("protein").value = '';
     document.getElementById("fat").value = '';
 }
-    // 모달 외부에서 닫기
+   // 모달 외부에서 닫기
 window.onclick = function(event) {
     const modal = document.getElementById("dietModal");
     if (event.target === modal) {
         closeModal();
     }
 }
-
 // 음식을 저장하는 함수
 function saveDiet() {
     const dietName = document.getElementById('selectedDiet').textContent;
@@ -97,19 +97,19 @@ function addDietToTable(dietData) {
     dietTbody.appendChild(newRow);
 }
 
-// 페이지 로드 시 저장된 데이터를 불러오는 함수
-function loadSavedDiets() {
-    const savedDiets = JSON.parse(localStorage.getItem('savedDiets')) || [];
+// // 페이지 로드 시 저장된 데이터를 불러오는 함수
+// function loadSavedDiets() {
+//     const savedDiets = JSON.parse(localStorage.getItem('savedDiets')) || [];
 
-    savedDiets.forEach(dietData => {
-        addDietToTable(dietData);
-    });
-}
+//     savedDiets.forEach(dietData => {
+//         addDietToTable(dietData);
+//     });
+// }
 
-// 페이지 로드 시 저장된 음식 목록을 불러오기
-window.onload = function() {
-    loadSavedDiets();
-};
+// // 페이지 로드 시 저장된 음식 목록을 불러오기
+// window.onload = function() {
+//     loadSavedDiets();
+// };
 
 // 음식 선택 함수 (예시)
 function selectDiet(name, carbs, protein, fat) {
