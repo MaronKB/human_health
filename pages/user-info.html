@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 로그인</title>
-    <script src="includeHtml.js"></script>
-    <link rel="stylesheet" href="index.css"/>
+    <script src="../includeHtml.js"></script>
+    <link rel="stylesheet" href="../index.css"/>
 </head>
 <body>
 <main class="max">
-    <a class="back" href="./main.html"><i>◀</i><h4>메인으로 돌아가기</h4></a>
+    <a class="back" href="main.html"><i>◀</i><h4>메인으로 돌아가기</h4></a>
     <section class="login-section">
         <form class="login-form">
-            <h2><span>REG</span>ISTER</h2>
+            <h2>USER <span>INFO</span></h2>
             <div class="login-input">
-                <label for="email">이메일</label>
-                <input id="email" type="email" placeholder="example@humanhealth.com" required/>
+                <label for="nickname">닉네임</label>
+                <input id="nickname" type="text" placeholder="nickname" required/>
+                <button id="change-nickname">변경</button>
+            </div>
+            <div class="login-input">
+                <label for="current-password">현재 비밀번호</label>
+                <input id="current-password" type="text" value=""/>
             </div>
             <div class="login-input">
                 <label for="password">비밀번호</label>
@@ -25,10 +30,6 @@
                 <input id="password-confirm" type="password" placeholder="password" required/>
             </div>
             <div class="login-input">
-                <label for="nickname">닉네임</label>
-                <input id="nickname" type="text" placeholder="nickname" required/>
-            </div>
-            <div class="login-input">
                 <span>이메일 수신 동의</span>
                 <div>
                     <input id="agree" name="subscribe" type="radio" placeholder="text" value="true" checked/>
@@ -37,14 +38,9 @@
                     <label for="disagree">거부</label>
                 </div>
             </div>
-            <div class="login-input">
-                <div>
-                    <input id="accept" type="checkbox">
-                    <label for="accept"><a>이용약관</a> 및 <a>개인정보 취급방침</a>에 동의합니다.</label>
-                </div>
-            </div>
             <div class="login-buttons">
-                <button class="login" type="submit">회원가입</button>
+                <button class="login" type="submit">저장</button>
+                <a id="out">회원 탈퇴</a>
             </div>
         </form>
     </section>
