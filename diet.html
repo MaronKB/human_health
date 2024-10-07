@@ -12,11 +12,12 @@
 
 <body>
     <header data-include-html="./header.html"></header>
+    <div class="date-input">
+        <input type="date" id="start-date" value="2024-10-04">
+    </div>
     <main>
-        <div class="date-input">
-            <input type="date" id="start-date" value="2024-10-04">
-        </div>
         <section>
+            <form>
             <table class="diet-table">
                 <thead>
                     <tr>
@@ -45,6 +46,7 @@
                     </tr>
                 </tbody>
             </table>
+        </form>
         </section>
 
         <div class="diet-graphs">
