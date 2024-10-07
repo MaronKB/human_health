@@ -43,7 +43,7 @@ button:hover {
 
 .table-header {
     display: flex;
-    justify-content: space-between; /* 버튼을 오른쪽 끝으로 */
+    justify-content: space-between; 
     align-items: center;
 }
 
@@ -83,6 +83,13 @@ button:hover {
     cursor: pointer;
 }
 
+.diet-graphs {
+    width: 50%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    display: inline-block;
+
+}
 .diet-graph {
     grid-column: 1 / 3;
     display: flex;
@@ -92,7 +99,7 @@ button:hover {
     gap: 10px;
 }
 .graph {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
