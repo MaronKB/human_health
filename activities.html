@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>HH 활동</title>
     <script src="../includeHtml.js"></script>
-    <link rel="stylesheet" href="../index.css"/>
-    <link rel="stylesheet" href="./activities.css"/>
-    <script src="imports/includeHtml.js"></script>
+    <link rel="stylesheet" href="CSS/index.css"/>
+    <link rel="stylesheet" href="css/activities.css"/>
+    <script src="js/includeHtml.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="imports/includeHtml.js"></script>
-    <script src="activities.js" defer></script>
+    <script src="js/includeHtml.js"></script>
+    <script src="js/activities.js" defer></script>
 </head>
 <body>
 <header data-include-html="header.html"></header>
@@ -134,7 +134,7 @@
                         <input type="number" id="hours" value="0" min="0"> hours
                     </div>
                 </div>
-                <button onclick="saveActivity()">저장 후 추가</button>
+                <button class="act-save" onclick="saveActivity()">저장 후 추가</button>
                 
                 <div class="instructions">
                     안내<br>- 표에서 활동을 선택하고 시간을 입력하세요.<br>- 활동강도: 1시간 당 활동량 값입니다.
