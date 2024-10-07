@@ -1,0 +1,37 @@
+.board_list table{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.board_list th {
+    border-bottom: 2px solid lightslategray;
+}
+
+.board_list td {
+    height: 40px;
+    font-size: 15px;
+    border-bottom: 2px solid lightslategray;
+}
+
+.board_write {
+    text-align: center;
+}
+
+.board_write button {
+    width: 20%;
+    height: 5%;
+    background-color: #f4761b;
+    font-size: 20px;
+    color: white;
+}
+
+.board_page {
+    width: 100%;
+    text-align: center;
+}
+
+.board_page td {
+    width: 8%;
+    font-size: 15px;
+}
