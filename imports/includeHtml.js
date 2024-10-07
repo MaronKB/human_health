@@ -9,7 +9,7 @@ const includeHTML = () => {
             if (xhr.readyState === 4 && xhr.status === 200) e.outerHTML = xhr.responseText;
             e.removeAttribute("include-html");
         }
-        xhr.open("GET", file, true);
+        xhr.open("GET", "./imports/" + file, true);
         xhr.send();
     });
 }
