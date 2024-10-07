@@ -53,7 +53,8 @@ input[type="date"] {
     border-collapse: collapse;
     margin: 110px 0;
     font-size: 0.9em;
-    min-width: 800px;
+    /* min-width: 800px; */
+    width: calc(80% - 20px);
     left: 70px;
     /* transform: translate(-5%, 50%); */
     border-radius: 5px 5px 0 0;
@@ -85,6 +86,15 @@ input[type="date"] {
 
 .act-table tbody tr:last-of-type {
     border-bottom:2px solid #F4761B;
+}
+
+.act-table-add {
+    display: flex;
+    justify-content: flex-end; 
+    /* flex-direction: column; */
+    margin: 0px;
+    align-items: center;
+    height: px;
 }
 
 .act-modal {
@@ -128,9 +138,9 @@ button {
     border: none;
     background-color: #b8721c;
     color: white;
-    font-size: 25px;
+    font-size: 35px;
     cursor: pointer;
-    border-radius: 50%; /* 동그란 버튼 */
+    border-radius: 30%; /* 동그란 버튼 */
     width: 40px;
     height: 40px;
 }
