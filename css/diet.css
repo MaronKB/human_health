@@ -141,10 +141,8 @@ button:hover {
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
-    /* 모서리 둥글게 */
-    width: 80%;
-    max-width: 600px;
-    /* 모달이 너무 넓어지지 않도록 제한 */
+    width: 90%; /* 너비를 90%로 변경 */
+    max-width: 800px; /* 최대 너비를 800px로 변경 */
 }
 
 .diet-close {

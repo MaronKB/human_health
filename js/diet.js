@@ -4,6 +4,7 @@ function addRow() {
 
 function closeModal() {
     const modal = document.getElementById("dietModal");
+    console.log("모달 닫기 버튼이 클릭되었습니다.")
     if (modal) {
         modal.style.display = "none";
     }
@@ -33,6 +34,7 @@ function submitData() {
     //모달 닫기
     closeModal();
 
+    
     document.getElementById("food-name").value = '';
     document.getElementById("meal-type").value = '';
     document.getElementById("carbs").value = '';
