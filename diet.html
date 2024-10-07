@@ -26,7 +26,7 @@
                 <table class="diet-table">
                     <thead>
                         <tr>
-                            <th colspan="5">
+                            <th class="diet-th1" colspan="5">
                                 <div class="table-header">
                                     <span>영양 분석표</span>
                                     <button type="button" id="add-data" onclick="addRow()">+</button>
@@ -60,7 +60,7 @@
                     <h4 class="graph-header">탄수화물</h4>
                     <div class="graph-body">
                         <progress id="carb-target" class="graph-target" value="10" max="100"></progress>
-                        <span></span>
+                        <span>10g</span>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     <h4 class="graph-header">단백질</h4>
                     <div class="graph-body">
                         <progress id="prot-target" class="graph-target" value="20" max="100"></progress>
-                        <span></span>
+                        <span>20g</span>
                     </div>
                 </div>
             </div>
@@ -80,9 +80,19 @@
                     <h4 class="graph-header">지방</h4>
                     <div class="graph-body">
                         <progress id="fat-target" class="graph-target" value="5" max="100"></progress>
-                        <span></span>
+                        <span>5g</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="recommended-intake">
+            <div class="intake-box">
+                <h4>권장 단백질 섭취량</h4>
+                <p>70 g</p>
+            </div>
+            <div class="intake-box">
+                <h4>권장 지방 섭취량</h4>
+                <p>30 g</p>
             </div>
         </div>
     </main>
