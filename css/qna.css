@@ -9,7 +9,7 @@
 }
 
 .board_list td {
-    height: 50px;
+    height: 40px;
     font-size: 15px;
     border-bottom: 2px solid lightslategray;
 }
