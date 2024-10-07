@@ -96,35 +96,74 @@
             </div>
         </div>
     </main>
-
-    <!-- 모달 -->
-    <div id="dietModal" class="diet-modal">
-        <div class="diet-modal-content">
-            <span class="diet-close" onclick="closeModal()">&times;</span>
-            <label for="search-food"></label>
-            <input type="text" id="search-food" placeholder="Search"><br><br>
-            <table>
-                <tr>
-                    <th>음식</th>
-                    <th>기준량g</th>
-                    <th>탄수화물g</th>
-                    <th>단백질g</th>
-                    <th>지방g</th>
-                </tr>
-                <label for="food-name">음식</label>
-                <input type="text" id="food-name" required><br><br>
-                <label for="meal-type">식사구분:</label>
-                <input type="text" id="meal-type" required><br><br>
-                <label for="carbs">탄수화물:</label>
-                <input type="number" id="carbs" required><br><br>
-                <label for="protein">단백질:</label>
-                <input type="number" id="protein" required><br><br>
-                <label for="fat">지방:</label>
-                <input type="number" id="fat" required><br><br>
-                <button onclick="submitData()">+</button>
-            </table>
+<!-- 모달 -->
+<div id="dietModal" class="diet-modal">
+    <div class="diet-modal-content">
+        <span class="diet-close" onclick="closeModal()">&times;</span>
+        <div class="diet-search">
+            <div class="search-wrapper">
+                <input type="text" id="search-food" placeholder="검색">
+                <button id="search-button" onclick="filterTable()">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" width="20" />
+                </button>
+            </div>
         </div>
+        <table id="foodTable">
+            <thead>
+            <tr>
+                <th>음식</th>
+                <th>기준량(g)</th>
+                <th>탄수화물(g)</th>
+                <th>단백질(g)</th>
+                <th>지방(g)</th>
+            </tr>
+            </thead>
+            <tbody id="foodTbody">
+            <tr onclick="selectFood('밥', 100, 28, 2, 0.3)">
+                <td>밥</td>
+                <td>100</td>
+                <td>28</td>
+                <td>2</td>
+                <td>0.3</td>
+            </tr>
+            <tr onclick="selectFood('닭가슴살', 100, 0, 24, 1.5)">
+                <td>닭가슴살</td>
+                <td>100</td>
+                <td>0</td>
+                <td>24</td>
+                <td>1.5</td>
+            </tr>
+            <tr onclick="selectFood('사과', 100, 12, 0.3, 0.2)">
+                <td>사과</td>
+                <td>100</td>
+                <td>12</td>
+                <td>0.3</td>
+                <td>0.2</td>
+            </tr>
+            <tr onclick="selectFood('계란', 50, 1, 6, 5)">
+                <td>계란</td>
+                <td>50</td>
+                <td>1</td>
+                <td>6</td>
+                <td>5</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="food-details">
+            <h3>선택한 음식</h3>
+            <p id="selectedFood">선택하세요</p>
+            <br>
+            <h3>식사 구분</h3>
+            <input type="text" id="meal-type" placeholder="예: 아침, 점심" required>
+            <br>
+            <h3>수량(g)</h3>
+            <input type="number" id="foodQuantity" value="100" min="1"> g
+        </div>
+        <button class="diet-save" onclick="saveFood()">+</button>
+        <div class="instructions"> <br>- 표에서 음식을 선택하고 수량을 입력하세요. <br>- 음식의 영양 성분은 100g 기준입니다. </div>
     </div>
+</div>
+<script>
+</script>
 </body>
-
 </html>
