@@ -15,38 +15,43 @@
     <div class="date-input">
         <input type="date" id="start-date" value="2024-10-04">
     </div>
+    <section class="diet-kcal">
+        <h3>총 섭취 칼로리</h3>
+        <p> <span>N</span> kcal</p>
+    </section>
+    <br>
     <main>
         <section>
             <form>
-            <table class="diet-table">
-                <thead>
-                    <tr>
-                        <th colspan="5">
-                            <div class="table-header">
-                                <span>총 섭취 칼로리</span>
-                                <button type="button" id="add-data" onclick="addRow()">+</button>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>식품명</th>
-                        <th>식사구분</th>
-                        <th>탄수화물</th>
-                        <th>단백질</th>
-                        <th>지방</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>예: 닭가슴살</td>
-                        <td>점심</td>
-                        <td>10g</td>
-                        <td>20g</td>
-                        <td>5g</td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+                <table class="diet-table">
+                    <thead>
+                        <tr>
+                            <th colspan="5">
+                                <div class="table-header">
+                                    <span>영양 분석표</span>
+                                    <button type="button" id="add-data" onclick="addRow()">+</button>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>식품명</th>
+                            <th>식사구분</th>
+                            <th>탄수화물</th>
+                            <th>단백질</th>
+                            <th>지방</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>예: 닭가슴살</td>
+                            <td>점심</td>
+                            <td>10g</td>
+                            <td>20g</td>
+                            <td>5g</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </section>
 
         <div class="diet-graphs">
