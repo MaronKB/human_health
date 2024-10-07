@@ -42,7 +42,7 @@
     font-size: 1rem;
 }
 .post-form {
-    display: none; /* 초기에는 숨김 */
+    display: none; 
     margin-top: 20px;
     flex-direction: column;
 }
@@ -52,9 +52,9 @@
     font-size: 1rem;
 }
 .toggle-button {
-    position: fixed; /* 고정 위치 */
-    bottom: 20px; /* 하단에서 20px */
-    right: 20px; /* 오른쪽에서 20px */
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
     padding: 10px 15px;
     font-size: 1rem;
 }
