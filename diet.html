@@ -13,6 +13,7 @@
 <body>
     <header data-include-html="./header.html"></header>
     <main>
+        <form></form>
         <section>
             <div class="side-input">
                 <h4>날짜 선택 :</h4>
@@ -46,7 +47,39 @@
                     </tr>
                 </tbody>
             </table>
+            </form>
         </section>
+        <div class="diet-graphs">
+            <div class="diet-graph">
+                <div class="graph">
+                    <h4 class="graph-header">탄수화물</h4>
+                    <div class="graph-body"></div>
+                    <div class="graph-texts">
+                        <span></span>
+                    </div>
+                    <progress id="carb-target" class="graph-target" value="10" max="100"></progress>
+                </div>
+            </div>
+            <div class="diet-graph">
+                <div class="graph">
+                    <h4 class="graph-header">단백질</h4>
+                    <div class="graph-body"></div>
+                    <div class="graph-texts">
+                        <span></span>
+                    </div>
+                    <progress id="prot-target" class="graph-target" value="20" max="100"></progress>
+                </div>
+            </div>
+            <div class="diet-graph">
+                <div class="graph">
+                    <h4 class="graph-header">지방</h4>
+                    <div class="graph-body"></div>
+                    <div class="graph-texts">
+                        <span></span>
+                    </div>
+                    <progress id="fat-target" class="graph-target" value="5" max="100"></progress>
+                </div>
+            </div>
     </main>
 
     <!-- 모달 -->
