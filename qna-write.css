@@ -32,8 +32,9 @@
 
 .qna-button button {
     width: 12%;
-    height: 5%;
+    height: 35px;
     background-color: #f4761b;
     font-size: 20px;
     color: white;
+    margin: 10px;
 }
