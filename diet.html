@@ -47,39 +47,45 @@
                     </tr>
                 </tbody>
             </table>
-            </form>
         </section>
+
         <div class="diet-graphs">
             <div class="diet-graph">
                 <div class="graph">
                     <h4 class="graph-header">탄수화물</h4>
-                    <div class="graph-body"></div>
-                    <div class="graph-texts">
-                        <span></span>
+                    <div class="graph-body">
+                        <progress id="carb-target" class="graph-target" value="10" max="100"></progress>
                     </div>
-                    <progress id="carb-target" class="graph-target" value="10" max="100"></progress>
+                </div>
+                <div class="graph-texts">
+                    <span></span>
                 </div>
             </div>
+
             <div class="diet-graph">
                 <div class="graph">
                     <h4 class="graph-header">단백질</h4>
-                    <div class="graph-body"></div>
-                    <div class="graph-texts">
-                        <span></span>
+                    <div class="graph-body">
+                        <progress id="prot-target" class="graph-target" value="20" max="100"></progress>
                     </div>
-                    <progress id="prot-target" class="graph-target" value="20" max="100"></progress>
+                </div>
+                <div class="graph-texts">
+                    <span></span>
                 </div>
             </div>
+
             <div class="diet-graph">
                 <div class="graph">
                     <h4 class="graph-header">지방</h4>
-                    <div class="graph-body"></div>
-                    <div class="graph-texts">
-                        <span></span>
+                    <div class="graph-body">
+                        <progress id="fat-target" class="graph-target" value="5" max="100"></progress>
                     </div>
-                    <progress id="fat-target" class="graph-target" value="5" max="100"></progress>
+                </div>
+                <div class="graph-texts">
+                    <span></span>
                 </div>
             </div>
+        </div>
     </main>
 
     <!-- 모달 -->

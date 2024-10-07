@@ -110,7 +110,7 @@ button:hover {
     box-shadow: 2px 5px 10px #0003;
 }
 .graph-header {
-    width: 80%;
+    width: 80px;
 }
 
 .graph-body {
