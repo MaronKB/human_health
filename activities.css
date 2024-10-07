@@ -113,7 +113,7 @@ input[type="date"] {
 
 .act-modal-content {
     background-color: #fefefe;
-    margin: 5% auto; 
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
@@ -133,7 +133,7 @@ input[type="date"] {
     cursor: pointer;
 }
 
-button {
+#add-act {
     padding: 0px;
     border: none;
     background-color: #b8721c;
@@ -145,6 +145,35 @@ button {
     height: 40px;
 }
 
-button:hover {
+#add-act:hover {
     background-color: #45a049;
+}
+
+#activityTable {
+    width: 60%;
+    border-collapse: collapse;
+}
+
+#activityTable th, #activityTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#activityTable th {
+    background-color: #f2f2f2;
+}
+
+.activity-details {
+    width: 35%;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    transform: translate(170%, -150%);
+}
+
+.instructions {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #555;
 }
