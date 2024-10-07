@@ -9,7 +9,7 @@
 }
 
 .board_list td {
-    height: 40px;
+    height: 50px;
     font-size: 15px;
     border-bottom: 2px solid lightslategray;
 }
@@ -20,7 +20,7 @@
 
 .board_write button {
     width: 20%;
-    height: 5%;
+    height: 40px;
     background-color: #f4761b;
     font-size: 20px;
     color: white;
