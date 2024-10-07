@@ -130,15 +130,15 @@ button:hover {
     width: 80%;
 }
 
-.close {
+.diet-close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.diet-close:hover,
+.diet-close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
