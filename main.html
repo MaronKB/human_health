@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 메인</title>
-    <script src="imports/includeHtml.js"></script>
-    <link rel="stylesheet" href="index.css"/>
+    <script src="js/includeHtml.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
 </head>
 <body>
 <header data-include-html="header.html"></header>
@@ -61,7 +61,7 @@
             const arr = JSON.parse(xhttp.responseText).slice(0, (type === "community") ? 6 : 3);
             injectHtml(type, arr);
         }
-        xhttp.open("GET", `resources/posts/${type}.json`, true);
+        xhttp.open("GET", `resources/temp-db/${type}.json`, true);
         xhttp.send();
     }
     const injectHtml = (type, data) => {
