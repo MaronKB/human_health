@@ -1,6 +1,7 @@
 .qna-title {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .qna-title input {
@@ -8,6 +9,15 @@
     height: 35px;
     font-size: 25px;
     color: black;
+}
+
+.qna-check {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.qna-content {
+    margin-bottom: 20px;
 }
 
 .qna-content textarea {
