@@ -98,7 +98,7 @@
                 <th>활동강도</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="activityTbody">
             <tr onclick="selectActivity('잠자기', 0.93)">
                 <td>잠자기</td>
                 <td>0.93</td>
@@ -128,24 +128,25 @@
             <h3>시간</h3>
             <input type="number" id="hours" value="0" min="0"> hours
         </div>
+        <div class="act-container">
+            <div class="act-pagination">
+                <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
+                <ul>
+                    <li class="link active" value="1" onclick="activeLink()">1</li>
+                    <li class="link" value="2" onclick="activeLink()">2</li>
+                    <li class="link" value="3" onclick="activeLink()">3</li>
+                    <li class="link" value="4" onclick="activeLink()">4</li>
+                    <li class="link" value="5" onclick="activeLink()">5</li>
+                    <li class="link" value="6" onclick="activeLink()">6</li>
+                </ul>
+                <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button>
+            </div>
+        </div>
         <button class="act-save" onclick="saveActivity()">저장 후 추가</button>
-        <div class="instructions"> 안내 <br>- 표에서 활동을 선택하고 시간을 입력하세요. <br>- 활동강도: 1시간 당 활동량 값입니다. </div>
+        <div class="instructions"> <br>- 표에서 활동을 선택하고 시간을 입력하세요. <br>- 활동강도: 1시간 당 활동량 값입니다. </div>
     </div>
 </div>
 <script>
-    function selectActivity(activity, intensity) {
-        document.getElementById('selectedActivity').textContent = activity;
-    }
-
-    function saveActivity() {
-        const activity = document.getElementById('selectedActivity').textContent;
-        const hours = document.getElementById('hours').value;
-        if (activity === "선택하세요") {
-            alert("활동을 선택하세요.");
-            return;
-        }
-        alert(`활동: ${activity}, 시간: ${hours} hours 저장되었습니다.`);
-    }
 </script>
 </body>
 </html>
