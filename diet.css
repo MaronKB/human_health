@@ -1,3 +1,10 @@
+
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
 .date-input {
     border: #b8721c;
     margin-bottom: 20px;
@@ -8,7 +15,6 @@
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    margin: 70px;
 }
 
 th, td {
