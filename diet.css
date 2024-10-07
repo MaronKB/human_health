@@ -5,7 +5,8 @@ main {
     margin: 20px auto;
 }
 
-.side-input {
+.date-input {
+    border: #b8721c;
     margin-bottom: 20px;
     text-align: center;
 }
