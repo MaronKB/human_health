@@ -39,10 +39,10 @@ input[type="date"] {
     padding: 10px;
     position: absolute;
     /* transform: translate(-370%, -250%); */
-     /* top: 20%; */
-    left: 5%; 
+    /* top: 20%; */
+    left: 5%;
     margin: 25px 10px 0 20px;
-    font-family: "Roboto Mono",monospace;
+    font-family: "Roboto Mono", monospace;
     color: #ffffff;
     font-size: 13px;
     border: 1px solid #eeeeee;
@@ -60,36 +60,49 @@ input[type="date"] {
 }
 
 .diet-table {
-    border-collapse:inherit; 
-    border-radius: 10px; 
-    width: 100%; 
+    border-collapse: inherit;
+    border-radius: 10px;
+    width: 100%;
     /* background-color: #F4761B; */
 }
 
 .diet-th1 {
     background-color: #F4761B;
 }
+
 .diet-table th,
 .diet-table td {
-    border: 1px solid #c4ae9f; 
-    padding: 10px; /* 셀 안쪽 여백 */
-    text-align: center; /* 텍스트 정렬 */
-    border-radius: 10px; 
+    border: 1px solid #c4ae9f;
+    padding: 10px;
+    /* 셀 안쪽 여백 */
+    text-align: center;
+    /* 텍스트 정렬 */
+    border-radius: 10px;
 }
+
 .recommended-intake {
     display: flex;
-    justify-content: space-between; /* 박스 사이의 간격 */
-    margin-top: 20px; /* 그래프와 박스 사이의 여백 */
+    justify-content: space-between;
+    /* 박스 사이의 간격 */
+    margin-top: 20px;
+    /* 그래프와 박스 사이의 여백 */
 }
 
 .intake-box {
-    border: 1px solid #ccc; /* 테두리 색상 */
-    border-radius: 10px; /* 둥근 모서리 */
-    padding: 15px; /* 안쪽 여백 */
-    text-align: center; /* 가운데 정렬 */
-    width: 100%; /* 박스 너비 */
-    background-color: #f9f9f9; /* 배경색 */
+    border: 1px solid #ccc;
+    /* 테두리 색상 */
+    border-radius: 10px;
+    /* 둥근 모서리 */
+    padding: 15px;
+    /* 안쪽 여백 */
+    text-align: center;
+    /* 가운데 정렬 */
+    width: 100%;
+    /* 박스 너비 */
+    background-color: #f9f9f9;
+    /* 배경색 */
 }
+
 button {
     padding: 10px;
     border: none;
@@ -117,8 +130,8 @@ button:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
+    /* 뒷배경 어둡게 */
     padding-top: 60px;
 }
 
@@ -127,7 +140,9 @@ button:hover {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    border-radius: 10px;
+    width: 90%; /* 너비를 90%로 변경 */
+    max-width: 800px; /* 최대 너비를 800px로 변경 */
 }
 
 .diet-close {
@@ -135,14 +150,100 @@ button:hover {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .diet-close:hover,
 .diet-close:focus {
     color: black;
     text-decoration: none;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    /* 검색창 너비 100% */
+}
+
+#search-food {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    padding: 10px 40px 10px 10px;
+    /* 오른쪽 패딩을 넓게 주어 버튼을 넣을 공간 마련 */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* 검색 버튼을 수직 가운데 정렬 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    background-color: #F4761B;
+}
+
+#search-button img {
+    width: 20px;
+}
+
+#foodTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#foodTable th,
+#foodTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#foodTable th {
+    background-color: #f2f2f2;
+}
+
+#foodTable tr:hover {
+    background-color: #f1f1f1;
     cursor: pointer;
 }
+
+.food-details {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.diet-save {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #F4761B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* float: right; */
+}
+
+.diet-save:hover {
+    background-color: #b8721c;
+}
+
+.instructions {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 20px;
+    clear: both;
+}
+
 
 .diet-graphs {
     display: flex;
@@ -190,6 +291,7 @@ button:hover {
     align-items: center;
     gap: 2px;
 }
+
 .graph-target {
     appearance: none;
     width: 800px;

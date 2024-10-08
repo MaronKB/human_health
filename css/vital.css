@@ -17,6 +17,25 @@
     width: 100%;
     text-align: center;
 }
+.vital-input > input[type="range"] {
+    -webkit-appearance: none;
+}
+.vital-input > input[type="range"]::-webkit-slider-container {
+    width: 100%;
+    height: 30px;
+    background: #eee;
+    padding: 5px;
+    border-radius: 15px;
+}
+.vital-input > input[type="range"]::-webkit-slider-runnable-track {
+}
+.vital-input > input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--main-color);
+    border-radius: 50%;
+}
 .vital-input > input[type="checkbox"] {
     display: none;
 }
