@@ -1,10 +1,3 @@
-/* *,
-*:before,
-*:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-} */
 
 /* 전체 페이지 스타일 */
 body {
@@ -29,13 +22,13 @@ body {
     box-shadow: 2px 5px 10px #0003;
     border: 1px solid #eeeeee;
 } */
-    /*날짜 선택*/
 
-.act-date {
+/* 날짜 선택 */
+.act-date { 
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
 }
 
 input[type="date"] {
@@ -92,7 +85,7 @@ input[type="date"] {
     width: 100%;
     box-shadow: 2px 5px 10px #0003;
     background: white;
-    border: 1px solid #eeeeee;
+    border: 0px solid #eeeeee;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -130,8 +123,9 @@ input[type="date"] {
     display: flex;
     justify-content: flex-end;
     position: absolute;
-    right: 0;
-    top:-44%;
+    right: 5px;
+    top: 0;
+    transform: translateY(-105%); /* 하.. ㅅㅂ..거참 안되네..*/
 }
 
 #add-act {
@@ -143,6 +137,7 @@ input[type="date"] {
     border-radius: 25%; /* 동그란 버튼 */
     width: 30px;
     height: 30px;
+    position: relative;
 }
 
 #add-act:hover {
