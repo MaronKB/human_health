@@ -40,16 +40,16 @@
             { title: '제목11', nickname: '닉네임11', date: '2024.10.11' },
         ];
     
-        const postsPerPage = 10; // 한 페이지에 표시할 문의글 수
+        const postsPerPage = 10; // 한 페이지에 표시할 게시글 수
         let currentPage = 1;
     
         function updatepostList() {
             const postList = document.getElementById('post-list');
-            postList.innerHTML = ''; // 기존 문의글 목록 초기화
+            postList.innerHTML = ''; // 기존 게시글 목록 초기화
             const startIndex = (currentPage - 1) * postsPerPage; // 시작 인덱스
             const endIndex = startIndex + postsPerPage;  // 끝 인덱스
             const reversposts = [...posts].reverse(); // 배열 반전
-            const paginatedposts = reversposts.slice(startIndex, endIndex); // 페이지당 문의글 가져오기
+            const paginatedposts = reversposts.slice(startIndex, endIndex); // 페이지당 게시글 가져오기
     
             paginatedposts.forEach((post, index) => {
                 const postItem = document.createElement('div');
@@ -106,7 +106,7 @@
             }
         }
     
-        // 초기 문의글 목록 업데이트
+        // 초기 게시글 목록 업데이트
         updatepostList();
     </script>
 </main>
