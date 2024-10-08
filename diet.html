@@ -154,9 +154,13 @@
                 <p id="selectedDiet">선택하세요</p>
                 <br>
                 <h3>식사 구분</h3>
-                <input type="text" id="meal-type" placeholder="예: 아침, 점심, 저녁" required>
-                <br>
-                <br>
+                <select class="diet-modalSelect" id="meal-type">
+                    <option value="" disabled selected>선택하세요</option>
+                    <option value="아침">아침</option>
+                    <option value="점심">점심</option>
+                    <option value="저녁">저녁</option>
+                </select>
+                <br><br>
                 <h3>수량(g)</h3>
                 <input type="number" id="dietQuantity" value="100" min="1"> g
             </div>
