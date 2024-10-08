@@ -10,20 +10,20 @@
 <body>
 <header data-include-html="header.html"></header>
 <main>
-    <form>
-        <div class="qna_write_title">
-        <input type="text">
+    <form id="qna-form">
+        <div class="qna-write-title">
+        <input type="text" id="qna-title">
         </div>
-        <div class="qna_write_check">
-            <input type="checkbox" name="qna_check" id="qna_check">비밀글로 작성하기
+        <div class="qna-write-check">
+            <input type="checkbox" name="qna-check" id="qna-check">비밀글로 작성하기
         </div>
-        <div class="qna_write_content">
-            <textarea placeholder="내용을 입력해주세요."></textarea>
+        <div class="qna-write-content">
+            <textarea id="qna-content" placeholder="내용을 입력해주세요."></textarea>
         </div>
-        <div class="qna_write_button">
+        <div class="qna-write-button">
             <a href="./qna.html"><button type="button">취소</button></a>
             <button type="reset">초기화</button>
-            <a href="./qna-view.html"><button type="button">등록</button></a>
+            <a href="./qna-view.html"><button type="button" id="qna-submit">등록</button></a>
         </div>
     </form>
 </main>
