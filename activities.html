@@ -22,30 +22,27 @@
             </p>
         </section>
         <section class="act-template">
-            <table class="act-table">
-                <thead>
-                <tr>
-                    <th colspan="5">
-                        <div class="act-table-add">
-                            <span></span>
-                            <button type="button" id="add-act" onclick="addRow()">+</button>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <th>활동</th>
-                    <th>시간</th>
-                    <th>강도</th>
-                </tr>
-                </thead>
-                <tbody id="act-tbody">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="act-table-add">
+                <button type="button" id="add-act" onclick="addRow()">+</button>
+            </div>
+            <div style="position: relative;">    
+                <table class="act-table">
+                    <thead>
+                        <tr> 
+                            <th>활동</th>
+                            <th>시간</th>
+                            <th>강도</th>
+                        </tr>
+                    </thead>
+                    <tbody id="act-tbody">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
     <!-- 모달 -->

@@ -15,31 +15,32 @@ body {
     box-sizing: border-box;
 }
 
-
-main {
+/* 컨테이너 스타일 */
+/* main {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    margin: 0px;
-    max-width: 800px;
+    margin: 0 auto;
+    max-width: 900px;
+    padding-top: 50px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
     border: 1px solid #eeeeee;
-}
+} */
     /*날짜 선택*/
 
 .act-date {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin: 0 0 20px 0;
 }
 
 input[type="date"] {
     background-color: #F4761B;
     padding: 10px;
-    font-family: "Roboto Mono",monospace;
     color: #ffffff;
     font-size: 13px;
     border: 1px solid #eeeeee;
@@ -59,6 +60,7 @@ input[type="date"] {
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
     width: 100%;
+    margin: 0 0 60px 0;
 
 }
 .act-kcal > h3 {
@@ -82,6 +84,7 @@ input[type="date"] {
 
 .act-template {
     width: 100%;
+    position: relative;
 }
 
 .act-table{
@@ -98,12 +101,14 @@ input[type="date"] {
     background-color: #F4761B;
     color: #ffffff;
     font-weight: bold;
+    position: relative;
 }
 
 .act-table th,
 .act-table td {
-    padding: 8px 40px;
+    padding: 12px 40px;
     text-align: center;
+    border-bottom: 1px solid #dddddd;
 }
 
 /* 
@@ -120,12 +125,28 @@ input[type="date"] {
     border-bottom:2px solid #F4761B;
 } */
 
+/* 추가버튼 스타일*/
 .act-table-add {
     display: flex;
-    justify-content: flex-end; 
-    margin: 0px;
-    align-items: center;
-    height: px;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    top:-44%;
+}
+
+#add-act {
+    border: none;
+    background-color: #F4761B;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 25%; /* 동그란 버튼 */
+    width: 30px;
+    height: 30px;
+}
+
+#add-act:hover {
+    background-color: #45a049;
 }
 
 /* 모달창 스타일 */
@@ -143,13 +164,13 @@ input[type="date"] {
 }
 
 .act-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
+    background-color: #fff;
+    margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 60%;
-    border-radius: 6px;
-    box-shadow: 0 4px 8 rgba(0, 0, 0, 0.2); /* 그림자 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 */
 }
 
 .act-close {
@@ -159,11 +180,9 @@ input[type="date"] {
     font-weight: bold;
 }
 
-
 .act-close:hover,
 .act-close:focus {
     color: #000;
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -209,22 +228,6 @@ input[type="date"] {
     color: white;
 }
 
-/* 추가버튼 스타일 */
-#add-act {
-    padding: 0px;
-    border: none;
-    background-color: #b8721c;
-    color: white;
-    font-size: 35px;
-    cursor: pointer;
-    border-radius: 35%; /* 동그란 버튼 */
-    width: 38px;
-    height: 38px;
-}
-
-#add-act:hover {
-    background-color: #45a049;
-}
 
 /* 활동테이블, 시간입력 묶기*/
 .activity-container {
