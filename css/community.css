@@ -41,14 +41,54 @@
     text-align: left;
 }
 
-.post-button {
-    text-align: center;
+.community-post {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.post-button button {
-    margin-top: 20px;
-    width: 300px;
+.post-category {
+    margin-left: 60px;
+    margin-right: 20px;
+    width: 150px;
     height: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.post-search {
+    position: relative;
+    margin: 0 20px;
+    display: inline-block;
+}
+
+.post-search input {
+    margin: 0px;
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.search-button {
+    position: absolute;
+    right: 0%;
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    border-color: lightslategrey;
+    background-color: #f4761b;
+    color: white;
+    border-radius: 5px;
+}
+
+.post-button {
+    margin-left: 100px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
     font-size: 18px;
     border-radius: 5px;
     border-color: lightslategrey;

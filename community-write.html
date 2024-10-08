@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>커뮤니티 글쓰기</title>
+    <script src="js/includeHtml.js"></script>
+    <script src="js/c.write.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/community-write.css"/>
+</head>
+<body>
+<header data-include-html="header.html"></header>
+<main>
+    <form id="community-form">
+        <div class="community-write-title">
+            <input type="text" id="community-title">
+        </div>
+        <div class="community-write-upload">
+            <input type="file" accept="image/*" id="image-upload" class="image-input">
+            <label for="image-upload">이미지 첨부</label>
+            <input type="file" accept="video/*" id="video-upload" class="video-input">
+            <label for="video-upload">비디오 첨부</label>
+        </div>
+        <div class="community-write-content">
+            <textarea id="community-content" placeholder="내용을 입력해주세요."></textarea>
+        </div>
+        <div class="community-write-button">
+            <a href="./community.html"><button type="button">취소</button></a>
+            <button type="reset">초기화</button>
+            <a href="./community-view.html"><button type="button" id="community-submit">등록</button></a>
+        </div>
+    </form>
+</main>
+
+<!-- <form>
+<input type="text" placeholder="제목" class="title">
+<input type="file" value="변경" class="upload" accept="image/*" required multiple >
+</form>
+<form>
+<input type="text"  placeholder="내용을 입력해주세요" class="tb">
+</form>
+<div class="button-container">
+<form>
+    <button type="button" class="b" id="cancelBtn" onclick="location.href='community.html'">취소</button> 
+    <button type="button" class="b" id="resetBtn">초기화</button>
+    <button type="submit" class="b" id="submitBtn">등록</button>
+</form>
+</div> -->
+</body>
+</html>
