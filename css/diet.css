@@ -185,8 +185,8 @@ button:hover {
 
 #search-button {
     position: absolute;
-    right: 10px;
-    top: 50%;
+    right: 20px;
+    top: 55%;
     transform: translateY(-50%);
     /* 검색 버튼을 수직 가운데 정렬 */
     background: none;
