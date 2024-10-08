@@ -1,14 +1,14 @@
 .qna-title {
-    margin-top: 40px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     width: 100%;
-    height: 60px;
+    height: 40px;
     display: flex;
     align-items: center;
     text-align: center;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -23,7 +23,7 @@
 .qna-list {
     width: 100%;
     align-items: center;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 35px;
 }
 
