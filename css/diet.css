@@ -215,22 +215,29 @@ button:hover {
     cursor: pointer;
 }
 
-.food-details {
+.diet-details {
     margin: 20px 0;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
+.diet-info {
+    text-align: center;
+    
+}
+
 .diet-save {
-    display: inline-block;
-    padding: 10px 20px;
+    /* display: inline-block; */
+    padding: 40px 40px;
+    width: auto;
+    height: auto;
     background-color: #F4761B;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    /* float: right; */
+    float: right;
 }
 
 .diet-save:hover {
