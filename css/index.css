@@ -1,5 +1,4 @@
 @import "header.css";
-@import "main.css";
 
 @font-face {
     font-family: 'NEXON Lv1 Gothic OTF';
@@ -44,7 +43,7 @@ main {
     position: relative;
     width: 100vw;
     max-width: var(--max-width);
-    padding: 0 20px;
+    padding: 20px;
 }
 main.max {
     max-width: unset;
@@ -52,10 +51,12 @@ main.max {
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--gothic-bold);
+    font-weight: normal;
     margin: 0;
 }
-button {
+strong, button {
     font-family: var(--gothic-bold);
+    font-weight: normal;
 }
 
 input:focus {

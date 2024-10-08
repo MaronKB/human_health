@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>HH 회원가입</title>
     <script src="js/includeHtml.js"></script>
+    <script src="js/register.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/register.css"/>
 </head>
@@ -32,16 +33,16 @@
             <div class="login-input">
                 <span>이메일 수신 동의</span>
                 <div>
-                    <input id="agree" name="subscribe" type="radio" placeholder="text" value="true" checked/>
+                    <input id="agree" name="subscribe" type="radio" value="true" checked/>
                     <label for="agree">동의</label>
-                    <input id="disagree" name="subscribe" type="radio" placeholder="text" value="false"/>
+                    <input id="disagree" name="subscribe" type="radio" value="false"/>
                     <label for="disagree">거부</label>
                 </div>
             </div>
             <div class="login-input">
                 <div>
                     <input id="accept" type="checkbox">
-                    <label for="accept"><a>이용약관</a> 및 <a>개인정보 취급방침</a>에 동의합니다.</label>
+                    <label for="accept"><a href="#" onclick="showTerms('terms')">이용약관</a> 및 <a href="#" onclick="showTerms('privacy')">개인정보 취급방침</a>에 동의합니다.</label>
                 </div>
             </div>
             <div class="login-buttons">
@@ -50,6 +51,14 @@
         </form>
     </section>
 </main>
+
+<!-- 팝업 창 -->
+<div id="popup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 id="popup-title"></h2>
+        <p id="popup-text"></p>
+    </div>
+</div>
 </body>
-<script></script>
 </html>
