@@ -12,84 +12,80 @@
 <header data-include-html="header.html"></header>
 <main>
     <section id="vital">
-        <form id="user-vitals">
-            <div class="vital-input box">
-                <h4 class="vital-header">스트레스 지수</h4>
-                <div class="vital-content">
-                    <div>
-                        <span  id="stress-content">1</span>
-                    </div>
-                    <span>단계</span>
+        <form class="vital-input box">
+            <h4 class="vital-header">스트레스 지수</h4>
+            <div class="vital-content">
+                <div>
+                    <span  id="stress-content">1</span>
                 </div>
-                <label for="vital-stress" class="vital-range">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
-                    <span>6</span>
-                    <span>7</span>
-                    <span>8</span>
-                    <span>9</span>
-                    <span>10</span>
-                </label>
-                <input id="vital-stress" type="range" min="1" max="10" value="1" onchange="onRangeChange(this)"/>
-                <span id="vital-stress-tooltip"><br/>인생이 행복합니다!</span>
+                <span>단계</span>
             </div>
-            <div class="vital-input box">
-                <h4 class="vital-header">부위별 스트레칭</h4>
-                <input id="stretching-neck" type="checkbox"/>
-                <label for="stretching-neck">목</label>
-                <input id="stretching-shoulder" type="checkbox"/>
-                <label for="stretching-shoulder">어깨</label>
-                <input id="stretching-chest" type="checkbox"/>
-                <label for="stretching-chest">가슴</label>
-                <input id="stretching-wrist" type="checkbox"/>
-                <label for="stretching-wrist">손목</label>
-                <input id="stretching-ankle" type="checkbox"/>
-                <label for="stretching-ankle">발목</label>
-                <input id="stretching-leg" type="checkbox"/>
-                <label for="stretching-leg">다리</label>
-                <input id="stretching-waist" type="checkbox"/>
-                <label for="stretching-waist">허리</label>
-            </div>
-            <div class="vital-input box">
-                <h4 class="vital-header">수면 시간</h4>
-                <div class="vital-content">
-                    <div>
-                        <span  id="sleep-content">8</span>
-                    </div>
-                    <span>시간</span>
-                </div>
-                <label for="vital-sleep" class="vital-range">
-                    <span>0</span>
-                    <span>2</span>
-                    <span>4</span>
-                    <span>6</span>
-                    <span>8</span>
-                    <span>10</span>
-                    <span>12</span>
-                    <span>14</span>
-                    <span>16</span>
-                    <span>18</span>
-                    <span>20</span>
-                    <span>22</span>
-                    <span>24</span>
-                </label>
-                <input id="vital-sleep" type="range" min="0" max="24" value="8" onchange="onRangeChange(this)"/>
-                <span id="vital-sleep-tooltip">정상적인 수면을 취하고 있습니다.</span>
-            </div>
+            <label for="vital-stress" class="vital-range">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </label>
+            <input id="vital-stress" type="range" min="1" max="10" value="1" onchange="onRangeChange(this)"/>
+            <span id="vital-stress-tooltip"><br/>인생이 행복합니다!</span>
         </form>
-        <div id="recommend">
-            <div class="vital-recommend box">
-                <video id="recommend-1" src="">추천 영상 1</video>
+        <div class="vital-recommend box">
+            <video id="recommend-1" src="">추천 영상 1</video>
+        </div>
+        <form class="vital-input box">
+            <h4 class="vital-header">부위별 스트레칭</h4>
+            <input id="stretching-neck" type="checkbox"/>
+            <label for="stretching-neck">목</label>
+            <input id="stretching-shoulder" type="checkbox"/>
+            <label for="stretching-shoulder">어깨</label>
+            <input id="stretching-chest" type="checkbox"/>
+            <label for="stretching-chest">가슴</label>
+            <input id="stretching-wrist" type="checkbox"/>
+            <label for="stretching-wrist">손목</label>
+            <input id="stretching-ankle" type="checkbox"/>
+            <label for="stretching-ankle">발목</label>
+            <input id="stretching-leg" type="checkbox"/>
+            <label for="stretching-leg">다리</label>
+            <input id="stretching-waist" type="checkbox"/>
+            <label for="stretching-waist">허리</label>
+        </form>
+        <div class="vital-recommend box">
+            <video id="recommend-2" src="">추천 영상 2</video>
+        </div>
+        <form class="vital-input box">
+            <h4 class="vital-header">수면 시간</h4>
+            <div class="vital-content">
+                <div>
+                    <span  id="sleep-content">8</span>
+                </div>
+                <span>시간</span>
             </div>
-            <div class="vital-recommend box">
-                <video id="recommend-2" src="">추천 영상 2</video>
-            </div>
-            <div class="vital-recommend box">
-                <video id="recommend-3" src="">추천 영상 3</video>
-            </div>
+            <label for="vital-sleep" class="vital-range">
+                <span>0</span>
+                <span>2</span>
+                <span>4</span>
+                <span>6</span>
+                <span>8</span>
+                <span>10</span>
+                <span>12</span>
+                <span>14</span>
+                <span>16</span>
+                <span>18</span>
+                <span>20</span>
+                <span>22</span>
+                <span>24</span>
+            </label>
+            <input id="vital-sleep" type="range" min="0" max="24" value="8" onchange="onRangeChange(this)"/>
+            <span id="vital-sleep-tooltip">정상적인 수면을 취하고 있습니다.</span>
+        </form>
+        <div class="vital-recommend box">
+            <video id="recommend-3" src="">추천 영상 3</video>
         </div>
     </section>
 </main>

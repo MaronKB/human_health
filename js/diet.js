@@ -20,9 +20,9 @@ function saveDiet() {
     }
 
     // 선택한 음식의 영양 정보 가져오기
-    const carbs = parseFloat(document.getElementById('dietInfo').querySelector('strong:nth-child(3)').innerText.split(': ')[1]);
-    const protein = parseFloat(document.getElementById('dietInfo').querySelector('strong:nth-child(5)').innerText.split(': ')[1]);
-    const fat = parseFloat(document.getElementById('dietInfo').querySelector('strong:nth-child(7)').innerText.split(': ')[1]);
+    const carbs = parseFloat(document.querySelector("#carbs").innerHTML);
+    const protein = parseFloat(document.querySelector("#protein").innerHTML);
+    const fat = parseFloat(document.querySelector("#fat").innerHTML);
 
     // 음식 데이터를 객체로 저장
     const dietData = {
@@ -55,9 +55,9 @@ function addDietToTable(dietData) {
     newRow.innerHTML = `
         <td>${dietData.name}</td>
         <td>${dietData.mealType}</td>
-        <td>${dietData.carbs.toFixed(2)}g</td>
-        <td>${dietData.protein.toFixed(2)}g</td>
-        <td>${dietData.fat.toFixed(2)}g</td>
+        <td>${dietData.carbs}g</td>
+        <td>${dietData.protein}g</td>
+        <td>${dietData.fat}g</td>
     `;
 
     dietTbody.appendChild(newRow);
@@ -68,9 +68,9 @@ function selectDiet(foodName, carbs, protein, fat) {
     const quantity = document.getElementById('dietQuantity').value;
     document.getElementById('dietInfo').innerHTML = `
         <strong>음식: ${foodName}</strong> (기준량: ${quantity}g)
-        <br><strong>탄수화물:</strong> ${((carbs * quantity) / 100).toFixed(2)}g
-        <br><strong>단백질:</strong> ${((protein * quantity) / 100).toFixed(2)}g
-        <br><strong>지방:</strong> ${((fat * quantity) / 100).toFixed(2)}g
+        <br><strong>탄수화물:</strong><span id="carbs">${((carbs * quantity) / 100).toFixed(2)}</span>g
+        <br><strong>단백질:</strong><span id="protein">${((protein * quantity) / 100).toFixed(2)}</span>g
+        <br><strong>지방:</strong><span id="fat">${((fat * quantity) / 100).toFixed(2)}</span>g
     `;
 }
 

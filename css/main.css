@@ -16,6 +16,16 @@
 }
 #introduce > div > p {
     font-size: 14px;
+    margin: 4px;
+}
+#introduce > div > ul {
+    font-size: 14px;
+    padding: 0 15px;
+    margin: 0;
+}
+#introduce > div > ul > li {
+    font-size: 14px;
+    margin: 4px;
 }
 
 .communications {

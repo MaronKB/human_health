@@ -1,7 +1,7 @@
 const comments = {
     stress : {
-        1 : "<br/>인생이 행복합니다!",
-        2 : "<br/>오늘도 좋은 하루!",
+        1 : "인생이 행복합니다!",
+        2 : "오늘도 좋은 하루!",
         3 : "일상이 힘들고 지칠 땐,<br/>휴일을 떠올려봐요.",
         4 : "아직 경미한 수준입니다.<br/>천천히 심호흡을 해봐요.",
         5 : "많이 피곤하셨나요?<br/>오늘은 좋아하는 음식을 먹어요.",
@@ -51,4 +51,14 @@ const onRangeChange = (input) => {
 
     const tooltip = document.querySelector(`#vital-${string}-tooltip`);
     tooltip.innerHTML = comment;
+}
+const getVideoData = () => {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState !== 4 || xhttp.status !== 200) return;
+        const arr = JSON.parse(xhttp.responseText).slice(0, (type === "community") ? 6 : 3);
+        injectHtml(type, arr);
+    }
+    xhttp.open("GET", ``, true);
+    xhttp.send();
 }
