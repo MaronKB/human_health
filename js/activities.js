@@ -1,44 +1,18 @@
+
+
+let selectedIntensity = 0; // 전역 변수로 강도 저장
+
+// 모달 열기
 function addRow() {
-    // 모달 열기
     document.getElementById("actModal").style.display = "block";
 }
 
+// 모달 닫기
 function closeModal() {
     document.getElementById("actModal").style.display = "none";
 }
 
-function submitData() {
-    //입력 데이터 가져오기
-    const foodName = document.getElementById("food-name").value;
-    const mealType = document.getElementById("meal-type").value;
-    const carbs = document.getElementById("carbs").value;
-    const protein = document.getElementById("protein").value;
-    const fat = document.getElementById("fat").value;
-
-    // 테이블 본문 부분 선택
-    const tableBody = document.querySelector('tbody');
-
-    // 행 생성
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td>${foodName}</td>
-        <td>${mealType}</td>
-        <td>${carbs}g</td>
-        <td>${protein}g</td>
-        <td>${fat}g</td>
-    `;
-    //새로운 행 본문에 추가
-    tableBody.appendChild(newRow);
-    //모달 닫기
-    closeModal();
-
-    document.getElementById("food-name").value = '';
-    document.getElementById("meal-type").value = '';
-    document.getElementById("carbs").value = '';
-    document.getElementById("protein").value = '';
-    document.getElementById("fat").value = '';
-}
-    // 모달 외부에서 닫기
+// 모달 외부에서 닫기
 window.onclick = function(event) {
     const modal = document.getElementById("actModal");
     if (event.target === modal) {
@@ -46,10 +20,25 @@ window.onclick = function(event) {
     }
 }
 
-function selectActivity(activity, intensity) {
+// 활동 선택
+function selectActivity(activity, intensity, element) {
+    selectedIntensity = intensity; // 강도 저장
+
+    // 기존 선택된 활동의 선택 효과 제거
+    const previousSelected = document.querySelector('#act-tbody2 tr.selected');
+    if (previousSelected) {
+        previousSelected.classList.remove('selected');
+    }
+
+    // 새로 선택된 활동에 선택 효과 추가
+    element.classList.add('selected');
+
+    // 선택된 활동과 강도 업데이트
     document.getElementById('selectedActivity').textContent = activity;
+    document.getElementById('selectedIntensity').value = intensity;
 }
 
+// 활동 저장 및 테이블에 추가
 function saveActivity() {
     const activity = document.getElementById('selectedActivity').textContent;
     const hours = document.getElementById('hours').value;
@@ -57,9 +46,36 @@ function saveActivity() {
         alert("활동을 선택하세요.");
         return;
     }
+
+    // 메인 테이블에 새 행 추가
+    const tbody = document.getElementById('act-tbody');
+    const newRow = document.createElement('tr');
+
+    // 새로운 셀 생성
+    const activityCell = document.createElement('td');
+    activityCell.textContent = activity;
+
+    const hoursCell = document.createElement('td');
+    hoursCell.textContent = hours;
+
+    const intensityCell = document.createElement('td');
+    intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
+
+    // 셀을 행에 추가
+    newRow.appendChild(activityCell);
+    newRow.appendChild(hoursCell);
+    newRow.appendChild(intensityCell);
+
+    // 행을 테이블에 추가
+    tbody.appendChild(newRow);
+
+    // 모달 닫기
+    closeModal();
+
     alert(`활동: ${activity}, 시간: ${hours} hours 저장되었습니다.`);
 }
 
+// 모달창 pagination
 let link = document.getElementsByClassName("link");
 
 let currentValue = 1;
