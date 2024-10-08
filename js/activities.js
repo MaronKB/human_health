@@ -108,3 +108,34 @@ function nextBtn() {
         link[currentValue-1].classList.add("active");
     }
 }
+
+//사용자 입력을 통해 활동을 추가하는 함수
+function addCustomActivity() {
+    const activityName = document.getElementById('newActivity').value;
+    const activityIntensity = document.getElementById('newIntensity').value;
+
+    if (activityName === '' || activityIntensity === '') {
+        alert('활동 이름과 강도를 모두 입력하세요.');
+        return;
+    }
+
+    const tableBody = document.getElementById('act-tbody2');
+    const newRow = document.createElement('tr');
+    newRow.setAttribute('onclick', `selectActivity('${activityName}', ${activityIntensity}, this)`);
+
+    const activityCell = document.createElement('td');
+    activityCell.textContent = activityName;
+
+    const intensityCell = document.createElement('td');
+    intensityCell.textContent = activityIntensity;
+
+    newRow.appendChild(activityCell);
+    newRow.appendChild(intensityCell);
+    tableBody.appendChild(newRow);
+
+    // 입력 필드 초기화
+    document.getElementById('newActivity').value = '';
+    document.getElementById('newIntensity').value = '';
+
+    alert('활동이 추가되었습니다.');
+}
