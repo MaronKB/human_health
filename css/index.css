@@ -1,5 +1,4 @@
 @import "header.css";
-@import "main.css";
 
 @font-face {
     font-family: 'NEXON Lv1 Gothic OTF';
@@ -44,7 +43,7 @@ main {
     position: relative;
     width: 100vw;
     max-width: var(--max-width);
-    padding: 0 20px;
+    padding: 20px;
 }
 main.max {
     max-width: unset;
@@ -52,10 +51,12 @@ main.max {
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--gothic-bold);
+    font-weight: normal;
     margin: 0;
 }
-button {
+strong, button {
     font-family: var(--gothic-bold);
+    font-weight: normal;
 }
 
 input:focus {
@@ -75,9 +76,13 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
     background: var(--main-color);
 }
-.flex-row {
+.box {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 15px 20px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
 }
