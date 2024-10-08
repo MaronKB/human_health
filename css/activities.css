@@ -236,9 +236,12 @@ input[type="date"] {
 
 .activity-details input[type="number"] {
     padding: 5px;
-    border: 2px solid #F4761B;
-    border-radius: 6px;
-    width: 30px;
+    border: none;
+    border-bottom: 2px solid #F4761B;
+    width: 90px;
+    text-align: center;
+    font-size: 20px;
+    outline: none;
 }
 
 .instructions {
