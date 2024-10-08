@@ -279,6 +279,8 @@ button:hover {
 
 .graph-header {
     width: 100px;
+    margin-right: 40px;
+    text-align: center;
 }
 
 .graph-body {
@@ -286,7 +288,6 @@ button:hover {
     position: relative;
     flex: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2px;
@@ -294,7 +295,7 @@ button:hover {
 
 .graph-target {
     appearance: none;
-    width: 800px;
+    width: 600px;
     height: 30px;
 }
 
@@ -302,4 +303,9 @@ button:hover {
     width: 100%;
     display: flex;
 
+}
+
+.graph-body span {
+    position: absolute;
+    right: -10%;
 }

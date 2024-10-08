@@ -59,8 +59,8 @@
                 <div class="graph">
                     <h4 class="graph-header">탄수화물</h4>
                     <div class="graph-body">
-                        <progress id="carb-target" class="graph-target" value="10" max="100"></progress>
-                        <span>10g</span>
+                        <progress id="carb-target" class="graph-target" value="100" max="100"></progress>
+                        <span>100g</span>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     <h4 class="graph-header">단백질</h4>
                     <div class="graph-body">
                         <progress id="prot-target" class="graph-target" value="20" max="100"></progress>
-                        <span>20g</span>
+                        <span>2</span>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     <h4 class="graph-header">지방</h4>
                     <div class="graph-body">
                         <progress id="fat-target" class="graph-target" value="5" max="100"></progress>
-                        <span>5g</span>
+                        <span>3</span>
                     </div>
                 </div>
             </div>
@@ -99,9 +99,9 @@
     <!-- 모달 -->
     <div id="dietModal" class="diet-modal">
         <div class="diet-modal-content">
-            <span class="diet-close" onclick="closeModal()">&times;</span>
             <div class="diet-search">
                 <div class="search-wrapper">
+                    <span class="diet-close" onclick="closeModal()">&times;</span>
                     <input type="text" id="search-food" placeholder="검색">
                     <button id="search-button" onclick="filterTable()">
                         <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" width="20" />
