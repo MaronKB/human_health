@@ -197,11 +197,25 @@ input[type="date"] {
     background-color: #45a049;
 }
 
+/* 활동테이블, 시간입력 묶기*/
+.activity-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    background-color: white;
+    padding: 10px 10px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+}
+
 /* 활동 테이블 스타일 */
 #activityTable {
-    width: 60%;
+    width: 70%;
+    margin-left: 80px;
     border-collapse: collapse;
-    margin-bottom: 20px; /*테이블과 아래 요소 사이? 간격*/
+    margin-bottom: 0px; /*테이블과 아래 요소 사이? 간격*/
     background-color: #f3f3f3;
 }
 
@@ -220,10 +234,10 @@ input[type="date"] {
 
 /* 시간입력 스타일*/
 .activity-details {
-    width: 35%;
+    width: 320px;
     border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
+    padding: 35px;
+    margin-right: 80px;
     background: #f9f9f9;
     border-radius: 3px;
 }
@@ -280,6 +294,7 @@ input[type="date"] {
     color: #383838;
     padding: 10px 0px;
     position: relative;
+    margin-right: 300px;
 }
 
 ul {
