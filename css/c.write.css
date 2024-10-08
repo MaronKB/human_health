@@ -1,0 +1,41 @@
+
+.title{
+    border: 1px solid black;
+    width: 880px;
+    border-radius: 5px;
+    height: 30px;
+    position: relative;
+    left: 1px;
+    top: 30px;
+}
+.upload{
+    position: absolute;
+    top: 240px;
+    left: 70px;
+    border-radius: 1px;
+}
+.tb{
+    width: 880px;
+    height: 260px;
+    text-align: left;
+    position: relative;
+    top:100px;
+    display: flex;
+    /* justify-items: flex-end; */
+}
+.b{
+    width: 80px;
+    position: relative;
+    justify-content: flex-start;
+    background-color: orange;
+    cursor: pointer;
+    
+}
+.button-container {
+    display: flex; /* 버튼들을 옆으로 나란히 배치 */
+    gap: 10px; /* 버튼 간 간격 */
+    position: relative;
+    top: 110px;
+    left: 300px;
+}
+
