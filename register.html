@@ -2,8 +2,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>HH 로그인</title>
+    <title>HH 회원가입</title>
     <script src="js/includeHtml.js"></script>
+    <script src="js/register.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/register.css"/>
 </head>
@@ -59,58 +60,5 @@
         <p id="popup-text"></p>
     </div>
 </div>
-
-<script>
-    function showTerms(type) {
-        const popup = document.getElementById('popup');
-        const title = document.getElementById('popup-title');
-        const text = document.getElementById('popup-text');
-
-        if (type === 'terms') {
-            title.innerText = '이용약관';
-            text.innerText = '배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다.';
-        } else if (type === 'privacy') {
-            title.innerText = '개인정보 취급방침';
-            text.innerText = '배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다배고프다.';
-        }
-
-        popup.style.display = 'block'; // 팝업 창 보이기
-    }
-
-    function closePopup() {
-        const popup = document.getElementById('popup');
-        popup.style.display = 'none'; // 팝업 창 숨기기
-    }
-</script>
-
-<style>
-    .popup {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .popup-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        width: 400px;
-        position: relative;
-    }
-
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 20px;
-        cursor: pointer;
-    }
-</style>
 </body>
 </html>
