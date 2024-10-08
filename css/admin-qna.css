@@ -1,0 +1,54 @@
+.qna-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.title1 {
+    width: 15%;
+}
+
+.title2 {
+    width: 55%;
+}
+
+.qna-list {
+    width: 100%;
+    align-items: center;
+    font-size: 14px;
+    line-height: 35px;
+}
+
+.qna-item {
+    display: flex;
+    text-align: center;
+}
+
+.qnaItem1 {
+    width: 15%;
+}
+
+.qnaItem2 {
+    width: 55%;
+    text-align: left;
+}
+
+.qna-pagination {
+    margin-top: 25px;
+    width: 100%;
+    text-align: center;
+}
+
+.qna-pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
