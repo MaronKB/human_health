@@ -1,0 +1,100 @@
+.community-write-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.community-write-title input {
+    width: 100%;
+    height: 35px;
+    font-size: 25px;
+    border-color: lightslategrey;
+    border-radius: 5px;
+}
+
+.community-write-upload {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.image-input {
+    display: none;
+}
+
+.video-input {
+    display: none;
+}
+
+.community-write-upload label {
+    margin-right: 20px;
+    padding: 5px 10px;
+    border: 2px solid lightslategray;
+    border-radius: 5px;
+}
+
+.community-write-content {
+    margin-bottom: 20px;
+}
+
+.community-write-content textarea {
+    width: 100%;
+    height: 400px;
+    font-size: 20px;
+}
+
+.community-write-button {
+    text-align: center;
+}
+
+.community-write-button button {
+    width: 12%;
+    height: 35px;
+    border-radius: 5px;
+    border-color: lightslategray;
+    background-color: #f4761b;
+    font-size: 20px;
+    color: white;
+    margin: 10px;
+}
+
+/* 
+.title{
+    border: 1px solid black;
+    width: 880px;
+    border-radius: 5px;
+    height: 30px;
+    position: relative;
+    left: 1px;
+    top: 30px;
+}
+.upload{
+    position: absolute;
+    top: 240px;
+    left: 70px;
+    border-radius: 1px;
+}
+.tb{
+    width: 880px;
+    height: 260px;
+    text-align: left;
+    position: relative;
+    top:100px;
+    display: flex;
+    /* justify-items: flex-end; */
+}
+.b{
+    width: 80px;
+    position: relative;
+    justify-content: flex-start;
+    background-color: orange;
+    cursor: pointer;
+    
+}
+.button-container {
+    display: flex; /* 버튼들을 옆으로 나란히 배치 */
+    gap: 10px; /* 버튼 간 간격 */
+    position: relative;
+    top: 110px;
+    left: 300px;
+} */
+

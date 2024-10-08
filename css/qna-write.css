@@ -1,6 +1,6 @@
 .qna-write-title {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 
@@ -8,7 +8,8 @@
     width: 100%;
     height: 35px;
     font-size: 25px;
-    color: black;
+    border-color: lightslategrey;
+    border-radius: 5px;
 }
 
 .qna-write-check {
