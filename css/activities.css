@@ -97,9 +97,13 @@ input[type="date"] {
     position: relative;
 }
 
-.act-table th,
+.act-table th {
+    padding: 10px 40px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
 .act-table td {
-    padding: 12px 40px;
+    padding: 13px 40px;
     text-align: center;
     border-bottom: 1px solid #dddddd;
 }
