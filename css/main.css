@@ -1,18 +1,33 @@
 .main-section {
-    margin: 20px 0;
 }
 #introduce {
 
 }
 
 #introduce > div {
-    background-color: #eeeeee;
     padding: 30px;
-    border-radius: 5px;
     margin: 20px 0;
 }
+#introduce > div:first-child {
+    margin: 0;
+}
 #introduce > div > h2 {
-    margin: 0 0 20px 0;
+    display: flex;
+    align-items: flex-end;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+#introduce > div > h2 > span {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    font-size: 24px;
+    text-shadow: 0 0 4px white;
+    color: var(--main-color);
+    margin: 0 5px 0 0;
+}
+#introduce > div > h2 > span > sub {
+    font-size: 14px;
 }
 #introduce > div > p {
     font-size: 14px;
@@ -20,12 +35,38 @@
 }
 #introduce > div > ul {
     font-size: 14px;
-    padding: 0 15px;
+    list-style: none;
+    background: #eee;
+    padding: 20px;
+    border-radius: 5px;
     margin: 0;
 }
 #introduce > div > ul > li {
     font-size: 14px;
-    margin: 4px;
+    line-height: 20px;
+    background: white;
+    padding: 5px 8px;
+    border-radius: 5px;
+    margin: 0 0 8px 0;
+}
+#introduce > div > ul > li:last-child {
+    margin: 0;
+}
+#introduce > div > ul > li::before {
+    content: "";
+    display: inline-block;
+    flex: none;
+    width: 10px;
+    height: 10px;
+    background: var(--main-color);
+    transform: rotate(45deg);
+    margin: 0 5px 0 0;
+}
+#introduce > div > ul > li > strong {
+    flex: none;
+    height: 30px;
+    white-space: nowrap;
+    color: var(--main-color);
 }
 
 .communications {
