@@ -55,6 +55,8 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
+    border-width: 2px;
+    border-color: lightslategray;
     border-radius: 5px;
 }
 

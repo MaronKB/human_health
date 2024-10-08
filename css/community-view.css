@@ -1,0 +1,41 @@
+.community_view_info table {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.community_view_info table th {
+    width: 10%;
+}
+
+.community_view_info table td {
+    width: 30%;
+}
+
+.community_view_content {
+    margin-bottom: 20px;
+}
+
+.community_view_content {
+    border: none;
+    width: 100%;
+    height: 350px;
+    font-size: 20px;
+    color: black;
+}
+
+.community_view_button {
+    text-align: center;
+}
+
+.community_view_button button {
+    width: 12%;
+    height: 35px;
+    background-color: #f4761b;
+    font-size: 20px;
+    color: white;
+    margin: 10px;
+}
