@@ -1,48 +1,75 @@
-*,
+/* *,
 *:before,
 *:after{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+} */
+
+/* 전체 페이지 스타일 */
+body {
+    font-family:  sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin: 0px;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+    border: 1px solid #eeeeee;
+}
     /*날짜 선택*/
+
+.act-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 input[type="date"] {
     background-color: #F4761B;
     padding: 10px;
-    position: absolute;
-    /* transform: translate(-370%, -250%); */
-     /* top: 20%; */
-    left: 5%; 
-    margin: 25px 10px 0 20px;
     font-family: "Roboto Mono",monospace;
     color: #ffffff;
     font-size: 13px;
     border: 1px solid #eeeeee;
     outline: none;
     border-radius: 6px;
+    font-family: inherit;
 }
 
     /* 활동대사량 */
 .act-kcal {
-    width: calc(80% - 40px);
-    background: white;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
     padding: 15px 20px;
+    background-color: white;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
-    margin: 10px 20px 0 20px;
-    transform: translate(-6%, 70%);
-    /* height: 100px; */
+    width: 100%;
+
 }
 .act-kcal > h3 {
     font-size: 18px;
-    margin: 0 0 5px 0;
+    margin-bottom: 10px;
     color: var(--main-color);
 }
 .act-kcal p {
     font-size: 15px;
     margin: 0;
+    font-weight: bold;
     text-align: center;
 }
 .act-kcal span {
@@ -52,19 +79,19 @@ input[type="date"] {
 }
 
 /*테이블 스타일*/
+
+.act-template {
+    width: 100%;
+}
+
 .act-table{
     border-collapse: collapse;
-    margin: 110px 0;
-    font-size: 0.9em;
-    /* min-width: 800px; */
-    width: calc(80% - 20px);
-    left: 70px;
-    /* transform: translate(-5%, 50%); */
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
+    width: 100%;
     box-shadow: 2px 5px 10px #0003;
-    text-align: center;
-    position: fixed;
+    background: white;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .act-table thead tr {
@@ -75,21 +102,23 @@ input[type="date"] {
 
 .act-table th,
 .act-table td {
-    padding: 12px 15px;
-    empty-cells: show;
+    padding: 8px 40px;
+    text-align: center;
 }
 
+/* 
 .act-table tbody tr {
     border-bottom: 1px solid #dddddd;
-}
+} */
 
 .act-table tbody tr:nth-of-type(even) {
     background-color:#f3f3f3;
 }
 
-.act-table tbody tr:last-of-type {
+/* 메인 테이블 아래 주황밑줄 */
+/* .act-table tbody tr:last-of-type {
     border-bottom:2px solid #F4761B;
-}
+} */
 
 .act-table-add {
     display: flex;
