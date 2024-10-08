@@ -199,6 +199,7 @@ input[type="date"] {
 
 /* 활동테이블, 시간입력 묶기*/
 .activity-container {
+    display: flex;
     background-color: white;
     padding: 10px 10px;
     border: 1px solid #eeeeee;
@@ -207,6 +208,9 @@ input[type="date"] {
     margin-bottom: 10px;
 }
 
+.activity-container2 {
+    justify-content: space-around;
+}
 
 /* 활동 테이블 스타일 */
 #activityTable {
@@ -233,8 +237,7 @@ input[type="date"] {
 .activity-details {
     width: 40%;
     border: 1px solid #ddd;
-    padding: 35px;
-    margin-right: 80px;
+    padding: 20px;
     background: #f9f9f9;
     border-radius: 3px;
 }
@@ -289,9 +292,8 @@ input[type="date"] {
     display: flex;
     align-items: center;
     color: #383838;
-    padding: 10px 0px;
+    padding: 5px 0px;
     position: relative;
-    margin-right: 300px;
 }
 
 ul {
@@ -302,7 +304,7 @@ ul {
 ul li {
     display: inline-block;
     margin: 0px;
-    width: 30px;
+    width: 20px;
     height: 30px;
     border-radius: 20%;
     text-align: center;
