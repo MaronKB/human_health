@@ -1,7 +1,6 @@
 
 /* 전체 페이지 스타일 */
 body {
-    font-family:  sans-serif;
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
@@ -39,7 +38,7 @@ input[type="date"] {
     border: none;
     outline: none;
     border-radius: 6px;
-    font-family: inherit;
+    font-family: "Roboto Mono", monospace;
     box-shadow: 2px 5px 10px #0003;
 }
 
