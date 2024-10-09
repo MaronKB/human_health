@@ -104,15 +104,15 @@
 }
 
 .edit-checkbox {
-    width: 16px;
+    width: 20px;
 }
 
 .edit-number {
-    width: 80px;
+    width: 60px;
 }
 
 .edit-input-id {
-    width: 200px;
+    width: 180px;
 }
 
 .edit-input-password {
@@ -120,7 +120,7 @@
 }
 
 .edit-input-nickname {
-    width: 100px;
+    width: 80px;
 }
 
 .edit-input-emailOptOut {
@@ -128,5 +128,5 @@
 }
 
 .edit-input-date {
-    width: 120px;
+    width: 80px;
 }

@@ -105,29 +105,29 @@ td {
 }
 
 .edit-checkbox {
-    width: 16px;
+    width: 20px;
 }
 
 .edit-number {
-    width: 80px;
+    width: 60px;
 }
 
 .edit-input-food {
-    width: 260px;
+    width: 310px;
 }
 
 .edit-input-amount {
-    width: 60px;
+    width: 50px;
 }
 
 .edit-input-carbs {
-    width: 60px;
+    width: 50px;
 }
 
 .edit-input-protein {
-    width: 60px;
+    width: 50px;
 }
 
 .edit-input-fat {
-    width: 60px;
+    width: 50px;
 }
