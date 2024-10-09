@@ -36,10 +36,11 @@ input[type="date"] {
     padding: 10px;
     color: #ffffff;
     font-size: 13px;
-    border: 1px solid #eeeeee;
+    border: none;
     outline: none;
     border-radius: 6px;
     font-family: inherit;
+    box-shadow: 2px 5px 10px #0003;
 }
 
     /* 활동대사량 */
@@ -127,9 +128,9 @@ input[type="date"] {
     display: flex;
     justify-content: flex-end;
     position: absolute;
-    right: 5px;
+    right: 3px;
     top: 0;
-    transform: translateY(-105%); /* 하.. ㅅㅂ..거참 안되네..*/
+    transform: translateY(-108%); /* 하.. ㅅㅂ..거참 안되네..*/
 }
 
 #add-act {
@@ -142,6 +143,7 @@ input[type="date"] {
     width: 30px;
     height: 30px;
     position: relative;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 #add-act:hover {
@@ -167,7 +169,8 @@ input[type="date"] {
     margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 60%;
+    width: 50%;
+    max-width: 800px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 */
 }
@@ -189,27 +192,29 @@ input[type="date"] {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    margin: 1px 190px 20px;
-    position: relative;
+    /* margin: 5px 150px 15px; */
+    gap: 0;
 }
 
 .act-search input[type="text"] {
     padding: 10px;
     border: 2px solid #F4761B;
-    border-radius: 4px;
-    flex-grow: 1;
-    margin-left: 10px;
-    font-family: "Roboto Mono", monospace;
+    border-radius: 5px 0 0 5px;
+    width: 80%;
+    font-family: inherit;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .act-search button {
     background-color: #F4761B;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 10px;
+    padding-left: 9px;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
-    height: 39px;
+    height: 41px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .act-search button:hover {
@@ -231,60 +236,90 @@ input[type="date"] {
 /* 활동테이블, 시간입력 묶기*/
 .activity-container {
     display: flex;
-    background-color: white;
-    padding: 10px 10px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+    /* background-color: white;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
-    margin-bottom: 10px;
-}
-
-.activity-container2 {
-    justify-content: space-around;
+    margin-bottom: 10px; */
 }
 
 /* 활동 테이블 스타일 */
 #activityTable {
-    width: 60%;
+    flex: 2;
+    min-width: calc(110% - 10px);
+    max-width: calc(110% - 10px);
     border-collapse: collapse;
     margin-bottom: 0px; /*테이블과 아래 요소 사이? 간격*/
     background-color: #f3f3f3;
-}
-
-#activityTable th, #activityTable td {
-    border: 1px solid #f9f9f9;
-    padding: 8px;
-    text-align: left;
-    border-top-left-radius: 1px solid;
-    text-align: left;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 2px 5px 10px #0003;
+    
 }
 
 #activityTable th {
     background-color: #F4761B;
     color: white;
+    border: 1px solid white;
+}
+
+#activityTable td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    /* border-top-left-radius: 1px solid; */
 }
 
 /* 시간입력 스타일*/
-.activity-details {
-    width: 40%;
-    border: 1px solid #ddd;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 3px;
+/* .activity-details {
+    flex: 1;
+    min-width: 48%;
+    max-width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+} */
+
+.act-selected-activity,
+.act-type-time {
+    flex:1;
+    display: flex;
+    min-width: calc(110% - 40px);
+    max-width: calc(110% - 40px);
+    /* margin-right: 20%; */
+    gap: 19px;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #eeeeee;
+    box-shadow: 2px 5px 10px #0003;
+    border-radius: 10px;
 }
 
 .activity-details h3 {
-    margin-bottom: 6px;
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+
 }
 
 .activity-details input[type="number"] {
-    padding: 5px;
-    border: none;
+    padding: 1px;
+    border:  #eeeeee;
     border-bottom: 2px solid #F4761B;
-    width: 90px;
+    width: 50%;
     text-align: center;
     font-size: 20px;
-    outline: none;
+    outline: none;  
 }
 
 .instructions {
@@ -371,7 +406,7 @@ ul li.active {
     size: 20cap;
 }
 
-.act-btn2 img{
+.act-btn2 img{  
     width: 24px;
     margin-left: 10px;
     transform: rotate(180deg);
