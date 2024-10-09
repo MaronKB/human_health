@@ -48,6 +48,7 @@
         </div>
 
         <script>
+            // 목록 데이터 초기화
             let userList = [
                 { id: 'user01@gmail.com', password: 'user01', nickname: '유저1', emailOptOut: 'Y', date: '2024.10.01' },
                 { id: 'user02@gmail.com', password: 'user02', nickname: '유저2', emailOptOut: 'N', date: '2024.10.02' },
@@ -106,11 +107,11 @@
 
             // 추가 기능
             function addUser() {
-                const id = prompt('아이디를 입력하세요:');
-                const password = prompt('비밀번호를 입력하세요:');
-                const nickname = prompt('닉네임을 입력하세요:');
-                const emailOptOut = confirm('이메일 수신 동의 여부를 선택하세요 (확인: Y, 취소: N)') ? 'Y' : 'N';
-                const date = prompt('날짜를 입력해주세요');
+                const id = prompt('아이디를 입력해주세요.');
+                const password = prompt('비밀번호를 입력해주세요.');
+                const nickname = prompt('닉네임을 입력해주세요.');
+                const emailOptOut = confirm('이메일 수신 동의 여부를 선택하세요. (확인: Y, 취소: N)') ? 'Y' : 'N';
+                const date = prompt('날짜를 입력해주세요.');
 
                 if (id && password && nickname && date) {
                     userList.push({ id, password, nickname, emailOptOut, date });
@@ -139,7 +140,7 @@
                 renderUserList(userList);  // 삭제 후 업데이트
             }
 
-            // 유저 검색 기능
+            // 검색 기능
             function searchUser() {
                 const searchCategory = document.getElementById('search-category').value;
                 const searchInput = document.getElementById('search-input').value.toLowerCase();
