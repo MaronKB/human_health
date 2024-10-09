@@ -66,7 +66,7 @@
     border-radius: 5px;
 }
 
-.user-list {
+.activity-list {
     margin-top: 20px;
     width: 100%;
     max-height: 520px;
@@ -74,24 +74,24 @@
     display: block;
 }
 
-.user-list table {
+.activity-list table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.user-list th {
+.activity-list th {
     position: sticky;
     top: 0;
     background: lightgray;
 }
 
-.user-list th, td {
+.activity-list th, td {
     padding: 10px;
     text-align: center;
     border: 1px solid lightslategray;
 }
 
-.user-list td input {
+.activity-list td input {
     padding: 0;
     height: 20px;
     text-align: center;
@@ -99,7 +99,7 @@
     border: none;
 }
 
-.user-list-body {
+.activity-list-body {
     font-size: 16px;
 }
 
