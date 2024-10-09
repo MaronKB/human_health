@@ -5,15 +5,14 @@ main {
 }
 
 .diet-kcal {
-    width: 40%;
+    width: 100%; /* 테이블과 같은 너비 */
     background: white;
-    /* padding: 15px 20px; */
-    border: 1px solid #eeeeee;
+    border: 1px solid #c4ae9f; /* 테이블의 테두리 색상과 일치 */
     border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
-    margin: 20px 0 20px;
-    transform: translate(-6%, 70%);
-    /* height: 100px; */
+    box-shadow: none; /* 테이블과 같은 느낌으로 */
+    margin: 20px 0;
+    padding: 10px; /* 테이블 셀과 비슷한 패딩 */
+    text-align: center; /* 테이블과 같은 가운데 정렬 */
 }
 
 .diet-kcal>h3 {
@@ -38,8 +37,7 @@ input[type="date"] {
     background-color: #F4761B;
     padding: 10px;
     position: absolute;
-    /* transform: translate(-370%, -250%); */
-    /* top: 20%; */
+
     left: 5%;
     margin: 25px 10px 0 20px;
     font-family: "Roboto Mono", monospace;
