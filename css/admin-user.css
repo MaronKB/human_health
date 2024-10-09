@@ -66,10 +66,23 @@
     border-radius: 5px;
 }
 
-.user-list table {
+.user-list {
     margin-top: 20px;
     width: 100%;
+    max-height: 520px;
+    overflow-y: auto;
+    display: block;
+}
+
+.user-list table {
+    width: 100%;
     border-collapse: collapse;
+}
+
+.user-list th {
+    position: sticky;
+    top: 0;
+    background: lightgray;
 }
 
 .user-list th, td {
