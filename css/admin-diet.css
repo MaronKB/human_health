@@ -66,7 +66,7 @@
     border-radius: 5px;
 }
 
-.activity-list {
+.diet-list {
     margin-top: 20px;
     width: 100%;
     max-height: 520px;
@@ -74,24 +74,25 @@
     display: block;
 }
 
-.activity-list table {
+.diet-list table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.activity-list th {
+.diet-list th {
     position: sticky;
     top: 0;
     background: lightgray;
 }
 
-.activity-list th, td {
+.diet-list th,
+td {
     padding: 10px;
     text-align: center;
     border: 1px solid lightslategray;
 }
 
-.activity-list td input {
+.diet-list td input {
     padding: 0;
     height: 20px;
     text-align: center;
@@ -99,7 +100,7 @@
     border: none;
 }
 
-.activity-list-body {
+.diet-list-body {
     font-size: 16px;
 }
 
@@ -111,10 +112,22 @@
     width: 80px;
 }
 
-.edit-input-activity {
-    width: 200px;
+.edit-input-food {
+    width: 260px;
 }
 
-.edit-input-intensity {
-    width: 100px;
+.edit-input-amount {
+    width: 60px;
+}
+
+.edit-input-carbs {
+    width: 60px;
+}
+
+.edit-input-protein {
+    width: 60px;
+}
+
+.edit-input-fat {
+    width: 60px;
 }
