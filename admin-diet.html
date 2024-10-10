@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HH 관리자 식단</title>
+    <script src="js/includeHtml.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/admin-diet.css" />
+</head>
+
+<body>
+    <header data-include-html="./header.html"></header>
+    <main>
+        <div class="title">
+            <div>식단 목록</div>
+        </div>
+        <div class="list-control">
+            <button class="control-button" id="add-diet">추가</button>
+            <select class="search-category" id="search-category" required>
+                <option value="음식">음식</option>
+                <option value="기준량">기준량</option>
+                <option value="탄수화물">탄수화물</option>
+                <option value="단백질">단백질</option>
+                <option value="지방">지방</option>
+            </select>
+            <div class="list-search">
+                <input type="text" id="search-input">
+                <button class="search-button" id="search-button">검색</button>
+            </div>
+            <button class="control-button" id="save-diet">저장</button>
+            <button class="control-button" id="delete-diet">삭제</button>
+        </div>
+
+        <div class="diet-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>선택</th>
+                        <th>번호</th>
+                        <th>음식</th>
+                        <th>기준량</th>
+                        <th>탄수화물</th>
+                        <th>단백질</th>
+                        <th>지방</th>
+                    </tr>
+                </thead>
+                <tbody class="diet-list-body" id="diet-list-body">
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            // 목록 데이터 초기화
+            let dietList = [
+                { food: '음식1', amount: '100g', carbs: '1g', protein: '1g', fat: '1g' },
+                { food: '음식2', amount: '100g', carbs: '2g', protein: '2g', fat: '2g' },
+                { food: '음식3', amount: '100g', carbs: '3g', protein: '3g', fat: '3g' },
+                { food: '음식4', amount: '100g', carbs: '4g', protein: '4g', fat: '4g' },
+                { food: '음식5', amount: '100g', carbs: '5g', protein: '5g', fat: '5g' },
+                { food: '음식6', amount: '100g', carbs: '6g', protein: '6g', fat: '6g' },
+                { food: '음식7', amount: '100g', carbs: '7g', protein: '7g', fat: '7g' },
+                { food: '음식8', amount: '100g', carbs: '8g', protein: '8g', fat: '8g' },
+                { food: '음식9', amount: '100g', carbs: '9g', protein: '9g', fat: '9g' },
+                { food: '음식10', amount: '100g', carbs: '10g', protein: '10g', fat: '10g' },
+                { food: '음식11', amount: '100g', carbs: '11g', protein: '11g', fat: '11g' },
+            ];
+
+            // 목록을 화면에 렌더링
+            function renderDietList(diets) {
+                const dietListBody = document.getElementById('diet-list-body');
+                dietListBody.innerHTML = ''; // 기존 내용 초기화
+
+                diets.forEach((diet, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td><input type="checkbox" class="edit-checkbox" data-index="${index}"></td>
+                    <td class="edit-number">${index + 1}</td>
+                    <td><input type="text" value="${diet.food}" class="edit-input-food"></td>
+                    <td><input type="text" value="${diet.amount}" class="edit-input-amount"></td>
+                    <td><input type="text" value="${diet.carbs}" class="edit-input-carbs"></td>
+                    <td><input type="text" value="${diet.protein}" class="edit-input-protein"></td>
+                    <td><input type="text" value="${diet.fat}" class="edit-input-fat"></td>
+                `;
+                    dietListBody.appendChild(row);
+                });
+            }
+
+            // 데이터 저장 기능
+            function saveDietData() {
+                const editFoods = document.querySelectorAll('.edit-input-food');
+                const editAmounts = document.querySelectorAll('.edit-input-amount');
+                const editCarbs = document.querySelectorAll('.edit-input-carbs');
+                const editProteins = document.querySelectorAll('.edit-input-protein');
+                const editFats = document.querySelectorAll('.edit-input-fat');
+
+                // 기존 데이터를 유지하면서 새로운 데이터를 저장
+                dietList = Array.from(dietList).map((diet, index) => {
+                    return {
+                        food: editFoods[index] ? editFoods[index].value : diet.food,
+                        amount: editAmounts[index] ? editAmounts[index].value : diet.amount,
+                        carbs: editCarbs[index] ? editCarbs[index].value : diet.carbs,
+                        protein: editProteins[index] ? editProteins[index].value : diet.protein,
+                        fat: editFats[index] ? editFats[index].value : diet.fat
+                    };
+                });
+
+                alert('저장되었습니다.');
+                renderDietList(dietList); // 변경된 내용을 다시 렌더링
+            }
+
+            // 추가 기능
+            function addDiet() {
+                const food = prompt('음식명을 입력해주세요.');
+                const amount = prompt('기준량을 입력해주세요.');
+                const carbs = prompt('탄수화물을 입력해주세요.');
+                const protein = prompt('단백질을 입력해주세요.');
+                const fat = prompt('지방을 입력해주세요.');
+
+                if (food && amount && carbs && protein && fat) {
+                    dietList.push({ food, amount, carbs, protein, fat });
+                    renderDietList(dietList);
+                } else {
+                    alert('모든 정보를 입력해주세요.');
+                }
+            }
+
+            // 삭제 기능
+            function deleteDiet() {
+                const checkboxes = document.querySelectorAll('.edit-checkbox');
+                const selectedIndexes = [];
+
+                checkboxes.forEach((checkbox, index) => {
+                    if (checkbox.checked) {
+                        selectedIndexes.push(index);
+                    }
+                });
+
+                // 인덱스를 역순으로 삭제
+                for (let i = selectedIndexes.length - 1; i >= 0; i--) {
+                    dietList.splice(selectedIndexes[i], 1);
+                }
+
+                renderDietList(dietList);  // 삭제 후 업데이트
+            }
+
+            // 검색 기능
+            function searchDiet() {
+                const searchCategory = document.getElementById('search-category').value;
+                const searchInput = document.getElementById('search-input').value.toLowerCase();
+
+                const filteredDiets = dietList.filter(diet => {
+                    if (searchCategory === '음식') {
+                        return diet.food.toLowerCase().includes(searchInput);
+                    } else if (searchCategory === '탄수화물') {
+                        return diet.carbs.toLowerCase().includes(searchInput);
+                    }
+                });
+
+                renderDietList(filteredDiets);
+            }
+
+            // 페이지 로드 시 초기 목록 출력
+            window.addEventListener('DOMContentLoaded', () => {
+                renderDietList(dietList);
+
+                // 추가
+                document.getElementById('add-diet').addEventListener('click', addDiet);
+
+                // 삭제
+                document.getElementById('delete-diet').addEventListener('click', deleteDiet);
+
+                // 저장
+                document.getElementById('save-diet').addEventListener('click', saveDietData);
+
+                // 검색
+                document.getElementById('search-button').addEventListener('click', searchDiet);
+            });
+        </script>
+    </main>
+</body>
+
+</html>
