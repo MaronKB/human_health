@@ -171,7 +171,7 @@ input[type="date"] {
     padding: 30px;
     padding-top: 13px;
     border: 1px solid #888;
-    width: 500px;
+    width: 700px;
     max-width: 90%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 */
@@ -256,18 +256,20 @@ input[type="date"] {
     margin-bottom: 10px; */
 }
 
-/* 활동 테이블 스타일 */
-#activityTable {
-    flex: 2;
-    min-width: calc(50% - 10px);
-    max-width: calc(110% - 10px);
+/* 모달 활동 테이블 스타일 */
+.activity-table {
+    flex: 7;
     border-collapse: collapse;
     margin-bottom: 0px; /*테이블과 아래 요소 사이? 간격*/
     background-color: #f3f3f3;
     border-radius: 7px;
     overflow: hidden;
     box-shadow: 2px 5px 10px #0003;
-    
+    width: 100px;
+}
+
+#activityTable {
+    width: 100%;
 }
 
 #activityTable th {
@@ -293,41 +295,49 @@ input[type="date"] {
     gap: 10px;
     background-color: white;
     padding: 15px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #f9f9f9;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
 } */
 
+.activity-details {
+    /* margin-top: 20px;
+    padding: 10px;
+    background-color: black; */
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
 .act-selected-activity,
 .act-type-time {
-    flex:1;
-    display: flex;
-    min-width: calc(110% - 40px);
-    max-width: calc(110% - 40px);
+    flex: 3;
     /* margin-right: 20%; */
-    gap: 19px;
-    flex-direction: column;
     background-color: white;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #eeeeee;
     box-shadow: 2px 5px 10px #0003;
     border-radius: 10px;
+    height: 163px;
+}
+
+.act-selected-activity {
+    margin-bottom: 10px;
 }
 
 .activity-details h3 {
     margin: 0;
     font-size: 16px;
     color: #333;
-
 }
 
 .activity-details input[type="number"] {
     padding: 1px;
     border:  #eeeeee;
     border-bottom: 2px solid #F4761B;
-    width: 50%;
+    width: 60%;
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     outline: none;  
 }
 

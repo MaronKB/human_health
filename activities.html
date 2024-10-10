@@ -108,7 +108,7 @@
                 </button>
             </div>
             <div class="activity-container">
-                <div class="actibity-table">
+                <div class="activity-table">
                     <table id="activityTable">
                         <thead>
                             <tr>
@@ -151,20 +151,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="act-container">
-                        <div class="act-pagination">
-                            <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
-                            <ul>
-                                <li class="link active" value="1" onclick="activeLink()">1</li>
-                                <li class="link" value="2" onclick="activeLink()">2</li>
-                                <li class="link" value="3" onclick="activeLink()">3</li>
-                                <li class="link" value="4" onclick="activeLink()">4</li>
-                                <li class="link" value="5" onclick="activeLink()">5</li>
-                                <li class="link" value="6" onclick="activeLink()">6</li>
-                            </ul>
-                            <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button>
-                        </div>
-                    </div>
                 </div>
                 <div class="activity-details">
                     <div class="act-selected-activity">
@@ -172,12 +158,26 @@
                         <p id="selectedActivity">선택하세요</p>
                     </div>
                     <div class="act-type-time">
-                        <h3>시간</h3>
-                        <input type="number" id="hours" value=" " min="0"> hours
+                        <label for="typeHours">시간</label>
+                        <input type="number" id="typeHours" min="0" placeholder="0">hours
                     </div>
                 </div>
             </div>
             <button class="act-save" id="act-save-btn" onclick="saveActivity()">저장 후 추가</button>
+            <div class="act-container">
+                <div class="act-pagination">
+                    <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
+                    <ul>
+                        <li class="link active" value="1" onclick="activeLink()">1</li>
+                        <li class="link" value="2" onclick="activeLink()">2</li>
+                        <li class="link" value="3" onclick="activeLink()">3</li>
+                        <li class="link" value="4" onclick="activeLink()">4</li>
+                        <li class="link" value="5" onclick="activeLink()">5</li>
+                        <li class="link" value="6" onclick="activeLink()">6</li>
+                    </ul>
+                    <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button>
+                </div>
+            </div>
             <div class="user-input">
                 <!-- <h3>활동 추가하기</h3> -->
                 <div class="user-input-row">
