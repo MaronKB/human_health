@@ -7,15 +7,15 @@
 
 .diet-kcal {
     display: flex;
-        flex-direction: column;
-        /* align-items: center; */
-        padding: 15px 20px;
-        background-color: white;
-        border: 1px solid #eeeeee;
-        border-radius: 10px;
-        box-shadow: 2px 5px 10px #0003;
-        width: 100%;
-        margin: 0 0 40px 0;
+    flex-direction: column;
+    /* align-items: center; */
+    padding: 15px 20px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+    width: 100%;
+    margin: 0 0 40px 0;
 }
 
 .diet-kcal>h3 {
@@ -103,9 +103,9 @@ input[type="date"] {
 button {
     padding: 5px;
     border: none;
-    background-color: #fddf35;
+    background-color: #b8721c;
     color: white;
-    font-size: 30px;
+    font-size: 16px;
     cursor: pointer;
     border-radius: 50%;
     /* 동그란 버튼 */
