@@ -4,119 +4,26 @@
     <meta charset="UTF-8">
     <title>HH 커뮤니티</title>
     <script src="js/includeHtml.js"></script>
+    <script src="js/community.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/community.css"/>
 </head>
 <body>
-<header data-include-html="./header.html"></header>
+<header data-include-html="header.html"></header>
 <main>
-    <div class="post-title">
+    <div class="community-title">
         <div class="title1">번호</div>
-        <div class="title2">제목</div>
+        <div class="title2">글 제목</div>
         <div class="title1">닉네임</div>
         <div class="title1">작성일</div>
     </div>
-    <div class="post-list" id="post-list"></div>
-    <div class="post-pagination" id="post-pagination"></div>
-
-    <div class="community-post">
-        <select class="post-category" required>
-            <option value="제목">제목</option>
-            <option value="닉네임">닉네임</option>
-        </select>
-        <div class="post-search">
-            <input type="text">
-            <button class="search-button">검색</button>
-        </div>
-        <a href="./community-write.html">
-            <button class="post-button">글쓰기</button>
+    <div class="community-list" id="community-list"></div>
+    <div class="community-button">
+        <a href="./c.write.html">
+            <button>글쓰기</button>
         </a>
     </div>
-    
-    <script>
-        const posts = [
-            { title: '제목1', nickname: '닉네임1', date: '2024.10.01' },
-            { title: '제목2', nickname: '닉네임2', date: '2024.10.02' },
-            { title: '제목3', nickname: '닉네임3', date: '2024.10.03' },
-            { title: '제목4', nickname: '닉네임4', date: '2024.10.04' },
-            { title: '제목5', nickname: '닉네임5', date: '2024.10.05' },
-            { title: '제목6', nickname: '닉네임6', date: '2024.10.06' },
-            { title: '제목7', nickname: '닉네임7', date: '2024.10.07' },
-            { title: '제목8', nickname: '닉네임8', date: '2024.10.08' },
-            { title: '제목9', nickname: '닉네임9', date: '2024.10.09' },
-            { title: '제목10', nickname: '닉네임10', date: '2024.10.10' },
-            { title: '제목11', nickname: '닉네임11', date: '2024.10.11' },
-        ];
-    
-        const postsPerPage = 10; // 한 페이지에 표시할 게시글 수
-        let currentPage = 1;
-    
-        function updatepostList() {
-            const postList = document.getElementById('post-list');
-            postList.innerHTML = ''; // 기존 게시글 목록 초기화
-            const startIndex = (currentPage - 1) * postsPerPage; // 시작 인덱스
-            const endIndex = startIndex + postsPerPage;  // 끝 인덱스
-            const reversposts = [...posts].reverse(); // 배열 반전
-            const paginatedposts = reversposts.slice(startIndex, endIndex); // 페이지당 게시글 가져오기
-    
-            paginatedposts.forEach((post, index) => {
-                const postItem = document.createElement('div');
-                postItem.classList.add('post-item');
-                
-                const postNumber = posts.length - startIndex - index; // 전체 목록에서의 번호 계산
-
-                postItem.innerHTML = `
-                    <div class="postItem1">${postNumber}</div>
-                    <div class="postItem2">${post.title}</div>
-                    <div class="postItem1">${post.nickname}</div>
-                    <div class="postItem1">${post.date}</div>
-                `;
-                postList.appendChild(postItem);
-            });
-    
-            updatePagination();
-        }
-
-        function updatePagination() {
-            const pagination = document.getElementById('post-pagination');
-            pagination.innerHTML = ''; // 기존 페이지네이션 초기화
-
-            const totalPages = Math.ceil(posts.length / postsPerPage);
-
-            if (currentPage > 1) {
-                const prevButton = document.createElement('button');
-                prevButton.innerText = '이전';
-                prevButton.onclick = () => {
-                    currentPage--;
-                    updatepostList();
-                };
-                pagination.appendChild(prevButton);
-            }
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageButton = document.createElement('button');
-                pageButton.innerText = i;
-                pageButton.onclick = () => {
-                    currentPage = i;
-                    updatepostList();
-                };
-                pagination.appendChild(pageButton);
-            }
-
-            if (currentPage < totalPages) {
-                const nextButton = document.createElement('button');
-                nextButton.innerText = '다음';
-                nextButton.onclick = () => {
-                    currentPage++;
-                    updatepostList();
-                };
-                pagination.appendChild(nextButton);
-            }
-        }
-    
-        // 초기 게시글 목록 업데이트
-        updatepostList();
-    </script>
+    <div class="community-pagination" id="community-pagination"></div>
 </main>
 </body>
 </html>

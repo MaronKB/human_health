@@ -1,50 +1,101 @@
-.post-title {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    width: 100%;
-    height: 40px;
+/* 네비게이션 타이틀 (번호, 제목, 닉네임, 작성일) 스타일 */
+.community-title {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    border-top: 2px solid black;
+    padding: 10px;
+    border-top: 2px solid #000;
     border-bottom: 2px solid black;
-    font-size: 16px;
-    font-weight: bold;
+    background-color: #f9f9f9;
 }
 
 .title1 {
     width: 15%;
+    text-align: center;
+    font-weight: bold;
 }
 
 .title2 {
-    width: 55%;
+    width: 50%;
+    text-align: left;
+    font-weight: bold;
 }
 
-.post-list {
-    width: 100%;
-    align-items: center;
-    font-size: 14px;
-    line-height: 35px;
-}
-
-.post-item {
+/* 글 목록 항목 스타일 */
+.community-item {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.communityItem1 {
+    width: 15%;
     text-align: center;
 }
 
-.postItem1 {
-    width: 15%;
-}
-
-.postItem2 {
-    width: 55%;
+.communityItem2 {
+    width: 50%;
     text-align: left;
 }
 
-.community-post {
-    margin-top: 20px;
+/* 글쓰기 버튼 스타일 */
+.community-button {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.community-button button {
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.community-button button:hover {
+    background-color: darkorange;
+}
+
+/* 페이지네이션 버튼 스타일 */
+.community-pagination {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+.community-pagination button {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.community-pagination button:hover {
+    background-color: #ddd;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .community-title, .community-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .title1, .title2, .communityItem1, .communityItem2 {
+        width: 100%;
+        text-align: left;
+    }
+
+    .community-button {
+        justify-content: center;
+    }
 }
 
 .post-category {
