@@ -135,7 +135,7 @@ td {
     background-color: rgba(0, 0, 0, 0.4);
     /* 뒷배경 어둡게 */
     padding-top: 60px;
-    animation: fadeIn 0.5s;
+    animation: fadeIn 1.5s;
 }
 
 @keyframes fadeIn {
@@ -258,6 +258,7 @@ td {
     align-items: center;
     margin-top: 20px;
     /* 테이블과 페이지네이션 사이의 간격 */
+    gap: 40px
 }
 
 #prev-button {
