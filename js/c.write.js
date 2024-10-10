@@ -1,39 +1,21 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const cancelBtn = document.getElementById('cancelBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const submitBtn = document.getElementById('submitBtn');
-    const titleInput = document.querySelector('.title');
-    const contentInput = document.querySelector('.tb');
-    const uploadInput = document.querySelector('.upload');
+document.addEventListener('DOMContentLoaded', function() {
+    // 등록 버튼 클릭 시 글 데이터 저장
+    document.getElementById('submitBtn').addEventListener('click', function(event) {
+        event.preventDefault();  // 폼 기본 제출 동작 방지
 
-    // 초기화 버튼 클릭 시 폼 초기화
-    resetBtn.addEventListener('click', function() {
-        titleInput.value = '';
-        contentInput.value = '';
-        uploadInput.value = '';
-    });
+        const title = document.querySelector('.title').value;
+        const content = document.querySelector('.tb').value;
 
-    // 등록 버튼 클릭 시 입력 값 확인
-    submitBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // 폼 제출 방지
-        const title = titleInput.value.trim();
-        const content = contentInput.value.trim();
-        
-        if (!title) {
-            alert('제목을 입력해주세요.');
-            titleInput.focus();
-            return;
+        if (title && content) {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const postIndex = posts.length; // 현재 글의 인덱스
+            posts.push({ title: title, content: content, date: new Date().toLocaleDateString(), nickname: '익명' });
+            localStorage.setItem('posts', JSON.stringify(posts));
+
+            // c.view.html로 이동하면서 해당 글의 인덱스 전달
+            location.href = `c.view.html?post=${postIndex}`;
+        } else {
+            alert('제목과 내용을 모두 입력해주세요.');
         }
-
-        if (!content) {
-            alert('내용을 입력해주세요.');
-            contentInput.focus();
-            return;
-        }
-
-        // 모든 검증이 통과되면 폼을 제출
-        alert('제출이 완료되었습니다!');
-        // 여기서 실제 제출 로직을 추가할 수 있습니다.
-        // 예: AJAX 요청 등
     });
 });

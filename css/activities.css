@@ -171,7 +171,7 @@ input[type="date"] {
     padding: 30px;
     padding-top: 13px;
     border: 1px solid #888;
-    width: 500px;
+    width: 700px;
     max-width: 90%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 */
@@ -203,6 +203,7 @@ input[type="date"] {
     margin-bottom: 20px;
     /* margin: 5px 150px 15px; */
     gap: 0;
+    width: 100%;
 }
 
 .act-search input[type="text"] {
@@ -256,24 +257,28 @@ input[type="date"] {
     margin-bottom: 10px; */
 }
 
-/* 활동 테이블 스타일 */
-#activityTable {
-    flex: 2;
-    min-width: calc(50% - 10px);
-    max-width: calc(110% - 10px);
+/* 모달 활동 테이블 스타일 */
+.activity-table {
+    flex: 7;
     border-collapse: collapse;
+    border-radius: 10px;
     margin-bottom: 0px; /*테이블과 아래 요소 사이? 간격*/
-    background-color: #f3f3f3;
-    border-radius: 7px;
+    background-color: #eeeeee;
+    /* border-radius: 7px; */
     overflow: hidden;
     box-shadow: 2px 5px 10px #0003;
-    
+    width: 100px;
+}
+
+#activityTable {
+    width: 100%;
 }
 
 #activityTable th {
     background-color: #F4761B;
     color: white;
     border: 1px solid white;
+    height: 35px;
 }
 
 #activityTable td {
@@ -293,41 +298,60 @@ input[type="date"] {
     gap: 10px;
     background-color: white;
     padding: 15px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #f9f9f9;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
 } */
 
+.activity-details {
+     /* margin-top: 20px; */
+    /* padding: 10px;
+    background-color: black; */ 
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
 .act-selected-activity,
 .act-type-time {
-    flex:1;
-    display: flex;
-    min-width: calc(110% - 40px);
-    max-width: calc(110% - 40px);
+    flex: 3;
     /* margin-right: 20%; */
-    gap: 19px;
-    flex-direction: column;
     background-color: white;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #eeeeee;
     box-shadow: 2px 5px 10px #0003;
     border-radius: 10px;
+}
+
+.act-selected-activity {
+    margin-bottom: 10px;
+}
+
+.act-selected-activity p{
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.act-type-time label {
+    font-weight: bold;
+    font-size: larger;
 }
 
 .activity-details h3 {
     margin: 0;
     font-size: 16px;
     color: #333;
-
 }
 
 .activity-details input[type="number"] {
-    padding: 1px;
+    padding: 10px;
     border:  #eeeeee;
     border-bottom: 2px solid #F4761B;
     width: 50%;
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     outline: none;  
 }
 
@@ -340,14 +364,16 @@ input[type="date"] {
 /* 저장 버튼 스타일 */
 .act-save {
     display: block;
-    margin: 20px 20px 20px auto; 
+    margin: 10px 0px 0px 0px; 
     padding: 10px 20px;
+    width: 100%;
     background-color: #F4761B;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 4px 10px 20px #0003;
+    font-size: 17px;
 }
 
 .act-save:hover {
@@ -355,15 +381,16 @@ input[type="date"] {
 }
 
 
+/* 페이지네이션 스타일 */
 .act-container {
-    width: 100%;
+    width: 68%;
     background: linear-gradient(white);
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
-/* 페이지네이션 스타일 */
 .act-pagination {
     display: flex;
     align-items: center;
@@ -447,7 +474,7 @@ ul li.active {
 .user-input-row {
     display: flex;
     justify-content: space-between; /* 입력 필드 간 공간 분배 */
-    gap: 10px; /* 입력 필드 간 간격 */
+    gap: 60px; /* 입력 필드 간 간격 */
     margin-bottom: 10px;
 }
 
@@ -457,9 +484,9 @@ ul li.active {
 
 
 .user-input input{
-    width: calc(100% - 20px);
+    width: calc(120% - 20px);
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #F4761B;
@@ -476,6 +503,7 @@ ul li.active {
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 4px 10px 20px #0003;
+    margin-left: 50px;
 }
 
 .add-btn:hover {
