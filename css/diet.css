@@ -321,6 +321,9 @@ td {
     height: 80px;
     text-align: center;
 }
+.new-food-add {
+    color: #F4761B;
+}
 
 .diet-save {
     /* display: inline-block; */
