@@ -33,7 +33,7 @@ function selectActivity(activity, intensity, element) {
     // 새로 선택된 활동에 선택 효과 추가
     element.classList.add('selected');
 
-    // 선택된 활동과 강도 업데이트
+// 선택된 활동과 강도 업데이트
     document.getElementById('selectedActivity').textContent = activity;
     // document.getElementById('selectedIntensity').value = intensity;
 }
