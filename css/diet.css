@@ -178,7 +178,7 @@ button:hover {
     padding: 10px 40px 10px 10px;
     /* 오른쪽 패딩을 넓게 주어 버튼을 넣을 공간 마련 */
     margin-bottom: 20px;
-    border: 1px solid #ddd;
+    border: 2px solid #F4761B;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -201,11 +201,16 @@ button:hover {
 
 #foodTable {
     width: 100%;
-    border-collapse: collapse;
+    border-radius: 10px;
     margin-bottom: 20px;
+    border-collapse: collapse;
 }
 
-#foodTable th,
+.diet-Modal-tr1 {
+    border-radius: 10px;
+    background-color: #F4761B;
+}
+
 #foodTable td {
     border: 1px solid #ddd;
     padding: 10px;
@@ -213,11 +218,16 @@ button:hover {
 }
 
 #foodTable th {
-    background-color: #f2f2f2;
+    margin: 0px;
+    border-radius: 10px;
+    /* background-color: #F4761B; */
+    /* border: 1px solid #ddd; */
+    padding: 10px;
+    text-align: center;
 }
 
-#foodTable tr:hover {
-    background-color: #f1f1f1;
+#foodTable td:hover {
+    /* background-color: #afafaf; */
     cursor: pointer;
 }
 
