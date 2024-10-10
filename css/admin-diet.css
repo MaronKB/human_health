@@ -85,8 +85,7 @@
     background: lightgray;
 }
 
-.diet-list th,
-td {
+.diet-list th, td {
     padding: 10px;
     text-align: center;
     border: 1px solid lightslategray;
@@ -113,21 +112,21 @@ td {
 }
 
 .edit-input-food {
-    width: 310px;
+    width: 210px;
 }
 
 .edit-input-amount {
-    width: 50px;
+    width: 80px;
 }
 
 .edit-input-carbs {
-    width: 50px;
+    width: 80px;
 }
 
 .edit-input-protein {
-    width: 50px;
+    width: 80px;
 }
 
 .edit-input-fat {
-    width: 50px;
+    width: 80px;
 }
