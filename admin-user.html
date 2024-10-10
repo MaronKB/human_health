@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HH 관리자 유저</title>
+    <script src="js/includeHtml.js"></script>
+    <script src="js/admin-user.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/admin-user.css" />
+</head>
+
+<body>
+    <header data-include-html="./header.html"></header>
+    <main>
+        <div class="title">
+            <div>유저 목록</div>
+        </div>
+        <div class="list-control">
+            <button class="control-button" id="add-user">추가</button>
+            <select class="search-category" id="search-category" required>
+                <option value="아이디">아이디</option>
+                <option value="닉네임">닉네임</option>
+            </select>
+            <div class="list-search">
+                <input type="text" id="search-input">
+                <button class="search-button" id="search-button">검색</button>
+            </div>
+            <button class="control-button" id="save-user">저장</button>
+            <button class="control-button" id="delete-user">삭제</button>
+        </div>
+
+        <div class="user-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>선택</th>
+                        <th>번호</th>
+                        <th>아이디</th>
+                        <th>비밀번호</th>
+                        <th>닉네임</th>
+                        <th>이메일 수신</th>
+                        <th>가입일</th>
+                    </tr>
+                </thead>
+                <tbody class="user-list-body" id="user-list-body">
+                </tbody>
+            </table>
+        </div>
+
+        <script></script>
+    </main>
+</body>
+
+</html>

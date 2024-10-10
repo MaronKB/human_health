@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HH 관리자 활동</title>
+    <script src="js/includeHtml.js"></script>
+    <script src="js/admin-activities.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/admin-activities.css" />
+</head>
+
+<body>
+    <header data-include-html="./header.html"></header>
+    <main>
+        <div class="title">
+            <div>활동 목록</div>
+        </div>
+        <div class="list-control">
+            <button class="control-button" id="add-activity">추가</button>
+            <select class="search-category" id="search-category" required>
+                <option value="활동">활동</option>
+                <option value="강도">강도</option>
+            </select>
+            <div class="list-search">
+                <input type="text" id="search-input">
+                <button class="search-button" id="search-button">검색</button>
+            </div>
+            <button class="control-button" id="save-activity">저장</button>
+            <button class="control-button" id="delete-activity">삭제</button>
+        </div>
+        
+        <div class="activity-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>선택</th>
+                        <th>번호</th>
+                        <th>활동</th>
+                        <th>강도</th>
+                    </tr>
+                </thead>
+                <tbody class="activity-list-body" id="activity-list-body">
+                </tbody>
+            </table>
+        </div>
+
+        <script></script>
+    </main>
+</body>
+
+</html>

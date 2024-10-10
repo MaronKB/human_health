@@ -41,21 +41,6 @@
     text-align: left;
 }
 
-.qna-button {
-    text-align: center;
-}
-
-.qna-button button {
-    margin-top: 20px;
-    width: 300px;
-    height: 40px;
-    font-size: 18px;
-    border-radius: 5px;
-    border-color: lightslategrey;
-    background-color: #f4761b;
-    color: white;
-}
-
 .qna-pagination {
     margin-top: 25px;
     width: 100%;

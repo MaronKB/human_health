@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
-    <title>Q&A관리자쓰기</title>
+    <title>HH 관리자 Q & A 답변 쓰기</title>
     <script src="js/includeHtml.js"></script>
-    <link rel="stylesheet" href="css/index.css"/>
-    <link rel="stylesheet" href="css/qna-write.css"/>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/admin-qna-write.css" />
 </head>
+
 <body>
-<header data-include-html="header.html"></header>
-<main>
-    <form>
-        <div class="qna_write_title">
-        <input type="text">
-        </div>
-        <div class="qna_write_check">
-            <input type="checkbox" name="qna_check" id="qna_check">비밀글로 작성하기
-        </div>
-        <div class="qna_write_content">
-            <textarea placeholder="내용을 입력해주세요."></textarea>
-        </div>
-        <div class="qna_write_button">
-            <a href="./qna.html"><button type="button">취소</button></a>
-            <button type="reset">초기화</button>
-            <a href="./qna-view.html"><button type="button">등록</button></a>
-        </div>
-    </form>
-</main>
-<script></script>
+    <header data-include-html="header.html"></header>
+    <main>
+        <form id="qna-form">
+            <div class="qna-write-title">
+                <input type="text" id="qna-title">
+            </div>
+            <div class="qna-write-content">
+                <textarea id="qna-content" placeholder="내용을 입력해주세요."></textarea>
+            </div>
+            <div class="qna-write-button">
+                <a href="./admin-qna-view.html"><button type="button">취소</button></a>
+                <button type="reset">초기화</button>
+                <a href="./admin-qna.html"><button type="button" id="qna-submit">등록</button></a>
+            </div>
+        </form>
+    </main>
+    <script></script>
 </body>
+
 </html>

@@ -49,7 +49,9 @@ function saveActivity() {
 
     // 메인 테이블에 새 행 추가
     const tbody = document.getElementById('act-tbody');
-    const newRow = document.createElement('tr');
+    let emptyRow = Array.from(tbody.children).find(row => row.children[0].textContent === "");
+    const newRow = emptyRow || document.createElement('tr');
+    // const newRow = document.createElement('tr');
 
     // 새로운 셀 생성
     const activityCell = document.createElement('td');
@@ -62,12 +64,16 @@ function saveActivity() {
     intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
 
     // 셀을 행에 추가
+    newRow.innerHTML = '';
     newRow.appendChild(activityCell);
     newRow.appendChild(hoursCell);
     newRow.appendChild(intensityCell);
 
     // 행을 테이블에 추가
-    tbody.appendChild(newRow);
+    // tbody.appendChild(newRow);
+    if (!emptyRow) {
+        tbody.appendChild(newRow);
+    }
 
     // 모달 닫기
     closeModal();

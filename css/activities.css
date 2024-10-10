@@ -1,48 +1,70 @@
-*,
-*:before,
-*:after{
-    padding: 0;
+
+/* 전체 페이지 스타일 */
+body {
+    background-color: #f9f9f9;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-    /*날짜 선택*/
+/* 컨테이너 스타일 */
+/* main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 900px;
+    padding-top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+    border: 1px solid #eeeeee;
+} */
+
+/* 날짜 선택 */
+.act-date { 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px 0;
+}
+
 input[type="date"] {
     background-color: #F4761B;
     padding: 10px;
-    position: absolute;
-    /* transform: translate(-370%, -250%); */
-     /* top: 20%; */
-    left: 5%; 
-    margin: 25px 10px 0 20px;
-    font-family: "Roboto Mono",monospace;
     color: #ffffff;
     font-size: 13px;
-    border: 1px solid #eeeeee;
+    border: none;
     outline: none;
     border-radius: 6px;
+    font-family: "Roboto Mono", monospace;
+    box-shadow: 2px 5px 10px #0003;
 }
 
     /* 활동대사량 */
 .act-kcal {
-    width: calc(80% - 40px);
-    background: white;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
     padding: 15px 20px;
+    background-color: white;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
-    margin: 10px 20px 0 20px;
-    transform: translate(-6%, 70%);
-    /* height: 100px; */
+    width: 100%;
+    margin: 0 0 60px 0;
+
 }
 .act-kcal > h3 {
     font-size: 18px;
-    margin: 0 0 5px 0;
+    margin-bottom: 10px;
     color: var(--main-color);
 }
 .act-kcal p {
     font-size: 15px;
     margin: 0;
+    font-weight: bold;
     text-align: center;
 }
 .act-kcal span {
@@ -52,75 +74,114 @@ input[type="date"] {
 }
 
 /*테이블 스타일*/
+
+.act-template {
+    width: 100%;
+    position: relative;
+}
+
 .act-table{
     border-collapse: collapse;
-    margin: 110px 0;
-    font-size: 0.9em;
-    /* min-width: 800px; */
-    width: calc(80% - 20px);
-    left: 70px;
-    /* transform: translate(-5%, 50%); */
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
+    width: 100%;
     box-shadow: 2px 5px 10px #0003;
-    text-align: center;
-    position: fixed;
+    background: white;
+    border: 0px solid #eeeeee;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .act-table thead tr {
     background-color: #F4761B;
     color: #ffffff;
     font-weight: bold;
+    position: relative;
 }
 
-.act-table th,
-.act-table td {
-    padding: 12px 15px;
-    empty-cells: show;
-}
-
-.act-table tbody tr {
+.act-table th {
+    padding: 10px 40px;
+    text-align: center;
     border-bottom: 1px solid #dddddd;
 }
+.act-table td {
+    padding: 13px 40px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* 
+.act-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+} */
 
 .act-table tbody tr:nth-of-type(even) {
     background-color:#f3f3f3;
 }
 
-.act-table tbody tr:last-of-type {
+/* 메인 테이블 아래 주황밑줄 */
+/* .act-table tbody tr:last-of-type {
     border-bottom:2px solid #F4761B;
-}
+} */
 
+/* 추가버튼 스타일*/
 .act-table-add {
     display: flex;
-    justify-content: flex-end; 
-    margin: 0px;
-    align-items: center;
-    height: px;
+    justify-content: flex-end;
+    position: absolute;
+    right: 3px;
+    top: 0;
+    transform: translateY(-108%); /* 하.. ㅅㅂ..거참 안되네..*/
+}
+
+#add-act {
+    border: none;
+    background-color: #F4761B;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 25%; /* 동그란 버튼 */
+    width: 30px;
+    height: 30px;
+    position: relative;
+    box-shadow: 2px 5px 10px #0003;
+}
+
+#add-act:hover {
+    background-color: #45a049;
 }
 
 /* 모달창 스타일 */
 .act-modal {
     display: none; 
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center; 
+    align-items: center;
     padding-top: 60px;
 }
 
 .act-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 20px;
+    background-color: #ffffff;
+    margin: 5% auto; 
+    padding: 30px;
+    padding-top: 13px;
     border: 1px solid #888;
-    width: 80%; 
-    border-radius: 6px;
-    box-shadow: 0 4px 8 rgba(0, 0, 0, 0.2); /* 그림자 */
+    width: 700px;
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 */
+}
+
+.act-modal-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
 .act-close {
@@ -130,11 +191,9 @@ input[type="date"] {
     font-weight: bold;
 }
 
-
 .act-close:hover,
 .act-close:focus {
     color: #000;
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -142,27 +201,29 @@ input[type="date"] {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    margin: 1px 190px 20px;
-    position: relative;
+    /* margin: 5px 150px 15px; */
+    gap: 0;
 }
 
 .act-search input[type="text"] {
     padding: 10px;
     border: 2px solid #F4761B;
-    border-radius: 4px;
-    flex-grow: 1;
-    margin-left: 10px;
-    font-family: "Roboto Mono", monospace;
+    border-radius: 5px 0 0 5px;
+    width: 80%;
+    font-family: inherit;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .act-search button {
     background-color: #F4761B;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 10px;
+    padding-left: 9px;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
     height: 39px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .act-search button:hover {
@@ -180,80 +241,104 @@ input[type="date"] {
     color: white;
 }
 
-/* 추가버튼 스타일 */
-#add-act {
-    padding: 0px;
-    border: none;
-    background-color: #b8721c;
-    color: white;
-    font-size: 35px;
-    cursor: pointer;
-    border-radius: 35%; /* 동그란 버튼 */
-    width: 38px;
-    height: 38px;
-}
-
-#add-act:hover {
-    background-color: #45a049;
-}
 
 /* 활동테이블, 시간입력 묶기*/
 .activity-container {
-    flex: 1;
     display: flex;
-    flex-direction: row;
-    gap: 1px;
-    background-color: white;
-    padding: 10px 10px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+    /* background-color: white;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
+    margin-bottom: 10px; */
 }
 
-/* 활동 테이블 스타일 */
-#activityTable {
-    width: 70%;
-    margin-left: 80px;
+/* 모달 활동 테이블 스타일 */
+.activity-table {
+    flex: 7;
     border-collapse: collapse;
     margin-bottom: 0px; /*테이블과 아래 요소 사이? 간격*/
     background-color: #f3f3f3;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 2px 5px 10px #0003;
+    width: 100px;
 }
 
-#activityTable th, #activityTable td {
-    border: 1px solid #f9f9f9;
-    padding: 8px;
-    text-align: left;
-    border-top-left-radius: 1px solid;
-    text-align: left;
+#activityTable {
+    width: 100%;
 }
 
 #activityTable th {
     background-color: #F4761B;
     color: white;
+    border: 1px solid white;
+}
+
+#activityTable td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    /* border-top-left-radius: 1px solid; */
 }
 
 /* 시간입력 스타일*/
+/* .activity-details {
+    flex: 1;
+    min-width: 48%;
+    max-width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+} */
+
 .activity-details {
-    width: 320px;
-    border: 1px solid #ddd;
-    padding: 35px;
-    margin-right: 80px;
-    background: #f9f9f9;
-    border-radius: 3px;
+    /* margin-top: 20px;
+    padding: 10px;
+    background-color: black; */
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.act-selected-activity,
+.act-type-time {
+    flex: 3;
+    /* margin-right: 20%; */
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    box-shadow: 2px 5px 10px #0003;
+    border-radius: 10px;
+    height: 163px;
+}
+
+.act-selected-activity {
+    margin-bottom: 10px;
 }
 
 .activity-details h3 {
-    margin-bottom: 6px;
+    margin: 0;
+    font-size: 16px;
+    color: #333;
 }
 
 .activity-details input[type="number"] {
-    padding: 5px;
-    border: none;
+    padding: 1px;
+    border:  #eeeeee;
     border-bottom: 2px solid #F4761B;
-    width: 90px;
+    width: 60%;
     text-align: center;
-    font-size: 20px;
-    outline: none;
+    font-size: 30px;
+    outline: none;  
 }
 
 .instructions {
@@ -272,6 +357,7 @@ input[type="date"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 4px 10px 20px #0003;
 }
 
 .act-save:hover {
@@ -292,9 +378,8 @@ input[type="date"] {
     display: flex;
     align-items: center;
     color: #383838;
-    padding: 10px 0px;
+    padding: 5px 0px;
     position: relative;
-    margin-right: 300px;
 }
 
 ul {
@@ -305,7 +390,7 @@ ul {
 ul li {
     display: inline-block;
     margin: 0px;
-    width: 30px;
+    width: 20px;
     height: 30px;
     border-radius: 20%;
     text-align: center;
@@ -341,7 +426,7 @@ ul li.active {
     size: 20cap;
 }
 
-.act-btn2 img{
+.act-btn2 img{  
     width: 24px;
     margin-left: 10px;
     transform: rotate(180deg);
@@ -349,17 +434,25 @@ ul li.active {
 
 /* 유저 입력 부분 스타일 */
 .user-input {
-    padding: 20px;
+    /* padding: 20px;
     background-color: #f5f5f5;
     border-radius: 8px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
-    width: 50%;
+    width: 50%; */
+    flex: 1;
+    display: flex;
+    gap: 1px;
+    background-color: white;
+    padding: 10px 10px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
-.user-input h3 {
+/* .user-input h3 {
     margin-bottom: 25px;
     color: #F4761B;
-}
+} */
 
 .user-input-row {
     display: flex;
@@ -392,6 +485,7 @@ ul li.active {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 4px 10px 20px #0003;
 }
 
 .add-btn:hover {

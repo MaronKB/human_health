@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HH 관리자 식단</title>
+    <script src="js/includeHtml.js"></script>
+    <script src="js/admin-diet.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/admin-diet.css" />
+</head>
+
+<body>
+    <header data-include-html="./header.html"></header>
+    <main>
+        <div class="title">
+            <div>식단 목록</div>
+        </div>
+        <div class="list-control">
+            <button class="control-button" id="add-diet">추가</button>
+            <select class="search-category" id="search-category" required>
+                <option value="음식">음식</option>
+                <option value="기준량">기준량</option>
+                <option value="탄수화물">탄수화물</option>
+                <option value="단백질">단백질</option>
+                <option value="지방">지방</option>
+            </select>
+            <div class="list-search">
+                <input type="text" id="search-input">
+                <button class="search-button" id="search-button">검색</button>
+            </div>
+            <button class="control-button" id="save-diet">저장</button>
+            <button class="control-button" id="delete-diet">삭제</button>
+        </div>
+
+        <div class="diet-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>선택</th>
+                        <th>번호</th>
+                        <th>음식</th>
+                        <th>기준량(g)</th>
+                        <th>탄수화물(g)</th>
+                        <th>단백질(g)</th>
+                        <th>지방(g)</th>
+                    </tr>
+                </thead>
+                <tbody class="diet-list-body" id="diet-list-body">
+                </tbody>
+            </table>
+        </div>
+
+        <script></script>
+    </main>
+</body>
+
+</html>
