@@ -117,7 +117,7 @@
                             </tr>
                         </thead>
                         <tbody id="act-tbody2">
-                            <tr onclick="selectActivity('잠자기', 0.93, this)">
+                            <!-- <tr onclick="selectActivity('잠자기', 0.93, this)">
                                 <td>잠자기</td>
                                 <td>0.93</td>
                             </tr>
@@ -148,7 +148,7 @@
                             <tr onclick="selectActivity('노가다 뛰러가기', 5.2, this)">
                                 <td>노가다 뛰러가기</td>
                                 <td>5.2</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -167,8 +167,11 @@
                     </div>
                 </div>
             </div>
-            <div class="act-container">
-                <div class="act-pagination">
+            <div class="act-modal-pagination">
+                <button id="pagePrev" onclick="changeModalPage('prev')"><</button>
+                <span id="modalPageNumber"></span>
+                <button id="pageNext" onclick="changeModalPage('next')">></button>
+                <!-- <div class="act-pagination">
                     <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
                     <ul>
                         <li class="link active" value="1" onclick="activeLink()">1</li>
@@ -179,7 +182,7 @@
                         <li class="link" value="6" onclick="activeLink()">6</li>
                     </ul>
                     <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button>
-                </div>
+                </div> -->
             </div>
             <div class="user-input">
                 <!-- <h3>활동 추가하기</h3> -->
