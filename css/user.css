@@ -144,6 +144,7 @@
     box-shadow: 2px 5px 10px #0003;
 }
 .graph-header {
+    padding-top: 6px;
     width: 80px;
 }
 .graph-body {
@@ -170,7 +171,7 @@
     overflow: hidden;
 }
 .graph-target {
-    height: 5px;
+    height: 14px;
 }
 .graph-target::-webkit-progress-bar {
     background: #eeeeee;
@@ -179,7 +180,7 @@
     border-radius: 2px;
 }
 .graph-current {
-    height: 24px;
+    height: 14px;
 }
 .graph-current::-webkit-progress-bar {
     background: #eeeeee;
