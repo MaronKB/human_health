@@ -317,8 +317,8 @@ td {
 }
 
 .diet-info {
+    height: 80px;
     text-align: center;
-
 }
 
 .diet-save {
@@ -409,4 +409,16 @@ td {
 .graph-body span {
     position: absolute;
     right: -10%;
+}
+
+.new-food {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-food input {
+    width: 15%;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
 }
