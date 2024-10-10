@@ -71,7 +71,8 @@ input[type="date"] {
     background-color: #F4761B;
 }
 
-.diet-table th, td {
+.diet-table th,
+td {
     border: 1px solid #c4ae9f;
     padding: 10px;
     text-align: center;
@@ -80,8 +81,10 @@ input[type="date"] {
 
 .recommended-intake {
     display: flex;
-    justify-content: space-between; /* 박스 사이의 간격 */
-    margin-top: 20px;   /* 그래프와 박스 사이의 여백 */
+    justify-content: space-between;
+    /* 박스 사이의 간격 */
+    margin-top: 20px;
+    /* 그래프와 박스 사이의 여백 */
 }
 
 .intake-box {
@@ -100,7 +103,7 @@ input[type="date"] {
     box-shadow: 2px 5px 10px #0003;
 }
 
-button {
+#add-data {
     padding: 5px;
     border: none;
     background-color: #b8721c;
@@ -114,7 +117,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #b8721c;
 }
 
 
@@ -130,6 +133,17 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.4);
     /* 뒷배경 어둡게 */
     padding-top: 60px;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .diet-modal-content {
@@ -138,8 +152,10 @@ button:hover {
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
-    width: 90%; /* 너비를 90%로 변경 */
-    max-width: 800px; /* 최대 너비를 800px로 변경 */
+    width: 90%;
+    /* 너비를 90%로 변경 */
+    max-width: 800px;
+    /* 최대 너비를 800px로 변경 */
 }
 
 .diet-close {
@@ -161,16 +177,22 @@ button:hover {
     width: 100%;
     /* 검색창 너비 100% */
 }
+
 .diet-modalSelect {
     /* width: 30%; 원하는 너비로 설정 */
     /* padding: 10px; 여백 추가 */
     /* font-size: 16px; 글자 크기 */
-    color: #333; /* 글자 색상 */
-    background-color: #fff; /* 배경색 */
-    border: 1px solid #ccc; /* 테두리 색상 */
-    border-radius: 4px; /* 둥글게 만들기 */
+    color: #333;
+    /* 글자 색상 */
+    background-color: #fff;
+    /* 배경색 */
+    border: 1px solid #ccc;
+    /* 테두리 색상 */
+    border-radius: 4px;
+    /* 둥글게 만들기 */
     /* appearance: none; */
 }
+
 #search-food {
     width: 100%;
     height: 50px;
@@ -184,6 +206,7 @@ button:hover {
 }
 
 #search-button {
+    height: 30%;
     position: absolute;
     right: 20px;
     top: 55%;
@@ -191,8 +214,10 @@ button:hover {
     /* 검색 버튼을 수직 가운데 정렬 */
     background: none;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
     background-color: #F4761B;
+
 }
 
 #search-button img {
@@ -201,29 +226,22 @@ button:hover {
 
 #foodTable {
     width: 100%;
-    border-radius: 10px;
     margin-bottom: 20px;
     border-collapse: collapse;
 }
 
-.diet-Modal-tr1 {
+.diet-Modal-tr1 th,
+.diet-Modal-tr1 td {
     border-radius: 10px;
     background-color: #F4761B;
 }
 
+#foodTable th,
 #foodTable td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
-}
-
-#foodTable th {
-    margin: 0px;
-    border-radius: 10px;
-    /* background-color: #F4761B; */
-    /* border: 1px solid #ddd; */
-    padding: 10px;
-    text-align: center;
+    border-radius: 0;
 }
 
 #foodTable td:hover {
@@ -231,21 +249,77 @@ button:hover {
     cursor: pointer;
 }
 
+.diet-modal-pagination {
+    display: flex;
+    justify-content: center;
+    /* 버튼을 가운데 정렬 */
+    align-items: center;
+    margin-top: 20px;
+    /* 테이블과 페이지네이션 사이의 간격 */
+}
+
+#prev-button {
+    height: 30%;
+    /* 검색 버튼을 수직 가운데 정렬 */
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #F4761B;
+}
+
+#page-numbers {
+    appearance: none;
+    background-color: #F4761B;
+    border: none;
+    background: none;
+}
+
+#next-button {
+    height: 30%;
+    /* 검색 버튼을 수직 가운데 정렬 */
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #F4761B;
+}
+
 .diet-details {
     margin: 20px 0;
-    padding: 15px;
-    border: 1px solid #ddd;
+    padding: 15px 20px;
     border-radius: 5px;
+    flex-direction: column;
+
+}
+
+.diet-details input {
+    margin-bottom: 10px;
+    /* 입력 필드 간 간격 조정 */
+}
+
+.diet-details h3 {
+    color: #F4761B;
+}
+
+.modal-add-food {
+    padding: 10px 20px;
+    background-color: #F4761B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
 }
 
 .diet-info {
     text-align: center;
-    
+
 }
 
 .diet-save {
     /* display: inline-block; */
-    padding: 40px 40px;
+    padding: 30px 40px;
     width: auto;
     height: auto;
     background-color: #F4761B;
