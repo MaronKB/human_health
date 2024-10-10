@@ -116,8 +116,8 @@
                                 <th>활동강도</th>
                             </tr>
                         </thead>
-                        <tbody id="act-tbody2">
-                            <tr onclick="selectActivity('잠자기', 0.93, this)">
+                        <tbody id="actTbody">
+                           <!-- <tr onclick="selectActivity('잠자기', 0.93, this)">
                                 <td>잠자기</td>
                                 <td>0.93</td>
                             </tr>
@@ -148,7 +148,7 @@
                             <tr onclick="selectActivity('노가다 뛰러가기', 5.2, this)">
                                 <td>노가다 뛰러가기</td>
                                 <td>5.2</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -160,16 +160,18 @@
                     <div class="act-type-time">
                         <h4>시간</h4>
                         <input type="number" id="hours" min="0" placeholder="0">
-                        <label for="act-time" style="font-size: 13px;">hours</label>
+                        <label for="hours" style="font-size: 13px;">hours</label>
                     </div>
                     <div>
                         <button class="act-save" id="act-save-btn" onclick="saveActivity()">추가</button>
                     </div>
                 </div>
             </div>
-            <div class="act-container">
-                <div class="act-pagination">
-                    <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
+            <div class="act-modal-pagination">
+                <button id="pagePrev" onclick="changePage('prev')"><</button>
+                <span id="modalPageNumber"></span>
+                <button id="pageNext" onclick="changePage('next')">></button>
+                    <!-- <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
                     <ul>
                         <li class="link active" value="1" onclick="activeLink()">1</li>
                         <li class="link" value="2" onclick="activeLink()">2</li>
@@ -178,8 +180,7 @@
                         <li class="link" value="5" onclick="activeLink()">5</li>
                         <li class="link" value="6" onclick="activeLink()">6</li>
                     </ul>
-                    <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button>
-                </div>
+                    <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button> -->
             </div>
             <div class="user-input">
                 <!-- <h3>활동 추가하기</h3> -->
@@ -198,7 +199,5 @@
             <div class="instructions"> <br>- 표에서 활동을 선택하고 시간을 입력하세요. <br>- 활동강도: 1시간 당 활동량 값입니다. </div>
         </div>
     </div>
-    <script>
-    </script>
 </body>
 </html>
