@@ -81,7 +81,7 @@ window.onclick = function(event) {
         closeModal();
     }
 }
-
+    // 페이지네이션 구현
 const foodData = [
     { name: "밥", amount: 100, carb: 28, protein: 2, fat: 0.3 },
     { name: "닭가슴살", amount: 100, carb: 0, protein: 24, fat: 1.5 },
