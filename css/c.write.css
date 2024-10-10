@@ -1,41 +1,88 @@
+/* 페이지 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-.title{
+/* 폼 전체를 중앙 정렬하기 위한 컨테이너 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* 제목 입력 필드 스타일 */
+.title {
     border: 1px solid black;
     width: 880px;
     border-radius: 5px;
-    height: 30px;
-    position: relative;
-    left: 1px;
-    top: 30px;
-}
-.upload{
-    position: absolute;
-    top: 240px;
-    left: 70px;
-    border-radius: 1px;
-}
-.tb{
-    width: 880px;
-    height: 260px;
-    text-align: left;
-    position: relative;
-    top:100px;
-    display: flex;
-    /* justify-items: flex-end; */
-}
-.b{
-    width: 80px;
-    position: relative;
-    justify-content: flex-start;
-    background-color: orange;
-    cursor: pointer;
-    
-}
-.button-container {
-    display: flex; /* 버튼들을 옆으로 나란히 배치 */
-    gap: 10px; /* 버튼 간 간격 */
-    position: relative;
-    top: 110px;
-    left: 300px;
+    height: 40px;
+    margin-bottom: 20px; /* 간격을 위해 margin 사용 */
+    padding: 5px;
+    box-sizing: border-box;
 }
 
+/* 파일 첨부 버튼 스타일 */
+.file-input {
+    display: none; /* input[type="file"] 숨기기 */
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 200px; /* 적당한 너비 설정 */
+    transition: background-color 0.3s ease;
+}
+
+/* 마우스 hover 시 색상 변경 */
+.upload-label:hover {
+    background-color: darkorange;
+}
+
+/* 내용 입력 텍스트박스 스타일 */
+.tb {
+    width: 880px;
+    height: 260px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* 버튼 스타일 */
+.b {
+    width: 120px;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px; /* 버튼 간 간격 */
+    text-align: center;
+}
+
+/* 버튼 hover 시 색상 변경 */
+.b:hover {
+    background-color: darkorange;
+}
+
+/* 버튼 컨테이너 스타일 */
+.button-container {
+    display: flex;
+    justify-content: center; /* 버튼들을 중앙 정렬 */
+    gap: 20px; /* 버튼 간 간격 */
+    margin-top: 30px;
+}

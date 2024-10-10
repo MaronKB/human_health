@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <title>HH 커뮤니티</title>
     <script src="js/includeHtml.js"></script>
+    <script src="js/community.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/community.css"/>
 </head>
 <body>
-<header data-include-html="./header.html"></header>
+<header data-include-html="header.html"></header>
 <main>
-<nav class="nav">
-    <h3 class="nav-item">번호</h3>
-    <h3 class="nav-item">제목</h3>
-    <h3 class="nav-item1">닉네임</h3>
-    <h3 class="nav-item1">작성일</h3>
-</nav>
-
-<button class="toggle-button" id="toggle-form" onclick="location.href='c.write.html'" style=" cursor: pointer;">글쓰기</button>
+    <div class="community-title">
+        <div class="title1">번호</div>
+        <div class="title2">글 제목</div>
+        <div class="title1">닉네임</div>
+        <div class="title1">작성일</div>
+    </div>
+    <div class="community-list" id="community-list"></div>
+    <div class="community-button">
+        <a href="./c.write.html">
+            <button>글쓰기</button>
+        </a>
+    </div>
+    <div class="community-pagination" id="community-pagination"></div>
 </main>
 </body>
 </html>
