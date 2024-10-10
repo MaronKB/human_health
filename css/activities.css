@@ -163,6 +163,17 @@ input[type="date"] {
     justify-content: center; 
     align-items: center;
     padding-top: 60px;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .act-modal-content {
