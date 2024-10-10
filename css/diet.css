@@ -20,13 +20,14 @@
 
 .diet-kcal>h3 {
     font-size: 18px;
-    margin: 0 0 5px 0;
+    margin-bottom: 10px;
     color: var(--main-color);
 }
 
 .diet-kcal p {
     font-size: 15px;
     margin: 0;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -54,6 +55,7 @@ input[type="date"] {
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
+    color: white;
     /* background-color: #fff; */
 }
 
@@ -69,8 +71,7 @@ input[type="date"] {
     background-color: #F4761B;
 }
 
-.diet-table th,
-.diet-table td {
+.diet-table th, td {
     border: 1px solid #c4ae9f;
     padding: 10px;
     text-align: center;
@@ -92,14 +93,15 @@ input[type="date"] {
     /* 안쪽 여백 */
     text-align: center;
     /* 가운데 정렬 */
-    width: 100%;
+    width: 48%;
     /* 박스 너비 */
     background-color: #f9f9f9;
     /* 배경색 */
+    box-shadow: 2px 5px 10px #0003;
 }
 
 button {
-    padding: 10px;
+    padding: 5px;
     border: none;
     background-color: #b8721c;
     color: white;
