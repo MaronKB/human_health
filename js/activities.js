@@ -38,7 +38,7 @@ function selectActivity(activity, intensity, element) {
     document.getElementById('selectedIntensity').value = intensity;
 }
 
-// 활동 저장 및 테이블에 추가
+// 활동 메인 테이블에 추가
 function saveActivity() {
     const activity = document.getElementById('selectedActivity').textContent;
     const hours = document.getElementById('hours').value;
