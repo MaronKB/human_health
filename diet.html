@@ -130,15 +130,6 @@
                     </div>
                 </div>
                 <div class="diet-details">
-                    <div class="diet-details">
-                        <h3>새로운 음식 추가</h3>
-                        <input type="text" id="newFoodName" placeholder="음식 이름">
-                        <input type="number" id="newFoodAmount" placeholder="기준량(g)" min="1">
-                        <input type="number" id="newFoodCarb" placeholder="탄수화물(g)" min="0" step="0.1">
-                        <input type="number" id="newFoodProtein" placeholder="단백질(g)" min="0" step="0.1">
-                        <input type="number" id="newFoodFat" placeholder="지방(g)" min="0" step="0.1">
-                        <button class="modal-add-food" onclick="addFood()">추가</button>
-                    </div>
                     <h3>선택한 음식</h3>
                     <p id="selectedDiet">선택하세요</p>
                     <h3>식사 구분</h3>
@@ -151,6 +142,15 @@
                     <br><br>
                     <h3>수량(g)</h3>
                     <input type="number" id="dietQuantity" value="100" min="1"> g
+                    <br>
+                    <h3>새로운 음식 추가</h3>
+                    <input type="text" id="newFoodName" placeholder="음식 이름">
+                    <input type="number" id="newFoodAmount" placeholder="기준량(g)" min="1">
+                    <input type="number" id="newFoodCarb" placeholder="탄수화물(g)" min="0" step="0.1">
+                    <input type="number" id="newFoodProtein" placeholder="단백질(g)" min="0" step="0.1">
+                    <input type="number" id="newFoodFat" placeholder="지방(g)" min="0" step="0.1">
+                    <button class="modal-add-food" onclick="addFood()">추가</button>
+
                 </div>
                 <button class="diet-save" onclick="saveDiet()">저장 후 추가</button>
                 <div id="dietInfo" class="diet-info"></div> <!--표에서 데이터 선택시 나오는 정보표-->

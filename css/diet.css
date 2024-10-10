@@ -115,10 +115,12 @@ td {
     width: 40px;
     height: 40px;
 }
-
-button:hover {
-    background-color: #b8721c;
+#add-data:hover{
+    background-color: #c9c773;
 }
+/* button:hover {
+    background-color: #a1896b;
+} */
 
 
 .diet-modal {
@@ -290,7 +292,6 @@ button:hover {
     padding: 15px 20px;
     border-radius: 5px;
     flex-direction: column;
-
 }
 
 .diet-details input {
@@ -310,6 +311,9 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     float: right;
+}
+.modal-add-food:hover {
+    background-color: #b8721c;
 }
 
 .diet-info {
