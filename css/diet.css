@@ -38,12 +38,13 @@
 }
 
 input[type="date"] {
-    background-color: #F4761B;
+    /* background-color: #F4761B; */
     padding: 10px;
     font-family: "Roboto Mono", monospace;
-    color: #ffffff;
-    font-size: 13px;
-    border: none;
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+    border-color: #F4761B;
     outline: none;
     border-radius: 6px;
     box-shadow: 2px 5px 10px #0003;
