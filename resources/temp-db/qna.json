@@ -1,32 +1,162 @@
 [
   {
-    "index": 1,
-    "title": "문의 제목 1",
-    "answer": "답변 제목 1"
+    "com_post_number": 1,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
   },
   {
-    "index": 2,
-    "title": "문의 제목 2",
-    "answer": "답변 제목 2"
+    "com_post_number": 2,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
   },
   {
-    "index": 3,
-    "title": "문의 제목 3",
-    "answer": "답변 제목 3"
+    "com_post_number": 3,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
   },
   {
-    "index": 4,
-    "title": "문의 제목 4",
-    "answer": "답변 제목 4"
+    "com_post_number": 4,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
   },
   {
-    "index": 5,
-    "title": "문의 제목 5",
-    "answer": "답변 제목 5"
+    "com_post_number": 5,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
   },
   {
-    "index": 6,
-    "title": "문의 제목 6",
-    "answer": "답변 제목 6"
+    "com_post_number": 6,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 7,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 8,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 9,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 10,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 11,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 12,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 13,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 14,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 15,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 16,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 17,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 18,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 19,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
+  },
+  {
+    "com_post_number": 20,
+    "com_title": "제목",
+    "com_content": "",
+    "com_post_date": "2024-09-27",
+    "usr_number": 0,
+    "uer_nickname": "유저"
   }
 ]
