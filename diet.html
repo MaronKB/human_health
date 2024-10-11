@@ -129,23 +129,28 @@
                         <button id="next-button" onclick="changePage('next')">-></button>
                     </div>
                 </div>
-                <div class="diet-details">
-                    <h3>선택한 음식</h3>
-                    <p id="selectedDiet">선택하세요</p>
-                    <h3>식사 구분</h3>
-                    <select class="diet-modalSelect" id="meal-type">
-                        <option value="" disabled selected>선택하세요</option>
-                        <option value="아침">아침</option>
-                        <option value="점심">점심</option>
-                        <option value="저녁">저녁</option>
-                    </select>
-                    <br><br>
-                    <h3>수량(g)</h3>
-                    <input type="number" id="dietQuantity" value="100" min="1"> g
-                    <br>
+                <div class="diet-detail-info">
+                    <div class="diet-details">
+                        <h3>선택한 음식</h3>
+                        <p id="selectedDiet">선택하세요</p>
+                        <h3>식사 구분</h3>
+                        <select class="diet-modalSelect" id="meal-type">
+                            <option value="" disabled selected>선택하세요</option>
+                            <option value="아침">아침</option>
+                            <option value="점심">점심</option>
+                            <option value="저녁">저녁</option>
+                        </select>
+                        <br><br>
+                        <h3>수량(g)</h3>
+                        <input type="number" id="dietQuantity" value="100" min="1"> g
+                        <br>
+                    </div>
+                    <div class="diet-info-save">
+                        <button class="diet-save" onclick="saveDiet()">저장 후 추가</button>
+                        <div id="dietInfo" class="diet-info"></div> <!--표에서 데이터 선택시 나오는 정보표-->    
+                    </div>
                 </div>
-                <button class="diet-save" onclick="saveDiet()">저장 후 추가</button>
-                <div id="dietInfo" class="diet-info"></div> <!--표에서 데이터 선택시 나오는 정보표-->
+                
                 <h3 class="new-food-add">새로운 음식 추가</h3>
                 <div class="new-food">
                     <input type="text" id="newFoodName" placeholder="음식 이름">
