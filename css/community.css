@@ -1,10 +1,15 @@
+#community {
+    gap: 0;
+    padding: 0;
+}
 /* 글 목록 항목 스타일 */
 .community-item {
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 10px 0;
+    padding: 0 10px;
     border-bottom: 1px solid #ccc;
 }
 .community-item:nth-child(2n) {
@@ -41,51 +46,70 @@
 
 /* 네비게이션 타이틀 (번호, 제목, 닉네임, 작성일) 스타일 */
 #community-title {
-    padding: 10px 0;
-    border-top: 2px solid #000;
     border-bottom: 2px solid black;
     background-color: #f9f9f9;
 }
+#community-title:hover {
+    color: inherit;
+}
 
-/* 글쓰기 버튼 스타일 */
-.community-button {
+.community-bottom {
+    position: relative;
+    width: 100%;
+    height: 50px;
     display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-}
-
-.community-button button {
-    background-color: orange;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.community-button button:hover {
-    background-color: darkorange;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
 }
 
 /* 페이지네이션 버튼 스타일 */
 .community-pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    gap: 5px;
 }
-
-.community-pagination button {
+.pagination-container {
+    display: flex;
+    gap: 5px;
+}
+.pagination-button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #f1f1f1;
     border: 1px solid #ddd;
-    padding: 10px 15px;
-    margin: 0 5px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.community-pagination button:hover {
-    background-color: #ddd;
+.pagination-button:hover,
+.pagination-button.active {
+    color: white;
+    background: var(--main-color);
+}
+
+/* 글쓰기 버튼 스타일 */
+.community-button {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.community-button:hover {
+    background-color: darkorange;
 }
 
 /* 반응형 디자인 */

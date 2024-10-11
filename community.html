@@ -11,18 +11,23 @@
 <body>
 <header data-include-html="header.html"></header>
 <main>
-    <div class="community-item" id="community-title">
-        <h4 class="community-item-number">번호</h4>
-        <h4 class="community-item-title">글 제목</h4>
-        <h4 class="community-item-nickname">닉네임</h4>
-        <h4 class="community-item-date">작성일</h4>
-        <h4 class="community-item-view">조회수</h4>
-    </div>
-    <div class="community-list" id="community-list"></div>
-    <div class="community-button">
-        <a href="./community-write.html">
-            <button>글쓰기</button>
-        </a>
+    <section id="community" class="box">
+        <div class="community-item" id="community-title">
+            <h4 class="community-item-number">번호</h4>
+            <h4 class="community-item-title">글 제목</h4>
+            <h4 class="community-item-nickname">닉네임</h4>
+            <h4 class="community-item-date">작성일</h4>
+            <h4 class="community-item-view">조회수</h4>
+        </div>
+        <div class="community-list" id="community-list"></div>
+    </section>
+    <div class="community-bottom">
+        <div class="community-pagination" id="community-pagination">
+            <a id="pagination-left" class="pagination-button pagination-arrow">◀</a>
+            <div id="community-pagination-container" class="pagination-container"></div>
+            <a id="pagination-right"  class="pagination-button pagination-arrow">▶</a>
+        </div>
+        <a href="./community-write.html" class="community-button">글쓰기</a>
     </div>
     <div class="community-pagination" id="community-pagination"></div>
 </main>
