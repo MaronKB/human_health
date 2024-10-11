@@ -59,6 +59,7 @@
     font-size: 16px;
     text-align: center;
     text-decoration: none;
+    white-space: nowrap;
     color: black;
 }
 #main-nav > a.active {
