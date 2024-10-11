@@ -393,27 +393,37 @@ input[type="date"] {
 
 
 /* 페이지네이션 스타일 */
-.act-container {
+.act-modal-pagination {
     width: 68%;
     background: linear-gradient(white);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 40px;
+    position: relative;
+    border: 1px solid #0003;
 }
 
-.act-pagination {
+.page-number {
+    display: inline-block;
+    margin: 0px;
+    width: 26px;
+    height: 30px;
+    border-radius: 20%;
+    text-align: center;
+    font-size: 13px;
+    line-height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+}
+/* .act-modal-pagination {
     display: flex;
     align-items: center;
     color: #383838;
     padding: 5px 0px;
     position: relative;
-}
-
-ul {
-    margin: 0px 20px;
-    padding: 0;
-}
+} */
 
 ul li {
     display: inline-block;
@@ -436,7 +446,7 @@ ul li.active {
 }
 
 /* 버튼 스타일 */
-.act-btn1, .act-btn2 {
+/* .act-btn1, .act-btn2 {
     display: inline-flex;
     align-items: center;
     font-size: 15px;
@@ -458,7 +468,7 @@ ul li.active {
     width: 24px;
     margin-left: 10px;
     transform: rotate(180deg);
-}
+} */
 
 /* 유저 입력 부분 스타일 */
 .user-input {

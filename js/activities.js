@@ -42,9 +42,11 @@ function selectActivity(activity, intensity, element) {
 // 활동 메인 테이블에 추가
 function saveActivity() {
     const activity = document.getElementById('selectedActivity').textContent;
-    const hours = document.getElementById('hours').value;
-    if (activity === "선택하세요") {
-        alert("활동을 선택하세요.");
+    const hoursInput = document.getElementById('hours');
+    const hours = hoursInput.value;
+
+    if (activity === "선택하세요" || hours === '' || isNaN(hours) || parseFloat(hours) <=0) {
+        alert('활동을 선택하고, 시간을 정확히 입력해주세요.');
         return;
     }
 
@@ -76,14 +78,37 @@ function saveActivity() {
         tbody.appendChild(newRow);
     }
 
-    // 모달 닫기
-    closeModal();
+    alert(`${activity}, ${hours}시간이 저장되었습니다.`);
 
-    alert(`활동: ${activity}, 시간: ${hours} hours 저장되었습니다.`);
+    hoursInput.value = '';
 }
 
 // 모달창 pagination
 const actData = [
+    { name: "잠자기", intensity: 0.93},
+    { name: "누워있기", intensity: 1.2},
+    { name: "읽기", intensity: 1.3},
+    { name: "앉아서 TV", intensity: 1.57},
+    { name: "사무업무", intensity: 1.6},
+    { name: "대중교통(앉음)", intensity: 1.72},
+    { name: "대중교통(서서)", intensity: 2},
+    { name: "식사", intensity: 1.4},
+    { name: "서서 돌아다니는 업무", intensity: 2.5},
+    { name: "주방일", intensity: 2.7},
+    { name: "느리게 걷기", intensity: 2.8},
+    { name: "집안일", intensity: 3.1},
+    { name: "빠르게 걷기", intensity: 3.8},
+    { name: "유산소(약)", intensity: 4.5},
+    { name: "유산소(중)", intensity: 6},
+    { name: "유산소(강)", intensity: 9},
+    { name: "근력운동(약)", intensity: 3},
+    { name: "근력운동(중)", intensity: 4.5},
+    { name: "근력운동(강)", intensity: 6},
+    { name: "운동1", intensity: 4.4},
+    { name: "운동2", intensity: 2.5},
+    { name: "운동3", intensity: 2.2},
+    { name: "운동4", intensity: 2},
+    { name: "운동5", intensity: 1.9},
     { name: "걷기", intensity: 3.5},   // 30분
     { name: "달리기", intensity: 9.0}, // 45분
     { name: "수영", intensity: 6.0},   // 60분
@@ -102,21 +127,32 @@ const rowsPerPage = 7; // 페이지당 표시할 행 수
 // 페이지 변경 함수
 function changePage(page) { 
     const totalPages = Math.ceil(actData.length / rowsPerPage); // 총 페이지 수 계산
-    // 페이지가 'prev'인 경우: 이전 페이지로 이동
-    if (page === 'prev') {
-        currentPage = Math.max(1, currentPage - 1); // 페이지 번호 최소 1
-    } 
-    // 페이지가 'next'인 경우: 다음 페이지로 이동
-    else if (page === 'next') {
-        currentPage = Math.min(totalPages, currentPage + 1); // 최대 페이지 수를 초과하지 않도록
-    } 
-    // 특정 페이지로 이동하는 경우
-    else {
-        currentPage = page; // 페이지 번호 업데이트
+
+    if (page === 'prev' && currentPage > 1) {
+        currentPage--; // 이전 페이지로 이동
+    } else if (page === 'next' && currentPage < totalPages) {
+        currentPage++; // 다음 페이지로 이동
+    } else if (typeof page === 'number') {
+        currentPage = page; // 특정 페이지로 이동
     }
 
     renderTable(); // 테이블 렌더링
-    updatePagination(); // 페이지 번호 업데이트
+    updatePagination(); // 페이지 번호 및 버튼상태 업데이트
+    
+    // 페이지가 'prev'인 경우: 이전 페이지로 이동
+    // if (page === 'prev') {
+    //     currentPage = Math.max(1, currentPage - 1); // 페이지 번호 최소 1
+    // } 
+    // 페이지가 'next'인 경우: 다음 페이지로 이동
+    // else if (page === 'next') {
+    //     currentPage = Math.min(totalPages, currentPage + 1); // 최대 페이지 수를 초과하지 않도록
+    // } 
+    // // 특정 페이지로 이동하는 경우
+    // else {
+    //     currentPage = page; // 페이지 번호 업데이트
+    // }
+
+
 }
 
 // 테이블 렌더링 함수
@@ -165,30 +201,8 @@ function updatePagination() {
 const prevButton = document.getElementById("pagePrev");
 const nextButton = document.getElementById("pageNext");
 
-prevButton.disabled = (currentPage === 1); // 첫 페이지면 이전 버튼 비활성화
-nextButton.disabled = (currentPage === totalPages); // 마지막 페이지면 다음 버튼 비활성화
-
-// let link = document.getElementsByClassName("link");
-
-// let currentValue = 1;
-// function activeLink(){
-//     for(l of link){
-//         l.classList.remove("active");
-//     }
-//     event.target.classList.add("active");
-//     currentValue = event.target.value;
-// }
-
-// function backBtn() {
-//     if(currentValue > 1){
-//         for(l of link){
-//             l.classList.remove("active");
-//         }
-
-//         currentValue--;
-//         link[currentValue-1].classList.add("active");
-//     }
-// }
+prevButton.disabled = (currentPage === 1) ? false : flase; // 첫 페이지면 이전 버튼 비활성화
+nextButton.disabled = (currentPage === totalPages) ? false :
 
 function nextBtn() {
     if(currentValue < 6){
@@ -206,10 +220,16 @@ function addCustomActivity() {
     const activityName = document.getElementById('newActivity').value;
     const activityIntensity = document.getElementById('newIntensity').value;
 
-    if (activityName === '' || activityIntensity === '') {
-        alert('활동 이름과 강도를 모두 입력하세요.');
+    if (activityName === '' || activityIntensity === ''|| isNaN(activityIntensity) || parseFloat(activityIntensity) <= 0) {
+        alert('활동 이름과 강도를 정확히 입력해주세요.');
         return;
     }
+
+    // 새로운 데이터를 actData 배열에 추가 (배열 맽 끝에)
+    actData.push({ name: activityName, intensity: activityIntensity });
+
+    // 데이터를 localStorage에 저장
+    // saveActData();
 
     const tableBody = document.getElementById('actTbody');
     const newRow = document.createElement('tr');
@@ -228,6 +248,11 @@ function addCustomActivity() {
     // 입력 필드 초기화
     document.getElementById('newActivity').value = '';
     document.getElementById('newIntensity').value = '';
+
+    // 새 데이터를 추가한 후 마지막 페이지로 이동
+    currentPage = Math.ceil(actData.length / rowsPerPage);
+    renderTable(); // 테이블 랜더링
+    updatePagination(); // 페이지 번호 업데이트
 
     alert('활동이 추가되었습니다.');
 }
