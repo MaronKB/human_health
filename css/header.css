@@ -1,54 +1,92 @@
-* {
-    box-sizing: border-box;
-}
 #main-header {
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    box-shadow: 2px 5px 10px #0003;
+    z-index: 98;
 }
 #top {
     width: 100%;
+    max-width: var(--max-width);
     height: 24px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 #top > a {
-    width: 80px;
+    width: 70px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 12px;
 }
-#title-section {
+#nav-section {
     width: 100%;
-    height: 50px;
+    max-width: var(--max-width);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0 30px;
+}
+#title-section {
+    position: relative;
+    top: -10px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 0 0 24px 0;
 }
 #title-logo {
     flex: none;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
 }
-#title-text {
+#title-link {
     flex: none;
-    width: fit-content;
+    width: 90px;
+    height: 100%;
+}
+#title-text {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     color: var(--main-color);
 }
+#title-text > span {
+    width: 100%;
+    line-height: 16px;
+    height: 16px;
+}
+#title-text > span:first-child {
+    letter-spacing: 3px;
+}
+#title-text > span:last-child {
+    letter-spacing: 2px;
+}
 #main-nav {
+    width: 100%;
+    max-width: 800px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding: 0 20px;
-    border-top: 1px solid;
-    border-image: linear-gradient(to right, transparent, gray, transparent) 1;
+    margin-left: auto;
 }
 #main-nav > a {
     flex: 1;
@@ -61,9 +99,12 @@
     text-decoration: none;
     white-space: nowrap;
     color: black;
+    border-width: 4px 0;
+    border-style: solid;
+    border-color: transparent;
 }
 #main-nav > a.active {
     font-weight: bold;
     color: var(--main-color);
-    border-bottom: 4px solid var(--main-color);
+    border-bottom-color: var(--main-color);
 }

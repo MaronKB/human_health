@@ -1,3 +1,8 @@
+const communityListData = [];
+const pageLength = 15;
+let pageCount = 1;
+let currentPage = 1;
+
 function CommunityItemData(jsonData) {
     this.postNumber  = jsonData.com_post_number;
     this.title = jsonData.com_title;
@@ -12,20 +17,49 @@ function CommunityItemData(jsonData) {
     this.nickname = jsonData.uer_nickname;
 }
 
+const init = () => {
+    getCommunityList();
+
+    const left = document.querySelector("#pagination-left");
+    left.addEventListener("click", () => arrow(false));
+
+    const right = document.querySelector("#pagination-right");
+    right.addEventListener("click", () => arrow(true));
+}
+
+const refresh = () => {
+    createCommunityList();
+    createPagination();
+}
+
 const getCommunityList = () => {
     fetch("../resources/temp-db/community.json")
         .then(res => res.json())
-        .then(data => createCommunityList(data));
+        .then(data => {
+            const list = data.map(e => {
+                return new CommunityItemData(e);
+            }).sort((a, b) => {
+                return b.postNumber - a.postNumber;
+            });
+            communityListData.push(...list);
+            for (let i = 0; i < pageLength - (list.length % pageLength); i++) {
+                communityListData.push(new CommunityItemData({}));
+            }
+            pageCount = Math.ceil(communityListData.length / pageLength);
+            refresh();
+        });
 }
 
-const createCommunityList = (data) => {
-    const dataList = data.map(e => {
-        return new CommunityItemData(e);
-    }).sort((a, b) => {
-        return a.postNumber - b.postNumber;
-    });
+const createCommunityList = () => {
+    const firstListIndex = (currentPage - 1) * pageLength;
+    const currentPageList = communityListData.slice(firstListIndex, firstListIndex + pageLength);
 
-    const domList = dataList.map(e => {
+    const domList = currentPageList.map(e => {
+        const list = document.createElement("li");
+        list.className = "community-item";
+
+        if (!e.postNumber) return list;
+
         const postNumber = document.createElement("span");
         postNumber.className = "community-item-number";
         postNumber.innerHTML = e.postNumber;
@@ -46,18 +80,43 @@ const createCommunityList = (data) => {
         view.className = "community-item-view";
         view.innerHTML = e.viewCount;
 
-        const list = document.createElement("li");
-        list.className = "community-item";
         list.append(postNumber, title, nickname, date, view);
 
         return list;
     });
+
     const communityListContainer = document.getElementById("community-list");
     communityListContainer.innerHTML = "";
     communityListContainer.append(...domList);
 }
 
-document.addEventListener('DOMContentLoaded', getCommunityList);
+const createPagination = () => {
+    const pageButton = [];
+    for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement("a");
+        button.className = "pagination-button";
+        console.log(currentPage);
+        if (i === currentPage) button.classList.add("active");
+        button.innerHTML = i;
+        button.onclick = () => {
+            currentPage = i;
+            refresh();
+        }
+        pageButton.push(button);
+    }
+
+    const paginationContainer = document.getElementById("community-pagination-container");
+    paginationContainer.replaceChildren(...pageButton);
+}
+
+const arrow = (direction) => {
+    let next = (direction) ? currentPage + 1 : currentPage - 1;
+    next = (next > pageCount) ? pageCount : (next <= 0) ? 1 : next;
+    currentPage = next;
+    refresh();
+}
+
+document.addEventListener('DOMContentLoaded', init);
 /*
 document.addEventListener('DOMContentLoaded', function() {
     const posts = JSON.parse(localStorage.getItem('posts')) || [];

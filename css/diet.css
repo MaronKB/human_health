@@ -38,12 +38,13 @@
 }
 
 input[type="date"] {
-    background-color: #F4761B;
+    /* background-color: #F4761B; */
     padding: 10px;
     font-family: "Roboto Mono", monospace;
-    color: #ffffff;
-    font-size: 13px;
-    border: none;
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+    border-color: #F4761B;
     outline: none;
     border-radius: 6px;
     box-shadow: 2px 5px 10px #0003;
@@ -193,6 +194,7 @@ td {
     border-radius: 4px;
     /* 둥글게 만들기 */
     /* appearance: none; */
+    margin-top: 10px;
 }
 
 #search-food {
@@ -290,13 +292,13 @@ td {
 
 .diet-details {
     margin: 20px 0;
-    padding: 15px 20px;
     border-radius: 5px;
     flex-direction: column;
+    line-height: 10px;
 }
 
 .diet-details input {
-    margin-bottom: 10px;
+    margin-top: 10px;
     /* 입력 필드 간 간격 조정 */
 }
 
@@ -425,4 +427,15 @@ td {
     margin-right: 20px;
     border-radius: 5px;
     border: 1px solid gray;
+}
+
+.diet-detail-info {
+    display: flex;
+}
+
+.diet-info-save {
+    position: relative;
+    width: 600px;
+    top: 50px;
+    line-height: 20px;
 }
