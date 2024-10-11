@@ -1,43 +1,50 @@
-/* 네비게이션 타이틀 (번호, 제목, 닉네임, 작성일) 스타일 */
-.community-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid black;
-    background-color: #f9f9f9;
-}
-
-.title1 {
-    width: 15%;
-    text-align: center;
-    font-weight: bold;
-}
-
-.title2 {
-    width: 50%;
-    text-align: left;
-    font-weight: bold;
-}
-
 /* 글 목록 항목 스타일 */
 .community-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
+.community-item:nth-child(2n) {
+    background: #eee;
+}
+.community-item:hover {
+    color: var(--main-color);
+}
+.community-item > * {
+    font-size: 14px;
+    white-space: nowrap;
+}
 
-.communityItem1 {
-    width: 15%;
+.community-item-number,
+.community-item-view {
+    flex: none;
+    width: 40px;
+    text-align: center;
+}
+.community-item-title {
+    flex: 1;
+    text-align: left;
+}
+.community-item-nickname {
+    flex: none;
+    width: 60px;
+    text-align: center;
+}
+.community-item-date {
+    flex: none;
+    width: 100px;
     text-align: center;
 }
 
-.communityItem2 {
-    width: 50%;
-    text-align: left;
+/* 네비게이션 타이틀 (번호, 제목, 닉네임, 작성일) 스타일 */
+#community-title {
+    padding: 10px 0;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid black;
+    background-color: #f9f9f9;
 }
 
 /* 글쓰기 버튼 스타일 */
@@ -84,7 +91,6 @@
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
     .community-title, .community-item {
-        flex-direction: column;
         align-items: flex-start;
     }
 
