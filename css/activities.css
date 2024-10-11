@@ -31,16 +31,18 @@ body {
 }
 
 input[type="date"] {
-    background-color: #F4761B;
-    padding: 10px;
-    color: #ffffff;
-    font-size: 13px;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    font-family: "Roboto Mono", monospace;
-    box-shadow: 2px 5px 10px #0003;
+   /* background-color: #F4761B; */
+   padding: 10px;
+   font-family: "Roboto Mono", monospace;
+   color: #000000;
+   font-size: 15px;
+   font-weight: bold;
+   border-color: #F4761B;
+   outline: none;
+   border-radius: 6px;
+   box-shadow: 2px 5px 10px #0003;
 }
+
 
     /* 활동대사량 */
 .act-kcal {
@@ -67,7 +69,7 @@ input[type="date"] {
     font-weight: bold;
     text-align: center;
 }
-.act-kcal span {
+.act-main-kcal {
     font-weight: bold;
     color: var(--main-color);
     font-size: 45px;
