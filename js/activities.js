@@ -132,7 +132,7 @@ function changePage(page) {
         currentPage--; // 이전 페이지로 이동
     } else if (page === 'next' && currentPage < totalPages) {
         currentPage++; // 다음 페이지로 이동
-    } else if (typeof page === 'number') {
+    } else if (typeof page === 'number' && page >= 1 && page <= totalPages) {
         currentPage = page; // 특정 페이지로 이동
     }
 
@@ -183,6 +183,7 @@ function updatePagination() {
     pageNumbersContainer.innerHTML = ""; // 페이지 번호 초기화
 
     const totalPages = Math.ceil(actData.length / rowsPerPage); // 총 페이지 수 계산
+    
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement("button");
         button.className = "page-number";
@@ -201,7 +202,7 @@ function updatePagination() {
 const prevButton = document.getElementById("pagePrev");
 const nextButton = document.getElementById("pageNext");
 
-prevButton.disabled = (currentPage === 1) ? false : flase; // 첫 페이지면 이전 버튼 비활성화
+prevButton.disabled = (currentPage === 1) ? false : false; // 첫 페이지면 이전 버튼 비활성화
 nextButton.disabled = (currentPage === totalPages) ? false :
 
 function nextBtn() {

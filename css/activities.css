@@ -48,21 +48,31 @@ input[type="date"] {
 .act-kcal {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: center;
     padding: 15px 20px;
     background-color: white;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
     width: 100%;
-    margin: 0 0 60px 0;
+    margin: 0 0 60px 0; 
+    /* height: 125px; */
+}
 
+.act-kcal-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* align-items: center; */
 }
-.act-kcal > h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+
+.act-kcal-header h3 {
+    font-size: 22px;
+    margin: 0;
     color: var(--main-color);
+    
 }
+
 .act-kcal p {
     font-size: 15px;
     margin: 0;
@@ -74,6 +84,14 @@ input[type="date"] {
     color: var(--main-color);
     font-size: 45px;
 }
+.act-bmr-container {
+    display: flex;
+    align-items: center;
+    font-weight: 100;
+    /* gap: 5px; */
+    /* margin-bottom: 50px; */
+}
+
 
 /*테이블 스타일*/
 
