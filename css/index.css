@@ -16,7 +16,7 @@
 :root {
     --gothic-normal: 'NEXON Lv1 Gothic OTF', sans-serif;
     --gothic-bold: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
-    --max-width: 900px;
+    --max-width: 1200px;
     --main-color : #F4761B;
 }
 * {
@@ -28,6 +28,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: var(--gothic-normal);
+    background: #eee;
     margin: 0;
 }
 a {
@@ -37,7 +38,7 @@ a {
 }
 a.active,
 a:hover {
-    color: vaR(--main-color);
+    color: var(--main-color);
 }
 main {
     position: relative;
