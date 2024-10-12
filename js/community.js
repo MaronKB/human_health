@@ -14,7 +14,7 @@ function CommunityItemData(jsonData) {
     this.date = jsonData.com_post_date;
     this.viewCount = jsonData.com_view_count;
     this.user = jsonData.usr_number;
-    this.nickname = jsonData.uer_nickname;
+    this.nickname = jsonData.usr_nickname;
 }
 
 const init = () => {

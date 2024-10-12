@@ -21,10 +21,10 @@ const currentUserNickname = "유저";
 
 const loadQnaItem = (postNumber) => {
     const localData = JSON.parse(localStorage.getItem('qnaList')) || [];
-    let qnaItem = localData.find(item => item.com_post_number === parseInt(postNumber));
+    let qnaItem = localData.find(item => item.qna_post_number === parseInt(postNumber));
 
     if (qnaItem) {
-        qnaItem.com_view_count = (qnaItem.com_view_count || 0) + 1;
+        qnaItem.qna_view_count = (qnaItem.qna_view_count || 0) + 1;
         displayQnaItem(qnaItem);
 
         localStorage.setItem('qnaList', JSON.stringify(localData));
@@ -32,20 +32,14 @@ const loadQnaItem = (postNumber) => {
         fetch('../resources/temp-db/qna.json')
             .then(res => res.json())
             .then(jsonData => {
-                qnaItem = jsonData.find(item => item.com_post_number === parseInt(postNumber));
+                qnaItem = jsonData.find(item => item.qna_post_number === parseInt(postNumber));
 
                 if (qnaItem) {
-                    const existingItem = localData.find(item => item.com_post_number === qnaItem.com_post_number);
-                    if (existingItem) {
-                        existingItem.com_view_count = (existingItem.com_view_count || 0) + 1;
-                        localStorage.setItem('qnaList', JSON.stringify(localData));
-                    } else {
-                        qnaItem.com_view_count = 1;
-                        displayQnaItem(qnaItem);
+                    qnaItem.qna_view_count = 1;
+                    displayQnaItem(qnaItem);
 
-                        localData.push(qnaItem);
-                        localStorage.setItem('qnaList', JSON.stringify(localData));
-                    }
+                    localData.push(qnaItem);
+                    localStorage.setItem('qnaList', JSON.stringify(localData));
                 } else {
                     alert('해당 Q&A 항목을 찾을 수 없습니다.');
                     window.location.href = './qna.html';
@@ -61,16 +55,16 @@ const displayQnaItem = (qnaItem) => {
         return;
     }
 
-    document.getElementById('qna-title').innerHTML = qnaItem.com_title;
-    document.getElementById('qna-content').innerText = qnaItem.com_content;
-    document.getElementById('qna-date').innerText = qnaItem.com_post_date;
+    document.getElementById('qna-title').innerHTML = qnaItem.qna_title;
+    document.getElementById('qna-content').innerText = qnaItem.qna_content;
+    document.getElementById('qna-date').innerText = qnaItem.qna_post_date;
     document.getElementById('qna-nickname').innerText = qnaItem.usr_nickname;
-    document.getElementById('qna-view-count').innerText = qnaItem.com_view_count;
+    document.getElementById('qna-view-count').innerText = qnaItem.qna_view_count;
 };
 
 const deleteQnaItem = (postNumber) => {
     let data = JSON.parse(localStorage.getItem('qnaList')) || [];
-    data = data.filter(item => item.com_post_number !== parseInt(postNumber));
+    data = data.filter(item => item.qna_post_number !== parseInt(postNumber));
     localStorage.setItem('qnaList', JSON.stringify(data));
     alert('글이 삭제되었습니다.');
     window.location.href = './qna.html';
