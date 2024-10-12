@@ -35,13 +35,24 @@ main.fixed {
             linear-gradient(225deg, white 20%, transparent 20% 80%, white 80%),
             linear-gradient(black, transparent, black);
 }
-.main-section > .box {
+.main-box-header {
+    width: 100%;
+    padding: 20px;
+    background: white;
+}
+.main-box-header > h2 {
+    margin: 0 0 10px 0;
+}
+.box {
     width: calc(100% - 20px);
     max-width: 600px;
     gap: 5px;
     background-color: #ffffffaa;
     padding: 20px;
     backdrop-filter: blur(10px);
+}
+.main-box {
+    padding: 0;
 }
 strong {
     flex: none;
@@ -66,7 +77,7 @@ h2 > span {
 }
 p {
     font-size: 14px;
-    margin: 2px;
+    margin: 4px;
 }
 .list {
     display: flex;
@@ -75,8 +86,8 @@ p {
     align-items: center;
     gap: 5px;
     list-style: none;
-    padding: 0;
-    margin: 10px 0;
+    padding: 15px 20px 10px 20px;
+    margin: 0;
 }
 .list > li {
     width: 100%;
@@ -124,6 +135,7 @@ p {
     color: white;
     background: var(--main-color);
     border-radius: 5px;
+    margin: 0 20px 20px 0;
 }
 .main-button:hover {
     color: var(--main-color);
@@ -172,17 +184,6 @@ p {
 #welcome-message {
     padding: 0;
 }
-#welcome-title {
-    width: 100%;
-    padding: 20px;
-    background: white;
-}
-#welcome-title > h2 {
-    margin: 0 0 10px 0;
-}
-#welcome-title > p {
-    margin: 0;
-}
 #welcome-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -210,6 +211,7 @@ p {
     height: 40px;
     font-size: 16px;
     border-radius: 0;
+    margin: 0;
 }
 #welcome-login {
     width: 100%;
@@ -222,6 +224,9 @@ p {
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+#login-list > .main-button {
+    margin: 0;
 }
 #login-list > .main-button:first-child {
     color: black;
@@ -243,24 +248,24 @@ p {
 
 .main-communication {
     flex: none;
+    gap: 0;
     background-color: #eeeeee;
-    padding: 20px 0;
+    padding: 0;
 }
-.main-communication > h2 {
+.main-communication > h3 {
     font-size: 18px;
-    text-align: center;
-    margin: 0 0 10px 0;
 }
 .main-communication-list {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 15px 0;
 }
 .main-communication-entry {
+    background-color: white;
     padding: 0 20px;
 }
 .main-communication-entry:nth-child(2n-1) {
-    background-color: white;
+    background-color: #eee;
 }
 .main-communication-entry > a {
     width: 100%;
@@ -321,8 +326,10 @@ p {
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     backdrop-filter: brightness(0.5) blur(4px);
     z-index: 99;
     transition: 1s opacity;
@@ -331,8 +338,44 @@ p {
     opacity: 0;
     pointer-events: none;
 }
-#scroll-message > h2 {
-    font-size: 48px;
+#scroll-icon {
+    width: 60px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid white;
+    border-radius: 25px;
+}
+#scroll-icon > i {
+    width: 100%;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: gray;
+}
+#scroll-icon > i:first-child {
+    animation: scroll 0.5s 0s linear infinite alternate;
+}
+#scroll-icon > i:nth-child(2) {
+    animation: scroll 0.5s 0.3s linear infinite alternate;
+}
+#scroll-icon > i:last-child {
+    animation: scroll 0.5s 0.6s linear infinite alternate;
+}
+@keyframes scroll {
+    from {
+        color: gray;
+    }
+    to {
+        color: white;
+    }
+}
+#scroll-message {
+    font-size: 14px;
     color: white;
     text-shadow: 0 0 10px black;
 }
