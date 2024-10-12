@@ -24,6 +24,12 @@ const loadQnaItem = (postNumber) => {
     let qnaItem = localData.find(item => item.qna_post_number === parseInt(postNumber));
 
     if (qnaItem) {
+        if (qnaItem.is_secret && qnaItem.usr_nickname !== currentUserNickname && currentUserNickname !== "관리자") {
+            alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
+            window.location.href = './qna.html';
+            return;
+        }
+
         qnaItem.qna_view_count = (qnaItem.qna_view_count || 0) + 1;
         displayQnaItem(qnaItem);
 
@@ -35,6 +41,12 @@ const loadQnaItem = (postNumber) => {
                 qnaItem = jsonData.find(item => item.qna_post_number === parseInt(postNumber));
 
                 if (qnaItem) {
+                    if (qnaItem.is_secret && qnaItem.usr_nickname !== currentUserNickname && currentUserNickname !== "관리자") {
+                        alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
+                        window.location.href = './qna.html';
+                        return;
+                    }
+
                     qnaItem.qna_view_count = 1;
                     displayQnaItem(qnaItem);
 
