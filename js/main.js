@@ -1,4 +1,32 @@
+let isScrolling = false;
+const onScroll = (ev) => {
+    if (isScrolling) return;
 
+    let current = ev.target;
+
+    if (!current.classList.contains('main-section')) {
+        while (true) {
+            current = current.parentNode;
+            if (!current) return;
+            if (current.classList.contains('main-section')) break;
+        }
+    }
+
+    const direction = (ev.deltaY > 0);
+    const target = (direction) ? current.nextElementSibling : current.previousElementSibling;
+
+    if (!target) return;
+
+    scroll(target);
+}
+const scroll = (target) => {
+    target.scrollIntoView({behavior: "smooth"});
+
+    isScrolling = true;
+    setTimeout(() => {
+        isScrolling = false;
+    }, 500);
+}
 const getJsonData = (type) => {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = () => {
@@ -10,30 +38,29 @@ const getJsonData = (type) => {
     xhttp.send();
 }
 const injectHtml = (type, data) => {
-    const _html = data.map(e => {
+    const postData = data.sort((a, b) => {
+        return b.com_post_number - a.com_post_number;
+    }).slice(0, 6);
+    const _html = postData.map(e => {
         if (type === "community") {
             const index = document.createElement("span");
             index.className = "main-community-index";
-            index.innerText = e.index;
-
-            const category = document.createElement("span");
-            category.className = "main-community-category";
-            category.innerText = e.category;
+            index.innerText = e.com_post_number;
 
             const title = document.createElement("span");
             title.className = "main-community-title";
-            title.innerText = e.title;
+            title.innerText = e.com_title;
 
             const nickname = document.createElement("span");
             nickname.className = "main-community-nickname";
-            nickname.innerText = e.nickname;
+            nickname.innerText = e.usr_nickname;
 
             const date = document.createElement("span");
             date.className = "main-community-date";
-            date.innerText = e.date;
+            date.innerText = e.com_post_date.slice(5);
 
             const a = document.createElement("a");
-            a.append(index, category, title, nickname, date);
+            a.append(index, title, nickname, date);
 
             const list = document.createElement("li");
             list.className = "main-community-entry main-communication-entry";
@@ -61,12 +88,23 @@ const injectHtml = (type, data) => {
         }
     });
     const target = document.querySelector(`#main-${type}-list`);
-    target.childNodes.forEach(e => {
-        e.remove();
-    });
-    target.append(..._html);
+    target.replaceChildren(..._html);
 }
 window.addEventListener('DOMContentLoaded', () => {
     getJsonData("community");
     getJsonData("qna");
+
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+        section.addEventListener("wheel", (ev) => onScroll(ev));
+    });
+
+    const next = document.querySelector("#next");
+    next.addEventListener("click", () => scroll(sections[1]));
+
+    const guide = document.querySelector("#scroll-guide");
+    guide.classList.remove("hidden");
+    setTimeout(() => {
+        guide.classList.add("hidden");
+    }, 2000);
 });

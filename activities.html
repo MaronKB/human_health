@@ -16,86 +16,110 @@
             <input type="date" class="act-date-btn" placeholder="날짜 선택하기">
         </div>
         <section class="act-kcal">
-            <h3>활동대사량</h3>
-            <p>
+            <div class="act-kcal-header">
+                <h3>활동대사량</h3>
+                <div class="act-bmr-container">
+                    <h5>기초대사량: </h5>
+                    <span class="act-bmr-kcal"> N </span> Kcal
+                </div>
+            </div>
+            <p class="act-main-value">
                 <span class="act-main-kcal">N</span> Kcal
             </p>
-            <div class="act-bmr-container">
-                <h5>기초대사량: </h5><span class="act-bmr-kcal">N</span> Kcal
-            </div>
         </section>
-        <section class="act-template">
-            <div class="act-table-add">
-                <button type="button" id="add-act" onclick="addRow()">+</button>
+        <section class="act-container">
+            <div class="act-template">
+                <div class="act-table-add">
+                    <button type="button" id="add-act" onclick="addRow()">+</button>
+                </div>
+                <div style="position: relative;">    
+                    <table class="act-table">
+                        <thead>
+                            <tr> 
+                                <th>활동</th>
+                                <th>시간</th>
+                                <th>강도</th>
+                            </tr>
+                        </thead>
+                        <tbody id="act-tbody">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div style="position: relative;">    
-                <table class="act-table">
-                    <thead>
-                        <tr> 
-                            <th>활동</th>
-                            <th>시간</th>
-                            <th>강도</th>
-                        </tr>
-                    </thead>
-                    <tbody id="act-tbody">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <aside class="'act-sidebar">
+                <div class="act-recommend-kcal">
+                    <div>
+                         <h6>권장 섭취 칼로리</h6>
+                    </div>
+                    <p>
+                     <span class="act-recommend-value">N</span>Kcal
+                    </p>
+                </div>
+                <div class="act-template-save">
+                    <h4>활동 템플릿 저장 리스트</h4>
+                    <button class="template-save-btn">템플릿 저장</button>
+                    <div calss="saved-templates">
+                        <div class="template-item">
+                            
+                        </div>
+                    </div>
+                </div>
+            </aside>
         </section>
     </main>
     <!-- 모달 -->

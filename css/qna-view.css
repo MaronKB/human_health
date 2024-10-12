@@ -1,4 +1,4 @@
-.qna_view_info table {
+.qna-view-info table {
     padding-top: 50px;
     padding-bottom: 20px;
     width: 100%;
@@ -7,19 +7,16 @@
     line-height: 40px;
 }
 
-.qna_view_info table th {
+.qna-view-info table th {
     width: 10%;
 }
 
-.qna_view_info table td {
+.qna-view-info table td {
     width: 30%;
 }
 
-.qna_view_content {
+.qna-view-content {
     margin-bottom: 20px;
-}
-
-.qna_view_content {
     border: none;
     width: 100%;
     height: 350px;
@@ -27,11 +24,11 @@
     color: black;
 }
 
-.qna_view_button {
+.qna-view-buttons {
     text-align: center;
 }
 
-.qna_view_button button {
+.qna-view-buttons button {
     width: 12%;
     height: 35px;
     background-color: #f4761b;
