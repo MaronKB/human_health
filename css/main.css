@@ -1,58 +1,90 @@
+main.fixed {
+    width: 100%;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
 .main-section {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-size: cover;
+    background-position: center;
 }
-#introduce {
-
+.main-section::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+            linear-gradient(135deg, white 20%, transparent 20% 80%, white 80%),
+            linear-gradient(black, transparent, black);
+    backdrop-filter: blur(10px);
+    opacity: 0.6;
+    z-index: 0;
 }
-
-#introduce > div {
-    padding: 30px;
-    margin: 20px 0;
+.main-section:nth-child(2n)::before {
+    background: linear-gradient(225deg, white 20%, transparent 20% 80%, white 80%);
 }
-#introduce > div:first-child {
-    margin: 0;
+.main-section > .box {
+    width: calc(100% - 20px);
+    max-width: 600px;
+    gap: 5px;
+    background-color: #ffffffaa;
+    padding: 20px;
+    backdrop-filter: blur(10px);
 }
-#introduce > div > h2 {
+strong {
+    flex: none;
+    white-space: nowrap;
+    color: var(--main-color);
+}
+h2 {
     display: flex;
     align-items: flex-end;
     font-size: 18px;
-    margin: 0 0 10px 0;
 }
-#introduce > div > h2 > span {
+div > h2 > span {
     display: flex;
     align-items: flex-end;
     gap: 5px;
     font-size: 24px;
-    text-shadow: 0 0 4px white;
     color: var(--main-color);
     margin: 0 5px 0 0;
 }
-#introduce > div > h2 > span > sub {
+div > h2 > span > sub {
     font-size: 14px;
 }
-#introduce > div > p {
+div > p {
     font-size: 14px;
     margin: 4px;
 }
-#introduce > div > ul {
-    font-size: 14px;
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     list-style: none;
-    background: #eee;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 0;
     margin: 0;
 }
-#introduce > div > ul > li {
+.list > li {
+    width: 100%;
     font-size: 14px;
-    line-height: 20px;
     background: white;
     padding: 5px 8px;
     border-radius: 5px;
-    margin: 0 0 8px 0;
+    line-height: 20px;
 }
-#introduce > div > ul > li:last-child {
-    margin: 0;
-}
-#introduce > div > ul > li::before {
+.list > li::before {
     content: "";
     display: inline-block;
     flex: none;
@@ -62,22 +94,152 @@
     transform: rotate(45deg);
     margin: 0 5px 0 0;
 }
-#introduce > div > ul > li > strong {
-    flex: none;
+.list > li > a {
+    width: 80px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background: #eee;
+    border-radius: 5px;
+    margin: 0 0 0 auto;
+}
+.list > li > a:hover {
+    color: white;
+    background: var(--main-color);
+}
+.main-button {
+    width: 140px;
     height: 30px;
-    white-space: nowrap;
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--gothic-bold);
+    font-size: 14px;
+    color: white;
+    background: var(--main-color);
+    border-radius: 5px;
+}
+.main-button:hover {
     color: var(--main-color);
+    background: white;
 }
 
-.communications {
-    width: 100%;
+
+#first-page {
+}
+#welcome-logo {
+    width: fit-content;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    background: linear-gradient(135deg, transparent 30% 70%, var(--main-color) 70% 80%, transparent 80%);
+    padding: 0 10px;
+    z-index: 1;
 }
+#welcome-logo > div {
+    flex: none;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    transform: rotate(45deg);
+    border: 4px solid white;
+    border-radius: 5px;
+}
+#welcome-logo > div > img {
+    width: 36px;
+    height: 36px;
+    object-position: center;
+    object-fit: contain;
+    transform: rotate(-45deg);
+}
+#welcome-logo > h1 {
+    position: relative;
+    top: 3px;
+    font-size: 36px;
+    color: white;
+}
+#welcome-message {
+    padding: 0;
+}
+#welcome-title {
+    width: 100%;
+    padding: 20px;
+    background: white;
+}
+#welcome-title > h2 {
+    margin: 0 0 10px 0;
+}
+#welcome-title > p {
+    margin: 0;
+}
+#welcome-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+@media (max-width: 550px) {
+    #welcome-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+#welcome-list > li {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    line-height: inherit;
+    padding: 0 10px;
+}
+#next {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 0;
+}
+#welcome-login {
+    width: 100%;
+    font-family: var(--gothic-bold);
+    text-align: center;
+}
+#login-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#login-list > .main-button:first-child {
+    color: black;
+    background: #eee;
+}
+#login-list > .main-button:last-child {
+    color: white;
+    background: #222;
+}
+#login-list > .main-button:hover {
+    color: white;
+    background: var(--main-color);
+}
+
+
+#introduce {
+
+}
+
 .main-communication {
-    flex: 1;
+    flex: none;
     background-color: #eeeeee;
     padding: 20px 0;
 }
@@ -146,4 +308,28 @@
 }
 .main-qna-a::before {
     content: "ㄴ";
+}
+
+
+#scroll-guide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: brightness(0.5) blur(4px);
+    z-index: 99;
+    transition: 1s opacity;
+}
+#scroll-guide.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+#scroll-message > h2 {
+    font-size: 48px;
+    color: white;
+    text-shadow: 0 0 10px black;
 }
