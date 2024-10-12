@@ -25,3 +25,5 @@ Photo by Mikhail Nilov: https://www.pexels.com/photo/netbook-with-planner-and-jo
 community.jpg
 Photo by Matheus Bertelli: https://www.pexels.com/photo/positive-diverse-people-making-faces-at-camera-3856033/
 
+blank-profile
+vecteezy.com
