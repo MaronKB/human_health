@@ -1,7 +1,7 @@
-.back {
+#back {
     position: fixed;
-    right: 10px;
-    top: 10px;
+    bottom: 10px;
+    left: 10px;
     width: 160px;
     height: 30px;
     display: flex;
@@ -11,8 +11,9 @@
     background: white;
     padding: 0 5px;
     border-radius: 5px;
+    box-shadow: 2px 5px 10px #0003;
 }
-.back > i {
+#back > i {
     width: 20px;
     height: 20px;
     display: flex;
@@ -25,21 +26,21 @@
     background: black;
     border-radius: 5px;
 }
-.back:hover > i {
+#back:hover > i {
     background: var(--main-color);
 }
-.back > h4 {
+#back > h4 {
     margin: 0 auto;
 }
 .login-section {
     width: 100vw;
     max-width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background: linear-gradient(135deg, white 35%, var(--main-color) 35% 65%, white 65%);
+    background: linear-gradient(135deg, transparent 35%, var(--main-color) 35% 65%, transparent 65%);
 }
 .login-form {
     width: fit-content;

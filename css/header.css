@@ -118,6 +118,37 @@
     color: var(--main-color);
     border-bottom-color: var(--main-color);
 }
+#remote {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    gap: 0;
+    background: #fffa;
+    padding: 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.remote-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+}
+.remote-button:first-child {
+    border-top: 0;
+}
+.remote-button:last-child {
+    border-bottom: 0;
+}
+.remote-button:hover {
+    color: white;
+    background: var(--main-color);
+}
 @media (max-width: 740px) {
     #top {
         display: none;

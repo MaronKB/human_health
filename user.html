@@ -6,18 +6,25 @@
     <script src="js/includeHtml.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/user.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <header data-include-html="header.html"></header>
 <main>
     <section class="welcome">
         <h3><span>이용자</span>님, 안녕하세요!</h3>
+        <span></span>
         <p>관리 시작일로부터 <span>N</span>일째</p>
     </section>
     <section class="user-info">
         <section class="user-main">
-            <form id="user-inputs">
+            <form id="user-inputs" class="box">
+                <h3 id="user-inputs-title">초기 정보</h3>
+                <div id="user-profile">
+                    <img src="resources/images/blank-profile.jpg" alt="profile image"/>
+                </div>
+                <div class="user-input">
+                    <h4>이름 : 이용자</h4>
+                </div>
                 <div class="user-input">
                     <h4>성별 : </h4>
                     <input type="radio" name="sex" id="male" value="male" checked/>
@@ -51,6 +58,7 @@
                     <input type="number" id="skeletal" value="32.8"/>
                     <label for="skeletal">kg</label>
                 </div>
+                <a class="save-button">저장</a>
             </form>
             <div class="user-calories">
                 <h4>기초 대사량</h4>
@@ -59,7 +67,7 @@
             </div>
             <div class="user-graph">
                 <div class="graph">
-                    <h4 class="graph-header">체중</h4>
+                    <h4 class="graph-header"><i class="fa-solid fa-weight-scale"></i>체중</h4>
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>저체중</span>
@@ -79,9 +87,13 @@
                             <span></span>
                         </div>
                     </div>
+                    <div class="graph-subheader">
+                        <h5>목표</h5>
+                        <h5>현재</h5>
+                    </div>
                 </div>
                 <div class="graph">
-                    <h4 class="graph-header">체지방률</h4>
+                    <h4 class="graph-header"><i class="fa-solid fa-bacon"></i>체지방률</h4>
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>매우 낮음</span>
@@ -101,9 +113,13 @@
                             <span></span>
                         </div>
                     </div>
+                    <div class="graph-subheader">
+                        <h5>목표</h5>
+                        <h5>현재</h5>
+                    </div>
                 </div>
                 <div class="graph">
-                    <h4 class="graph-header">골격근량</h4>
+                    <h4 class="graph-header"><i class="fa-solid fa-hand-fist"></i>골격근량</h4>
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>매우 낮음</span>
@@ -122,6 +138,10 @@
                             <span></span>
                             <span></span>
                         </div>
+                    </div>
+                    <div class="graph-subheader">
+                        <h5>목표</h5>
+                        <h5>현재</h5>
                     </div>
                 </div>
             </div>
@@ -161,6 +181,7 @@
                 <input type="number" id="current-skeletal" value="65.5"/>
                 <label for="current-skeletal">kg</label>
             </div>
+            <a class="save-button">저장</a>
         </aside>
     </section>
 </main>

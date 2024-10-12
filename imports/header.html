@@ -4,10 +4,10 @@
         <a id="login-button" href="./login.html">로그인</a>
     </nav>
     <section id="nav-section">
-        <div id="title-section">
-            <img src="../resources/images/logo.png" id="title-logo" alt="HUMAN HEALTH"/>
-            <a id="title-link" href="../main.html"><h1 id="title-text"><span>HUMAN</span><span>HEALTH</span></h1></a>
-        </div>
+        <a id="title-section" href="./main.html">
+            <img src="./resources/images/logo.png" id="title-logo" alt="HUMAN HEALTH"/>
+            <h1 id="title-text"><span>HUMAN</span><span>HEALTH</span></h1>
+        </a>
         <a id="nav-toggle" onclick="document.querySelector('#main-nav').classList.toggle('expanded')">ㅁ</a>
         <nav id="main-nav">
             <a class="nav-button" href="./main.html">메인</a>
@@ -19,4 +19,8 @@
             <a class="nav-button" href="./qna.html">Q&A</a>
         </nav>
     </section>
+    <aside id="remote" class="box">
+        <a class="remote-button"><i class="fa-solid fa-circle-up"></i></a>
+        <a class="remote-button"><i class="fa-solid fa-gear"></i></a>
+    </aside>
 </header>
