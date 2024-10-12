@@ -11,7 +11,7 @@ main.fixed {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     background-size: cover;
     background-position: center;
 }
@@ -31,7 +31,9 @@ main.fixed {
     z-index: 0;
 }
 .main-section:nth-child(2n)::before {
-    background: linear-gradient(225deg, white 20%, transparent 20% 80%, white 80%);
+    background:
+            linear-gradient(225deg, white 20%, transparent 20% 80%, white 80%),
+            linear-gradient(black, transparent, black);
 }
 .main-section > .box {
     width: calc(100% - 20px);
@@ -49,22 +51,22 @@ strong {
 h2 {
     display: flex;
     align-items: flex-end;
+    gap: 5px;
     font-size: 18px;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #aaa;
+    margin: 0 0 8px 0;
 }
-div > h2 > span {
+h2 > span {
     display: flex;
     align-items: flex-end;
     gap: 5px;
     font-size: 24px;
     color: var(--main-color);
-    margin: 0 5px 0 0;
 }
-div > h2 > span > sub {
+p {
     font-size: 14px;
-}
-div > p {
-    font-size: 14px;
-    margin: 4px;
+    margin: 2px;
 }
 .list {
     display: flex;
@@ -74,7 +76,7 @@ div > p {
     gap: 5px;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 10px 0;
 }
 .list > li {
     width: 100%;
@@ -110,12 +112,13 @@ div > p {
     background: var(--main-color);
 }
 .main-button {
-    width: 140px;
+    width: 150px;
     height: 30px;
     align-self: flex-end;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
     font-family: var(--gothic-bold);
     font-size: 14px;
     color: white;

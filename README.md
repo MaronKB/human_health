@@ -19,6 +19,9 @@ Photo by Ella Olsson: https://www.pexels.com/photo/photo-of-vegetable-salad-in-b
 activity.jpg
 Photo by Lukas: https://www.pexels.com/photo/barbells-on-gray-surface-669584/
 
+vital.jpg
+Photo by Mikhail Nilov: https://www.pexels.com/photo/netbook-with-planner-and-jotter-placed-near-pencils-on-desk-6893329/
+
 community.jpg
 Photo by Matheus Bertelli: https://www.pexels.com/photo/positive-diverse-people-making-faces-at-camera-3856033/
 
