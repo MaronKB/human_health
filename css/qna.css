@@ -26,7 +26,8 @@
     white-space: nowrap;
 }
 
-.qna-item-number {
+.qna-item-number,
+.qna-item-view {
     flex: none;
     width: 40px;
     text-align: center;

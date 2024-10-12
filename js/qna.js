@@ -4,11 +4,12 @@ let pageCount = 1;
 let currentPage = 1;
 
 function QnaItemData(jsonData) {
-    this.postNumber = jsonData.com_post_number;
-    this.title = jsonData.com_title;
-    this.content = jsonData.com_content;
-    this.date = jsonData.com_post_date;
+    this.postNumber = jsonData.qna_post_number;
+    this.title = jsonData.qna_title;
+    this.content = jsonData.qna_content;
+    this.date = jsonData.qna_post_date;
     this.nickname = jsonData.usr_nickname;
+    this.viewCount = jsonData.qna_view_count || 0;
 }
 
 const init = () => {
@@ -93,7 +94,11 @@ const createQnaList = () => {
         date.className = "qna-item-date";
         date.innerHTML = e.date;
 
-        list.append(postNumber, title, nickname, date);
+        const view = document.createElement("span");
+        view.className = "qna-item-view";
+        view.innerHTML = e.viewCount;
+
+        list.append(postNumber, title, nickname, date, view);
 
         return list;
     });
