@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 건강정보</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
     <script src="js/vital.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
@@ -12,7 +13,7 @@
 <header data-include-html="header.html"></header>
 <main>
     <section id="vital">
-        <form class="vital-input box">
+        <form id="stress" class="vital-input box">
             <h4 class="vital-header">스트레스 지수</h4>
             <div class="vital-content">
                 <div>
@@ -33,12 +34,12 @@
                 <span>10</span>
             </label>
             <input id="vital-stress" type="range" min="1" max="10" value="1" onchange="onRangeChange(this)"/>
-            <span id="vital-stress-tooltip"><br/>인생이 행복합니다!</span>
+            <span id="vital-stress-tooltip" class="box"><br/>인생이 행복합니다!</span>
         </form>
         <div class="vital-recommend box">
             <video id="recommend-1" src="">추천 영상 1</video>
         </div>
-        <form class="vital-input box">
+        <form id="stretch" class="vital-input box">
             <h4 class="vital-header">부위별 스트레칭</h4>
             <input id="stretching-neck" type="checkbox"/>
             <label for="stretching-neck">목</label>
@@ -58,7 +59,7 @@
         <div class="vital-recommend box">
             <video id="recommend-2" src="">추천 영상 2</video>
         </div>
-        <form class="vital-input box">
+        <form id="sleep" class="vital-input box">
             <h4 class="vital-header">수면 시간</h4>
             <div class="vital-content">
                 <div>
@@ -82,7 +83,7 @@
                 <span>24</span>
             </label>
             <input id="vital-sleep" type="range" min="0" max="24" value="8" onchange="onRangeChange(this)"/>
-            <span id="vital-sleep-tooltip">정상적인 수면을 취하고 있습니다.</span>
+            <span id="vital-sleep-tooltip" class="box">정상적인 수면을 취하고 있습니다.</span>
         </form>
         <div class="vital-recommend box">
             <video id="recommend-3" src="">추천 영상 3</video>

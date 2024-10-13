@@ -27,10 +27,9 @@
 }
 .user-info {
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 .user-main {
-    max-width: 520px;
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 10px;
@@ -38,7 +37,7 @@
 #user-inputs {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 155px);
     gap: 10px;
 }
 #user-inputs-title {
@@ -47,8 +46,8 @@
 }
 #user-profile {
     grid-row: 2 / 5;
-    width: 140px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
     overflow: hidden;
 }
@@ -58,8 +57,8 @@
     object-fit: cover;
 }
 .user-input {
-    width: 140px;
-    height: 40px;
+    width: 155px;
+    height: 45px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -76,6 +75,10 @@
     flex: none;
     text-align: right;
     white-space: nowrap;
+}
+.user-input > h4 > i {
+    width: 14px;
+    margin: 0 3px 0 0;
 }
 .user-input > input {
     flex: 1;
@@ -227,24 +230,45 @@
     border-radius: 4px;
     overflow: hidden;
 }
+.graph-progress {
+
+}
+.graph-progress::-webkit-progress-bar {
+    background: #eeeeee;
+}
+.graph-progress::-webkit-progress-value {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 1s ease;
+}
+.graph-progress.ready::-webkit-progress-value {
+    transform: scaleX(0);
+}
 .graph-target {
     height: 20px;
 }
-.graph-target::-webkit-progress-bar {
-    background: #eeeeee;
-}
 .graph-target::-webkit-progress-value {
+    background: var(--main-color-dark);
     border-radius: 2px;
 }
 .graph-current {
     height: 40px;
 }
-.graph-current::-webkit-progress-bar {
-    background: #eeeeee;
-}
 .graph-current::-webkit-progress-value {
+    background: var(--main-color-bright);
     border-radius: 4px;
 }
+/*
+.graph:nth-child(1) .graph-current::-webkit-progress-value {
+    background: var(--another-color);
+}
+.graph:nth-child(2) .graph-current::-webkit-progress-value {
+    background: var(--sub-color);
+}
+.graph:nth-child(3) .graph-current::-webkit-progress-value {
+    background: var(--dark-color);
+}
+*/
 .graph-line {
     position: absolute;
     bottom: 0;
@@ -338,13 +362,18 @@
 }
 
 @media (max-width: 840px) {
+    .welcome {
+        flex-direction: column;
+    }
     .user-info {
         flex-direction: column;
     }
     .user-main {
         max-width: 100%;
+        display: flex;
+        flex-direction: column;
     }
     .user-side {
-        margin: 0 20px 20px 20px;
+        margin: 0;
     }
 }

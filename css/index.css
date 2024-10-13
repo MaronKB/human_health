@@ -18,7 +18,15 @@
     --gothic-normal: 'NEXON Lv1 Gothic OTF', sans-serif;
     --gothic-bold: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
     --max-width: 1200px;
-    --main-color : #F4761B;
+    --main-color: #F4761B;
+    --main-color-bright: #FFB66B;
+    --main-color-brighter: #FFE69B;
+    --main-color-dark: #B44602;
+    --main-color-darker: #641602;
+    --sub-color: #FFED66;
+    --bright-color: #FFFECB;
+    --another-color: #5DA271;
+    --text-color: #001627;
 }
 * {
     box-sizing: border-box;
@@ -31,6 +39,10 @@ body {
     font-family: var(--gothic-normal);
     background: #eee;
     margin: 0;
+}
+p, li {
+    color: var(--text-color);
+    margin: 4px 0;
 }
 a {
     color: inherit;
