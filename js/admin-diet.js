@@ -26,9 +26,11 @@ function renderDietList(diets) {
         <td><input type="text" value="${diet.carbs}" class="edit-input-carbs"></td>
         <td><input type="text" value="${diet.protein}" class="edit-input-protein"></td>
         <td><input type="text" value="${diet.fat}" class="edit-input-fat"></td>
-    `;
+        `;
         dietListBody.appendChild(row);
     });
+
+    updateDeleteButtonState();
 }
 
 function saveDietData() {
@@ -106,14 +108,22 @@ function searchDiet() {
     renderDietList(filteredDiets);
 }
 
+function updateDeleteButtonState() {
+    const checkboxes = document.querySelectorAll('.edit-check-box');
+    const deleteButton = document.getElementById('delete-diet');
+
+    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    deleteButton.disabled = !anyChecked;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     renderDietList(dietList);
 
     document.getElementById('add-diet').addEventListener('click', addDiet);
-
     document.getElementById('delete-diet').addEventListener('click', deleteDiet);
-
     document.getElementById('save-diet').addEventListener('click', saveDietData);
-
     document.getElementById('search-button').addEventListener('click', searchDiet);
+
+    document.getElementById('diet-list-body').addEventListener('change', updateDeleteButtonState);
 });

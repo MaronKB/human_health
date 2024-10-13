@@ -22,13 +22,15 @@ function renderUserList(users) {
             <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
             <td class="edit-number">${index + 1}</td>
             <td><input type="text" value="${user.id}" class="edit-input-id"></td>
-            <td><input type="text" value="${user.password}" class="edit-input-password"></td>
+            <td><input type="password" value="${user.password}" class="edit-input-password"></td>
             <td><input type="text" value="${user.nickname}" class="edit-input-nickname"></td>
             <td><input type="text" value="${user.emailOptOut}" class="edit-input-emailOptOut"></td>
             <td class="edit-input-date">${user.date}</td>
         `;
         userListBody.appendChild(row);
     });
+
+    updateDeleteButtonState();
 }
 
 function saveUserData() {
@@ -103,14 +105,22 @@ function searchUser() {
     renderUserList(filteredUsers);
 }
 
+function updateDeleteButtonState() {
+    const checkboxes = document.querySelectorAll('.edit-check-box');
+    const deleteButton = document.getElementById('delete-user');
+
+    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    deleteButton.disabled = !anyChecked;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     renderUserList(userList);
 
     document.getElementById('add-user').addEventListener('click', addUser);
-
     document.getElementById('delete-user').addEventListener('click', deleteUser);
-
     document.getElementById('save-user').addEventListener('click', saveUserData);
-
     document.getElementById('search-button').addEventListener('click', searchUser);
+
+    document.getElementById('user-list-body').addEventListener('change', updateDeleteButtonState);
 });

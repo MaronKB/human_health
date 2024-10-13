@@ -26,6 +26,8 @@ function renderActivityList(activities) {
         `;
         activityListBody.appendChild(row);
     });
+
+    updateDeleteButtonState();
 }
 
 function saveActivityData() {
@@ -87,14 +89,22 @@ function searchActivity() {
     renderActivityList(filteredActivities);
 }
 
+function updateDeleteButtonState() {
+    const checkboxes = document.querySelectorAll('.edit-check-box');
+    const deleteButton = document.getElementById('delete-activity');
+
+    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    deleteButton.disabled = !anyChecked;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     renderActivityList(activityList);
 
     document.getElementById('add-activity').addEventListener('click', addActivity);
-
     document.getElementById('delete-activity').addEventListener('click', deleteActivity);
-
     document.getElementById('save-activity').addEventListener('click', saveActivityData);
-
     document.getElementById('search-button').addEventListener('click', searchActivity);
+
+    document.getElementById('activity-list-body').addEventListener('change', updateDeleteButtonState);
 });

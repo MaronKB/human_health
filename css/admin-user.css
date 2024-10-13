@@ -33,6 +33,12 @@
     border-radius: 5px;
 }
 
+.control-button:disabled {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+}
+
 .search-category {
     width: 15%;
     height: 40px;
