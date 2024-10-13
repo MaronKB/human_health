@@ -1,20 +1,30 @@
 section {
     margin: 10px 0;
 }
-.diet-date {
+#current-date {
+    position: relative;
+    width: 180px;
+    height: 40px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin: 0 0 10px 0;
+    font-family: var(--gothic-bold);
+    font-size: 16px;
+    border: 0;
+    border-radius: 6px;
+    outline: none;
+    margin: 0 0 -30px 10px;
+    box-shadow: 2px 5px 10px #0003;
+    z-index: 1;
 }
 
 .diet-kcal {
 }
 
-.diet-kcal>h3 {
+.diet-kcal > h3 {
     font-size: 18px;
-    margin-bottom: 10px;
-    color: var(--main-color);
+    text-align: center;
+    color: var(--main-color-dark);
 }
 
 .diet-kcal p {
@@ -30,18 +40,6 @@ section {
     font-size: 45px;
 }
 
-input[type="date"] {
-    /* background-color: #F4761B; */
-    padding: 10px;
-    font-family: "Roboto Mono", monospace;
-    color: #000000;
-    font-size: 15px;
-    font-weight: bold;
-    border-color: #F4761B;
-    outline: none;
-    border-radius: 6px;
-    box-shadow: 2px 5px 10px #0003;
-}
 
 
 .recommended-intake {

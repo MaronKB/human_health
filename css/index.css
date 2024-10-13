@@ -73,6 +73,9 @@ strong, button {
     font-weight: normal;
 }
 
+input {
+    font-family: var(--gothic-normal);
+}
 input:focus {
     outline: none;
 }
