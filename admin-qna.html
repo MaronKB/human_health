@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HH 관리자 Q & A</title>
+    <title>HH Q & A 관리자</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
+    <script src="js/admin-qna.js"></script>
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/admin-qna.css" />
 </head>
@@ -13,100 +14,24 @@
 <body>
     <header data-include-html="header.html"></header>
     <main>
-        <div class="qna-title">
-            <div class="title1">번호</div>
-            <div class="title2">문의 제목</div>
-            <div class="title1">닉네임</div>
-            <div class="title1">작성일</div>
+        <section id="admin-qna" class="box">
+            <div class="admin-qna-item" id="admin-qna-title">
+                <h4 class="admin-qna-item-number">번호</h4>
+                <h4 class="admin-qna-item-title">문의 제목</h4>
+                <h4 class="admin-qna-item-nickname">닉네임</h4>
+                <h4 class="admin-qna-item-date">작성일</h4>
+                <h4 class="admin-qna-item-view">조회수</h4>
+            </div>
+            <div class="admin-qna-list" id="admin-qna-list"></div>
+        </section>
+        <div class="admin-qna-bottom">
+            <div class="admin-qna-pagination" id="admin-qna-pagination">
+                <a id="pagination-left" class="pagination-button pagination-arrow">◀</a>
+                <div id="admin-qna-pagination-container" class="pagination-container"></div>
+                <a id="pagination-right" class="pagination-button pagination-arrow">▶</a>
+            </div>
         </div>
-
-        <div class="qna-list" id="qna-list"></div>
-        <div class="qna-pagination" id="qna-pagination"></div>
-
-        <script>
-            const qnas = [
-                { title: '문의 제목1', nickname: '문의 닉네임1', date: '2024.10.01' },
-                { title: '문의 제목2', nickname: '문의 닉네임2', date: '2024.10.02' },
-                { title: '문의 제목3', nickname: '문의 닉네임3', date: '2024.10.03' },
-                { title: '문의 제목4', nickname: '문의 닉네임4', date: '2024.10.04' },
-                { title: '문의 제목5', nickname: '문의 닉네임5', date: '2024.10.05' },
-                { title: '문의 제목6', nickname: '문의 닉네임6', date: '2024.10.06' },
-                { title: '문의 제목7', nickname: '문의 닉네임7', date: '2024.10.07' },
-                { title: '문의 제목8', nickname: '문의 닉네임8', date: '2024.10.08' },
-                { title: '문의 제목9', nickname: '문의 닉네임9', date: '2024.10.09' },
-                { title: '문의 제목10', nickname: '문의 닉네임10', date: '2024.10.10' },
-                { title: '문의 제목11', nickname: '문의 닉네임11', date: '2024.10.11' },
-            ];
-
-            const qnasPerPage = 10; // 한 페이지에 표시할 문의글 수
-            let currentPage = 1;
-
-            function updateQnaList() {
-                const qnaList = document.getElementById('qna-list');
-                qnaList.innerHTML = ''; // 기존 문의글 목록 초기화
-                const startIndex = (currentPage - 1) * qnasPerPage; // 시작 인덱스
-                const endIndex = startIndex + qnasPerPage;  // 끝 인덱스
-                const reversQnas = [...qnas].reverse(); // 배열 반전
-                const paginatedQnas = reversQnas.slice(startIndex, endIndex); // 페이지당 문의글 가져오기
-
-                paginatedQnas.forEach((qna, index) => {
-                    const qnaItem = document.createElement('div');
-                    qnaItem.classList.add('qna-item');
-
-                    const qnaNumber = qnas.length - startIndex - index; // 전체 목록에서의 번호 계산
-
-                    qnaItem.innerHTML = `
-                    <div class="qnaItem1">${qnaNumber}</div>
-                    <div class="qnaItem2">${qna.title}</div>
-                    <div class="qnaItem1">${qna.nickname}</div>
-                    <div class="qnaItem1">${qna.date}</div>
-                `;
-                    qnaList.appendChild(qnaItem);
-                });
-
-                updatePagination();
-            }
-
-            function updatePagination() {
-                const pagination = document.getElementById('qna-pagination');
-                pagination.innerHTML = ''; // 기존 페이지네이션 초기화
-
-                const totalPages = Math.ceil(qnas.length / qnasPerPage);
-
-                if (currentPage > 1) {
-                    const prevButton = document.createElement('button');
-                    prevButton.innerText = '이전';
-                    prevButton.onclick = () => {
-                        currentPage--;
-                        updateQnaList();
-                    };
-                    pagination.appendChild(prevButton);
-                }
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const pageButton = document.createElement('button');
-                    pageButton.innerText = i;
-                    pageButton.onclick = () => {
-                        currentPage = i;
-                        updateQnaList();
-                    };
-                    pagination.appendChild(pageButton);
-                }
-
-                if (currentPage < totalPages) {
-                    const nextButton = document.createElement('button');
-                    nextButton.innerText = '다음';
-                    nextButton.onclick = () => {
-                        currentPage++;
-                        updateQnaList();
-                    };
-                    pagination.appendChild(nextButton);
-                }
-            }
-
-            // 초기 문의글 목록 업데이트
-            updateQnaList();
-        </script>
+        <div class="admin-qna-pagination" id="admin-qna-pagination"></div>
     </main>
 </body>
 

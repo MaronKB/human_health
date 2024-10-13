@@ -1,53 +1,207 @@
-.qna-title {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    width: 100%;
-    height: 40px;
+#admin-qna {
+    gap: 0;
+    padding: 0;
+}
+
+.admin-qna-item {
+    height: 36px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    font-size: 16px;
-    font-weight: bold;
+    gap: 10px;
+    padding: 0 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-.title1 {
-    width: 15%;
+.admin-qna-item:nth-child(2n) {
+    background: #eee;
 }
 
-.title2 {
-    width: 55%;
+.admin-qna-item:hover {
+    color: var(--main-color);
 }
 
-.qna-list {
-    width: 100%;
-    align-items: center;
+.admin-qna-item>* {
     font-size: 14px;
-    line-height: 35px;
+    white-space: nowrap;
 }
 
-.qna-item {
-    display: flex;
+.admin-qna-item-number,
+.admin-qna-item-view {
+    flex: none;
+    width: 40px;
     text-align: center;
 }
 
-.qnaItem1 {
-    width: 15%;
-}
-
-.qnaItem2 {
-    width: 55%;
+.admin-qna-item-title {
+    flex: 1;
     text-align: left;
 }
 
-.qna-pagination {
+.admin-qna-item-nickname {
+    flex: none;
+    width: 60px;
+    text-align: center;
+}
+
+.admin-qna-item-date {
+    flex: none;
+    width: 100px;
+    text-align: center;
+}
+
+#admin-qna-title {
+    border-bottom: 2px solid black;
+    background-color: #f9f9f9;
+}
+
+#admin-qna-title:hover {
+    color: inherit;
+}
+
+.admin-qna-list li,
+p {
+    margin: 0;
+}
+
+.admin-qna-bottom {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+}
+
+.admin-qna-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination-container {
+    display: flex;
+    gap: 5px;
+}
+
+.pagination-button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover,
+.pagination-button.active {
+    color: white;
+    background: var(--main-color);
+}
+
+.admin-qna-button {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-qna-button:hover {
+    background-color: darkorange;
+}
+
+@media screen and (max-width: 768px) {
+
+    .admin-qna-title,
+    .admin-qna-item {
+        align-items: flex-start;
+    }
+
+    .title1,
+    .title2,
+    .admin-qnaItem1,
+    .admin-qnaItem2 {
+        width: 100%;
+        text-align: left;
+    }
+
+    .admin-qna-button {
+        justify-content: center;
+    }
+}
+
+.post-category {
+    margin-left: 60px;
+    margin-right: 20px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-width: 2px;
+    border-color: lightslategray;
+    border-radius: 5px;
+}
+
+.post-search {
+    position: relative;
+    margin: 0 20px;
+    display: inline-block;
+}
+
+.post-search input {
+    margin: 0px;
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.search-button {
+    position: absolute;
+    right: 0%;
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    border-color: lightslategrey;
+    background-color: #f4761b;
+    color: white;
+    border-radius: 5px;
+}
+
+.post-button {
+    margin-left: 100px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    border-color: lightslategrey;
+    background-color: #f4761b;
+    color: white;
+}
+
+.post-pagination {
     margin-top: 25px;
     width: 100%;
     text-align: center;
 }
 
-.qna-pagination button {
+.post-pagination button {
     margin: 0 5px;
     padding: 5px 10px;
     font-size: 1rem;

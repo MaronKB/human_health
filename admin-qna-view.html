@@ -6,6 +6,7 @@
     <title>HH 관리자 Q & A 답변 보기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
+    <script src="js/admin-qna-view.js"></script>
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/admin-qna-view.css" />
 </head>
@@ -13,34 +14,32 @@
 <body>
     <header data-include-html="header.html"></header>
     <main>
-        <form>
-            <div class="qna_view_info">
-                <table>
-                    <tr>
-                        <th>제목</th>
-                        <td>제목1</td>
-                        <th>작성일</th>
-                        <td>XXXX-XX-XX</td>
-                    </tr>
-                    <tr>
-                        <th>닉네임</th>
-                        <td>닉네임1</td>
-                        <th>조회수</th>
-                        <td>X</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="qna_view_content">
-                <p>내용</p>
-            </div>
-            <div class="qna_view_button">
-                <a href="./admin-qna-write.html"><button type="button">답변</button></a>
-                <a href="./admin-qna.html"><button type="button">목록</button></a>
-                <button>삭제</button></a>
-            </div>
-        </form>
+        <div class="admin-qna-view-info">
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td id="admin-qna-title"></td>
+                    <th>작성일</th>
+                    <td id="admin-qna-date"></td>
+                </tr>
+                <tr>
+                    <th>닉네임</th>
+                    <td id="admin-qna-nickname"></td>
+                    <th>조회수</th>
+                    <td id="admin-qna-view-count"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="admin-qna-view-content">
+            <p id="admin-qna-content"></p>
+        </div>
+        <div class="admin-qna-view-buttons">
+            <a href="./admin-qna-write.html"><button type="button" id="edit-button">답변</button></a>
+            <a href="./admin-qna.html"><button type="button">목록</button></a>
+            <button type="button" id="delete-button">삭제</button>
+        </div>
     </main>
     <script></script>
 </body>
-
+    
 </html>

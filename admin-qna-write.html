@@ -6,6 +6,7 @@
     <title>HH 관리자 Q & A 답변 쓰기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
+    <script src="js/admin-qna-write.js"></script>
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/admin-qna-write.css" />
 </head>
@@ -13,21 +14,21 @@
 <body>
     <header data-include-html="header.html"></header>
     <main>
-        <form id="qna-form">
-            <div class="qna-write-title">
-                <input type="text" id="qna-title">
+        <form id="admin-qna-form">
+            <div class="admin-qna-write-title">
+                <input type="text" id="admin-qna-title">
             </div>
-            <div class="qna-write-content">
-                <textarea id="qna-content" placeholder="내용을 입력해주세요."></textarea>
+            <div class="admin-qna-write-content">
+                <textarea id="admin-qna-content" placeholder="내용을 입력해주세요."></textarea>
             </div>
-            <div class="qna-write-button">
-                <a href="./admin-qna-view.html"><button type="button">취소</button></a>
+            <div class="admin-qna-write-button">
+                <a href="./admin-qna.html"><button type="button">취소</button></a>
                 <button type="reset">초기화</button>
-                <a href="./admin-qna.html"><button type="button" id="qna-submit">등록</button></a>
+                <button type="button" id="admin-qna-submit">등록</button>
             </div>
         </form>
     </main>
     <script></script>
 </body>
-
+            
 </html>
