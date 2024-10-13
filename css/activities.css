@@ -93,11 +93,24 @@ input[type="date"] {
 }
 
 
-/*테이블 스타일*/
+/* 활동 테이블, 권장칼로리, 활동 저장리스트 */
+.act-container {
+    display: flex;
+    width: 100%;
+    /* justify-content: space-between; */
+    gap: 10px;
+    margin-top: 20px;
+    background-color: lightcoral;
+}
 
+/* 테이블 스타일 */
 .act-template {
     width: 65%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 5px 10px #0003;
+    
 }
 
 .act-table{
@@ -128,10 +141,6 @@ input[type="date"] {
     border-bottom: 1px solid #dddddd;
 }
 
-/* 
-.act-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-} */
 
 .act-table tbody tr:nth-of-type(even) {
     background-color:#f3f3f3;
@@ -166,8 +175,120 @@ input[type="date"] {
 }
 
 #add-act:hover {
-    background-color: #45a049;
+    background-color: #2a63ff;
 }
+
+/* 권장섭취칼로리, 저장리스트 */
+.act-sidebar {
+    display: flex;
+    width: 35%;
+    /* flex-direction: column; */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.act-recommend-kcal {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+    /* text-align: center;      */
+}
+
+.act-recommend-kcal,
+.act-template-save {
+    flex: 1;
+}
+
+.act-recommend-kcal h6 {
+    margin: 0px;
+    font-size: 15px;
+    color: #F4761B;
+}
+
+.act-recommend-value {
+    font-weight: bold;
+    color: #F4761B;
+
+}
+
+.act-template-save {
+    padding: 10px 20px;
+    background-color: #f0f4ff;
+    border: 1px solid #c3d4ff;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+}
+
+.act-template-save h4 {
+    margin: 0px;
+    font-size: 20px;
+    color: #2a63ff;
+}
+
+.template-share-save {
+    position: absolute;
+    right: 0px;
+    margin: 10px;
+}
+
+.template-save-btn,
+.template-share-btn {
+    width: 110px;
+    padding: 10px 20px;
+    background-color: #F4761B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 5px 10px #0003;
+    margin-bottom: 15px;
+}
+
+.template-save-btn:hover {
+    background-color: #b8721c;
+}
+
+/* 저장된 템플릿 스타일 */
+.saved-templates {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.template-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 1px 2px 5px #0001;
+}
+
+.template-item span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.template-delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.template-delete-btn:hover {
+    background-color: #d93636;
+}
+
+
+
 
 /* 모달창 스타일 */
 .act-modal {

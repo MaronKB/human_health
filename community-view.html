@@ -6,6 +6,7 @@
     <title>HH 커뮤니티 보기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
+    <script src="js/community-view.js"></script>
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/community-view.css" />
 </head>
@@ -13,32 +14,30 @@
 <body>
     <header data-include-html="header.html"></header>
     <main>
-        <form>
-            <div class="community_view_info">
-                <table>
-                    <tr>
-                        <th>제목</th>
-                        <td>제목1</td>
-                        <th>작성일</th>
-                        <td>XXXX-XX-XX</td>
-                    </tr>
-                    <tr>
-                        <th>닉네임</th>
-                        <td>닉네임1</td>
-                        <th>조회수</th>
-                        <td>X</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="community_view_content">
-                <p>내용</p>
-            </div>
-            <div class="community_view_button">
-                <a href="./community-write.html"><button type="button">수정</button></a>
-                <a href="./community.html"><button type="button">목록</button></a>
-                <button>삭제</button></a>
-            </div>
-        </form>
+        <div class="community-view-info">
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td id="community-title"></td>
+                    <th>작성일</th>
+                    <td id="community-date"></td>
+                </tr>
+                <tr>
+                    <th>닉네임</th>
+                    <td id="community-nickname"></td>
+                    <th>조회수</th>
+                    <td id="community-view-count"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="community-view-content">
+            <p id="community-content"></p>
+        </div>
+        <div class="community-view-buttons">
+            <button type="button" id="edit-button">수정</button>
+            <a href="./community.html"><button type="button">목록</button></a>
+            <button type="button" id="delete-button">삭제</button>
+        </div>
     </main>
     <script></script>
 </body>
