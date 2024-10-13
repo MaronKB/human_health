@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="css/admin-activities.css" />
 </head>
 
-<body>
+<body class="admin-activities">
     <header data-include-html="./header.html"></header>
-    <main>
+    <div class="activities-main">
         <div class="title">
             <div>활동 목록</div>
         </div>
-        <div class="list-control">
-            <button class="control-button" id="add-activity">추가</button>
+        <div class="list-control"> 
             <select class="search-category" id="search-category" required>
                 <option value="활동">활동</option>
                 <option value="강도">강도</option>
@@ -27,6 +26,7 @@
                 <input type="text" id="search-input">
                 <button class="search-button" id="search-button">검색</button>
             </div>
+            <button class="control-button" id="add-activity">추가</button>
             <button class="control-button" id="save-activity">저장</button>
             <button class="control-button" id="delete-activity">삭제</button>
         </div>
@@ -35,10 +35,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th>선택</th>
-                        <th>번호</th>
-                        <th>활동</th>
-                        <th>강도</th>
+                        <th class="check-box">선택</th>
+                        <th class="number">번호</th>
+                        <th class="input-activity">활동</th>
+                        <th class="input-intensity">강도</th>
                     </tr>
                 </thead>
                 <tbody class="activity-list-body" id="activity-list-body">
@@ -47,7 +47,7 @@
         </div>
 
         <script></script>
-    </main>
+    </div>
 </body>
 
 </html>
