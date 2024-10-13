@@ -24,14 +24,22 @@
                     <span class="act-bmr-kcal"> N </span> Kcal
                 </div>
             </div>
-            <p class="act-main-value">
-                <span class="act-main-kcal">N</span> Kcal
-            </p>
+            <div class="act-main-value-container">
+                <p class="act-main-value">
+                    <span class="act-main-kcal">N</span> Kcal
+                </p>
+                <div class="act-recommended-calorie">권장 섭취 칼로리: 0 Kcal</div>
+            </div>
+            
         </section>
         <section class="act-container">
             <aside class="act-sidebar">
                 <div class="act-template-save">
-                    <h4>자주 쓰는 템플릿 리스트</h4>
+                    <h4>
+                        <span class="material-symbols-outlined">
+                            list_alt
+                        </span> 자주 쓰는 템플릿 리스트
+                    </h4>
                     <div class="saved-templates">
                         <div class="template-item" onclick="applyTemplate('일반 평일 활동')">
                             <span>일반 평일 활동</span>
@@ -101,7 +109,10 @@
                 <div style="position: relative;">
                     <div class="act-table-header">
                         <div class="act-hours-alert">
-                            <h5>총 활동
+                            <span class="material-symbols-outlined" style="font-size: 27px;">
+                                schedule
+                            </span><h1> </h1>
+                            <h5> 총 활동
                             <span class="act-hours-value">0</span>
                             시간 <h6>(24시간 기준)</h6></h5>
                         </div>

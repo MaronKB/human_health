@@ -58,7 +58,7 @@ input[type="date"] {
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
     width: 100%;
-    margin: 0 0 60px 0; 
+    margin: 0 0 20px 0; 
     /* height: 125px; */
 }
 
@@ -94,6 +94,26 @@ input[type="date"] {
     /* gap: 5px; */
     /* margin-bottom: 50px; */
 }
+
+.act-main-value-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+.act-recommended-calorie {
+    position: absolute;
+    right: 0;
+    bottom: 0   ;
+    font-size: 14px;
+    color: #035efa;
+    font-weight: bold;
+}
+
 
 
 /* 활동 테이블, 활동 저장리스트 */
@@ -136,9 +156,21 @@ input[type="date"] {
     border-bottom: 1px solid #dddddd;
 }
 .act-table td {
-    padding: 13px 40px;
     text-align: center;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 0px solid #dddddd;
+        /* font-size: 14px;
+        padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; */
+    
+}
+
+.act-table tbody tr {
+    height: 29px;
+    line-height: 29px;
+    font-size: 13px;
+    padding: 0%;
 }
 
 
@@ -164,8 +196,8 @@ input[type="date"] {
     display: flex;
     align-items: flex-end;
     font-size: 20px;
-    background: #f0f4ff;
-    border: 1px solid #Fad898;
+    background: white;
+    border: 1px solid white;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
     padding: 10px;
@@ -200,7 +232,7 @@ input[type="date"] {
     height: 30px;
     position: relative;
     box-shadow: 2px 5px 10px #0003;
-    margin-bottom: 3px;
+    margin-top: 23px;
 }
 
 #add-act:hover {
@@ -228,10 +260,17 @@ input[type="date"] {
 .act-template-save {
     background: #ffffff;
     padding: 20px;
-    border: 1px solid #c3d4ff;
+    border: 1px solid white;
     border-radius: 15px;
     box-shadow: 2px 5px 10px #0003;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
+    height: 100%;
+    padding-bottom: 120px;
+}
+
+.act-template-save span {
+    font-weight: 200;
+    font-size: 30px;
 }
 
 .act-template-save h4 {
@@ -276,9 +315,9 @@ input[type="date"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #eee;
     padding: 10px;
-    border: 1px solid #e0e0e0;
+    border: 0px solid #e0e0e0;
     border-radius: 10px;
     width: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
@@ -521,7 +560,7 @@ input[type="date"] {
 }
 
 .act-selected-activity,
-.act-type-time {
+.aype-time {
     flex: 3;
     /* margin-right: 20%; */
     background-color: white;
