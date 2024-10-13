@@ -1,3 +1,10 @@
+const getFoodData = () => {
+    fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=f1%2BQbUgod6QOKV6u1la%2FM%2FjdVet5FcocsbwQZqd9%2FvsXMpdSf70BOzdBJudiUb%2Bg5%2By96ISpkAlZZm%2FlWRiktg%3D%3D&type=json").then((response) => {
+        return response.json();
+    }).then(data => {
+        console.log(data);
+    })
+}
 function addRow() {
     document.getElementById("dietModal").style.display = "block";
 }
@@ -46,18 +53,19 @@ function saveDiet() {
 
 // 음식을 테이블에 추가하는 함수
 function addDietToTable(dietData) {
-    const dietTbody = document.getElementById('dietTbody');
-    const newRow = document.createElement('tr');
+    const table = document.getElementById('diet-table');
+    const newRow = document.createElement('div');
+    newRow.className = "table-item";
 
     newRow.innerHTML = `
-        <td>${dietData.name}</td>
-        <td>${dietData.mealType}</td>
-        <td>${dietData.carbs}g</td>
-        <td>${dietData.protein}g</td>
-        <td>${dietData.fat}g</td>
+        <span>${dietData.name}</span>
+        <span>${dietData.mealType}</span>
+        <span>${dietData.carbs}g</span>
+        <span>${dietData.protein}g</span>
+        <span>${dietData.fat}g</span>
     `;
 
-    dietTbody.appendChild(newRow);
+    table.appendChild(newRow);
 }
 
 function selectDiet(foodName) {
@@ -150,10 +158,17 @@ function updatePagination() {
     }
 }
 
+const graphAnimation = () => {
+    const graphs = document.querySelectorAll('.graph-progress');
+    graphs.forEach(graph => {
+        graph.classList.remove("ready");
+    })
+}
 // 페이지 로드 시 테이블과 페이지네이션 렌더링
 document.addEventListener("DOMContentLoaded", () => {
     renderTable();
     updatePagination();
+    setTimeout(graphAnimation, 300);
 });
 
 //=======================================================
