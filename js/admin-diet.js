@@ -19,7 +19,7 @@ function renderDietList(diets) {
     diets.forEach((diet, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-checkbox" data-index="${index}"></td>
+        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
         <td class="edit-number">${index + 1}</td>
         <td><input type="text" value="${diet.food}" class="edit-input-food"></td>
         <td><input type="text" value="${diet.amount}" class="edit-input-amount"></td>
@@ -68,7 +68,7 @@ function addDiet() {
 }
 
 function deleteDiet() {
-    const checkboxes = document.querySelectorAll('.edit-checkbox');
+    const checkboxes = document.querySelectorAll('.edit-check-box');
     const selectedIndexes = [];
 
     checkboxes.forEach((checkbox, index) => {

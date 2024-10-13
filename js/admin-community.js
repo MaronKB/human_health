@@ -19,7 +19,7 @@ function renderCommunityList(communities) {
     communities.forEach((community, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-checkbox" data-index="${index}"></td>
+        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
         <td class="edit-number">${index + 1}</td>
         <td><input type="text" value="${community.title}" class="edit-input-title"></td>
         <td><input type="text" value="${community.nickname}" class="edit-input-nickname"></td>
@@ -59,7 +59,7 @@ function addCommunity() {
 }
 
 function deleteCommunity() {
-    const checkboxes = document.querySelectorAll('.edit-checkbox');
+    const checkboxes = document.querySelectorAll('.edit-check-box');
     const selectedIndexes = [];
 
     checkboxes.forEach((checkbox, index) => {

@@ -19,7 +19,7 @@ function renderActivityList(activities) {
     activities.forEach((activity, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-checkbox" data-index="${index}"></td>
+        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
         <td class="edit-number">${index + 1}</td>
         <td><input type="text" value="${activity.activity}" class="edit-input-activity"></td>
         <td><input type="text" value="${activity.intensity}" class="edit-input-intensity"></td>
@@ -56,7 +56,7 @@ function addActivity() {
 }
 
 function deleteActivity() {
-    const checkboxes = document.querySelectorAll('.edit-checkbox');
+    const checkboxes = document.querySelectorAll('.edit-check-box');
     const selectedIndexes = [];
 
     checkboxes.forEach((checkbox, index) => {

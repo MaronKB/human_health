@@ -19,7 +19,7 @@ function renderUserList(users) {
     users.forEach((user, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="edit-checkbox" data-index="${index}"></td>
+            <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
             <td class="edit-number">${index + 1}</td>
             <td><input type="text" value="${user.id}" class="edit-input-id"></td>
             <td><input type="text" value="${user.password}" class="edit-input-password"></td>
@@ -67,7 +67,7 @@ function addUser() {
 }
 
 function deleteUser() {
-    const checkboxes = document.querySelectorAll('.edit-checkbox');
+    const checkboxes = document.querySelectorAll('.edit-check-box');
     const selectedIndexes = [];
 
     checkboxes.forEach((checkbox, index) => {
