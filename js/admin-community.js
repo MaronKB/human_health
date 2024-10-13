@@ -27,6 +27,8 @@ function renderCommunityList(communities) {
         `;
         communityListBody.appendChild(row);
     });
+
+    updateDeleteButtonState();
 }
 
 function saveCommunityData() {
@@ -93,14 +95,22 @@ function searchCommunity() {
     renderCommunityList(filteredCommunities);
 }
 
+function updateDeleteButtonState() {
+    const checkboxes = document.querySelectorAll('.edit-check-box');
+    const deleteButton = document.getElementById('delete-community');
+
+    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    deleteButton.disabled = !anyChecked;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     renderCommunityList(communityList);
 
     document.getElementById('add-community').addEventListener('click', addCommunity);
-
     document.getElementById('delete-community').addEventListener('click', deleteCommunity);
-
     document.getElementById('save-community').addEventListener('click', saveCommunityData);
-
     document.getElementById('search-button').addEventListener('click', searchCommunity);
+
+    document.getElementById('community-list-body').addEventListener('change', updateDeleteButtonState);
 });

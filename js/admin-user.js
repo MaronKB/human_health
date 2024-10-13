@@ -29,6 +29,8 @@ function renderUserList(users) {
         `;
         userListBody.appendChild(row);
     });
+
+    updateDeleteButtonState();
 }
 
 function saveUserData() {
@@ -103,14 +105,22 @@ function searchUser() {
     renderUserList(filteredUsers);
 }
 
+function updateDeleteButtonState() {
+    const checkboxes = document.querySelectorAll('.edit-check-box');
+    const deleteButton = document.getElementById('delete-user');
+
+    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    deleteButton.disabled = !anyChecked;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     renderUserList(userList);
 
     document.getElementById('add-user').addEventListener('click', addUser);
-
     document.getElementById('delete-user').addEventListener('click', deleteUser);
-
     document.getElementById('save-user').addEventListener('click', saveUserData);
-
     document.getElementById('search-button').addEventListener('click', searchUser);
+
+    document.getElementById('user-list-body').addEventListener('change', updateDeleteButtonState);
 });
