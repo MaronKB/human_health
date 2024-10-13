@@ -138,11 +138,64 @@
             `;
         }
 
-        popup.style.display = 'block'; // 팝업 창 보이기
+        popup.style.display = 'block';
     }
 
     function closePopup() {
         const popup = document.getElementById('popup');
-        popup.style.display = 'none'; // 팝업 창 숨기기
+        popup.style.display = 'none';
     }
 
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const registerForm = document.querySelector('.login-form');
+
+    registerForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const passwordConfirm = document.getElementById('password-confirm').value;
+        const nickname = document.getElementById('nickname').value;
+        const emailOptOut = document.querySelector('input[name="subscribe"]:checked').value;
+
+        if (password !== passwordConfirm) {
+            alert('비밀번호가 일치하지 않습니다.');
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        const existingUser = users.find(user => user.id === email);
+        if (existingUser) {
+            alert('이미 등록된 아이디입니다.');
+            return;
+        }
+
+        const existingNickname = users.find(user => user.nickname === nickname);
+        if (existingNickname) {
+            alert('이미 사용 중인 닉네임입니다.');
+            return;
+        }
+
+        const newUser = {
+            id: email,
+            password: password,
+            nickname: nickname,
+            emailOptOut: emailOptOut,
+            date: new Date().toISOString().slice(0, 10)
+        };
+
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+
+        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+
+        alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
+        window.location.href = 'login.html';
+    });
+});

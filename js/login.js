@@ -20,12 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
         const rememberMe = document.getElementById('remember-me').checked;
 
+        const localUsers = JSON.parse(localStorage.getItem('users')) || [];
+        const userFromLocalStorage = localUsers.find(user => user.id === email && user.password === password);
+
         fetch('../resources/temp-db/user.json')
             .then(response => response.json())
             .then(users => {
-                const user = users.find(user => user.id === email && user.password === password);
+                const userFromJson = users.find(user => user.id === email && user.password === password);
 
-                if (user) {
+                if (userFromLocalStorage || userFromJson) {
+                    const user = userFromLocalStorage || userFromJson;
+
                     localStorage.setItem('loggedInUser', JSON.stringify(user));
 
                     if (rememberMe) {
