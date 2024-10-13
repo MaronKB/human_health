@@ -92,6 +92,7 @@
     position: sticky;
     top: 0;
     background: lightgray;
+    z-index: 1;
 }
 
 .user-list th, td {
