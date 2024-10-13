@@ -98,7 +98,13 @@
     align-items: center;
     margin-left: auto;
 }
-#main-nav > a {
+#nav-top {
+    width: 100%;
+    display: none;
+    gap: 5px;
+}
+#main-nav > a,
+#nav-top > a {
     flex: 1;
     height: 100%;
     display: flex;
@@ -112,6 +118,13 @@
     border-width: 4px 0;
     border-style: solid;
     border-color: transparent;
+}
+#nav-top > a {
+    height: 30px;
+    font-size: 14px;
+    background: #eee;
+    border: 0;
+    border-radius: 5px;
 }
 #main-nav > a.active {
     font-weight: bold;
@@ -153,6 +166,9 @@
     #top {
         display: none;
     }
+    #nav-section {
+        padding: 0 10px;
+    }
     #title-section {
         position: static;
     }
@@ -169,6 +185,9 @@
         padding: 20px;
         border-radius: 5px;
         box-shadow: 2px 5px 10px #0003;
+    }
+    #nav-top {
+        display: flex;
     }
     #main-nav > a {
         flex: none;

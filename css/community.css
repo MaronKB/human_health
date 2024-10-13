@@ -11,6 +11,7 @@
     gap: 10px;
     padding: 0 10px;
     border-bottom: 1px solid #ccc;
+    margin: 0;
 }
 .community-item:nth-child(2n) {
     background: #eee;

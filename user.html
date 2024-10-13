@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 유저</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
+    <script src="js/user.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/user.css"/>
 </head>
@@ -23,10 +25,10 @@
                     <img src="resources/images/blank-profile.jpg" alt="profile image"/>
                 </div>
                 <div class="user-input">
-                    <h4>이름 : 이용자</h4>
+                    <h4><i class="fa-solid fa-user"></i>이름 : 이용자</h4>
                 </div>
                 <div class="user-input">
-                    <h4>성별 : </h4>
+                    <h4><i class="fa-solid fa-venus-mars"></i>성별 : </h4>
                     <input type="radio" name="sex" id="male" value="male" checked/>
                     <label for="male">남</label>
                     <span>/</span>
@@ -34,27 +36,27 @@
                     <label for="female">여</label>
                 </div>
                 <div class="user-input">
-                    <h4>나이 : </h4>
+                    <h4><i class="fa-solid fa-seedling"></i>나이 : </h4>
                     <input type="number" id="age" value="28"/>
                     <label for="age">세</label>
                 </div>
                 <div class="user-input">
-                    <h4>키 : </h4>
+                    <h4><i class="fa-solid fa-ruler"></i>키 : </h4>
                     <input type="number" id="height" value="182"/>
                     <label for="height">cm</label>
                 </div>
                 <div class="user-input">
-                    <h4>체중 : </h4>
+                    <h4><i class="fa-solid fa-weight-scale"></i>체중 : </h4>
                     <input type="number" id="weight" value="71"/>
                     <label for="weight">kg</label>
                 </div>
                 <div class="user-input">
-                    <h4>체지방률 : </h4>
+                    <h4><i class="fa-solid fa-bacon"></i>체지방률 : </h4>
                     <input type="number" id="fat" value="14"/>
                     <label for="fat">%</label>
                 </div>
                 <div class="user-input">
-                    <h4>골격근량 : </h4>
+                    <h4><i class="fa-solid fa-hand-fist"></i>골격근량 : </h4>
                     <input type="number" id="skeletal" value="32.8"/>
                     <label for="skeletal">kg</label>
                 </div>
@@ -76,8 +78,8 @@
                             <span>중등도 비만</span>
                             <span>고도 비만</span>
                         </div>
-                        <progress id="weight-target" class="graph-target" value="30" max="100"></progress>
-                        <progress id="weight-current" class="graph-current" value="60" max="100"></progress>
+                        <progress id="weight-target" class="graph-progress graph-target ready" value="30" max="100"></progress>
+                        <progress id="weight-current" class="graph-progress graph-current ready" value="60" max="100"></progress>
                         <div class="graph-line">
                             <span></span>
                             <span></span>
@@ -102,8 +104,8 @@
                             <span>높음</span>
                             <span>매우 높음</span>
                         </div>
-                        <progress id="fat-target" class="graph-target" value="50" max="100"></progress>
-                        <progress id="fat-current" class="graph-current" value="65" max="100"></progress>
+                        <progress id="fat-target" class="graph-progress graph-target ready" value="50" max="100"></progress>
+                        <progress id="fat-current" class="graph-progress graph-current ready" value="65" max="100"></progress>
                         <div class="graph-line">
                             <span></span>
                             <span></span>
@@ -128,8 +130,8 @@
                             <span>높음</span>
                             <span>매우 높음</span>
                         </div>
-                        <progress id="skeletal-target" class="graph-target" value="70" max="100"></progress>
-                        <progress id="skeletal-current" class="graph-current" value="25" max="100"></progress>
+                        <progress id="skeletal-target" class="graph-progress graph-target ready" value="70" max="100"></progress>
+                        <progress id="skeletal-current" class="graph-progress graph-current ready" value="25" max="100"></progress>
                         <div class="graph-line">
                             <span></span>
                             <span></span>
