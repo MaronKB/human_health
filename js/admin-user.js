@@ -22,7 +22,7 @@ function renderUserList(users) {
             <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
             <td class="edit-number">${index + 1}</td>
             <td><input type="text" value="${user.id}" class="edit-input-id"></td>
-            <td><input type="text" value="${user.password}" class="edit-input-password"></td>
+            <td><input type="password" value="${user.password}" class="edit-input-password"></td>
             <td><input type="text" value="${user.nickname}" class="edit-input-nickname"></td>
             <td><input type="text" value="${user.emailOptOut}" class="edit-input-emailOptOut"></td>
             <td class="edit-input-date">${user.date}</td>
