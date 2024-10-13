@@ -1,3 +1,11 @@
+.admin-activities {
+    width: 100%;
+}
+
+.activities-main {
+    width: 95%;
+}
+
 .title {
     margin-top: 30px;
     margin-bottom: 10px;
@@ -5,21 +13,20 @@
     height: 40px;
     align-items: center;
     text-align: center;
-    font-size: 20px;
+    font-size: 26px;
     font-weight: bold;
 }
 
 .list-control {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .control-button {
-    margin: 0 10px;
-    width: 100px;
+    width: 10%;
     height: 40px;
-    font-size: 16px;
+    font-size: 20px;
     border-color: lightslategrey;
     background-color: #f4761b;
     color: white;
@@ -27,11 +34,10 @@
 }
 
 .search-category {
-    margin-left: 40px;
-    width: 150px;
+    width: 15%;
     height: 40px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     border-width: 2px;
     border-color: lightslategray;
@@ -39,6 +45,7 @@
 }
 
 .list-search {
+    width: 45%;
     position: relative;
     margin-left: 10px;
     margin-right: 40px;
@@ -47,9 +54,10 @@
 
 .list-search input {
     margin: 0px;
-    width: 300px;
+    padding: 0 10px;
+    width: 100%;
     height: 40px;
-    font-size: 16px;
+    font-size: 20px;
     border-color: lightslategrey;
     border-radius: 5px;
 }
@@ -57,9 +65,9 @@
 .search-button {
     position: absolute;
     right: 0%;
-    width: 100px;
+    width: 30%;
     height: 40px;
-    font-size: 16px;
+    font-size: 20px;
     border-color: lightslategrey;
     background-color: #f4761b;
     color: white;
@@ -69,9 +77,10 @@
 .activity-list {
     margin-top: 20px;
     width: 100%;
-    max-height: 520px;
+    max-height: 535px;
     overflow-y: auto;
     display: block;
+    font-size: 20px;
 }
 
 .activity-list table {
@@ -83,6 +92,7 @@
     position: sticky;
     top: 0;
     background: lightgray;
+    z-index: 1;
 }
 
 .activity-list th, td {
@@ -95,26 +105,42 @@
     padding: 0;
     height: 20px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
 }
 
 .activity-list-body {
-    font-size: 16px;
+    width: 100%;
 }
 
-.edit-checkbox {
-    width: 20px;
+.activity-list-body input {
+    background-color: transparent;
 }
 
-.edit-number {
-    width: 60px;
+.check-box {
+    width: 7%;
+}
+
+.edit-check-box {
+    transform: scale(2);
+}
+
+.number {
+    width: 8%;
+}
+
+.input-activity {
+    width: 55%;
 }
 
 .edit-input-activity {
-    width: 380px;
+    width: 90%;
+}
+
+.input-intensity {
+    width: 30%;
 }
 
 .edit-input-intensity {
-    width: 200px;
+    width: 90%;
 }

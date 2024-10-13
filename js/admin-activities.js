@@ -1,4 +1,3 @@
-// 목록 데이터 초기화
 let activityList = [
     { activity: '활동1', intensity: '1' },
     { activity: '활동2', intensity: '2' },
@@ -13,15 +12,14 @@ let activityList = [
     { activity: '활동11', intensity: '11' },
 ];
 
-// 목록을 화면에 렌더링
 function renderActivityList(activities) {
     const activityListBody = document.getElementById('activity-list-body');
-    activityListBody.innerHTML = ''; // 기존 내용 초기화
+    activityListBody.innerHTML = '';
 
     activities.forEach((activity, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-checkbox" data-index="${index}"></td>
+        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
         <td class="edit-number">${index + 1}</td>
         <td><input type="text" value="${activity.activity}" class="edit-input-activity"></td>
         <td><input type="text" value="${activity.intensity}" class="edit-input-intensity"></td>
@@ -30,12 +28,10 @@ function renderActivityList(activities) {
     });
 }
 
-// 데이터 저장 기능
 function saveActivityData() {
     const editActivities = document.querySelectorAll('.edit-input-activity');
     const editIntensities = document.querySelectorAll('.edit-input-intensity');
 
-    // 기존 데이터를 유지하면서 새로운 데이터를 저장
     activityList = Array.from(activityList).map((activity, index) => {
         return {
             activity: editActivities[index] ? editActivities[index].value : activity.activity,
@@ -44,10 +40,9 @@ function saveActivityData() {
     });
 
     alert('저장되었습니다.');
-    renderActivityList(activityList); // 변경된 내용을 다시 렌더링
+    renderActivityList(activityList);
 }
 
-// 추가 기능
 function addActivity() {
     const activity = prompt('활동명을 입력해주세요.');
     const intensity = prompt('강도를 입력해주세요.');
@@ -60,9 +55,8 @@ function addActivity() {
     }
 }
 
-// 삭제 기능
 function deleteActivity() {
-    const checkboxes = document.querySelectorAll('.edit-checkbox');
+    const checkboxes = document.querySelectorAll('.edit-check-box');
     const selectedIndexes = [];
 
     checkboxes.forEach((checkbox, index) => {
@@ -71,15 +65,13 @@ function deleteActivity() {
         }
     });
 
-    // 인덱스를 역순으로 삭제
     for (let i = selectedIndexes.length - 1; i >= 0; i--) {
         activityList.splice(selectedIndexes[i], 1);
     }
 
-    renderActivityList(activityList);  // 삭제 후 업데이트
+    renderActivityList(activityList);
 }
 
-// 검색 기능
 function searchActivity() {
     const searchCategory = document.getElementById('search-category').value;
     const searchInput = document.getElementById('search-input').value.toLowerCase();
@@ -95,19 +87,14 @@ function searchActivity() {
     renderActivityList(filteredActivities);
 }
 
-// 페이지 로드 시 초기 목록 출력
 window.addEventListener('DOMContentLoaded', () => {
     renderActivityList(activityList);
 
-    // 추가
     document.getElementById('add-activity').addEventListener('click', addActivity);
 
-    // 삭제
     document.getElementById('delete-activity').addEventListener('click', deleteActivity);
 
-    // 저장
     document.getElementById('save-activity').addEventListener('click', saveActivityData);
 
-    // 검색
     document.getElementById('search-button').addEventListener('click', searchActivity);
 });

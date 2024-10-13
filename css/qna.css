@@ -59,6 +59,10 @@
     color: inherit;
 }
 
+.qna-list li, p {
+    margin: 0;
+}
+
 .qna-bottom {
     position: relative;
     width: 100%;

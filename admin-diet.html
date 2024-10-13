@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="css/admin-diet.css" />
 </head>
 
-<body>
+<body class="admin-diet">
     <header data-include-html="./header.html"></header>
-    <main>
+    <div class="diet-main">
         <div class="title">
             <div>식단 목록</div>
         </div>
-        <div class="list-control">
-            <button class="control-button" id="add-diet">추가</button>
+        <div class="list-control"> 
             <select class="search-category" id="search-category" required>
                 <option value="음식">음식</option>
                 <option value="기준량">기준량</option>
@@ -30,6 +29,7 @@
                 <input type="text" id="search-input">
                 <button class="search-button" id="search-button">검색</button>
             </div>
+            <button class="control-button" id="add-diet">추가</button>
             <button class="control-button" id="save-diet">저장</button>
             <button class="control-button" id="delete-diet">삭제</button>
         </div>
@@ -38,13 +38,13 @@
             <table>
                 <thead>
                     <tr>
-                        <th>선택</th>
-                        <th>번호</th>
-                        <th>음식</th>
-                        <th>기준량(g)</th>
-                        <th>탄수화물(g)</th>
-                        <th>단백질(g)</th>
-                        <th>지방(g)</th>
+                        <th class="check-box">선택</th>
+                        <th class="number">번호</th>
+                        <th class="input-food">음식</th>
+                        <th class="input-amount">기준량(g)</th>
+                        <th class="input-carbs">탄수화물(g)</th>
+                        <th class="input-protein">단백질(g)</th>
+                        <th class="input-fat">지방(g)</th>
                     </tr>
                 </thead>
                 <tbody class="diet-list-body" id="diet-list-body">
@@ -53,7 +53,7 @@
         </div>
 
         <script></script>
-    </main>
+    </div>
 </body>
 
 </html>

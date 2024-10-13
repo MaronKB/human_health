@@ -100,3 +100,20 @@ progress::-webkit-progress-value {
     box-shadow: 2px 5px 10px #0003;
     overflow: hidden;
 }
+.button {
+    width: fit-content;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: white;
+    background: #aaa;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 5px;
+}
+.button:hover {
+    background: var(--main-color);
+}
