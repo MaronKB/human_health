@@ -1,5 +1,62 @@
 let selectedIntensity = 0; // 전역 변수로 강도 저장
 
+// 템플릿 데이터 정의
+const templates = {
+    "일반 평일 활동": [
+        { activity: "출근", duration: 8, intensity: 1.5 },
+        { activity: "운동", duration: 1, intensity: 5 },
+        { activity: "독서", duration: 1, intensity: 1.2 }
+    ],
+    "일반 휴일 활동": [
+        { activity: "산책", duration: 2, intensity: 2 },
+        { activity: "영화 보기", duration: 3, intensity: 1.3 },
+        { activity: "가사일", duration: 2, intensity: 3 }
+    ],
+    "일반 학업 활동": [
+        { activity: "강의 듣기", duration: 4, intensity: 1.5 },
+        { activity: "스터디", duration: 3, intensity: 2 },
+        { activity: "도서관 공부", duration: 2, intensity: 1.8 }
+    ],
+    "집에만 있는 날": [
+        { activity: "TV 시청", duration: 4, intensity: 1.2 },
+        { activity: "요리", duration: 2, intensity: 2.5 },
+        { activity: "휴식", duration: 3, intensity: 1 }
+    ]
+};
+
+// 템플릿을 테이블에 적용
+function applyTemplate(templateName) {
+    const tbody = document.getElementById("act-tbody");
+    const templateActivities = templates[templateName];
+
+    // 테이블 초기화 (기존 항목 삭제)
+    tbody.innerHTML = "";
+
+    // 템플릿 항목 추가
+    templateActivities.forEach(activity => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${activity.activity}</td>
+            <td>${activity.duration}</td>
+            <td>${activity.intensity}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+
+// 템플릿 항목을 삭제
+function deleteTemplate(event, templateName) {
+    event.stopPropagation(); // 삭제 버튼 클릭 시 템플릿 적용 방지
+    const templateElement = event.target.closest(".template-item");
+    templateElement.remove();
+
+    // 필요한 경우, templates 객체에서도 삭제
+    delete templates[templateName];
+}
+
+
+
 // 모달 열기
 function addRow() {
     document.getElementById("actModal").style.display = "block";

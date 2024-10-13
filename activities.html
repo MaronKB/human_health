@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/activities.css" />
     <script src="js/includeHtml.js"></script>
     <script src="js/activities.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
     <header data-include-html="header.html"></header>
@@ -27,11 +28,84 @@
             </p>
         </section>
         <section class="act-container">
-            <div class="act-template">
-                <div class="act-table-add">
-                    <button type="button" id="add-act" onclick="addRow()">+</button>
+            <aside class="act-sidebar">
+                <div class="act-template-save">
+                    <h4>자주 쓰는 템플릿 리스트</h4>
+                    <div class="saved-templates">
+                        <div class="template-item" onclick="applyTemplate('일반 평일 활동')">
+                            <span>일반 평일 활동</span>
+                            <div class="template-actions">
+                                <button class="template-edit-btn" onclick="editTemplate('일반 평일 활동')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        stylus
+                                    </span>
+                                </button>
+                                <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 평일 활동')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="template-item" onclick="applyTemplate('일반 휴일 활동')">
+                            <span>일반 휴일 활동</span>
+                            <div class="template-actions">
+                                <button class="template-edit-btn" onclick="editTemplate('일반 휴일 활동')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        stylus
+                                    </span>
+                                </button>
+                                <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 휴일 활동')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="template-item" onclick="applyTemplate('일반 학업 활동')">
+                            <span>일반 학업 활동</span>
+                            <div class="template-actions">
+                                <button class="template-edit-btn" onclick="editTemplate('일반 학업 활동')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        stylus
+                                    </span>
+                                </button>
+                                <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 학업 활동')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="template-item" onclick="applyTemplate('집에만 있는 날')">
+                            <span>집에만 있는 날</span>
+                            <div class="template-actions">
+                                <button class="template-edit-btn" onclick="editTemplate('집에만 있는 날')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        stylus
+                                    </span>
+                                </button>
+                                <button class="template-delete-btn" onclick="deleteTemplate(event, '집에만 있는 날')">
+                                    <span class="material-symbols-outlined" style="color: #ffffff;">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+            
+                    </div>
                 </div>
-                <div style="position: relative;">    
+            </aside>
+            <div class="act-template">
+                <div style="position: relative;">
+                    <div class="act-table-header">
+                        <div class="act-hours-alert">
+                            <h5>총 활동
+                            <span class="act-hours-value">N </span>
+                            시간 <h6>(24시간 기준)</h6></h5>
+                        </div>
+                        <button type="button" id="add-act" onclick="addRow()">+</button>
+                    </div>
                     <table class="act-table">
                         <thead>
                             <tr> 
@@ -104,25 +178,6 @@
                     </div>
                 </div>
             </div>
-            <aside class="'act-sidebar">
-                <div class="act-recommend-kcal">
-                    <div>
-                         <h6>권장 섭취 칼로리</h6>
-                    </div>
-                    <p>
-                     <span class="act-recommend-value">N</span>Kcal
-                    </p>
-                </div>
-                <div class="act-template-save">
-                    <h4>활동 템플릿 저장 리스트</h4>
-                    <div calss="saved-templates">
-                        <div class="template-item">
-                            <span>testestestest</span>
-                            <button class="template-delete-btn">X</button>
-                        </div>
-                    </div>
-                </div>
-            </aside>
         </section>
     </main>
     <!-- 모달 -->
