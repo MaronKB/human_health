@@ -44,16 +44,68 @@ function applyTemplate(templateName) {
     });
 }
 
+// 템플릿 항목을 편집하는 함수
+function editTemplate(templateName) {
+    console.log(`Edit button clicked for: ${templateName}`); // 클릭 이벤트 확인용 로그
+
+    // 템플릿 항목 찾기
+    const templateElement = document.querySelector(`.template-item span`);
+    if (templateElement.textContent === templateName) {
+        // contenteditable 속성 추가
+        templateElement.setAttribute("contenteditable", "true");
+        templateElement.focus(); // 요소에 포커스 맞추기
+
+        // 스타일 추가 (밑줄 표시)
+        templateElement.style.borderBottom = "1px dashed #28a745";
+
+        // 수정 완료를 위한 엔터 키 이벤트 추가
+        templateElement.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
+                templateElement.setAttribute("contenteditable", "false");
+                templateElement.style.borderBottom = "none";
+
+                // 수정된 텍스트 반영
+                const newTemplateName = templateElement.textContent.trim();
+                if (newTemplateName !== "" && newTemplateName !== templateName) {
+                    // templates 객체의 키도 업데이트
+                    if (templates[templateName]) {
+                        templates[newTemplateName] = templates[templateName];
+                        delete templates[templateName];
+                    }
+                }
+            }
+        });
+
+        // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
+        templateElement.addEventListener("blur", function () {
+            templateElement.setAttribute("contenteditable", "false");
+            templateElement.style.borderBottom = "none";
+        });
+    }
+}
+
+
 
 // 템플릿 항목을 삭제
 function deleteTemplate(event, templateName) {
     event.stopPropagation(); // 삭제 버튼 클릭 시 템플릿 적용 방지
-    const templateElement = event.target.closest(".template-item");
-    templateElement.remove();
 
-    // 필요한 경우, templates 객체에서도 삭제
-    delete templates[templateName];
+    // 삭제 확인 메시지
+    const confirmed = confirm(`정말 "${templateName}" 템플릿을 삭제하시겠습니까?`);
+    if (confirmed) {
+        const templateElement = event.target.closest(".template-item");
+        templateElement.remove();
+
+        // templates 객체에서 삭제 
+        if (templates[templateName]) {
+            delete templates[templateName];
+        }
+    }
 }
+
+
+
 
 
 

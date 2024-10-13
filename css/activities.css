@@ -108,8 +108,8 @@ input[type="date"] {
 /* 테이블 스타일 */
 .act-template {
     width: 65%;
-    box-shadow: 2px 5px 10px #0003;
-    background: #eee;
+    /* box-shadow: 2px 5px 10px #0003; */
+    background: transparent;
     border-radius: 10px;
 }
 
@@ -162,19 +162,32 @@ input[type="date"] {
 
 .act-hours-alert {
     display: flex;
+    align-items: flex-end;
     font-size: 20px;
     background: #f0f4ff;
-    border: 1px solid #fad898;
+    border: 1px solid #Fad898;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     
 }
 
-/* .act-hours-alert h6 {
+.act-hours-value {
+    font-weight: bold;
+    color: #333;
+    margin: 5px;
+    font-size: 22px;
+}
 
-} */
+.act-hours-alert h6 {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #777;
+    position: relative;
+}
+
 
 #add-act {
     border: none;
@@ -197,23 +210,35 @@ input[type="date"] {
 /*  자주쓰는 활동 저장리스트 */
 .act-sidebar {
     width: 35%;
+    height: 100%;
     /* flex-direction: column; */
     gap: 20px;
+    overflow: auto;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     overflow: auto;
 }
 
 .act-template-save {
-    padding: 10px 20px;
-    background-color: #f0f4ff;
+    background: #ffffff;
+    padding: 20px;
     border: 1px solid #c3d4ff;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 2px 5px 10px #0003;
+    margin-bottom: 60px;
 }
 
 .act-template-save h4 {
-    margin: 0px;
-    font-size: 20px;
-    color: #2a63ff;
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .template-share-save {
@@ -251,18 +276,22 @@ input[type="date"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: #ffffff;
     padding: 10px;
     border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    box-shadow: 1px 2px 5px #0001;
+    border-radius: 10px;
     width: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 .template-item span {
     font-size: 16px;
     font-weight: bold;
     color: #333;
+    font-weight: 100;
+
+
 }
 
 .template-actions {
@@ -279,12 +308,17 @@ input[type="date"] {
     padding: 5px;
     border-radius: 5px;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 5px;
 
 }
 
 .template-edit-btn {
     background-color: #41cd61;
     color: white;
+}
+
+.template-edit-btn:hover {
+    background-color: #2a9f49;
 }
 
 
