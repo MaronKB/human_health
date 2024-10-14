@@ -50,9 +50,6 @@
     background-color: #001627;
     color: white;
 }
-#community-title:hover {
-    color: inherit;
-}
 
 .community-bottom {
     position: relative;
