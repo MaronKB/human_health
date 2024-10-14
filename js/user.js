@@ -10,9 +10,18 @@ const calcBMR = () => {
     const weight = document.querySelector("#weight").value;
 
     const bmr = 6647 + (1375 * weight) + (500 * height) - (676 * age);
+    const bmrArr = String(bmr / 100).split(".");
+
+    const spanA = document.createElement("span");
+    spanA.className = "bmr-main";
+    spanA.innerText = bmrArr[0];
+
+    const spanB = document.createElement("span");
+    spanB.className = "bmr-sub";
+    spanB.innerText = "." + bmrArr[1];
 
     const target = document.querySelector("#kal");
-    target.value = bmr / 100;
+    target.replaceChildren(spanA, spanB);
 }
 const calcDate = () => {
     const startDate = new Date(document.querySelector("#start-date").value);

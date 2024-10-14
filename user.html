@@ -68,8 +68,10 @@
             </form>
             <div class="user-calories box">
                 <h3 class="user-title">기초 대사량</h3>
-                <input type="number" id="kal" value="0" disabled/>
-                <label for="kal">kcal</label>
+                <div class="bmr">
+                    <h4 id="kal">0</h4>
+                    <h5>kcal</h5>
+                </div>
             </div>
             <div class="user-graph">
                 <div class="graph">
@@ -154,16 +156,9 @@
         </section>
         <aside class="user-side">
             <div class="side-input">
-            </div>
-            <div class="side-input">
                 <h4>목표 체중 : </h4>
                 <input type="number" id="target-weight" value="65.5"/>
                 <label for="target-weight">kg</label>
-            </div>
-            <div class="side-input">
-                <h4>현재 체중 : </h4>
-                <input type="number" id="current-weight" value="65.5"/>
-                <label for="current-weight">kg</label>
             </div>
             <div class="side-input">
                 <h4>목표 체지방률 : </h4>
@@ -171,19 +166,9 @@
                 <label for="target-fat">%</label>
             </div>
             <div class="side-input">
-                <h4>현재 체지방률 : </h4>
-                <input type="number" id="current-fat" value="65.5"/>
-                <label for="current-fat">%</label>
-            </div>
-            <div class="side-input">
                 <h4>목표 골격근량 : </h4>
                 <input type="number" id="target-skeletal" value="65.5"/>
                 <label for="target-skeletal">kg</label>
-            </div>
-            <div class="side-input">
-                <h4>현재 체지방률 : </h4>
-                <input type="number" id="current-skeletal" value="65.5"/>
-                <label for="current-skeletal">kg</label>
             </div>
             <a class="save-button">저장</a>
         </aside>
