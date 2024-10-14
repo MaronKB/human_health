@@ -2,25 +2,28 @@ main > section {
     margin: 10px 0;
 }
 #current-date {
-    position: relative;
-    width: 180px;
+    width: 160px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: var(--gothic-bold);
-    font-size: 16px;
-    border: 0;
+    gap: 10px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000000;
+    border: 1;
     border-radius: 6px;
+    border-color: #F4761B;
     outline: none;
-    margin: 0 0 -30px 10px;
+    margin: 0 0 10px 0px;
     box-shadow: 2px 5px 10px #0003;
     z-index: 1;
 }
 
 .diet-kcal > h3 {
     font-size: 18px;
-    text-align: center;
+    text-align: left;
     color: var(--main-color-dark);
 }
 
@@ -312,12 +315,16 @@ main > section {
 }
 
 .diet-details input {
-    margin-top: 10px;
+    margin-top: 15px;
     /* 입력 필드 간 간격 조정 */
 }
 
 .diet-details h3 {
     color: #F4761B;
+}
+
+.diet-details p {
+    margin: 15px 0;
 }
 
 .modal-add-food {
