@@ -18,6 +18,7 @@ main > section {
     box-shadow: 2px 5px 10px #0003;
     z-index: 1;
 }
+
 #act-header {
     display: flex;
     gap: 10px;

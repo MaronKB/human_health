@@ -275,7 +275,7 @@ main > section {
     align-items: center;
     font-size: 10px;
     color: white;
-    background: black;
+    background: pink;
     border-radius: 3px;
 }
 .graph-subheader > h5:first-child {
