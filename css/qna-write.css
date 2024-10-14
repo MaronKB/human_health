@@ -1,3 +1,14 @@
+.qna-write {
+    margin: 20px;
+    padding: 0 0 40px 0;
+    position: relative;
+    width: 90vw;
+    max-width: var(--max-width);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+}
+
 input {
     display: inline;
     padding: initial;
@@ -9,6 +20,7 @@ input {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 20px;
+    padding: 0 40px;
 }
 
 .qna-write-title input {
@@ -22,6 +34,7 @@ input {
 .qna-write-check {
     font-size: 20px;
     margin: 0 0 20px 2px;
+    padding: 0 40px;
 }
 
 .qna-write-check input{
@@ -30,6 +43,7 @@ input {
 
 .qna-write-content {
     margin-bottom: 20px;
+    padding: 0 40px;
 }
 
 .qna-write-content textarea {
@@ -47,9 +61,17 @@ input {
     width: 12%;
     height: 35px;
     border-radius: 5px;
-    border-color: lightslategray;
-    background-color: #f4761b;
+    border: none;
+    background-color: #222;
     font-size: 20px;
     color: white;
     margin: 10px;
+    box-shadow: 2px 5px 10px #0003;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.qna-write-button button:hover {
+    color: white;
+    background: var(--main-color);
 }

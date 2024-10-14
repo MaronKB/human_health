@@ -15,13 +15,16 @@
 <main>
     <section class="welcome">
         <h3><span>이용자</span>님, 안녕하세요!</h3>
-        <span></span>
-        <p>관리 시작일로부터 <span>N</span>일째</p>
+        <div class="date">
+            <h4>관리 시작일</h4>
+            <input type="date" id="start-date" value="2024-08-12"/>
+            <h4>로부터 <span id="date-diff">N</span>일째</h4>
+        </div>
     </section>
     <section class="user-info">
         <section class="user-main">
             <form id="user-inputs" class="box">
-                <h3 id="user-inputs-title" class="user-title">초기 정보</h3>
+                <h3 id="user-inputs-title" class="user-title">유저 정보</h3>
                 <div id="user-profile">
                     <img src="resources/images/blank-profile.jpg" alt="profile image"/>
                 </div>
@@ -65,12 +68,18 @@
             </form>
             <div class="user-calories box">
                 <h3 class="user-title">기초 대사량</h3>
-                <input type="number" id="kal" value="0" disabled/>
-                <label for="kal">kcal</label>
+                <div class="bmr">
+                    <h4 id="kal">0</h4>
+                    <h5>kcal</h5>
+                </div>
             </div>
             <div class="user-graph">
                 <div class="graph">
                     <h4 class="graph-header"><i class="fa-solid fa-weight-scale"></i>체중</h4>
+                    <div class="graph-subheader">
+                        <h5>목표</h5>
+                        <h5>현재</h5>
+                    </div>
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>저체중</span>
@@ -90,13 +99,13 @@
                             <span></span>
                         </div>
                     </div>
+                </div>
+                <div class="graph">
+                    <h4 class="graph-header"><i class="fa-solid fa-bacon"></i>체지방률</h4>
                     <div class="graph-subheader">
                         <h5>목표</h5>
                         <h5>현재</h5>
                     </div>
-                </div>
-                <div class="graph">
-                    <h4 class="graph-header"><i class="fa-solid fa-bacon"></i>체지방률</h4>
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>매우 낮음</span>
@@ -119,6 +128,10 @@
                 </div>
                 <div class="graph">
                     <h4 class="graph-header"><i class="fa-solid fa-hand-fist"></i>골격근량</h4>
+                    <div class="graph-subheader">
+                        <h5>목표</h5>
+                        <h5>현재</h5>
+                    </div>
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>매우 낮음</span>
@@ -138,27 +151,14 @@
                             <span></span>
                         </div>
                     </div>
-                    <div class="graph-subheader">
-                        <h5>목표</h5>
-                        <h5>현재</h5>
-                    </div>
                 </div>
             </div>
         </section>
         <aside class="user-side">
             <div class="side-input">
-                <h4>관리 시작일 : </h4>
-                <input type="date" id="start-date" value="2024-08-12"/>
-            </div>
-            <div class="side-input">
                 <h4>목표 체중 : </h4>
                 <input type="number" id="target-weight" value="65.5"/>
                 <label for="target-weight">kg</label>
-            </div>
-            <div class="side-input">
-                <h4>현재 체중 : </h4>
-                <input type="number" id="current-weight" value="65.5"/>
-                <label for="current-weight">kg</label>
             </div>
             <div class="side-input">
                 <h4>목표 체지방률 : </h4>
@@ -166,19 +166,9 @@
                 <label for="target-fat">%</label>
             </div>
             <div class="side-input">
-                <h4>현재 체지방률 : </h4>
-                <input type="number" id="current-fat" value="65.5"/>
-                <label for="current-fat">%</label>
-            </div>
-            <div class="side-input">
                 <h4>목표 골격근량 : </h4>
                 <input type="number" id="target-skeletal" value="65.5"/>
                 <label for="target-skeletal">kg</label>
-            </div>
-            <div class="side-input">
-                <h4>현재 체지방률 : </h4>
-                <input type="number" id="current-skeletal" value="65.5"/>
-                <label for="current-skeletal">kg</label>
             </div>
             <a class="save-button">저장</a>
         </aside>
