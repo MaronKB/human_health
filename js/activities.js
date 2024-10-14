@@ -189,6 +189,38 @@ function addTemplateToSidebar(templateName) {
     sidebar.appendChild(templateItem);
 }
 
+// 총 활동 시간 업데이트
+function updateTotalActivityHours() {
+    const tbody = document.getElementById('act-tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    let totalHours = 0;
+
+    // 각 행 시간 합산
+    rows.forEach(row => {
+        const hours = parseFloat(row.children[1].textContent);
+        if (!isNaN(hours)) {
+            totalHours += hours;
+        }
+    });
+
+    // 총 활동 시간 요소 업데이트
+    const totalHoursElement = document.querySelector('.act-hours-value');
+    totalHoursElement.textContent = totalHours.toFixed(2);
+
+    // 24시간까지 남은 시간 계산 및 표시
+    const remainingHours = 24 - totalHours;
+    const remainingElement = document.querySelector('.act-hours-alert h6');
+    
+    if (remainingHours > 0) {
+        remainingElement.textContent = `(${remainingHours.toFixed(2)} 시간 부족)`;
+        remainingElement.style.color = 'red';
+    } else {
+        remainingElement.textContent = '';
+    }
+}
+
+
 // 모달 열기
 function addRow() {
     document.getElementById("actModal").style.display = "block";
@@ -232,10 +264,17 @@ function selectActivity(activity, intensity, element) {
 function saveActivity() {
     const activity = document.getElementById('selectedActivity').textContent;
     const hoursInput = document.getElementById('hours');
-    const hours = hoursInput.value;
+    const hours = parseFloat(hoursInput.value);
 
-    if (activity === "선택하세요" || hours === '' || isNaN(hours) || parseFloat(hours) <=0) {
+    if (activity === "선택하세요" || isNaN(hours) || hours <=0) {
         alert('활동을 선택하고, 시간을 정확히 입력해주세요.');
+        return;
+    }
+
+    // 현재 활동 시간 계산하여 24시간 초과 확인
+    const currentTotalHours = parseFloat(document.querySelector('.act-hours-value').textContent);
+    if (currentTotalHours + hours > 24) {
+        alert('총 활동 시간이 24시간을 초과할 수 없습니다.');
         return;
     }
 
@@ -268,8 +307,10 @@ function saveActivity() {
     }
 
     alert(`${activity}, ${hours}시간이 저장되었습니다.`);
-
+    //시간 초기화
     hoursInput.value = '';
+    //총 시간 업데이트 
+    updateTotalActivityHours();
 }
 
 // 모달창 pagination
