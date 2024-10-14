@@ -18,9 +18,6 @@ main > section {
     z-index: 1;
 }
 
-.diet-kcal {
-}
-
 .diet-kcal > h3 {
     font-size: 18px;
     text-align: center;
@@ -100,8 +97,7 @@ main > section {
     border-bottom: 2px dashed #ddd;
     margin-bottom: 10px;
 }
-#add-data {
-}
+
 .table-header {
     width: 100%;
     display: flex;
@@ -427,9 +423,7 @@ main > section {
     border-radius: 4px;
     overflow: hidden;
 }
-.graph-progress {
 
-}
 .graph-progress::-webkit-progress-bar {
     background: #eeeeee;
 }
