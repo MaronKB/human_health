@@ -14,6 +14,7 @@
 <body>
     <header data-include-html="header.html"></header>
     <main>
+<<<<<<< HEAD
         <div class="act-date">
             <input type="date" class="act-date-btn" placeholder="날짜 선택하기">
         </div>
@@ -23,174 +24,173 @@
                 <div class="act-bmr-container">
                     <h5>기초대사량: </h5>
                     <span class="act-bmr-kcal"> N </span> Kcal
+=======
+        <input id="current-date" type="date">
+        <section id="act-header">
+            <div class="act-kcal-container box">
+                <div class="act-kcal">
+                    <h3>활동대사량</h3>
+                    <i class="fa-solid fa-square"></i>
+                    <span class="act-kcal-value">N</span>
+                    <span>Kcal</span>
                 </div>
-            </div>
-            <div class="act-main-value-container">
-                <p class="act-main-value">
-                    <span class="act-main-kcal">N</span> Kcal
-                </p>
+                <i class="fa-solid fa-scale-balanced"></i>
+                <div class="act-kcal">
+                    <span class="act-kcal-value">N</span>
+                    <span>Kcal</span>
+                    <i class="fa-solid fa-square"></i>
+                    <h3>기초대사량</h3>
+>>>>>>> 7aa493a7046b82cf95803c7b1a1400627af93cdf
+                </div>
                 <div class="act-recommended-calorie">권장 섭취 칼로리: 0 Kcal</div>
             </div>
-            
+            <div class="act-hours-alert box">
+                <i class="fa-regular fa-clock"></i>
+                <div>
+                    <h4>총 활동<span class="act-hours-value">0</span>시간</h4>
+                    <h5>(24시간 기준)</h5>
+                </div>
+            </div>
         </section>
         <section class="act-container">
-            <aside class="act-sidebar">
-                <div class="act-template-save">
-                    <h4>
-                        <span class="material-symbols-outlined">
-                            list_alt
-                        </span> 자주 쓰는 템플릿 리스트
-                    </h4>
-                    <div class="saved-templates">
-                        <div class="template-item" onclick="applyTemplate('일반 평일 활동')">
-                            <span>일반 평일 활동</span>
-                            <div class="template-actions">
-                                <button class="template-edit-btn" onclick="editTemplate('일반 평일 활동')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        stylus
-                                    </span>
-                                </button>
-                                <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 평일 활동')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
+            <aside class="act-sidebar box">
+                <h4><i class="fa-solid fa-list"></i>자주 쓰는 템플릿 리스트</h4>
+                <div class="saved-templates">
+                    <div class="template-item" onclick="applyTemplate('일반 평일 활동')">
+                        <span>일반 평일 활동</span>
+                        <div class="template-actions">
+                            <button class="template-edit-btn" onclick="editTemplate('일반 평일 활동')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    stylus
+                                </span>
+                            </button>
+                            <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 평일 활동')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    delete
+                                </span>
+                            </button>
                         </div>
-                        <div class="template-item" onclick="applyTemplate('일반 휴일 활동')">
-                            <span>일반 휴일 활동</span>
-                            <div class="template-actions">
-                                <button class="template-edit-btn" onclick="editTemplate('일반 휴일 활동')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        stylus
-                                    </span>
-                                </button>
-                                <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 휴일 활동')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
+                    </div>
+                    <div class="template-item" onclick="applyTemplate('일반 휴일 활동')">
+                        <span>일반 휴일 활동</span>
+                        <div class="template-actions">
+                            <button class="template-edit-btn" onclick="editTemplate('일반 휴일 활동')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    stylus
+                                </span>
+                            </button>
+                            <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 휴일 활동')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    delete
+                                </span>
+                            </button>
                         </div>
-                        <div class="template-item" onclick="applyTemplate('일반 학업 활동')">
-                            <span>일반 학업 활동</span>
-                            <div class="template-actions">
-                                <button class="template-edit-btn" onclick="editTemplate('일반 학업 활동')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        stylus
-                                    </span>
-                                </button>
-                                <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 학업 활동')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
+                    </div>
+                    <div class="template-item" onclick="applyTemplate('일반 학업 활동')">
+                        <span>일반 학업 활동</span>
+                        <div class="template-actions">
+                            <button class="template-edit-btn" onclick="editTemplate('일반 학업 활동')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    stylus
+                                </span>
+                            </button>
+                            <button class="template-delete-btn" onclick="deleteTemplate(event, '일반 학업 활동')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    delete
+                                </span>
+                            </button>
                         </div>
-                        <div class="template-item" onclick="applyTemplate('집에만 있는 날')">
-                            <span>집에만 있는 날</span>
-                            <div class="template-actions">
-                                <button class="template-edit-btn" onclick="editTemplate('집에만 있는 날')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        stylus
-                                    </span>
-                                </button>
-                                <button class="template-delete-btn" onclick="deleteTemplate(event, '집에만 있는 날')">
-                                    <span class="material-symbols-outlined" style="color: #ffffff;">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
+                    </div>
+                    <div class="template-item" onclick="applyTemplate('집에만 있는 날')">
+                        <span>집에만 있는 날</span>
+                        <div class="template-actions">
+                            <button class="template-edit-btn" onclick="editTemplate('집에만 있는 날')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    stylus
+                                </span>
+                            </button>
+                            <button class="template-delete-btn" onclick="deleteTemplate(event, '집에만 있는 날')">
+                                <span class="material-symbols-outlined" style="color: #ffffff;">
+                                    delete
+                                </span>
+                            </button>
                         </div>
-            
                     </div>
                 </div>
             </aside>
-            <div class="act-template">
-                <div style="position: relative;">
-                    <div class="act-table-header">
-                        <div class="act-hours-alert">
-                            <span class="material-symbols-outlined" style="font-size: 27px;">
-                                schedule
-                            </span><h1> </h1>
-                            <h5> 총 활동
-                            <span class="act-hours-value">0</span>
-                            시간 <h6>(24시간 기준)</h6></h5>
-                        </div>
-                        <button type="button" id="add-act" onclick="addRow()">+</button>
-                    </div>
-                    <table class="act-table">
-                        <thead>
-                            <tr> 
-                                <th>활동</th>
-                                <th>시간</th>
-                                <th>강도</th>
-                            </tr>
-                        </thead>
-                        <tbody id="act-tbody">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="template-share-save">
-                        <button class="template-share-btn">공유 하기</button>
-                        <button class="template-save-btn" onclick="saveTemplate()">템플릿 저장</button>
-                    </div>
-                </div>
+            <div class="act-template box">
+                <button type="button" id="add-act" class="button" onclick="addRow()"><i class="fa-solid fa-plus"></i></button>
+                <table class="act-table">
+                    <thead>
+                        <tr>
+                            <th>활동</th>
+                            <th>시간</th>
+                            <th>강도</th>
+                        </tr>
+                    </thead>
+                    <tbody id="act-tbody">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
+        <section class="template-share-save">
+            <button class="template-share-btn">공유 하기</button>
+            <button class="template-save-btn" onclick="saveTemplate()">템플릿 저장</button>
         </section>
     </main>
     <!-- 모달 -->
