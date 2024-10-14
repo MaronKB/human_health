@@ -1,307 +1,127 @@
-
-/* 전체 페이지 스타일 */
-body {
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
+main > section {
+    margin: 10px 0;
 }
-
-
-
-/* 컨테이너 스타일 */
-/* main {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 900px;
-    padding-top: 50px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
-    border: 1px solid #eeeeee;
-} */
-
 /* 날짜 선택 */
-.act-date { 
+#current-date {
+    position: relative;
+    width: 180px;
+    height: 40px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    font-family: var(--gothic-bold);
+    font-size: 16px;
+    border: 0;
+    border-radius: 6px;
+    outline: none;
+    margin: 0 0 -30px 10px;
+    box-shadow: 2px 5px 10px #0003;
+    z-index: 1;
+}
+#act-header {
+    display: flex;
     gap: 10px;
-    margin: 0 0 10px 0;
 }
-
-input[type="date"] {
-   /* background-color: #F4761B; */
-   padding: 10px;
-   font-family: "Roboto Mono", monospace;
-   color: #000000;
-   font-size: 15px;
-   font-weight: bold;
-   border-color: #F4761B;
-   outline: none;
-   border-radius: 6px;
-   box-shadow: 2px 5px 10px #0003;
+/* 대사량 */
+.act-kcal-container {
+    position: relative;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(115deg, white 49.9%, #eee 49.9%, #fafafa 51.1%, white);
 }
-
-
-    /* 활동대사량 */
+.act-kcal-container > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0003;
+}
 .act-kcal {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 15px 20px;
-    background-color: white;
-    border: 1px solid #eeeeee;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
-    width: 100%;
-    margin: 0 0 20px 0; 
-    /* height: 125px; */
+    gap: 5px;
 }
-
-.act-kcal-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    /* align-items: center; */
-}
-
-.act-kcal-header h3 {
-    font-size: 22px;
-    margin: 0;
-    color: var(--main-color);
-    
-}
-
-.act-kcal p {
-    font-size: 15px;
-    margin: 0;
-    font-weight: bold;
+.act-kcal > h3 {
+    font-size: 18px;
     text-align: center;
+    color: var(--main-color-dark);
+    background: #eee;
+    padding: 10px 15px;
+    border-radius: 10px;
 }
-.act-main-kcal {
-    font-weight: bold;
-    color: var(--main-color);
+.act-kcal > span {
+    align-self: flex-end;
+    font-size: 14px;
+    margin: 0;
+}
+.act-kcal > span.act-kcal-value {
+    align-self: center;
+    font-family: var(--gothic-bold);
     font-size: 45px;
+    color: var(--main-color);
 }
-.act-bmr-container {
+.act-kcal > i {
+    width: 10px;
+    height: 10px;
     display: flex;
-    align-items: center;
-    font-weight: 100;
-    /* gap: 5px; */
-    /* margin-bottom: 50px; */
-}
-
-.act-main-value-container {
-    position: relative;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    font-size: 10px;
+    transform: rotate(45deg);
+    margin: 0 10px;
 }
-
-
-
 .act-recommended-calorie {
     position: absolute;
-    right: 0;
-    bottom: 0   ;
-    font-size: 14px;
-    color: #035efa;
-    font-weight: bold;
-}
-
-
-
-/* 활동 테이블, 활동 저장리스트 */
-.act-container {
-    display: flex;
-    width: 100%;
-    /* justify-content: space-between; */
-    gap: 10px;
-    /* margin-top: 20px; */
-}
-
-/* 테이블 스타일 */
-.act-template {
-    width: 65%;
-    /* box-shadow: 2px 5px 10px #0003; */
-    background: transparent;
-    border-radius: 10px;
-}
-
-.act-table{
-    border-collapse: collapse;
-    width: 100%;
-    box-shadow: 2px 5px 10px #0003;
-    background: white;
-    border: 0px solid #eeeeee;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.act-table thead tr {
-    background-color: #F4761B;
-    color: #ffffff;
-    font-weight: bold;
-    position: relative;
-}
-
-.act-table th {
-    padding: 10px 40px;
-    text-align: center;
-    border-bottom: 1px solid #dddddd;
-}
-.act-table td {
-    padding: 0;
-    text-align: center;
-    border-bottom: 0px solid #dddddd;
-        /* font-size: 14px;
-        padding: 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; */
-    
-}
-
-.act-table tbody {
-    height: 400px;
-}
-
-.act-table tbody tr {
-    font-weight: bold;
-    height: 29px;
-    line-height: 29px;
-    font-size: 15px;
-    padding: 0%;
-}
-
-
-.act-table tbody tr:nth-of-type(even) {
-    background-color:#f3f3f3;
-}
-
-/* 추가버튼 스타일*/
-.act-table-header {
-    display: flex;
-    justify-content: space-between;
-    /* flex-direction: row; */
-    right: 3px;
-    top: 0;
+    right: 10px;
+    bottom: 10px;
+    font-size: 13px;
+    color: var(--another-color);
 }
 
 .act-hours-alert {
+    flex: none;
+    width: 260px;
     display: flex;
-    align-items: flex-end;
+    flex-direction: row;
+    align-items: center;
     font-size: 20px;
-    background: white;
-    border: 1px solid white;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
-    padding: 10px;
-    margin-bottom: 7px;
-    
 }
+.act-hours-alert > i {
+    font-size: 48px;
+}
+.act-hours-alert > div > h4 {
 
+}
 .act-hours-value {
-    font-weight: bold;
-    color: #333;
-    margin: 5px;
-    font-size: 22px;
+    font-size: 32px;
+    color: var(--main-color);
+    margin: 0 5px;
 }
-
-.act-hours-alert h6 {
-    margin-left: 10px;
+.act-hours-alert > div > h5 {
     font-size: 14px;
-    font-weight: normal;
-    color: #777;
-    position: relative;
-}
-
-
-#add-act {
-    border: none;
-    background-color: #F4761B;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    border-radius: 25%; /* 동그란 버튼 */
-    width: 30px;
-    height: 30px;
-    position: relative;
-    box-shadow: 2px 5px 10px #0003;
-    margin-top: 23px;
-}
-
-#add-act:hover {
-    background-color: #2a63ff;
+    color: gray;
 }
 
 /*  자주쓰는 활동 저장리스트 */
 .act-sidebar {
-    width: 35%;
-    height: 100%;
-    /* flex-direction: column; */
-    gap: 20px;
-    overflow: auto;
-    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
-    background: #f9f9f9;
-    border-radius: 15px;
-    border: 1px solid #e0e0e0;
-    /* padding: 20px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: auto;
+    flex: none;
+    width: 300px;
+    gap: 10px;
 }
-
-.act-template-save {
-    background: #ffffff;
-    padding: 20px;
-    border: 1px solid white;
-    border-radius: 15px;
-    box-shadow: 2px 5px 10px #0003;
-    /* margin-bottom: 60px; */
-    height: 100%;
-    padding-bottom: 120px;
+.act-sidebar > h4 {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
 }
-
-.act-template-save span {
-    font-weight: 200;
-    font-size: 30px;
-}
-
-.act-template-save h4 {
-    font-size: 22px;
-    color: #333333;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.template-share-save {
-    position: absolute;
-    right: 0px;
-    margin: 10px;
-}
-
-.template-save-btn,
-.template-share-btn {
-    width: 110px;
-    padding: 10px 20px;
-    background-color: #F4761B;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 2px 5px 10px #0003;
-    margin-bottom: 15px;
-}
-
-.template-save-btn:hover {
-    background-color: #b8721c;
+.act-sidebar > h4 > i {
+    margin: 0 5px 0 0;
 }
 
 /* 저장된 템플릿 스타일 */
@@ -324,14 +144,9 @@ input[type="date"] {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
-
 .template-item span {
     font-size: 16px;
-    font-weight: bold;
     color: #333;
-    font-weight: 100;
-
-
 }
 
 .template-actions {
@@ -339,7 +154,6 @@ input[type="date"] {
     gap: 10px;
     align-items: center;
 }
-
 .template-delete-btn,
 .template-edit-btn {
     background: none;
@@ -349,42 +163,127 @@ input[type="date"] {
     border-radius: 5px;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
     font-size: 5px;
-
 }
-
 .template-edit-btn {
     background-color: #41cd61;
     color: white;
 }
-
 .template-edit-btn:hover {
     background-color: #2a9f49;
 }
-
-
 .template-delete-btn {
     background-color: #ff4d4d;
     color: white;
-    
 }
-
 .template-delete-btn:hover {
     background-color: #d93636;
 }
-
 .template-delete-btn img,
 .template-edit-btn img {
     width: 20px;
     height: 20px;
 }
 
-.material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
+/* 활동 테이블, 활동 저장리스트 */
+.act-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
 }
+
+/* 테이블 스타일 */
+.act-template {
+    position: relative;
+    flex: 1;
+    padding: 0;
+}
+
+#add-act {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    bottom: 10px;
+    width: 26px;
+    height: 26px;
+    color: black;
+    background: white;
+    z-index: 1;
+}
+#add-act:hover {
+    color: white;
+    background: var(--main-color)
+}
+
+.act-table{
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 2px 5px 10px #0003;
+    background: white;
+    border: 0;
+    overflow: hidden;
+}
+
+.act-table > thead {
+    height: 40px;
+    font-family: var(--gothic-bold);
+    color: white;
+    background: var(--text-color);
+}
+
+.act-table th {
+    padding: 10px 40px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+.act-table td {
+    padding: 0;
+    text-align: center;
+    border-bottom: 0px solid #dddddd;
+        /* font-size: 14px;
+        padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; */
+    
+}
+.act-table tbody {
+    height: 400px;
+}
+.act-table tbody tr {
+    font-family: var(--gothic-bold);
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+    padding: 0;
+}
+.act-table tbody tr:nth-of-type(even) {
+    background-color:#f3f3f3;
+}
+
+.template-share-save {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.template-save-btn,
+.template-share-btn {
+    width: 110px;
+    padding: 10px 20px;
+    background-color: #F4761B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 5px 10px #0003;
+    margin-bottom: 15px;
+}
+
+.template-save-btn:hover {
+    background-color: #b8721c;
+}
+
 
 /* 모달창 스타일 */
 .act-modal {

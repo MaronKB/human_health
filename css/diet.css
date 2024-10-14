@@ -23,14 +23,12 @@ main > section {
     text-align: center;
     color: var(--main-color-dark);
 }
-
 .diet-kcal p {
     font-size: 15px;
     margin: 0;
     font-weight: bold;
     text-align: center;
 }
-
 .diet-kcal span {
     font-weight: bold;
     color: var(--main-color);
