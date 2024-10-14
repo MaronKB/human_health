@@ -1,3 +1,14 @@
+.community-write {
+    margin: 20px;
+    padding: 0 0 40px 0;
+    position: relative;
+    width: 90vw;
+    max-width: var(--max-width);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #0003;
+}
+
 input {
     display: inline;
     padding: initial;
@@ -9,6 +20,7 @@ input {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 20px;
+    padding: 0 40px;
 }
 
 .community-write-title input {
@@ -22,6 +34,7 @@ input {
 .community-write-upload {
     font-size: 20px;
     margin-bottom: 20px;
+    padding: 0 40px;
 }
 
 .image-input {
@@ -41,6 +54,7 @@ input {
 
 .community-write-content {
     margin-bottom: 20px;
+    padding: 0 40px;
 }
 
 .content-file {
