@@ -1,3 +1,10 @@
+input {
+    display: inline;
+    padding: initial;
+    border: initial;
+    background: transparent;
+}
+
 .admin-user {
     width: 100%;
 }
@@ -64,7 +71,7 @@
     width: 100%;
     height: 40px;
     font-size: 20px;
-    border-color: lightslategrey;
+    border: 2px solid lightslategray;
     border-radius: 5px;
 }
 
