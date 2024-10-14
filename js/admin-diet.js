@@ -1,36 +1,73 @@
-let dietList = [
-    { food: '음식1', amount: '100', carbs: '1', protein: '1', fat: '1' },
-    { food: '음식2', amount: '100', carbs: '2', protein: '2', fat: '2' },
-    { food: '음식3', amount: '100', carbs: '3', protein: '3', fat: '3' },
-    { food: '음식4', amount: '100', carbs: '4', protein: '4', fat: '4' },
-    { food: '음식5', amount: '100', carbs: '5', protein: '5', fat: '5' },
-    { food: '음식6', amount: '100', carbs: '6', protein: '6', fat: '6' },
-    { food: '음식7', amount: '100', carbs: '7', protein: '7', fat: '7' },
-    { food: '음식8', amount: '100', carbs: '8', protein: '8', fat: '8' },
-    { food: '음식9', amount: '100', carbs: '9', protein: '9', fat: '9' },
-    { food: '음식10', amount: '100', carbs: '10', protein: '10', fat: '10' },
-    { food: '음식11', amount: '100', carbs: '11', protein: '11', fat: '11' },
-];
+let dietList = [];
+let currentPage = 1;
+const dietsPerPage = 20;
+
+async function loadDietData() {
+    const storedDietList = localStorage.getItem('diets');
+
+    if (storedDietList) {
+        dietList = JSON.parse(storedDietList);
+        renderDietList(dietList);
+    } else {
+        const response = await fetch('../resources/temp-db/diet.json');
+        dietList = await response.json();
+        localStorage.setItem('diets', JSON.stringify(dietList));
+        renderDietList(dietList);
+    }
+}
 
 function renderDietList(diets) {
     const dietListBody = document.getElementById('diet-list-body');
     dietListBody.innerHTML = '';
 
-    diets.forEach((diet, index) => {
+    const startIndex = (currentPage - 1) * dietsPerPage;
+    const endIndex = Math.min(startIndex + dietsPerPage, diets.length);
+    const paginatedDiets = diets.slice(startIndex, endIndex);
+
+    paginatedDiets.forEach((diet, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
-        <td class="edit-number">${index + 1}</td>
-        <td><input type="text" value="${diet.food}" class="edit-input-food"></td>
-        <td><input type="text" value="${diet.amount}" class="edit-input-amount"></td>
-        <td><input type="text" value="${diet.carbs}" class="edit-input-carbs"></td>
-        <td><input type="text" value="${diet.protein}" class="edit-input-protein"></td>
-        <td><input type="text" value="${diet.fat}" class="edit-input-fat"></td>
+            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td class="edit-number">${startIndex + index + 1}</td>
+            <td><input type="text" value="${diet.food}" class="edit-input-food"></td>
+            <td><input type="text" value="${diet.amount}" class="edit-input-amount"></td>
+            <td><input type="text" value="${diet.carbs}" class="edit-input-carbs"></td>
+            <td><input type="text" value="${diet.protein}" class="edit-input-protein"></td>
+            <td><input type="text" value="${diet.fat}" class="edit-input-fat"></td>
         `;
         dietListBody.appendChild(row);
     });
 
     updateDeleteButtonState();
+    createPagination(diets.length);
+}
+
+const createPagination = (totalDiets) => {
+    const pageCount = Math.ceil(totalDiets / dietsPerPage);
+    const paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = '';
+
+    const pageButton = [];
+    for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement("a");
+        button.className = "pagination-button";
+        if (i === currentPage) button.classList.add("active");
+        button.innerHTML = i;
+        button.onclick = () => {
+            currentPage = i;
+            renderDietList(dietList);
+        };
+        pageButton.push(button);
+    }
+
+    paginationContainer.replaceChildren(...pageButton);
+}
+
+const arrow = (direction) => {
+    let next = (direction) ? currentPage + 1 : currentPage - 1;
+    next = (next > Math.ceil(dietList.length / dietsPerPage)) ? Math.ceil(dietList.length / dietsPerPage) : (next <= 0) ? 1 : next;
+    currentPage = next;
+    renderDietList(dietList);
 }
 
 function saveDietData() {
@@ -50,6 +87,7 @@ function saveDietData() {
         };
     });
 
+    localStorage.setItem('diets', JSON.stringify(dietList));
     alert('저장되었습니다.');
     renderDietList(dietList);
 }
@@ -63,7 +101,9 @@ function addDiet() {
 
     if (food && amount && carbs && protein && fat) {
         dietList.push({ food, amount, carbs, protein, fat });
+        localStorage.setItem('diets', JSON.stringify(dietList));
         renderDietList(dietList);
+        alert('음식이 추가되었습니다.');
     } else {
         alert('모든 정보를 입력해주세요.');
     }
@@ -79,11 +119,28 @@ function deleteDiet() {
         }
     });
 
-    for (let i = selectedIndexes.length - 1; i >= 0; i--) {
-        dietList.splice(selectedIndexes[i], 1);
+    if (selectedIndexes.length === 0) {
+        alert('삭제할 음식을 선택해주세요.');
+        return;
+    }
+
+    const confirmation = confirm('정말로 삭제하시겠습니까?');
+    if (!confirmation) return;
+
+    const selectedDiets = selectedIndexes.map(index => (currentPage - 1) * dietsPerPage + index);
+
+    for (let i = selectedDiets.length - 1; i >= 0; i--) {
+        dietList.splice(selectedDiets[i], 1);
+    }
+
+    localStorage.setItem('diets', JSON.stringify(dietList));
+
+    if (dietList.length <= (currentPage - 1) * dietsPerPage) {
+        currentPage = Math.max(1, currentPage - 1);
     }
 
     renderDietList(dietList);
+    alert('선택된 음식이 삭제되었습니다.');
 }
 
 function searchDiet() {
@@ -113,12 +170,11 @@ function updateDeleteButtonState() {
     const deleteButton = document.getElementById('delete-diet');
 
     const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
     deleteButton.disabled = !anyChecked;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    renderDietList(dietList);
+    loadDietData();
 
     document.getElementById('add-diet').addEventListener('click', addDiet);
     document.getElementById('delete-diet').addEventListener('click', deleteDiet);
@@ -126,4 +182,8 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-button').addEventListener('click', searchDiet);
 
     document.getElementById('diet-list-body').addEventListener('change', updateDeleteButtonState);
+    document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
+    document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
 });
+
+// localStorage.clear();

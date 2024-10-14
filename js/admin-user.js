@@ -1,4 +1,6 @@
 let userList = [];
+let currentPage = 1;
+const usersPerPage = 20;
 
 async function loadUserData() {
     const storedUserList = localStorage.getItem('users');
@@ -18,11 +20,15 @@ function renderUserList(users) {
     const userListBody = document.getElementById('user-list-body');
     userListBody.innerHTML = '';
 
-    users.forEach((user, index) => {
+    const startIndex = (currentPage - 1) * usersPerPage;
+    const endIndex = Math.min(startIndex + usersPerPage, users.length);
+    const paginatedUsers = users.slice(startIndex, endIndex);
+
+    paginatedUsers.forEach((user, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
-            <td class="edit-number">${index + 1}</td>
+            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${user.id}" class="edit-input-id"></td>
             <td><input type="password" value="${user.password}" class="edit-input-password"></td>
             <td><input type="text" value="${user.nickname}" class="edit-input-nickname"></td>
@@ -33,6 +39,35 @@ function renderUserList(users) {
     });
 
     updateDeleteButtonState();
+    createPagination(users.length);
+}
+
+const createPagination = (totalUsers) => {
+    const pageCount = Math.ceil(totalUsers / usersPerPage);
+    const paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = '';
+
+    const pageButton = [];
+    for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement("a");
+        button.className = "pagination-button";
+        if (i === currentPage) button.classList.add("active");
+        button.innerHTML = i;
+        button.onclick = () => {
+            currentPage = i;
+            renderUserList(userList);
+        };
+        pageButton.push(button);
+    }
+
+    paginationContainer.replaceChildren(...pageButton);
+}
+
+const arrow = (direction) => {
+    let next = (direction) ? currentPage + 1 : currentPage - 1;
+    next = (next > Math.ceil(userList.length / usersPerPage)) ? Math.ceil(userList.length / usersPerPage) : (next <= 0) ? 1 : next;
+    currentPage = next;
+    renderUserList(userList);
 }
 
 function saveUserData() {
@@ -51,7 +86,7 @@ function saveUserData() {
         };
     });
 
-    localStorage.setItem('userList', JSON.stringify(userList));
+    localStorage.setItem('users', JSON.stringify(userList));
 
     alert('저장되었습니다.');
     renderUserList(userList);
@@ -72,7 +107,7 @@ function addUser() {
         }
 
         userList.push({ id, password, nickname, emailOptOut, date });
-        localStorage.setItem('userList', JSON.stringify(userList));
+        localStorage.setItem('users', JSON.stringify(userList));
         renderUserList(userList);
         alert('회원가입이 완료되었습니다.');
     } else {
@@ -90,12 +125,31 @@ function deleteUser() {
         }
     });
 
-    for (let i = selectedIndexes.length - 1; i >= 0; i--) {
-        userList.splice(selectedIndexes[i], 1);
+    if (selectedIndexes.length === 0) {
+        alert('삭제할 사용자를 선택해주세요.');
+        return;
     }
 
-    localStorage.setItem('userList', JSON.stringify(userList));
+    const confirmation = confirm('정말로 삭제하시겠습니까?');
+
+    if (!confirmation) {
+        return;
+    }
+
+    const selectedUsers = selectedIndexes.map(index => (currentPage - 1) * usersPerPage + index);
+
+    for (let i = selectedUsers.length - 1; i >= 0; i--) {
+        userList.splice(selectedUsers[i], 1);
+    }
+
+    localStorage.setItem('users', JSON.stringify(userList));
+
+    if (userList.length <= (currentPage - 1) * usersPerPage) {
+        currentPage = Math.max(1, currentPage - 1);
+    }
+
     renderUserList(userList);
+    alert('선택된 사용자가 삭제되었습니다.');
 }
 
 function searchUser() {
@@ -136,6 +190,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-button').addEventListener('click', searchUser);
 
     document.getElementById('user-list-body').addEventListener('change', updateDeleteButtonState);
+
+    document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
+    document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
 });
 
 // localStorage.clear();

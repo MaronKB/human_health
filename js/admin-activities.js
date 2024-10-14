@@ -1,33 +1,70 @@
-let activityList = [
-    { activity: '활동1', intensity: '1' },
-    { activity: '활동2', intensity: '2' },
-    { activity: '활동3', intensity: '3' },
-    { activity: '활동4', intensity: '4' },
-    { activity: '활동5', intensity: '5' },
-    { activity: '활동6', intensity: '6' },
-    { activity: '활동7', intensity: '7' },
-    { activity: '활동8', intensity: '8' },
-    { activity: '활동9', intensity: '9' },
-    { activity: '활동10', intensity: '10' },
-    { activity: '활동11', intensity: '11' },
-];
+let activityList = [];
+let currentPage = 1;
+const activitiesPerPage = 20;
+
+async function loadActivityData() {
+    const storedActivityList = localStorage.getItem('activities');
+
+    if (storedActivityList) {
+        activityList = JSON.parse(storedActivityList);
+        renderActivityList(activityList);
+    } else {
+        const response = await fetch('../resources/temp-db/activity.json');
+        activityList = await response.json();
+        localStorage.setItem('activities', JSON.stringify(activityList));
+        renderActivityList(activityList);
+    }
+}
 
 function renderActivityList(activities) {
     const activityListBody = document.getElementById('activity-list-body');
     activityListBody.innerHTML = '';
 
-    activities.forEach((activity, index) => {
+    const startIndex = (currentPage - 1) * activitiesPerPage;
+    const endIndex = Math.min(startIndex + activitiesPerPage, activities.length);
+    const paginatedActivities = activities.slice(startIndex, endIndex);
+
+    paginatedActivities.forEach((activity, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
-        <td class="edit-number">${index + 1}</td>
-        <td><input type="text" value="${activity.activity}" class="edit-input-activity"></td>
-        <td><input type="text" value="${activity.intensity}" class="edit-input-intensity"></td>
+            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td class="edit-number">${startIndex + index + 1}</td>
+            <td><input type="text" value="${activity.activity}" class="edit-input-activity"></td>
+            <td><input type="text" value="${activity.intensity}" class="edit-input-intensity"></td>
         `;
         activityListBody.appendChild(row);
     });
 
     updateDeleteButtonState();
+    createPagination(activities.length);
+}
+
+const createPagination = (totalActivities) => {
+    const pageCount = Math.ceil(totalActivities / activitiesPerPage);
+    const paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = '';
+
+    const pageButton = [];
+    for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement("a");
+        button.className = "pagination-button";
+        if (i === currentPage) button.classList.add("active");
+        button.innerHTML = i;
+        button.onclick = () => {
+            currentPage = i;
+            renderActivityList(activityList);
+        };
+        pageButton.push(button);
+    }
+
+    paginationContainer.replaceChildren(...pageButton);
+}
+
+const arrow = (direction) => {
+    let next = (direction) ? currentPage + 1 : currentPage - 1;
+    next = (next > Math.ceil(activityList.length / activitiesPerPage)) ? Math.ceil(activityList.length / activitiesPerPage) : (next <= 0) ? 1 : next;
+    currentPage = next;
+    renderActivityList(activityList);
 }
 
 function saveActivityData() {
@@ -41,6 +78,8 @@ function saveActivityData() {
         };
     });
 
+    localStorage.setItem('activities', JSON.stringify(activityList));
+
     alert('저장되었습니다.');
     renderActivityList(activityList);
 }
@@ -51,7 +90,9 @@ function addActivity() {
 
     if (activity && intensity) {
         activityList.push({ activity, intensity });
+        localStorage.setItem('activities', JSON.stringify(activityList));
         renderActivityList(activityList);
+        alert('활동이 추가되었습니다.');
     } else {
         alert('모든 정보를 입력해주세요.');
     }
@@ -67,11 +108,31 @@ function deleteActivity() {
         }
     });
 
-    for (let i = selectedIndexes.length - 1; i >= 0; i--) {
-        activityList.splice(selectedIndexes[i], 1);
+    if (selectedIndexes.length === 0) {
+        alert('삭제할 활동을 선택해주세요.');
+        return;
+    }
+
+    const confirmation = confirm('정말로 삭제하시겠습니까?');
+
+    if (!confirmation) {
+        return;
+    }
+
+    const selectedActivities = selectedIndexes.map(index => (currentPage - 1) * activitiesPerPage + index);
+
+    for (let i = selectedActivities.length - 1; i >= 0; i--) {
+        activityList.splice(selectedActivities[i], 1);
+    }
+
+    localStorage.setItem('activities', JSON.stringify(activityList));
+
+    if (activityList.length <= (currentPage - 1) * activitiesPerPage) {
+        currentPage = Math.max(1, currentPage - 1);
     }
 
     renderActivityList(activityList);
+    alert('선택된 활동이 삭제되었습니다.');
 }
 
 function searchActivity() {
@@ -84,6 +145,7 @@ function searchActivity() {
         } else if (searchCategory === '강도') {
             return activity.intensity.toLowerCase().includes(searchInput);
         }
+        return false;
     });
 
     renderActivityList(filteredActivities);
@@ -99,7 +161,7 @@ function updateDeleteButtonState() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    renderActivityList(activityList);
+    loadActivityData();
 
     document.getElementById('add-activity').addEventListener('click', addActivity);
     document.getElementById('delete-activity').addEventListener('click', deleteActivity);
@@ -107,4 +169,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-button').addEventListener('click', searchActivity);
 
     document.getElementById('activity-list-body').addEventListener('change', updateDeleteButtonState);
+
+    document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
+    document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
 });
+
+// localStorage.clear();
