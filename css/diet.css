@@ -131,12 +131,28 @@ main > section {
     border: none;
     border-radius: 5px;
     overflow: hidden;
-    padding: 10px 0;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 .table-item span {
     flex: 1;
     text-align: center;
     border: none;
+}
+.delete-button {
+    background-color: red; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none; /* 테두리 없음 */
+    width: 30px; /* 너비 */
+    height: 30px; /* 높이 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 모양 변경 */
+    /* margin-right: 10px; */
+}
+
+.delete-button:hover {
+    background-color: darkred; /* 호버 시 색상 변경 */
 }
 #diet-total > .table-item {
     color: white;
