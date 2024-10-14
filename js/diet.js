@@ -283,7 +283,7 @@ function addFood() {
     totalCarbs += carb; // 총 탄수화물 업데이트
     totalProtein += protein; // 총 단백질 업데이트
     totalFat += fat; // 총 지방 업데이트
-    updateTotals(); // 합계 업데이트 함수 호출
+    // updateTotals(); // 합계 업데이트 함수 호출
     
     // 유효성 검사
     if (!foodName || isNaN(amount) || isNaN(carb) || isNaN(protein) || isNaN(fat)) {
