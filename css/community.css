@@ -100,14 +100,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--main-color);
+    background-color: #222;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 .community-button:hover {
-    background-color: darkorange;
+    color: white;
+    background: var(--main-color);
 }
 
 /* 반응형 디자인 */

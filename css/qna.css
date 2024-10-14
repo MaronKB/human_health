@@ -108,7 +108,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--main-color);
+    background-color: #222;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -116,7 +116,8 @@
 }
 
 .qna-button:hover {
-    background-color: darkorange;
+    color: white;
+    background: var(--main-color);
 }
 
 @media screen and (max-width: 768px) {

@@ -42,11 +42,18 @@
 .qna-view-buttons button {
     width: 12%;
     height: 35px;
-    background-color: #f4761b;
+    background-color: #222;
     font-size: 20px;
     color: white;
     margin: 10px;
     border: none;
     border-radius: 5px;
     box-shadow: 2px 5px 10px #0003;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.qna-view-buttons button:hover {
+    color: white;
+    background: var(--main-color);
 }
