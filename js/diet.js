@@ -5,15 +5,16 @@ const getFoodData = () => {
         console.log(data);
     })
 }
-function addRow() {
-    document.getElementById("dietModal").style.display = "block";
+function openModal() {
+    const modal = document.getElementById("diet-modal-container");
+    if (!modal) return;
+    modal.classList.remove("hidden");
 }
 
 function closeModal() {
-    const modal = document.getElementById("dietModal");
-    if (modal) {
-        modal.style.display = "none";
-    }
+    const modal = document.getElementById("diet-modal-container");
+    if (!modal) return;
+    modal.classList.add("hidden");
 }
 
 let totalCarbs = 0; // 총 탄수화물 초기화
@@ -108,23 +109,27 @@ function updateGraphs() {
     fatCurrent.max = fatTarget;
 }
 
-function selectDiet(foodName) {
-    const foodItem = foodData.find(item => item.name === foodName);
-    document.getElementById('selectedDiet').innerText = foodName;
+function selectDiet(name) {
+    const foodItem = foodData.find(item => item.name === name);
+    document.getElementById('selectedDiet').innerText = name;
     document.getElementById('dietQuantity').value = 100; // 기본량 설정
 
     // 영양 성분 업데이트
-    document.getElementById('dietInfo').innerHTML = `
-        <strong>음식: ${foodName}</strong> (기준량: 100g)
-        <br><strong>탄수화물:</strong><span id="carbs">${foodItem.carb}</span>g
-        <br><strong>단백질:</strong><span id="protein">${foodItem.protein}</span>g
-        <br><strong>지방:</strong><span id="fat">${foodItem.fat}</span>g
-    `;
+    const foodName = document.querySelector("#food-name");
+    foodName.innerHTML = name;
+    const amount = document.querySelector("#amount");
+    amount.innerHTML = foodItem.amount;
+    const carbs = document.querySelector("#carbs");
+    carbs.innerHTML = foodItem.carb;
+    const protein = document.querySelector("#protein");
+    protein.innerHTML = foodItem.protein;
+    const fat = document.querySelector("#fat");
+    fat.innerHTML = foodItem.fat;
 }
 
 // 모달 외부에서 닫기
 window.onclick = function(event) {
-    const modal = document.getElementById("dietModal");
+    const modal = document.getElementById("diet-modal-container");
     if (event.target === modal) {
         closeModal();
     }
@@ -157,28 +162,6 @@ function changePage(page) {
 
     renderTable();
     updatePagination();
-}
-
-function renderTable() {
-    const foodTbody = document.getElementById("foodTbody");
-    foodTbody.innerHTML = ""; // 테이블 내용 초기화
-
-    const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedData = foodData.slice(start, end); // 현재 페이지의 데이터만 추출
-
-    paginatedData.forEach(item => {
-        const row = `
-            <tr onclick="selectDiet('${item.name}')">
-                <td>${item.name}</td>
-                <td>${item.amount}</td>
-                <td>${item.carb}</td>
-                <td>${item.protein}</td>
-                <td>${item.fat}</td>
-            </tr>
-        `;
-        foodTbody.innerHTML += row; // 행 추가
-    });
 }
 
 function updatePagination() {
@@ -231,13 +214,13 @@ function renderTable(data = foodData) {
 
     paginatedData.forEach(item => {
         const row = `
-            <tr onclick="selectDiet('${item.name}')">
-                <td>${item.name}</td>
-                <td>${item.amount}</td>
-                <td>${item.carb}</td>
-                <td>${item.protein}</td>
-                <td>${item.fat}</td>
-            </tr>
+            <li class="food-item" onclick="selectDiet('${item.name}')">
+                <span>${item.name}</span>
+                <span>${item.amount}</span>
+                <span>${item.carb}</span>
+                <span>${item.protein}</span>
+                <span>${item.fat}</span>
+            </li>
         `;
         foodTbody.innerHTML += row; // 행 추가
     });
