@@ -39,13 +39,14 @@ main > section {
 
 .recommended-intake {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 200px 1fr;
     gap: 10px;
 }
 .intake-box {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .intake-box > h4 {
     grid-column: 1/3;
@@ -54,38 +55,32 @@ main > section {
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-.intake-box > i {
-    font-size: 32px;
+    z-index: 1;
 }
 .intake-box > h4 > span {
     font-size: 14px;
 }
 .intake-box > div {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin: 10px 0;
-}
-.intake-box > div > div {
-    width: 40px;
-    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--main-color);
-    transform: rotate(45deg);
+    z-index: 1;
 }
-.intake-box > div > div > span {
+.intake-box > div > .cal {
     font-family: var(--gothic-bold);
-    font-size: 18px;
-    color: white;
-    transform: rotate(-45deg);
+    font-size: 32px;
 }
-.intake-box > div > span {
+.intake-box > div > span:last-child {
+    align-self: flex-end;
     font-size: 12px;
-    width: 0;
+}
+.intake-box > i {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    color: #eee;
 }
 
 
@@ -159,26 +154,12 @@ main > section {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 5px;
+    gap: 2px;
     background: white;
     padding: 10px 15px;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
-}
-.graph-header {
-    width: 80px;
-    height: 62px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    font-size: 16px;
-    margin: auto 0 0 0;
-}
-.graph-header > i {
-    font-size: 32px;
 }
 .graph-body {
     position: relative;
@@ -266,7 +247,6 @@ main > section {
     justify-content: center;
     align-items: center;
     gap: 2px;
-    padding-top: 14px;
 }
 .graph-subheader > h5 {
     width: 100%;
