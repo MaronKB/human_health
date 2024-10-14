@@ -47,8 +47,8 @@
 
 /* 네비게이션 타이틀 (번호, 제목, 닉네임, 작성일) 스타일 */
 #community-title {
-    border-bottom: 2px solid black;
-    background-color: #f9f9f9;
+    background-color: #001627;
+    color: white;
 }
 #community-title:hover {
     color: inherit;

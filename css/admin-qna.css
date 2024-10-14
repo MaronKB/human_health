@@ -51,8 +51,8 @@
 }
 
 #admin-qna-title {
-    border-bottom: 2px solid black;
-    background-color: #f9f9f9;
+    background-color: #001627;
+    color: white;
 }
 
 #admin-qna-title:hover {
