@@ -223,14 +223,16 @@ function updateTotalActivityHours() {
 
 // 모달 열기
 function addRow() {
-    document.getElementById("actModal").style.display = "block";
+    const modal = document.getElementById("actModal");
+    modal.classList.remove("hidden");
     renderTable(); // 테이블 렌더링 함수 호출   
     updatePagination();  // 페이지 번호 업데이트 함수 호출
 }
 
 // 모달 닫기
 function closeModal() {
-    document.getElementById("actModal").style.display = "none";
+    const modal = document.getElementById("actModal");
+    modal.classList.add("hidden");
 }
 
 // 모달 외부에서 닫기
