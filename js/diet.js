@@ -278,12 +278,6 @@ function addFood() {
     const fat = parseFloat(document.getElementById('newFoodFat').value);
 
     updateGraphs(); // 합계 업데이트 후 그래프도 업데이트
-
-    // 새로운 음식이 추가되면 합계도 업데이트
-    totalCarbs += carb; // 총 탄수화물 업데이트
-    totalProtein += protein; // 총 단백질 업데이트
-    totalFat += fat; // 총 지방 업데이트
-    // updateTotals(); // 합계 업데이트 함수 호출
     
     // 유효성 검사
     if (!foodName || isNaN(amount) || isNaN(carb) || isNaN(protein) || isNaN(fat)) {
