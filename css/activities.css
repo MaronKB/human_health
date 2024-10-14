@@ -156,6 +156,7 @@ input[type="date"] {
     border-bottom: 1px solid #dddddd;
 }
 .act-table td {
+    padding: 0;
     text-align: center;
     border-bottom: 0px solid #dddddd;
         /* font-size: 14px;
@@ -166,10 +167,15 @@ input[type="date"] {
     
 }
 
+.act-table tbody {
+    height: 400px;
+}
+
 .act-table tbody tr {
+    font-weight: bold;
     height: 29px;
     line-height: 29px;
-    font-size: 13px;
+    font-size: 15px;
     padding: 0%;
 }
 
