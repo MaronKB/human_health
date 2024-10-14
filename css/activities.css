@@ -45,7 +45,7 @@ main > section {
     box-shadow: 0 0 10px #0003;
 }
 .act-kcal {
-    flex: 3;
+    flex: 4;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
@@ -72,7 +72,27 @@ main > section {
     width: 100%;
     font-size: 13px;
     color: var(--another-color);
+    /* height: 60px; */
 }
+.act-recommended-calorie > h3 {
+    grid-column: 1/3;
+    font-size: 18px;
+    text-align: center;
+    color: var(--main-color-dark);
+}
+.act-recommended-calorie > span {
+    align-self: flex-end;
+    font-size: 14px;
+    margin: 0;
+}
+.act-recommended-calorie > span.act-recommended-value {
+    justify-self: flex-end;
+    align-self: flex-end;
+    font-family: var(--gothic-bold);
+    font-size: 25px;
+    color: var(--main-color);
+}
+
 .act-sub-kcal {
     flex: 2;
     display: flex;
