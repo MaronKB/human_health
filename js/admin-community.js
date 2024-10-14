@@ -3,7 +3,7 @@ let currentPage = 1;
 const communitiesPerPage = 20;
 
 async function loadCommunityData() {
-    const storedCommunityList = localStorage.getItem('communityList');
+    const storedCommunityList = localStorage.getItem('communities');
 
     if (storedCommunityList) {
         communityList = JSON.parse(storedCommunityList);
@@ -11,7 +11,7 @@ async function loadCommunityData() {
     } else {
         const response = await fetch('../resources/temp-db/community.json');
         communityList = await response.json();
-        localStorage.setItem('communityList', JSON.stringify(communityList));
+        localStorage.setItem('communities', JSON.stringify(communityList));
         renderCommunityList(communityList);
     }
 }
@@ -72,21 +72,22 @@ function saveCommunityData() {
     const editCommunities = document.querySelectorAll('.edit-input-title');
     const editNicknames = document.querySelectorAll('.edit-input-nickname');
 
-    editCommunities.forEach((input, index) => {
-        const communityIndex = (currentPage - 1) * communitiesPerPage + index;
-        if (communityIndex < communityList.length) {
-            communityList[communityIndex].com_title = input.value;
-        }
+    communityList = Array.from(communityList).map((community, index) => {
+        return {
+            com_post_number: community.com_post_number,
+            com_title: editCommunities[index] ? editCommunities[index].value : community.com_title,
+            usr_nickname: editNicknames[index] ? editNicknames[index].value : community.usr_nickname,
+            com_post_date: community.com_post_date,
+            com_content: community.com_content,
+            com_image_name: community.com_image_name,
+            com_image_path: community.com_image_path,
+            com_video_name: community.com_video_name,
+            com_video_path: community.com_video_path,
+            com_view_count: community.com_view_count
+        };
     });
 
-    editNicknames.forEach((input, index) => {
-        const communityIndex = (currentPage - 1) * communitiesPerPage + index;
-        if (communityIndex < communityList.length) {
-            communityList[communityIndex].usr_nickname = input.value;
-        }
-    });
-
-    localStorage.setItem('communityList', JSON.stringify(communityList));
+    localStorage.setItem('communities', JSON.stringify(communityList));
     alert('저장되었습니다.');
     renderCommunityList(communityList);
 }
@@ -110,7 +111,7 @@ function addCommunity() {
             com_video_path: null
         };
         communityList.push(newCommunity);
-        localStorage.setItem('communityList', JSON.stringify(communityList));
+        localStorage.setItem('communities', JSON.stringify(communityList));
         renderCommunityList(communityList);
         alert('커뮤니티가 추가되었습니다.');
     } else {
@@ -141,7 +142,7 @@ function deleteCommunity() {
         communityList.splice(selectedCommunities[i], 1);
     }
 
-    localStorage.setItem('communityList', JSON.stringify(communityList));
+    localStorage.setItem('communities', JSON.stringify(communityList));
     renderCommunityList(communityList);
     alert('선택된 커뮤니티가 삭제되었습니다.');
 }

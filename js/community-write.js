@@ -110,7 +110,7 @@ const updateCommunityItem = (postNumber) => {
             if (imageFile) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    data[communityItemIndex].com_image_path = e.target.result;
+                    data[communityItemIndex].com_image_path = e.target.result; // Base64 URL
                     resolve();
                 };
                 reader.readAsDataURL(imageFile);
@@ -124,7 +124,7 @@ const updateCommunityItem = (postNumber) => {
             if (videoFile) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    data[communityItemIndex].com_video_path = e.target.result;
+                    data[communityItemIndex].com_video_path = e.target.result; // Base64 URL
                     resolve();
                 };
                 reader.readAsDataURL(videoFile);
@@ -211,7 +211,7 @@ const addCommunityItem = () => {
             });
 
             Promise.all([imagePromise, videoPromise]).then(([imageBase64, videoBase64]) => {
-                const newCommunityItem = {
+                data.unshift({
                     com_post_number: newPostNumber,
                     com_title: title,
                     com_content: content,
@@ -220,14 +220,10 @@ const addCommunityItem = () => {
                     com_post_date: date,
                     usr_nickname: nickname,
                     com_view_count: 0,
-                };
+                });
 
-                data.push(newCommunityItem);
                 localStorage.setItem('communityList', JSON.stringify(data));
-
                 window.location.href = `./community-view.html?postNumber=${newPostNumber}`;
             });
         });
 };
-
-// localStorage.clear();

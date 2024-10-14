@@ -81,5 +81,3 @@ const deleteCommunityItem = (postNumber) => {
     alert('글이 삭제되었습니다.');
     window.location.href = './community.html';
 };
-
-// localStorage.clear();
