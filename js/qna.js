@@ -47,7 +47,7 @@ const getQnaList = () => {
             localList.forEach(item => {
                 if (uniqueMap.has(item.postNumber)) {
                     const existingItem = uniqueMap.get(item.postNumber);
-                    existingItem.viewCount = item.viewCount;
+                    existingItem.viewCount = (existingItem.viewCount || 0) + 1;
                     existingItem.title = item.title;
                 } else {
                     uniqueMap.set(item.postNumber, item);
