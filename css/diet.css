@@ -148,7 +148,6 @@ main > section {
     height: 30px; /* 높이 */
     border-radius: 5px; /* 모서리 둥글게 */
     cursor: pointer; /* 마우스 커서 모양 변경 */
-    /* margin-right: 10px; */
 }
 
 .delete-button:hover {
