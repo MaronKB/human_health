@@ -184,11 +184,6 @@ input[type="date"] {
     background-color:#f3f3f3;
 }
 
-/* 메인 테이블 아래 주황밑줄 */
-/* .act-table tbody tr:last-of-type {
-    border-bottom:2px solid #F4761B;
-} */
-
 /* 추가버튼 스타일*/
 .act-table-header {
     display: flex;
