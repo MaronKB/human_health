@@ -55,6 +55,7 @@ main > section {
     font-size: 18px;
     text-align: center;
     color: var(--main-color-dark);
+    margin-top: 20px;
 }
 .act-kcal > span {
     align-self: flex-end;
@@ -70,8 +71,7 @@ main > section {
 }
 .act-recommended-calorie {
     width: 100%;
-    font-size: 13px;
-    color: var(--another-color);
+    /* font-size: 13px; */
     /* height: 60px; */
 }
 .act-recommended-calorie > h3 {
@@ -81,15 +81,16 @@ main > section {
     color: var(--main-color-dark);
 }
 .act-recommended-calorie > span {
-    align-self: flex-end;
+    /* align-self: flex-end; */
+    text-align: center;
     font-size: 14px;
     margin: 0;
 }
 .act-recommended-calorie > span.act-recommended-value {
-    justify-self: flex-end;
-    align-self: flex-end;
+    /* justify-self: flex-end;
+    align-self: flex-end; */
     font-family: var(--gothic-bold);
-    font-size: 25px;
+    font-size: 32px;
     color: var(--main-color);
 }
 
