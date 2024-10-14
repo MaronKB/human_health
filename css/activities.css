@@ -531,7 +531,7 @@ main > section {
 /* 페이지네이션 스타일 */
 .act-modal-pagination {
     width: 68%;
-    background: linear-gradient(white);
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
