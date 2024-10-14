@@ -110,7 +110,7 @@ main > section {
 
 .act-hours-alert {
     flex: none;
-    width: 260px;
+    width: 235px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -118,9 +118,6 @@ main > section {
 }
 .act-hours-alert > i {
     font-size: 48px;
-}
-.act-hours-alert > div > h4 {
-
 }
 .act-hours-value {
     font-size: 32px;
@@ -321,19 +318,6 @@ main > section {
 
 /* 모달창 스타일 */
 .act-modal {
-    /* display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.4);
-    justify-content: center; 
-    align-items: center;
-    padding-top: 60px;
-    animation: fadeIn 0.5s; */
     position: fixed;
     top: 0;
     left: 0;
@@ -344,8 +328,11 @@ main > section {
     align-items: center;
     backdrop-filter: blur(4px) brightness(0.5);
     z-index: 99;
-    opacity: 1;
     transition: opacity 0.5s;
+}
+
+.act-modal.hidden {
+    display: none;
 }
 
 @keyframes fadeIn {
@@ -359,15 +346,6 @@ main > section {
 }
 
 .act-modal-content {
-    /* background-color: #ffffff;
-    margin: 5% auto; 
-    padding: 30px;
-    padding-top: 13px;
-    border: 1px solid #888;
-    width: 700px;
-    max-width: 90%;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);  */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -378,58 +356,101 @@ main > section {
 }
 
 .act-modal-header {
+    flex: none;
+    width: 100%;
+    height: 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    background: white;
+}
+
+.modal-title {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
+    font-size: 24px;
+    margin-left: 50px;
 }
 
 .act-close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background: #eee;
+    border-radius: 10px;
+    margin: 5px;
+}
+.act-close:hover {
+    color: white;
+    background: var(--main-color);
+}
+.act-close::before {
+    content: "\f00d";
+    font-family: "FontAwesome";
+    font-size: 18px;
 }
 
-.act-close:hover,
-.act-close:focus {
-    color: #000;
-    cursor: pointer;
+.act-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px 20px 20px;
 }
 
 .act-search {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    /* margin: 5px 150px 15px; */
-    gap: 0;
+    position: relative;
     width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5px;
+    border-radius: 25px;
+    overflow: hidden;
 }
-
-.act-search input[type="text"] {
-    padding: 10px;
-    border: 2px solid #0003;
-    border-radius: 5px 0 0 5px;
-    width: 80%;
-    font-family: inherit;
-    box-shadow: 2px 5px 10px #0003;
-}
-
-.act-search button {
-    background-color: #F4761B;
+.act-search-button {
+    width: fit-content;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
     color: white;
-    border: none;
-    padding: 10px;
-    padding-left: 9px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    height: 39px;
-    box-shadow: 2px 5px 10px #0003;
+    background: #aaa;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 5px;
+    margin-left: auto;
+}
+.act-search-button:hover {
+    color: white;
+    background: var(--main-color);
+}
+#actSearch {
+    flex: 1;
+    height: 40px;
+    font-size: 16px;
+    margin: 0 15px;
+}
+#search-button {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 
-.act-search button:hover {
-    background-color: #b8721c;
+#search-button img {
+    width: 20px;
 }
+
+
 
  /* 클릭 선택시 이펙트 */
 #actTbody tr {
@@ -463,7 +484,7 @@ main > section {
     border-collapse: collapse;
     border-radius: 10px;
     margin-bottom: 0px; /*테이블과 아래 요소 사이? 간격*/
-    background-color: #eeeeee;
+    background-color: white;
     /* border-radius: 7px; */
     overflow: hidden;
     box-shadow: 2px 5px 10px #0003;
@@ -475,7 +496,7 @@ main > section {
 }
 
 #activityTable th {
-    background-color: #F4761B;
+    background-color: #222222;
     color: white;
     border: 1px solid white;
     height: 35px;
@@ -548,7 +569,7 @@ main > section {
 .activity-details input[type="number"] {
     padding: 10px;
     border:  #eeeeee;
-    border-bottom: 2px solid #F4761B;
+    border-bottom: 2px solid #222222;
     width: 50%;
     text-align: center;
     font-size: 30px;
@@ -567,7 +588,7 @@ main > section {
     margin: 10px 0px 0px 0px; 
     padding: 10px 20px;
     width: 100%;
-    background-color: #F4761B;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 5px;
@@ -577,7 +598,7 @@ main > section {
 }
 
 .act-save:hover {
-    background-color: #b8721c;
+    background-color: #F4761B;
 }
 
 
@@ -699,14 +720,14 @@ ul li.active {
     margin-bottom: 1px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #F4761B;
+    border-bottom: 2px solid #222222;
 }
 .user-input input[type="text"], .user-input input[type="number"] {
     flex: 1;
 }
 
 .add-btn {
-    background-color: #F4761B;
+    background-color: #222222;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -717,5 +738,5 @@ ul li.active {
 }
 
 .add-btn:hover {
-    background-color: #b8721c;
+    background-color: #F4761B;
 }
