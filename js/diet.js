@@ -275,3 +275,4 @@ function addFood() {
     document.getElementById('newFoodProtein').value = '';
     document.getElementById('newFoodFat').value = '';
 }
+

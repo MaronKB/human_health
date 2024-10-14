@@ -3,7 +3,7 @@ human_health
 ├── footer.html // 푸터
 ├── header.css
 ├── header.html // 헤더
-├── includeHtml.js // 헤더와 푸터를 페이지에 임포트하는 스크립트
+├── index.js // 헤더와 푸터를 페이지에 임포트하는 스크립트
 ├── index.css // 모든 페이지에서 공통으로 적용되는 스타일시트
 ├── index.html // 인덱스 파일. main.html로 리다이렉트(http-server 호환용)
 ├── README.md // 개발 코멘트 및 라이선싱 표기

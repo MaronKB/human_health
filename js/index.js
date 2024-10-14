@@ -1,6 +1,6 @@
 let isLoggedIn = false;
 
-const includeHTML = () => {
+const includeHtml = () => {
     const docs = document.querySelectorAll("*");
     docs.forEach((e) => {
         const file = e.dataset.includeHtml;
@@ -52,6 +52,14 @@ window.addEventListener('DOMContentLoaded', () => {
     if (loggedInUser) {
         isLoggedIn = true;
     }
-    includeHTML();
-    setTimeout(activateNav, 100);
+    includeHtml();
+    setTimeout(() => {
+        activateNav();
+        const toTop = document.querySelector('#to-top');
+        toTop.addEventListener("click", () => {
+            window.scrollTo({top : 0, left : 0, behavior: "smooth"});
+            document.body.scrollTo({top : 0, left : 0, behavior: "smooth"});
+            document.querySelector("main").scrollTo({top : 0, left : 0, behavior: "smooth"});
+        });
+    }, 100);
 });
