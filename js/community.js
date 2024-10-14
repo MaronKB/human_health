@@ -17,7 +17,18 @@ function CommunityItemData(jsonData) {
 }
 
 const init = () => {
-    getCommunityList();
+    const existingCommunityList = JSON.parse(localStorage.getItem('communityList')) || [];
+
+    // 로컬스토리지가 비어있을 때만 JSON 데이터 가져오기
+    if (existingCommunityList.length === 0) {
+        getCommunityList();
+    } else {
+        // 로컬스토리지에서 데이터 불러오기
+        existingCommunityList.forEach(e => communityListData.push(new CommunityItemData(e)));
+        communityListData.sort((a, b) => b.postNumber - a.postNumber);
+        pageCount = Math.ceil(communityListData.length / pageLength);
+        refresh();
+    }
 
     const left = document.querySelector("#pagination-left");
     left.addEventListener("click", () => arrow(false));
@@ -32,9 +43,6 @@ const refresh = () => {
 }
 
 const getCommunityList = () => {
-    const existingCommunityList = JSON.parse(localStorage.getItem('communityList')) || [];
-    const localList = existingCommunityList.map(e => new CommunityItemData(e));
-
     fetch("../resources/temp-db/community.json")
         .then(res => res.json())
         .then(data => {
@@ -48,19 +56,23 @@ const getCommunityList = () => {
                 uniqueMap.set(item.postNumber, item);
             });
 
-            localList.forEach(item => {
-                if (uniqueMap.has(item.postNumber)) {
-                    const existingItem = uniqueMap.get(item.postNumber);
-                    existingItem.viewCount = item.viewCount;
-                    existingItem.title = item.title;
+            const existingCommunityList = JSON.parse(localStorage.getItem('communityList')) || [];
+            existingCommunityList.forEach(item => {
+                const communityItem = new CommunityItemData(item);
+                if (uniqueMap.has(communityItem.postNumber)) {
+                    const existingItem = uniqueMap.get(communityItem.postNumber);
+                    existingItem.viewCount = communityItem.viewCount;
+                    existingItem.title = communityItem.title;
                 } else {
-                    uniqueMap.set(item.postNumber, item);
+                    uniqueMap.set(communityItem.postNumber, communityItem);
                 }
             });
 
             communityListData.push(...uniqueMap.values());
-
             communityListData.sort((a, b) => b.postNumber - a.postNumber);
+
+            // 로컬스토리지에 저장
+            localStorage.setItem('communityList', JSON.stringify(communityListData));
 
             pageCount = Math.ceil(communityListData.length / pageLength);
             refresh();

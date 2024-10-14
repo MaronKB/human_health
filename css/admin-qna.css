@@ -55,10 +55,6 @@
     color: white;
 }
 
-#admin-qna-title:hover {
-    color: inherit;
-}
-
 .admin-qna-list li,
 p {
     margin: 0;
