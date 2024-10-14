@@ -22,14 +22,91 @@
             <div class="intake-box box">
                 <h4>권장 탄수화물 섭취량</h4>
                 <div><div><span>130</span></div><span>g</span></div>
+                <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <div class="graph">
+                <div class="graph-body">
+                    <div class="graph-texts">
+                        <span></span>
+                        <span></span>
+                        <span>적정</span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <progress id="carbs-target" class="graph-progress graph-target ready" value="50" max="100"></progress>
+                    <progress id="carbs-current" class="graph-progress graph-current ready" value="10" max="100"></progress>
+                    <div class="graph-line">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="graph-subheader">
+                    <h5>적정</h5>
+                    <h5>현재</h5>
+                </div>
             </div>
             <div class="intake-box box">
                 <h4>권장 단백질 섭취량</h4>
-                <div><div><span>70</span></div><span>g</span></div>
+                <div><div><i class="fa-solid fa-dna"></i><span>70</span></div><span>g</span></div>
+            </div>
+            <div class="graph">
+                <div class="graph-body">
+                    <div class="graph-texts">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span>적정</span>
+                        <span></span>
+                    </div>
+                    <progress id="protein-target" class="graph-progress graph-target ready" value="70" max="100"></progress>
+                    <progress id="protein-current" class="graph-progress graph-current ready" value="20" max="100"></progress>
+                    <div class="graph-line">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="graph-subheader">
+                    <h5>적정</h5>
+                    <h5>현재</h5>
+                </div>
             </div>
             <div class="intake-box box">
                 <h4>권장 지방 섭취량</h4>
                 <div><div><span>30</span></div><span>g</span></div>
+                <i class="fa-solid fa-bacon"></i>
+            </div>
+            <div class="graph">
+                <div class="graph-body">
+                    <div class="graph-texts">
+                        <span></span>
+                        <span>적정</span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <progress id="fat-target" class="graph-progress graph-target ready" value="30" max="100"></progress>
+                    <progress id="fat-current" class="graph-progress graph-current ready" value="5" max="100"></progress>
+                    <div class="graph-line">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="graph-subheader">
+                    <h5>적정</h5>
+                    <h5>현재</h5>
+                </div>
             </div>
         </section>
         <section id="table-section" class="box">
@@ -61,84 +138,6 @@
             </div>
         </section>
         <section class="diet-graphs">
-            <div class="graph">
-                <h4 class="graph-header"><i class="fa-solid fa-bowl-food"></i>탄수화물</h4>
-                <div class="graph-body">
-                    <div class="graph-texts">
-                        <span></span>
-                        <span></span>
-                        <span>적정</span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <progress id="carbs-target" class="graph-progress graph-target ready" value="50" max="100"></progress>
-                    <progress id="carbs-current" class="graph-progress graph-current ready" value="10" max="100"></progress>
-                    <div class="graph-line">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="graph-subheader">
-                    <h5>적정</h5>
-                    <h5>현재</h5>
-                </div>
-            </div>
-            <div class="graph">
-                <h4 class="graph-header"><i class="fa-solid fa-dna"></i>단백질</h4>
-                <div class="graph-body">
-                    <div class="graph-texts">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span>적정</span>
-                        <span></span>
-                    </div>
-                    <progress id="protein-target" class="graph-progress graph-target ready" value="70" max="100"></progress>
-                    <progress id="protein-current" class="graph-progress graph-current ready" value="20" max="100"></progress>
-                    <div class="graph-line">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="graph-subheader">
-                    <h5>적정</h5>
-                    <h5>현재</h5>
-                </div>
-            </div>
-            <div class="graph">
-                <h4 class="graph-header"><i class="fa-solid fa-bacon"></i>지방</h4>
-                <div class="graph-body">
-                    <div class="graph-texts">
-                        <span></span>
-                        <span>적정</span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <progress id="fat-target" class="graph-progress graph-target ready" value="30" max="100"></progress>
-                    <progress id="fat-current" class="graph-progress graph-current ready" value="5" max="100"></progress>
-                    <div class="graph-line">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="graph-subheader">
-                    <h5>적정</h5>
-                    <h5>현재</h5>
-                </div>
-            </div>
         </section>
     </main>
 

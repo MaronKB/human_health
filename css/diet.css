@@ -38,16 +38,28 @@ main > section {
 
 
 .recommended-intake {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     gap: 10px;
 }
 .intake-box {
     flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .intake-box > h4 {
+    grid-column: 1/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+}
+.intake-box > i {
+    font-size: 32px;
+}
+.intake-box > h4 > span {
+    font-size: 14px;
 }
 .intake-box > div {
     position: relative;
