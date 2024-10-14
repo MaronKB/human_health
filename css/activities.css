@@ -166,6 +166,7 @@ main > section {
     width: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    font-weight: bold;
 }
 .template-item span {
     font-size: 16px;
@@ -188,17 +189,19 @@ main > section {
     font-size: 5px;
 }
 .template-edit-btn {
-    background-color: #41cd61;
+    background-color: #000000;
     color: white;
 }
 .template-edit-btn:hover {
-    background-color: #2a9f49;
+    color: white;
+    background: var(--main-color);
 }
 .template-delete-btn {
-    background-color: #ff4d4d;
+    background-color: #000000;
     color: white;
 }
 .template-delete-btn:hover {
+    color: white;
     background-color: #d93636;
 }
 .template-delete-btn img,
@@ -231,6 +234,7 @@ main > section {
     color: black;
     background: white;
     z-index: 1;
+    cursor: pointer;
 }
 #add-act:hover {
     color: white;
@@ -294,7 +298,7 @@ main > section {
 .template-share-btn {
     width: 110px;
     padding: 10px 20px;
-    background-color: #F4761B;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 5px;
@@ -304,8 +308,15 @@ main > section {
 }
 
 .template-save-btn:hover {
-    background-color: #b8721c;
+    color: white;
+    background: var(--main-color);
 }
+
+.template-share-btn:hover {
+    color: white;
+    background: var(--main-color);
+}
+
 
 
 /* 모달창 스타일 */
@@ -395,6 +406,7 @@ main > section {
     cursor: pointer;
     height: 39px;
     box-shadow: 2px 5px 10px #0003;
+    border: 2px solid #F4761B;
 }
 
 .act-search button:hover {
