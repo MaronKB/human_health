@@ -1,16 +1,18 @@
-let userList = [
-    { id: 'user01@gmail.com', password: 'user01', nickname: '유저1', emailOptOut: 'Y', date: '2024.10.01' },
-    { id: 'user02@gmail.com', password: 'user02', nickname: '유저2', emailOptOut: 'N', date: '2024.10.02' },
-    { id: 'user03@gmail.com', password: 'user03', nickname: '유저3', emailOptOut: 'Y', date: '2024.10.03' },
-    { id: 'user04@gmail.com', password: 'user04', nickname: '유저4', emailOptOut: 'N', date: '2024.10.04' },
-    { id: 'user05@gmail.com', password: 'user05', nickname: '유저5', emailOptOut: 'Y', date: '2024.10.05' },
-    { id: 'user06@gmail.com', password: 'user06', nickname: '유저6', emailOptOut: 'N', date: '2024.10.06' },
-    { id: 'user07@gmail.com', password: 'user07', nickname: '유저7', emailOptOut: 'Y', date: '2024.10.07' },
-    { id: 'user08@gmail.com', password: 'user08', nickname: '유저8', emailOptOut: 'N', date: '2024.10.08' },
-    { id: 'user09@gmail.com', password: 'user09', nickname: '유저9', emailOptOut: 'Y', date: '2024.10.09' },
-    { id: 'user10@gmail.com', password: 'user10', nickname: '유저10', emailOptOut: 'N', date: '2024.10.10' },
-    { id: 'user11@gmail.com', password: 'user11', nickname: '유저11', emailOptOut: 'Y', date: '2024.10.11' },
-];
+let userList = [];
+
+async function loadUserData() {
+    const storedUserList = localStorage.getItem('users');
+
+    if (storedUserList) {
+        userList = JSON.parse(storedUserList);
+        renderUserList(userList);
+    } else {
+        const response = await fetch('../resources/temp-db/user.json');
+        userList = await response.json();
+        localStorage.setItem('users', JSON.stringify(userList));
+        renderUserList(userList);
+    }
+}
 
 function renderUserList(users) {
     const userListBody = document.getElementById('user-list-body');
@@ -49,6 +51,8 @@ function saveUserData() {
         };
     });
 
+    localStorage.setItem('userList', JSON.stringify(userList));
+
     alert('저장되었습니다.');
     renderUserList(userList);
 }
@@ -61,8 +65,16 @@ function addUser() {
     const date = prompt('날짜를 입력해주세요.');
 
     if (id && password && nickname && date) {
+        const isIdExist = userList.some(user => user.id === id);
+        if (isIdExist) {
+            alert('이미 사용 중인 아이디입니다. 다른 아이디를 입력해주세요.');
+            return;
+        }
+
         userList.push({ id, password, nickname, emailOptOut, date });
+        localStorage.setItem('userList', JSON.stringify(userList));
         renderUserList(userList);
+        alert('회원가입이 완료되었습니다.');
     } else {
         alert('모든 정보를 입력해주세요.');
     }
@@ -82,6 +94,7 @@ function deleteUser() {
         userList.splice(selectedIndexes[i], 1);
     }
 
+    localStorage.setItem('userList', JSON.stringify(userList));
     renderUserList(userList);
 }
 
@@ -115,7 +128,7 @@ function updateDeleteButtonState() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    renderUserList(userList);
+    loadUserData();
 
     document.getElementById('add-user').addEventListener('click', addUser);
     document.getElementById('delete-user').addEventListener('click', deleteUser);
@@ -124,3 +137,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('user-list-body').addEventListener('change', updateDeleteButtonState);
 });
+
+// localStorage.clear();
