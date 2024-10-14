@@ -20,6 +20,7 @@ function closeModal() {
 let totalCarbs = 0; // 총 탄수화물 초기화
 let totalProtein = 0; // 총 단백질 초기화
 let totalFat = 0; // 총 지방 초기화
+let totalCalories = 0; // 총 칼로리 초기화
 
 function saveDiet() {
     const dietName = document.getElementById('selectedDiet').textContent;
@@ -37,6 +38,10 @@ function saveDiet() {
     const carbs = ((foodItem.carb * quantity) / foodItem.amount).toFixed(2);
     const protein = ((foodItem.protein * quantity) / foodItem.amount).toFixed(2);
     const fat = ((foodItem.fat * quantity) / foodItem.amount).toFixed(2);
+
+    // 칼로리 계산
+    const calories = (carbs * 4) + (protein * 4) + (fat * 9);
+    totalCalories += parseFloat(calories); // 총 칼로리 업데이트
 
     // 합계 업데이트
     totalCarbs += parseFloat(carbs); // 총 탄수화물 업데이트
@@ -63,6 +68,12 @@ function saveDiet() {
     closeModal(); // 모달 닫기
 }
 
+// 총 칼로리를 업데이트하는 함수 추가
+function updateCalories() {
+    const totalCaloriesElement = document.querySelector('.diet-kcal span');
+    totalCaloriesElement.innerText = `${totalCalories.toFixed(1)}`; // 소수점 한 자리로 표시
+}
+
 // 음식을 테이블에 추가하는 함수
 function addDietToTable(dietData) {
     const table = document.getElementById('diet-table');
@@ -87,6 +98,7 @@ function updateTotals() {
     totalRow.children[3].innerText = `${totalProtein.toFixed(1)}g`; // 총 단백질 합계 업데이트
     totalRow.children[4].innerText = `${totalFat.toFixed(1)}g`; // 총 지방 합계 업데이트
 
+    updateCalories(); // 총 칼로리 업데이트 함수 호출
     updateGraphs(); //그래프 업데이트 함수 호출
 }
 function updateGraphs() {
