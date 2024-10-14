@@ -4,7 +4,7 @@
     position: relative;
     width: 90vw;
     max-width: var(--max-width);
-    background-color: #ffd59f;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
 }
@@ -30,7 +30,7 @@
     padding: 0 60px;
     border: none;
     width: 100%;
-    height: 350px;
+    height: 500px;
     font-size: 20px;
     color: black;
 }
@@ -46,4 +46,7 @@
     font-size: 20px;
     color: white;
     margin: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 5px 10px #0003;
 }
