@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 식단</title>
+    <link rel="icon" href="resources/images/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/diet.css" />
@@ -32,7 +33,7 @@
             </div>
         </section>
         <section id="table-section" class="box">
-            <h3 class="table-title">영양 분석표<button type="button" id="add-data" class="button" onclick="addRow()"><i class="fa-solid fa-square-plus"></i>추가</button></h3>
+            <h3 class="table-title">영양 분석표<button type="button" id="add-data" class="button" onclick="openModal()"><i class="fa-solid fa-square-plus"></i>추가</button></h3>
             <div class="table-header">
                 <h5>식품명</h5>
                 <h5>식사구분</h5>
@@ -59,8 +60,7 @@
                 </div>
             </div>
         </section>
-
-        <div class="diet-graphs">
+        <section class="diet-graphs">
             <div class="graph">
                 <h4 class="graph-header"><i class="fa-solid fa-bowl-food"></i>탄수화물</h4>
                 <div class="graph-body">
@@ -139,80 +139,95 @@
                     <h5>현재</h5>
                 </div>
             </div>
-        </div>
-
-        <!-- 모달 -->
-        <div id="dietModal" class="diet-modal">
-            <div class="diet-modal-content">
-                <div class="diet-search">
-                    <div class="search-wrapper">
-                        <span class="diet-close" onclick="closeModal()">&times;</span>
-                        <input type="text" id="search-food" placeholder="검색">
-                        <button id="search-button" onclick="filterTable()">
-                            <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" width="20" />
-                        </button>
-                    </div>
-                </div>
-                <div id="foodTableContainer">
-                    <table id="foodTable">
-                        <thead>
-                            <tr class="diet-Modal-tr1">
-                                <th>음식</th>
-                                <th>기준량(g)</th>
-                                <th>탄수화물(g)</th>
-                                <th>단백질(g)</th>
-                                <th>지방(g)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="foodTbody">
-                            <!-- 데이터는 JavaScript로 동적으로 추가할 예정입니다. -->
-                        </tbody>
-                    </table>
-                    <div class="diet-modal-pagination">
-                        <button id="prev-button" onclick="changePage('prev')"><-</button>
-                            <span id="page-numbers"></span>
-                        <button id="next-button" onclick="changePage('next')">-></button>
-                    </div>
-                </div>
-                <div class="diet-detail-info">
-                    <div class="diet-details">
-                        <h3>선택한 음식</h3>
-                        <p id="selectedDiet">선택하세요</p>
-                        <h3>식사 구분</h3>
-                        <select class="diet-modalSelect" id="meal-type">
-                            <option value="" disabled selected>선택하세요</option>
-                            <option value="아침">아침</option>
-                            <option value="점심">점심</option>
-                            <option value="저녁">저녁</option>
-                        </select>
-                        <br><br>
-                        <h3>수량(g)</h3>
-                        <input type="number" id="dietQuantity" value="100" min="1">
-                        <br>
-                    </div>
-                    <div class="diet-info-save">
-                        <button class="diet-save" onclick="saveDiet()">저장 후 추가</button>
-                        <div id="dietInfo" class="diet-info"></div> <!--표에서 데이터 선택시 나오는 정보표-->    
-                    </div>
-                </div>
-                
-                <h3 class="new-food-add">새로운 음식 추가</h3>
-                <div class="new-food">
-                    <input type="text" id="newFoodName" placeholder="음식 이름">
-                    <input type="number" id="newFoodAmount" placeholder="기준량(g)" min="1"><br>
-                    <input type="number" id="newFoodCarb" placeholder="탄수화물(g)" min="0" step="0.1">
-                    <input type="number" id="newFoodProtein" placeholder="단백질(g)" min="0" step="0.1">
-                    <input type="number" id="newFoodFat" placeholder="지방(g)" min="0" step="0.1">
-                    <button class="modal-add-food" onclick="addFood()">추가</button>
-                </div>
-                    
-                <div class="instructions">
-                    <br>- 표에서 음식을 선택하고 수량을 입력하세요.
-                    <br>- 음식의 영양 성분은 100g 기준입니다.
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
+
+    <!-- 모달 -->
+    <div id="diet-modal-container" class="modal-container hidden">
+        <div id="diet-modal-box" class="modal-box">
+            <header class="modal-header">
+                <h4 class="modal-title">식단 추가</h4>
+                <a class="modal-close" onclick="closeModal()"></a>
+            </header>
+            <section class="modal-body">
+                <div class="search-wrapper box">
+                    <input type="text" id="search-food" placeholder="검색">
+                    <button id="search-button" class="button" onclick="filterTable()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div id="food-container">
+                    <div id="food-select" class="box">
+                        <div id="food-header" class="food-item">
+                            <span>음식</span>
+                            <span>기준량(g)</span>
+                            <span>탄수화물(g)</span>
+                            <span>단백질(g)</span>
+                            <span>지방(g)</span>
+                        </div>
+                        <ul id="foodTbody" class="food-list">
+                            <!-- 데이터는 JavaScript로 동적으로 추가할 예정입니다. -->
+                        </ul>
+                        <div class="diet-modal-pagination">
+                            <button id="prev-button" class="arrow" onclick="changePage('prev')"><i class="fa-solid fa-angle-left"></i></button>
+                            <div id="page-numbers"></div>
+                            <button id="next-button" class="arrow" onclick="changePage('next')"><i class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                    <div id="food-detail" class="box">
+                        <div class="diet-details">
+                            <div>
+                                <h3>선택한 음식</h3>
+                                <p id="selectedDiet">선택하세요</p>
+                            </div>
+                            <div>
+                                <h3>식사 구분</h3>
+                                <select class="diet-modalSelect" id="meal-type">
+                                    <option value="" disabled selected>선택하세요</option>
+                                    <option value="아침">아침</option>
+                                    <option value="점심">점심</option>
+                                    <option value="저녁">저녁</option>
+                                </select>
+                            </div>
+                            <div>
+                                <h3>수량(g)</h3>
+                                <input type="number" id="dietQuantity" value="100" min="1">
+                            </div>
+                            <div id="dietInfo" class="diet-info">
+                                <h3 id="food-name">음식</h3>
+                                <h4 id="food-amount">(기준량 : <span id="amount">100</span>g)</h4>
+                                <div class="diet-info-item">
+                                    <h4>탄수화물</h4>
+                                    <h5 id="carbs">0</h5>
+                                    <span>g</span>
+                                </div>
+                                <div class="diet-info-item">
+                                    <h4>단백질</h4>
+                                    <h5 id="protein">0</h5>
+                                    <span>g</span>
+                                </div>
+                                <div class="diet-info-item">
+                                    <h4>지방</h4>
+                                    <h5 id="fat">0</h5>
+                                    <span>g</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="diet-save" class="button" onclick="saveDiet()">저장 후 추가</button>
+                    </div>
+                </div>
+                <div id="new-food-container" class="box">
+                    <h3>새로운 음식 추가<i class="fa-solid fa-circle-info" title="표에서 음식을 선택하고 수량을 입력하세요. 음식의 영양 성분은 100g 기준입니다."></i></h3>
+                    <div id="new-food-select">
+                        <input type="text" id="newFoodName" placeholder="음식 이름">
+                        <input type="number" id="newFoodAmount" placeholder="기준량(g)" min="1">
+                        <input type="number" id="newFoodCarb" placeholder="탄수화물(g)" min="0" step="0.1">
+                        <input type="number" id="newFoodProtein" placeholder="단백질(g)" min="0" step="0.1">
+                        <input type="number" id="newFoodFat" placeholder="지방(g)" min="0" step="0.1">
+                        <button id="add-food" class="button" onclick="addFood()">추가</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </body>
 
 </html>

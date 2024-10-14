@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HH 유저</title>
+    <link rel="icon" href="resources/images/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/includeHtml.js"></script>
     <script src="js/user.js"></script>
@@ -20,7 +21,7 @@
     <section class="user-info">
         <section class="user-main">
             <form id="user-inputs" class="box">
-                <h3 id="user-inputs-title">초기 정보</h3>
+                <h3 id="user-inputs-title" class="user-title">초기 정보</h3>
                 <div id="user-profile">
                     <img src="resources/images/blank-profile.jpg" alt="profile image"/>
                 </div>
@@ -62,8 +63,8 @@
                 </div>
                 <a class="save-button">저장</a>
             </form>
-            <div class="user-calories">
-                <h4>기초 대사량</h4>
+            <div class="user-calories box">
+                <h3 class="user-title">기초 대사량</h3>
                 <input type="number" id="kal" value="0" disabled/>
                 <label for="kal">kcal</label>
             </div>
