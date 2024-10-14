@@ -38,6 +38,7 @@ input {
     background-color: #f4761b;
     color: white;
     border-radius: 5px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .control-button:disabled {
@@ -55,6 +56,7 @@ input {
     border-width: 2px;
     border-color: lightslategray;
     border-radius: 5px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .list-search {
@@ -73,6 +75,8 @@ input {
     font-size: 20px;
     border: 2px solid lightslategray;
     border-radius: 5px;
+    background-color: white;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .search-button {
@@ -85,6 +89,7 @@ input {
     background-color: #f4761b;
     color: white;
     border-radius: 5px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .community-list {
@@ -94,6 +99,7 @@ input {
     overflow-y: auto;
     display: block;
     font-size: 20px;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .community-list table {

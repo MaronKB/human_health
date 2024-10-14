@@ -4,76 +4,76 @@
         "password": "user01",
         "nickname": "유저1",
         "emailOptOut": "Y",
-        "date": "2024.10.01"
+        "date": "2024-10-01"
     },
     {
         "id": "user02@gmail.com",
         "password": "user02",
         "nickname": "유저2",
         "emailOptOut": "N",
-        "date": "2024.10.02"
+        "date": "2024-10-02"
     },
     {
         "id": "user03@gmail.com",
         "password": "user03",
         "nickname": "유저3",
         "emailOptOut": "Y",
-        "date": "2024.10.03"
+        "date": "2024-10-03"
     },
     {
         "id": "user04@gmail.com",
         "password": "user04",
         "nickname": "유저4",
         "emailOptOut": "N",
-        "date": "2024.10.04"
+        "date": "2024-10-04"
     },
     {
         "id": "user05@gmail.com",
         "password": "user05",
         "nickname": "유저5",
         "emailOptOut": "Y",
-        "date": "2024.10.05"
+        "date": "2024-10-05"
     },
     {
         "id": "user06@gmail.com",
         "password": "user06",
         "nickname": "유저6",
         "emailOptOut": "N",
-        "date": "2024.10.06"
+        "date": "2024-10-06"
     },
     {
         "id": "user07@gmail.com",
         "password": "user07",
         "nickname": "유저7",
         "emailOptOut": "Y",
-        "date": "2024.10.07"
+        "date": "2024-10-07"
     },
     {
         "id": "user08@gmail.com",
         "password": "user08",
         "nickname": "유저8",
         "emailOptOut": "N",
-        "date": "2024.10.08"
+        "date": "2024-10-08"
     },
     {
         "id": "user09@gmail.com",
         "password": "user09",
         "nickname": "유저9",
         "emailOptOut": "Y",
-        "date": "2024.10.09"
+        "date": "2024-10-09"
     },
     {
         "id": "user10@gmail.com",
         "password": "user10",
         "nickname": "유저10",
         "emailOptOut": "N",
-        "date": "2024.10.10"
+        "date": "2024-10-10"
     },
     {
         "id": "user11@gmail.com",
         "password": "user11",
         "nickname": "유저11",
         "emailOptOut": "Y",
-        "date": "2024.10.11"
+        "date": "2024-10-11"
     }
 ]

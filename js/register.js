@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!localStorage.getItem('users')) {
                 localStorage.setItem('users', JSON.stringify(data));
             }
-        })
+        });
 
     registerForm.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -173,8 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
         const passwordConfirm = document.getElementById('password-confirm').value;
         const nickname = document.getElementById('nickname').value;
-        const emailOptOut = document.querySelector('input[name="subscribe"]:checked').value;
-        const acceptTerms = document.getElementById('accept').checked; // 이용약관 체크박스 상태
+
+        const emailOptOut = document.querySelector('input[name="subscribe"]:checked');
+        const emailOptOutValue = emailOptOut ? (emailOptOut.value === 'true' ? 'Y' : 'N') : 'N';
+
+        const acceptTerms = document.getElementById('accept').checked;
 
         if (password !== passwordConfirm) {
             alert('비밀번호가 일치하지 않습니다.');
@@ -204,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: email,
             password: password,
             nickname: nickname,
-            emailOptOut: emailOptOut,
+            emailOptOut: emailOptOutValue,
             date: new Date().toISOString().slice(0, 10)
         };
 
