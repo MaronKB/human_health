@@ -111,7 +111,7 @@ main > section {
 
 .act-hours-alert {
     flex: none;
-    width: 235px;
+    width: 240px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -151,6 +151,9 @@ main > section {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    max-height: 335px; 
+    overflow-y: auto; 
+    padding-right: 5px;
 }
 
 .template-item {
@@ -208,6 +211,7 @@ main > section {
     height: 20px;
 }
 
+
 /* 활동 테이블, 활동 저장리스트 */
 .act-container {
     display: flex;
@@ -261,6 +265,7 @@ main > section {
     border-bottom: 1px solid #dddddd;
 }
 .act-table td {
+    position: relative;
     padding: 0;
     text-align: center;
     border-bottom: 0px solid #dddddd;
@@ -269,7 +274,17 @@ main > section {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap; */
-    
+}
+.act-table button {
+    background-color: rgba(244, 27, 27, 0.966);
+    color: white;
+    border: 0px solid ;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-bottom: 3px;
+}
+.act-table button:hover {
+    background-color: #c42e2e;
 }
 .act-table tbody {
     height: 400px;
@@ -292,8 +307,7 @@ main > section {
     gap: 10px;
 }
 
-.template-save-btn,
-.template-share-btn {
+.template-save-btn {
     width: 110px;
     padding: 10px 20px;
     background-color: #222222;
