@@ -204,6 +204,17 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTable();
     updatePagination();
     setTimeout(graphAnimation, 300);
+
+    const currentDateInput = document.getElementById('current-date');
+    const today = new Date();
+    
+    // 연도, 월, 일 가져오기
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
+    const day = String(today.getDate()).padStart(2, '0');
+
+    // 현재 날짜를 "YYYY-MM-DD" 형식으로 설정
+    currentDateInput.value = `${year}-${month}-${day}`;
 });
 
 //=======================================================
