@@ -86,11 +86,31 @@ function addDietToTable(dietData) {
         <span>${dietData.carbs}g</span>
         <span>${dietData.protein}g</span>
         <span>${dietData.fat}g</span>
+        <button class="delete-button" onclick="deleteDiet(this)">X</button>
     `;
-
+    
     table.appendChild(newRow);
     updateTotals(); // 새 항목 추가 후 합계 업데이트
 }
+    function deleteDiet(button) {
+        const row = button.parentElement; // 삭제 버튼의 부모 요소 (행) 찾기
+        const carbs = parseFloat(row.children[2].innerText); // 탄수화물 값 가져오기
+        const protein = parseFloat(row.children[3].innerText); // 단백질 값 가져오기
+        const fat = parseFloat(row.children[4].innerText); // 지방 값 가져오기
+    
+        // 총합에서 삭제할 값 차감
+        totalCarbs -= carbs;
+        totalProtein -= protein;
+        totalFat -= fat;
+    
+        // 테이블에서 행 삭제
+        row.remove();
+    
+        // 합계 업데이트
+        updateTotals();
+        updateGraphs();
+    }
+    
 
 function updateTotals() {
     const totalRow = document.querySelector('#diet-total .table-item');

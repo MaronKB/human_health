@@ -1,15 +1,21 @@
 @import "login.css";
 
-.popup {
+#popup {
+    padding: 20px;
     position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 70%;
+    background-color: white;
+    border: 1px solid #ccc;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    display: none;
+    overflow-y: auto;
+    box-shadow: 2px 5px 10px #0003;
 }
 
 .popup-content {
@@ -22,10 +28,25 @@
     overflow-y: auto;
 }
 
-.close {
+#popup-close-button {
     position: absolute;
-    top: 10px;
+    width: 60px;
+    height: 30px;
+    top: 5px;
     right: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #222;
     font-size: 20px;
+    color: white;
+    margin: 10px;
+    box-shadow: 2px 5px 10px #0003;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1001;
+}
+
+#popup-close-button:hover {
+    color: white;
+    background: var(--main-color);
 }

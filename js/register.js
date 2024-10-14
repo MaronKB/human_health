@@ -144,7 +144,11 @@
     function closePopup() {
         const popup = document.getElementById('popup');
         popup.style.display = 'none';
-    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('popup-close-button').addEventListener('click', closePopup);
+});
 
 
 
@@ -154,6 +158,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.querySelector('.login-form');
 
+    fetch('../resources/temp-db/user.json')
+        .then(response => response.json())
+        .then(data => {
+            if (!localStorage.getItem('users')) {
+                localStorage.setItem('users', JSON.stringify(data));
+            }
+        })
+
     registerForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -162,9 +174,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const passwordConfirm = document.getElementById('password-confirm').value;
         const nickname = document.getElementById('nickname').value;
         const emailOptOut = document.querySelector('input[name="subscribe"]:checked').value;
+        const acceptTerms = document.getElementById('accept').checked; // 이용약관 체크박스 상태
 
         if (password !== passwordConfirm) {
             alert('비밀번호가 일치하지 않습니다.');
+            return;
+        }
+
+        if (!acceptTerms) {
+            alert('이용약관 및 개인정보 취급방침에 동의해야 합니다.');
             return;
         }
 
@@ -193,9 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
 
-        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
-
         alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
         window.location.href = 'login.html';
     });
 });
+
+// localStorage.clear();

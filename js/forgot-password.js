@@ -2,13 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordForms = document.querySelectorAll('.login-form');
 
     async function loadUserData() {
-        try {
-            const response = await fetch('../resources/temp-db/user.json');
-            return await response.json();
-        } catch (error) {
-            console.error('사용자 데이터 로드 실패:', error);
-            return [];
-        }
+        const response = await fetch('../resources/temp-db/user.json');
+        const jsonData = await response.json();
+
+        const localStorageData = JSON.parse(localStorage.getItem('users')) || [];
+
+        return [...jsonData, ...localStorageData];
     }
 
     async function handleIdForm(form) {
@@ -58,3 +57,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// localStorage.clear();
