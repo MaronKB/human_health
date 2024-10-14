@@ -170,6 +170,7 @@ main > section {
     align-items: center;
     gap: 2px;
 }
+
 .graph-texts {
     width: 100%;
     height: 12px;
@@ -248,7 +249,27 @@ main > section {
     align-items: center;
     gap: 2px;
 }
-.graph-subheader > h5 {
+.graph-1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: white;
+    background: #B44602;
+    border-radius: 3px;
+}
+.graph-2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: white;
+    background: #FFB66B;
+    border-radius: 3px;
+}
+/* .graph-subheader > h5 {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -257,7 +278,7 @@ main > section {
     color: white;
     background: pink;
     border-radius: 3px;
-}
+} */
 .graph-subheader > h5:first-child {
     height: 20px;
 }
