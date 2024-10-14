@@ -100,8 +100,7 @@ main > section {
     border-bottom: 2px dashed #ddd;
     margin-bottom: 10px;
 }
-#add-data {
-}
+
 .table-header {
     width: 100%;
     display: flex;
@@ -294,12 +293,10 @@ main > section {
     font-size: 10px;
     align-self: flex-end;
 }
-#food-amount {
-    width: 100%;
-    font-size: 12px;
-    text-align: center;
-    color: #777;
-    margin: 0 0 5px 0;
+
+.diet-details input {
+    margin-top: 10px;
+    /* 입력 필드 간 간격 조정 */
 }
 .diet-info-item {
     display: flex;

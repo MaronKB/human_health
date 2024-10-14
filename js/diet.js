@@ -17,6 +17,10 @@ function closeModal() {
     modal.classList.add("hidden");
 }
 
+let totalCarbs = 0; // 총 탄수화물 초기화
+let totalProtein = 0; // 총 단백질 초기화
+let totalFat = 0; // 총 지방 초기화
+
 function saveDiet() {
     const dietName = document.getElementById('selectedDiet').textContent;
     const mealType = document.getElementById('meal-type').value;
@@ -26,12 +30,18 @@ function saveDiet() {
         alert('모든 항목을 입력하세요!');
         return;
     }
+    updateGraphs(); // 그래프 업데이트 함수
 
     // 선택한 음식의 영양 정보 가져오기
     const foodItem = foodData.find(item => item.name === dietName);
     const carbs = ((foodItem.carb * quantity) / foodItem.amount).toFixed(2);
     const protein = ((foodItem.protein * quantity) / foodItem.amount).toFixed(2);
     const fat = ((foodItem.fat * quantity) / foodItem.amount).toFixed(2);
+
+    // 합계 업데이트
+    totalCarbs += parseFloat(carbs); // 총 탄수화물 업데이트
+    totalProtein += parseFloat(protein); // 총 단백질 업데이트
+    totalFat += parseFloat(fat); // 총 지방 업데이트
 
     // 음식 데이터를 객체로 저장
     const dietData = {
@@ -45,6 +55,7 @@ function saveDiet() {
 
     // 테이블에 새 항목 추가
     addDietToTable(dietData);
+    updateTotals(); // 합계 업데이트 함수 호출
 
     // 입력 필드 초기화
     document.getElementById('meal-type').value = '';
@@ -67,6 +78,35 @@ function addDietToTable(dietData) {
     `;
 
     table.appendChild(newRow);
+    updateTotals(); // 새 항목 추가 후 합계 업데이트
+}
+
+function updateTotals() {
+    const totalRow = document.querySelector('#diet-total .table-item');
+    totalRow.children[2].innerText = `${totalCarbs.toFixed(1)}g`; // 총 탄수화물 합계 업데이트
+    totalRow.children[3].innerText = `${totalProtein.toFixed(1)}g`; // 총 단백질 합계 업데이트
+    totalRow.children[4].innerText = `${totalFat.toFixed(1)}g`; // 총 지방 합계 업데이트
+
+    updateGraphs(); //그래프 업데이트 함수 호출
+}
+function updateGraphs() {
+    const carbsCurrent = document.getElementById('carbs-current');
+    const proteinCurrent = document.getElementById('protein-current');
+    const fatCurrent = document.getElementById('fat-current');
+
+    const carbsTarget = 130; // 권장 탄수화물 목표값
+    const proteinTarget = 70; // 권장 단백질 목표값
+    const fatTarget = 30; // 권장 지방 목표값
+
+    // 각 그래프의 현재값과 목표값 설정
+    carbsCurrent.value = Math.min(totalCarbs, carbsTarget); // 탄수화물 현재값
+    proteinCurrent.value = Math.min(totalProtein, proteinTarget); // 단백질 현재값
+    fatCurrent.value = Math.min(totalFat, fatTarget); // 지방 현재값
+
+    // 그래프의 최대값을 업데이트
+    carbsCurrent.max = carbsTarget;
+    proteinCurrent.max = proteinTarget;
+    fatCurrent.max = fatTarget;
 }
 
 function selectDiet(name) {
@@ -194,6 +234,14 @@ function addFood() {
     const protein = parseFloat(document.getElementById('newFoodProtein').value);
     const fat = parseFloat(document.getElementById('newFoodFat').value);
 
+    updateGraphs(); // 합계 업데이트 후 그래프도 업데이트
+
+    // 새로운 음식이 추가되면 합계도 업데이트
+    totalCarbs += carb; // 총 탄수화물 업데이트
+    totalProtein += protein; // 총 단백질 업데이트
+    totalFat += fat; // 총 지방 업데이트
+    updateTotals(); // 합계 업데이트 함수 호출
+    
     // 유효성 검사
     if (!foodName || isNaN(amount) || isNaN(carb) || isNaN(protein) || isNaN(fat)) {
         alert('모든 필드를 올바르게 입력하세요.');
