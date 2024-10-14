@@ -294,11 +294,30 @@ function saveActivity() {
     const intensityCell = document.createElement('td');
     intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
 
+    // 셀 삭제버튼 생성
+
+    const deleteCell = document.createElement('td');
+    deleteCell.style.textAlign = 'center';
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'x';
+    deleteButton.style.backgroundColor= '#ff4d4d';
+    deleteButton.style.color = 'white';
+    deleteButton.style.fontWeight = 'bold';
+    deleteButton.style.border = 'none';
+    deleteButton.style.padding = '2px 6px';
+    deleteButton.style.cursor = 'pointer';
+    deleteButton.style.borderRadius = '5px'
+    deleteButton.onclick = function() {
+        deleteRow(newRow);
+    };
+    deleteCell.appendChild(deleteButton);
+
     // 셀을 행에 추가
     newRow.innerHTML = '';
     newRow.appendChild(activityCell);
     newRow.appendChild(hoursCell);
     newRow.appendChild(intensityCell);
+    newRow.appendChild(deleteCell);
 
     // 행을 테이블에 추가
     // tbody.appendChild(newRow);
@@ -307,9 +326,16 @@ function saveActivity() {
     }
 
     alert(`${activity}, ${hours}시간이 저장되었습니다.`);
-    //시간 초기화
+    //입력칸 초기화
     hoursInput.value = '';
     //총 시간 업데이트 
+    updateTotalActivityHours();
+}
+
+// 행 삭제 함수 순서 뒤죽박죽
+function deleteRow(row) {
+    row.remove();
+    
     updateTotalActivityHours();
 }
 
