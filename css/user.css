@@ -2,28 +2,32 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    gap: 5px;
     background: white;
     padding: 15px 20px;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     box-shadow: 2px 5px 10px #0003;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
 }
 .welcome > h3 {
     font-size: 24px;
 }
-.welcome > span {
-    flex: 1;
-    border: 1px dashed gray;
-    margin: 0 10px 5px 10px;
-}
-.welcome > p {
-    font-size: 16px;
-    margin: 0;
-}
 .welcome span {
     color: var(--main-color);
+}
+.date {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.date > input {
+    font-family: var(--gothic-bold);
+    background: #eee;
+    padding: 5px 10px;
 }
 .user-info {
     display: flex;
@@ -182,7 +186,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 5px;
+    gap: 2px;
     background: white;
     padding: 10px 15px;
     border: 1px solid #eeeeee;
