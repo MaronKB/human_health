@@ -107,7 +107,87 @@ function deleteTemplate(event, templateName) {
 
 
 
+// 현재 목록 템플릿 리스트에 저장
+function saveTemplate() {
+    const tbody = document.getElementById('act-tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
 
+    // 현재 활동 리스트가 비어있으면 저장X
+    if (rows.length === 0 || rows.every(row => row.children[0].textContent === "")) {
+        alert("저장할 활동이 없습니다.");
+        return;
+    }
+
+    // 템플릿 이름 입력
+    const templateName = prompt("저장할 이름을 입력해주세요:");
+    if (!templateName || templateName.trim() === "") {
+        alert("템플릿 이름은 필수입니다.");
+        return;
+    }
+
+    // 활동 리스트 데이터 수집
+    const activities = rows.map(row => {
+        return {
+            activity: row.children[0].textContent,
+            duration: row.children[1].textContent,
+            intensity: row.children[2].textContent,
+        };
+    });
+
+    // 템플릿 저장 (templates 객체에 추가)
+    templates[templateName] = activities;
+
+    // 리스트에 새로운 템플릿 추가
+    addTemplateToSidebar(templateName);
+
+    alert("리스트에 저장되었습니다!");
+}
+
+// 리스트에 템플릿을 추가하는 함수
+function addTemplateToSidebar(templateName) {
+    const sidebar = document.querySelector('.saved-templates');
+
+    // 새로운 템플릿 요소 생성
+    const templateItem = document.createElement('div');
+    templateItem.className = 'template-item';
+    templateItem.setAttribute('onclick', `applyTemplate('${templateName}')`);
+
+    const templateNameSpan = document.createElement('span');
+    templateNameSpan.textContent = templateName;
+
+    // 템플릿 편집 및 삭제 버튼 추가?
+    const templateActions = document.createElement('div');
+    templateActions.className = 'template-actions';
+
+    const editButton = document.createElement('button');
+    editButton.className = 'template-edit-btn';
+    editButton.setAttribute('onclick', `editTemplate('${templateName}')`);
+    editButton.innerHTML = `
+        <span class="material-symbols-outlined" style="color: #ffffff;">
+            stylus
+        </span>
+    `;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'template-delete-btn';
+    deleteButton.setAttribute('onclick', `deleteTemplate(event, '${templateName}')`);
+    deleteButton.innerHTML = `
+        <span class="material-symbols-outlined" style="color: #ffffff;">
+            delete
+        </span>
+    `;
+
+    // 버튼 액션 컨테이너 추가
+    templateActions.appendChild(editButton);
+    templateActions.appendChild(deleteButton);
+
+    // 템플릿 요소에 이름과 액션 추가
+    templateItem.appendChild(templateNameSpan);
+    templateItem.appendChild(templateActions);
+
+    // 사이드바에 추가
+    sidebar.appendChild(templateItem);
+}
 
 // 모달 열기
 function addRow() {
