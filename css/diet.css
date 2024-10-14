@@ -315,7 +315,8 @@ main > section {
     gap: 10px;
 }
 #food-select {
-    flex: 1;
+    flex: none;
+    width: 600px;
 }
 .food-list {
     padding: 0;
@@ -418,11 +419,6 @@ main > section {
     color: gray;
     margin: 0 0 5px 0;
 }
-
-.diet-details input {
-    margin-top: 10px;
-    /* 입력 필드 간 간격 조정 */
-}
 .diet-info-item {
     display: flex;
     align-items: center;
@@ -476,6 +472,8 @@ main > section {
     border-radius: 10px;
 }
 #new-food-select > input {
+    flex: 1;
+    width: 0;
     height: 30px;
     text-align: center;
     border-radius: 5px;

@@ -124,6 +124,7 @@ progress::-webkit-progress-value {
     margin-left: auto;
 }
 .button:hover {
+    color: white;
     background: var(--main-color);
 }
 .modal-container {

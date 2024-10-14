@@ -1,0 +1,26 @@
+main {
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#admin-page-list {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    gap: 20px;
+}
+#admin-page-list > .box {
+    width: 200px;
+}
+#admin-page-list > .box > h4 {
+    width: 100%;
+    text-align: center;
+}
+#admin-page-list > .box > a {
+    width: 100%;
+    margin: auto 0;
+}
+#admin-page-list > .box:last-child {
+    grid-column: 3/4;
+    grid-row: 1/3;
+}
