@@ -160,7 +160,7 @@ function saveDiet() {
 
 // 총 칼로리를 업데이트하는 함수
 function updateCalories() {
-    const totalCaloriesElement = document.querySelector('.diet-kcal span');
+    const totalCaloriesElement = document.querySelector('.diet-kcal-box span');
     totalCaloriesElement.innerText = `${Math.max(0, totalCalories).toFixed(1)}`; // 소수점 한 자리로 표시
 }
 

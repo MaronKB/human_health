@@ -23,18 +23,38 @@ main > section {
     align-items: center; /* 수직 가운데 정렬 */
     margin: 10px 0; /* 위아래 여백 */
 }
-.diet-kcal > h3 {
+
+.diet-kcal-box {
+    position: relative;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 2px 5px 10px #0003;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    padding-left: 120px;
+}
+
+.diet-kcal-box div {
+    width: 45%;
+    height: 80px;
+}
+
+.diet-kcal-box > h3 {
     font-size: 18px;
     text-align: center;
     color: var(--main-color-dark);
 }
-.diet-kcal p {
+.diet-kcal-box p {
     font-size: 15px;
     margin: 0;
     font-weight: bold;
     text-align: center;
 }
-.diet-kcal span {
+.diet-kcal-box span {
     font-weight: bold;
     color: var(--main-color);
     font-size: 45px;
