@@ -424,21 +424,48 @@ function loadActivitiesFromLocalStorage() {
             const intensityCell = document.createElement('td');
             intensityCell.textContent = activity.intensity;
 
-            // 삭제 버튼 추가
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'x';
-            deleteButton.onclick = function () {
-                row.remove();
-                saveActivitiesToLocalStorage();  // 삭제 후에도 업데이트
-            };
+            // 삭제 버튼 추가 (빈 활동에는 버튼 추가하지 않음)
+            if (activity.activity && activity.hours && activity.intensity) {
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'x';
+                deleteButton.onclick = function () {
+                    row.remove();
+                    saveActivitiesToLocalStorage();  // 삭제 후에도 업데이트
+                    addEmptyRows();  // 행 삭제 후 빈 행 추가
+                };
+                row.append(activityCell, hoursCell, intensityCell, deleteButton);
+            } else {
+                row.append(activityCell, hoursCell, intensityCell);  // 빈 셀만 추가
+            }
 
-            row.append(activityCell, hoursCell, intensityCell, deleteButton);
             tbody.appendChild(row);
         });
 
-        updateTotalActivityHours();
+        addEmptyRows();  // 데이터 불러온 후 빈 행 추가
+        updateTotalActivityHours();  // 총 활동 시간 업데이트
     }
 }
+
+// 테이블에 빈 행 추가
+function addEmptyRows() {
+    const tbody = document.getElementById("act-tbody");
+    const totalRows = 11; // 원하는 전체 행 수
+    const currentRows = tbody.querySelectorAll("tr").length;
+
+    // 현재 행이 부족하면 빈 행을 추가
+    if (currentRows < totalRows) {
+        for (let i = currentRows; i < totalRows; i++) {
+            const emptyRow = document.createElement("tr");
+            emptyRow.innerHTML = `
+                <td></td>
+                <td></td>
+                <td></td>
+            `;
+            tbody.appendChild(emptyRow);
+        }
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     loadActivitiesFromLocalStorage();
