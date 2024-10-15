@@ -108,7 +108,7 @@
                 </div>
             </aside>
             <div class="act-template box">
-                <button type="button" id="add-act" class="button" onclick="addRow()"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" id="add-act" class="button" onclick="openModal()"><i class="fa-solid fa-plus"></i></button>
                 <table class="act-table">
                     <thead>
                         <tr>
@@ -183,20 +183,20 @@
         </section>
     </main>
     <!-- 모달 -->
-    <div id="actModal" class="act-modal hidden">
-        <div class="act-modal-content">
-            <header class="act-modal-header">
+    <div id="act-modal" class="modal-container hidden">
+        <div class="modal-box">
+            <header class="modal-header">
                 <h4 class="modal-title">활동 추가</h4>
-                <a class="act-close" onclick="closeModal()"></a>
+                <a class="modal-close" onclick="closeModal()"></a>
             </header>
-            <section class="act-modal-body">
-                <div class="act-search">
+            <section class="modal-body">
+                <div class="act-search box">
                     <input type="text" id="actSearch" placeholder="검색">
-                    <button id="search-button" class="act-search-button" onclick="filterTable()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button id="search-button" class="button" onclick="filterTable()"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <div class="activity-container">    
-                    <div class="activity-table">
-                        <table id="activityTable">
+                <div class="activity-container">
+                    <div class="table-container box">
+                        <table id="activity-table">
                             <thead>
                                 <tr>
                                     <th>활동</th>
@@ -204,86 +204,35 @@
                                 </tr>
                             </thead>
                             <tbody id="actTbody">
-                               <!-- <tr onclick="selectActivity('잠자기', 0.93, this)">
-                                    <td>잠자기</td>
-                                    <td>0.93</td>
-                                </tr>
-                                <tr onclick="selectActivity('누워있기', 1.2, this)">
-                                    <td>누워있기</td>
-                                    <td>1.2</td>
-                                </tr>
-                                <tr onclick="selectActivity('읽기', 1.3, this)">
-                                    <td>읽기</td>
-                                    <td>1.3</td>
-                                </tr>
-                                <tr onclick="selectActivity('앉아서 TV', 1.57, this)">
-                                    <td>앉아서 TV</td>
-                                    <td>1.57</td>
-                                </tr>
-                                <tr onclick="selectActivity('사무업무', 1.6, this)">
-                                    <td>사무업무</td>
-                                    <td>1.6</td>
-                                </tr>
-                                <tr onclick="selectActivity('컴퓨터 부수기', 9.9, this)">
-                                    <td>컴퓨터 부수기</td>
-                                    <td>9.9</td>
-                                </tr>
-                                <tr onclick="selectActivity('중도포기 하기', 4.1, this)">
-                                    <td>중도포기 하기</td>
-                                    <td>4.1</td>
-                                </tr>
-                                <tr onclick="selectActivity('노가다 뛰러가기', 5.2, this)">
-                                    <td>노가다 뛰러가기</td>
-                                    <td>5.2</td>
-                                </tr> -->
                             </tbody>
                         </table>
+                        <div class="act-modal-pagination">
+                            <button id="page-prev" class="arrow" onclick="changePage('prev')"><</button>
+                            <div id="page-numbers"></div>
+                            <button id="page-next" class="arrow" onclick="changePage('next')">></button>
+                        </div>
                     </div>
-                    <div class="activity-details">
-                        <div class="act-selected-activity">
+                    <div class="activity-details box">
+                        <div class="act-detail">
                             <h3>활동</h3>
                             <p id="selectedActivity">선택하세요</p>
                         </div>
-                        <div class="act-type-time">
-                            <h4>시간</h4>
+                        <div class="act-detail">
+                            <h3>시간</h3>
                             <input type="number" id="hours" min="0" placeholder="">
                             <label for="hours" style="font-size: 13px;">hours</label>
                         </div>
-                        <div>
-                            <button class="act-save" id="act-save-btn" onclick="saveActivity()">추가</button>
-                        </div>
+                        <button id="act-save" class="button" onclick="saveActivity()">추가</button>
                     </div>
                 </div>
-                <div class="act-modal-pagination">
-                    <button id="pagePrev" onclick="changePage('prev')"><</button>
-                    <span id="modalPageNumber"></span>
-                    <button id="pageNext" onclick="changePage('next')">></button>
-                        <!-- <button class="act-btn1" onclick="backBtn()"> <img src="./resources/images/arrow.png"> prev </button>
-                        <ul>
-                            <li class="link active" value="1" onclick="activeLink()">1</li>
-                            <li class="link" value="2" onclick="activeLink()">2</li>
-                            <li class="link" value="3" onclick="activeLink()">3</li>
-                            <li class="link" value="4" onclick="activeLink()">4</li>
-                            <li class="link" value="5" onclick="activeLink()">5</li>
-                            <li class="link" value="6" onclick="activeLink()">6</li>
-                        </ul>
-                        <button class="act-btn2" onclick="nextBtn()">next<img src="./resources/images/arrow.png"></button> -->
-                </div>
-                <div class="user-input">
-                    <!-- <h3>활동 추가하기</h3> -->
+                <div class="user-input box">
+                    <h3>활동 추가<i class="fa-solid fa-circle-info" title="표에서 활동을 선택하고 시간을 입력하세요. 활동강도: 1시간 당 활동량 값입니다."></i></h3>
                     <div class="user-input-row">
-                        <div>
-                            <label for="newActivity">활동</label>
-                            <input type="text" id="newActivity" placeholder="활동 이름 입력">
-                        </div>
-                        <div>
-                            <label for="newIntensity">강도</label>
-                            <input type="number" id="newIntensity" min="0" step="0.01" placeholder="강도 입력">
-                        </div>
+                        <input type="text" id="newActivity" placeholder="활동 이름 입력">
+                        <input type="number" id="newIntensity" min="0" step="0.01" placeholder="강도 입력">
+                        <button id="act-add" class="button" onclick="addCustomActivity()">등록</button>
                     </div>
-                    <button class="add-btn" onclick="addCustomActivity()">등록</button>
                 </div>
-                <div class="instructions"> <br>- 표에서 활동을 선택하고 시간을 입력하세요. <br>- 활동강도: 1시간 당 활동량 값입니다. </div>
             </section>
         </div>
     </div>

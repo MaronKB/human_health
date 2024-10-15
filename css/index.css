@@ -17,6 +17,7 @@
 :root {
     --gothic-normal: 'NEXON Lv1 Gothic OTF', sans-serif;
     --gothic-bold: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
+    --min-width: 420px;
     --max-width: 1000px;
     --main-color: #F4761B;
     --main-color-bright: #FFB66B;
@@ -56,7 +57,7 @@ a:hover {
 main {
     position: relative;
     width: 100vw;
-    min-width: 420px;
+    min-width: var(--min-width);
     max-width: var(--max-width);
     padding: 20px;
 }
@@ -118,7 +119,7 @@ progress::-webkit-progress-value {
     gap: 5px;
     font-size: 14px;
     color: white;
-    background: #aaa;
+    background: var(--text-color);
     padding: 0 10px;
     border: 0;
     border-radius: 5px;
@@ -148,6 +149,8 @@ progress::-webkit-progress-value {
     pointer-events: none;
 }
 .modal-box {
+    min-height: var(--min-width);
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     gap: 10px;
