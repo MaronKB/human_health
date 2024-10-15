@@ -248,6 +248,33 @@
 .graph-header > i {
     font-size: 32px;
 }
+.graph-subheader {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    padding-top: 14px;
+}
+.graph-subheader > h5 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: white;
+    background: black;
+    border-radius: 3px;
+}
+.graph-subheader > h5:first-child {
+    height: 20px;
+    background: var(--main-color-dark);
+}
+.graph-subheader > h5:last-child {
+    height: 40px;
+    background: var(--main-color-bright);
+}
 .graph-body {
     position: relative;
     flex: 1;
@@ -330,31 +357,6 @@
 }
 .graph-line > span:last-child {
     border-right: none;
-}
-.graph-subheader {
-    width: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    padding-top: 14px;
-}
-.graph-subheader > h5 {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10px;
-    color: white;
-    background: black;
-    border-radius: 3px;
-}
-.graph-subheader > h5:first-child {
-    height: 20px;
-}
-.graph-subheader > h5:last-child {
-    height: 40px;
 }
 
 @media (max-width: 1050px) {

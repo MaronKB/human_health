@@ -59,7 +59,23 @@ function applyTemplate(templateName) {
             deleteButton.onclick = function() {
                 row.remove();  // 버튼 클릭 시 해당 행 삭제
                 updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
+        
+                const tbody = document.getElementById("act-tbody");
+                const totalRows = 11;
+                const currentRows = tbody.querySelectorAll("tr").length;
+                if (currentRows < totalRows) {
+                    for (let i = currentRows; i < totalRows; i++) {
+                        const emptyRow = document.createElement("tr");
+                        emptyRow.innerHTML = `
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        `;
+                        tbody.appendChild(emptyRow);
+                    }
+                }
             };
+
             row.append(deleteButton);
         }
 
@@ -88,45 +104,107 @@ function applyTemplate(templateName) {
 
 }
 
-// 템플릿 항목을 편집하는 함수
+// 저장 템플릿 이름 바꾸기
+// function editTemplate(templateName) {
+//     console.log(`Edit button clicked for: ${templateName}`); // 클릭 이벤트 확인용 로그
+
+//     // 템플릿 항목 찾기
+//     const templateElement = document.querySelector(`.template-item span`);
+//     if (templateElement.textContent === templateName) {
+//         // contenteditable 속성 추가
+//         templateElement.setAttribute("contenteditable", "true");
+//         templateElement.focus(); // 요소에 포커스 맞추기
+
+//         // 스타일 추가 (밑줄 표시)
+//         templateElement.style.borderBottom = "1px dashed #28a745";
+
+//         // 수정 완료를 위한 엔터 키 이벤트 추가
+//         templateElement.addEventListener("keydown", function (event) {
+//             if (event.key === "Enter") {
+//                 event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
+//                 templateElement.setAttribute("contenteditable", "false");
+//                 templateElement.style.borderBottom = "none";
+
+//                 // 수정된 텍스트 반영
+//                 const newTemplateName = templateElement.textContent.trim();
+//                 if (newTemplateName !== "" && newTemplateName !== templateName) {
+//                     // templates 객체의 키도 업데이트
+//                     if (templates[templateName]) {
+//                         templates[newTemplateName] = templates[templateName];
+//                         delete templates[templateName];
+//                     }
+//                 }
+//             }
+//         });
+
+//         // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
+//         templateElement.addEventListener("blur", function () {
+//             templateElement.setAttribute("contenteditable", "false");
+//             templateElement.style.borderBottom = "none";
+//         });
+//     }
+// }
+
+// 저장 템플릿 이름 수정하기
 function editTemplate(templateName) {
-    console.log(`Edit button clicked for: ${templateName}`); // 클릭 이벤트 확인용 로그
+    const templateItems = document.querySelectorAll('.template-item');
 
-    // 템플릿 항목 찾기
-    const templateElement = document.querySelector(`.template-item span`);
-    if (templateElement.textContent === templateName) {
-        // contenteditable 속성 추가
-        templateElement.setAttribute("contenteditable", "true");
-        templateElement.focus(); // 요소에 포커스 맞추기
+    templateItems.forEach(item => {
+        const templateElement = item.querySelector('span');
 
-        // 스타일 추가 (밑줄 표시)
-        templateElement.style.borderBottom = "1px dashed #28a745";
+        // 현재 클릭된 템플릿 항목에 대해서만 동작
+        const originalTemplateName = templateElement.getAttribute('data-original-name') || templateName; // 원래 이름 저장
+        
+        if (templateElement.textContent === templateName || templateElement.textContent === originalTemplateName) {
+            // contenteditable 속성 추가
+            templateElement.setAttribute("contenteditable", "true");
+            templateElement.focus(); // 요소에 포커스 맞추기
+            document.execCommand('selectAll', false, null); // 텍스트 전체 선택
 
-        // 수정 완료를 위한 엔터 키 이벤트 추가
-        templateElement.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
+            // 커서를 텍스트 끝으로 이동
+            const range = document.createRange();
+            const selection = window.getSelection();
+            range.selectNodeContents(templateElement);
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            // 스타일 추가 (밑줄 표시)
+            templateElement.style.borderBottom = "2px solid #F4761B";
+            templateElement.style.outline = "none"; // 포커스 스타일 제거
+
+            // 엔터 키나 바깥 클릭으로 수정 완료 처리
+            const saveChanges = () => {
                 templateElement.setAttribute("contenteditable", "false");
                 templateElement.style.borderBottom = "none";
-
-                // 수정된 텍스트 반영
+                
                 const newTemplateName = templateElement.textContent.trim();
-                if (newTemplateName !== "" && newTemplateName !== templateName) {
-                    // templates 객체의 키도 업데이트
-                    if (templates[templateName]) {
-                        templates[newTemplateName] = templates[templateName];
-                        delete templates[templateName];
+                if (newTemplateName !== "" && newTemplateName !== originalTemplateName) {
+                    // templates 객체의 키 업데이트
+                    if (templates[originalTemplateName]) {
+                        templates[newTemplateName] = templates[originalTemplateName];
+                        delete templates[originalTemplateName];
                     }
-                }
-            }
-        });
+                    templateElement.textContent = newTemplateName;
+                    templateElement.setAttribute('data-original-name', newTemplateName); // 새로운 이름 저장
 
-        // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
-        templateElement.addEventListener("blur", function () {
-            templateElement.setAttribute("contenteditable", "false");
-            templateElement.style.borderBottom = "none";
-        });
-    }
+                    // 이후 다시 applyTemplate 등 기능이 동작하도록 이벤트 다시 바인딩
+                    item.setAttribute('onclick', `applyTemplate('${newTemplateName}')`);
+                }
+            };
+
+            // 수정 완료를 위한 엔터 키 이벤트 추가
+            templateElement.addEventListener('keydown', function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
+                    saveChanges();
+                }
+            });
+
+            // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
+            templateElement.addEventListener('blur', saveChanges);
+        }
+    });
 }
 
 
@@ -269,8 +347,8 @@ function updateTotalActivityHours() {
 
 
 // 모달 열기
-function addRow() {
-    const modal = document.getElementById("actModal");
+function openModal() {
+    const modal = document.getElementById("act-modal");
     modal.classList.remove("hidden");
     renderTable(); // 테이블 렌더링 함수 호출   
     updatePagination();  // 페이지 번호 업데이트 함수 호출
@@ -278,13 +356,13 @@ function addRow() {
 
 // 모달 닫기
 function closeModal() {
-    const modal = document.getElementById("actModal");
+    const modal = document.getElementById("act-modal");
     modal.classList.add("hidden");
 }
 
 // 모달 외부에서 닫기
 window.onclick = function(event) {
-    const modal = document.getElementById("actModal");
+    const modal = document.getElementById("act-modal");
     if (event.target === modal) {
         closeModal();
     }
@@ -341,7 +419,11 @@ function saveActivity() {
     hoursCell.textContent = hours;
 
     const intensityCell = document.createElement('td');
-    intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
+
+    let intensityValue = (selectedIntensity * hours).toFixed(2);
+    intensityValue = parseFloat(intensityValue);
+    intensityCell.textContent = intensityValue;
+    // intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
 
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button');
@@ -351,8 +433,27 @@ function saveActivity() {
     deleteButton.style.top = '50%';
     deleteButton.style.transform = 'translateY(-50%)';
     deleteButton.onclick = function() {
+        // row.children[0].textContent = '';
+        // row.children[1].textContent = '';
+        // row.children[2].textContent = '';
+        
         newRow.remove();  // 버튼 클릭 시 해당 행 삭제
         updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
+
+        const tbody = document.getElementById("act-tbody");
+        const totalRows = 11;
+        const currentRows = tbody.querySelectorAll("tr").length;
+        if (currentRows < totalRows) {
+            for (let i = currentRows; i < totalRows; i++) {
+                const emptyRow = document.createElement("tr");
+                emptyRow.innerHTML = `
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                `;
+                tbody.appendChild(emptyRow);
+            }
+        }
     };
 
 
@@ -468,7 +569,7 @@ function renderTable() {
 
 // 페이지 번호 업데이트 함수
 function updatePagination() {
-    const pageNumbersContainer = document.getElementById("modalPageNumber");
+    const pageNumbersContainer = document.getElementById("page-numbers");
     pageNumbersContainer.innerHTML = ""; // 페이지 번호 초기화
 
     const totalPages = Math.ceil(actData.length / rowsPerPage); // 총 페이지 수 계산
