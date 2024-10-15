@@ -303,7 +303,7 @@ main > section {
     height: 40px;
 }
 
-.load-button {
+/* .load-button {
     width: fit-content;
     height: 32px;
     display: flex;
@@ -322,7 +322,7 @@ main > section {
 .load-button:hover {
     color: white;
     background: var(--main-color);
-}
+} */
 .save-button {
     width: fit-content;
     height: 32px;
@@ -338,6 +338,7 @@ main > section {
     border-radius: 5px;
     margin-left: auto;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .save-button:hover {

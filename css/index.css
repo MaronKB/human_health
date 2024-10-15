@@ -122,6 +122,7 @@ progress::-webkit-progress-value {
     border: 0;
     border-radius: 5px;
     margin-left: auto;
+    cursor: pointer;
 }
 .button:hover {
     color: white;
