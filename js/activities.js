@@ -104,7 +104,7 @@ function applyTemplate(templateName) {
 
 }
 
-// // 템플릿 항목을 편집하는 함수
+// 저장 템플릿 이름 바꾸기
 // function editTemplate(templateName) {
 //     console.log(`Edit button clicked for: ${templateName}`); // 클릭 이벤트 확인용 로그
 
@@ -145,52 +145,64 @@ function applyTemplate(templateName) {
 //     }
 // }
 
-// 템플릿 항목을 편집하는 함수
+// 저장 템플릿 이름 수정하기
 function editTemplate(templateName) {
-    const templateElements = document.querySelectorAll('.template-item span'); // 모든 템플릿 항목 선택
+    const templateItems = document.querySelectorAll('.template-item');
 
-    templateElements.forEach(templateElement => {
-        if (templateElement.textContent === templateName) {
-            // 다른 항목 편집 중이면 해당 항목 종료
-            templateElements.forEach(el => {
-                el.setAttribute("contenteditable", "false");
-                el.style.borderBottom = "none";
-            });
+    templateItems.forEach(item => {
+        const templateElement = item.querySelector('span');
 
-            // 선택된 템플릿 항목 편집 가능하도록 설정
+        // 현재 클릭된 템플릿 항목에 대해서만 동작
+        const originalTemplateName = templateElement.getAttribute('data-original-name') || templateName; // 원래 이름 저장
+        
+        if (templateElement.textContent === templateName || templateElement.textContent === originalTemplateName) {
+            // contenteditable 속성 추가
             templateElement.setAttribute("contenteditable", "true");
-            templateElement.focus(); // 포커스를 맞춤
-            document.execCommand('selectAll', false, null);  // 전체 선택
-            document.execCommand('forwardDelete', false, null); // 텍스트 끝으로 이동
+            templateElement.focus(); // 요소에 포커스 맞추기
+            document.execCommand('selectAll', false, null); // 텍스트 전체 선택
+
+            // 커서를 텍스트 끝으로 이동
+            const range = document.createRange();
+            const selection = window.getSelection();
+            range.selectNodeContents(templateElement);
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
 
             // 스타일 추가 (밑줄 표시)
-            templateElement.style.borderBottom = "2px solid #28a745"; // 밑줄 추가
-            templateElement.style.outline = "none"; // 초점이 있을 때 박스 안 생기게 함
+            templateElement.style.borderBottom = "2px solid #F4761B";
+            templateElement.style.outline = "none"; // 포커스 스타일 제거
+
+            // 엔터 키나 바깥 클릭으로 수정 완료 처리
+            const saveChanges = () => {
+                templateElement.setAttribute("contenteditable", "false");
+                templateElement.style.borderBottom = "none";
+                
+                const newTemplateName = templateElement.textContent.trim();
+                if (newTemplateName !== "" && newTemplateName !== originalTemplateName) {
+                    // templates 객체의 키 업데이트
+                    if (templates[originalTemplateName]) {
+                        templates[newTemplateName] = templates[originalTemplateName];
+                        delete templates[originalTemplateName];
+                    }
+                    templateElement.textContent = newTemplateName;
+                    templateElement.setAttribute('data-original-name', newTemplateName); // 새로운 이름 저장
+
+                    // 이후 다시 applyTemplate 등 기능이 동작하도록 이벤트 다시 바인딩
+                    item.setAttribute('onclick', `applyTemplate('${newTemplateName}')`);
+                }
+            };
 
             // 수정 완료를 위한 엔터 키 이벤트 추가
-            templateElement.addEventListener("keydown", function (event) {
+            templateElement.addEventListener('keydown', function (event) {
                 if (event.key === "Enter") {
                     event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
-                    templateElement.setAttribute("contenteditable", "false");
-                    templateElement.style.borderBottom = "none";
-
-                    // 수정된 텍스트 반영
-                    const newTemplateName = templateElement.textContent.trim();
-                    if (newTemplateName !== "" && newTemplateName !== templateName) {
-                        // templates 객체의 키도 업데이트
-                        if (templates[templateName]) {
-                            templates[newTemplateName] = templates[templateName];
-                            delete templates[templateName];
-                        }
-                    }
+                    saveChanges();
                 }
             });
 
             // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
-            templateElement.addEventListener("blur", function () {
-                templateElement.setAttribute("contenteditable", "false");
-                templateElement.style.borderBottom = "none";
-            });
+            templateElement.addEventListener('blur', saveChanges);
         }
     });
 }
