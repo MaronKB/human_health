@@ -1,10 +1,13 @@
+const savedTemplates = {}; // 날짜별로 저장할 객체
+
 const getFoodData = () => {
-    fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=f1%2BQbUgod6QOKV6u1la%2FM%2FjdVet5FcocsbwQZqd9%2FvsXMpdSf70BOzdBJudiUb%2Bg5%2By96ISpkAlZZm%2FlWRiktg%3D%3D&type=json").then((response) => {
-        return response.json();
-    }).then(data => {
-        console.log(data);
-    })
-}
+    fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=f1%2BQbUgod6QOKV6u1la%2FM%2FjdVet5FcocsbwQZqd9%2FvsXMpdSf70BOzdBJudiUb%2Bg5%2By96ISpkAlZZm%2FlWRiktg%3D%3D&type=json")
+        .then((response) => response.json())
+        .then(data => {
+            console.log(data);
+        });
+};
+
 function openModal() {
     const modal = document.getElementById("diet-modal-container");
     if (!modal) return;
@@ -21,6 +24,70 @@ let totalCarbs = 0; // 총 탄수화물 초기화
 let totalProtein = 0; // 총 단백질 초기화
 let totalFat = 0; // 총 지방 초기화
 let totalCalories = 0; // 총 칼로리 초기화
+
+function saveTemplate() {
+    const currentDateInput = document.getElementById('current-date');
+    const currentDate = currentDateInput.value; // 선택된 날짜 가져오기
+
+    if (!currentDate) {
+        alert('날짜를 선택하세요!');
+        return;
+    }
+
+    savedTemplates[currentDate] = {
+        totalCarbs,
+        totalProtein,
+        totalFat,
+        totalCalories,
+        dietEntries: []
+    };
+
+    const dietTableItems = document.querySelectorAll('#diet-table .table-item');
+    dietTableItems.forEach(item => {
+        const dietEntry = {
+            name: item.children[0].innerText,
+            mealType: item.children[1].innerText,
+            carbs: parseFloat(item.children[2].innerText),
+            protein: parseFloat(item.children[3].innerText),
+            fat: parseFloat(item.children[4].innerText),
+        };
+        savedTemplates[currentDate].dietEntries.push(dietEntry);
+    });
+
+    alert(`템플릿이 ${currentDate}에 저장되었습니다!`);
+}
+
+function loadTemplate() {
+    const currentDateInput = document.getElementById('current-date');
+    const currentDate = currentDateInput.value; // 선택된 날짜 가져오기
+
+    if (!currentDate) {
+        alert('날짜를 선택하세요!');
+        return;
+    }
+
+    const template = savedTemplates[currentDate];
+    if (!template) {
+        alert('저장된 템플릿이 없습니다!');
+        return;
+    }
+
+    totalCarbs = template.totalCarbs;
+    totalProtein = template.totalProtein;
+    totalFat = template.totalFat;
+    totalCalories = template.totalCalories;
+
+    // 테이블 초기화
+    const dietTable = document.getElementById('diet-table');
+    dietTable.innerHTML = '';
+
+    template.dietEntries.forEach(entry => {
+        addDietToTable(entry);
+    });
+
+    updateTotals();
+    alert(`템플릿이 ${currentDate}에서 불러와졌습니다!`);
+}
 
 function saveDiet() {
     const dietName = document.getElementById('selectedDiet').textContent;
@@ -92,25 +159,25 @@ function addDietToTable(dietData) {
     table.appendChild(newRow);
     updateTotals(); // 새 항목 추가 후 합계 업데이트
 }
-    function deleteDiet(button) {
-        const row = button.parentElement; // 삭제 버튼의 부모 요소 (행) 찾기
-        const carbs = parseFloat(row.children[2].innerText); // 탄수화물 값 가져오기
-        const protein = parseFloat(row.children[3].innerText); // 단백질 값 가져오기
-        const fat = parseFloat(row.children[4].innerText); // 지방 값 가져오기
-    
-        // 총합에서 삭제할 값 차감
-        totalCarbs -= carbs;
-        totalProtein -= protein;
-        totalFat -= fat;
-    
-        // 테이블에서 행 삭제
-        row.remove();
-    
-        // 합계 업데이트
-        updateTotals();
-        updateGraphs();
-    }
-    
+
+function deleteDiet(button) {
+    const row = button.parentElement; // 삭제 버튼의 부모 요소 (행) 찾기
+    const carbs = parseFloat(row.children[2].innerText); // 탄수화물 값 가져오기
+    const protein = parseFloat(row.children[3].innerText); // 단백질 값 가져오기
+    const fat = parseFloat(row.children[4].innerText); // 지방 값 가져오기
+
+    // 총합에서 삭제할 값 차감
+    totalCarbs -= carbs;
+    totalProtein -= protein;
+    totalFat -= fat;
+
+    // 테이블에서 행 삭제
+    row.remove();
+
+    // 합계 업데이트
+    updateTotals();
+    updateGraphs();
+}
 
 function updateTotals() {
     const totalRow = document.querySelector('#diet-total .table-item');
@@ -119,8 +186,9 @@ function updateTotals() {
     totalRow.children[4].innerText = `${totalFat.toFixed(1)}g`; // 총 지방 합계 업데이트
 
     updateCalories(); // 총 칼로리 업데이트 함수 호출
-    updateGraphs(); //그래프 업데이트 함수 호출
+    updateGraphs(); // 그래프 업데이트 함수 호출
 }
+
 function updateGraphs() {
     const carbsCurrent = document.getElementById('carbs-current');
     const proteinCurrent = document.getElementById('protein-current');
@@ -166,7 +234,8 @@ window.onclick = function(event) {
         closeModal();
     }
 }
-    // 페이지네이션 구현
+
+// 페이지네이션 구현
 const foodData = [
     { name: "밥", amount: 100, carb: 28, protein: 2, fat: 0.3 },
     { name: "닭가슴살", amount: 100, carb: 0, protein: 24, fat: 1.5 },
@@ -217,8 +286,9 @@ const graphAnimation = () => {
     const graphs = document.querySelectorAll('.graph-progress');
     graphs.forEach(graph => {
         graph.classList.remove("ready");
-    })
-}
+    });
+};
+
 // 페이지 로드 시 테이블과 페이지네이션 렌더링
 document.addEventListener("DOMContentLoaded", () => {
     renderTable();
@@ -227,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentDateInput = document.getElementById('current-date');
     const today = new Date();
-    
+
     // 연도, 월, 일 가져오기
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
@@ -237,8 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentDateInput.value = `${year}-${month}-${day}`;
 });
 
-//=======================================================
-    //검색창 키워드 필터링 구현
+// 검색창 키워드 필터링 구현
 function filterTable() {
     const searchTerm = document.getElementById('search-food').value.toLowerCase();
     const filteredData = foodData.filter(item => item.name.toLowerCase().includes(searchTerm));
@@ -268,8 +337,8 @@ function renderTable(data = foodData) {
         foodTbody.innerHTML += row; // 행 추가
     });
 }
-//=====================================================================
-    // 사용자가 직접 입력하여 모달 테이블에 데이터 추가.
+
+// 사용자가 직접 입력하여 모달 테이블에 데이터 추가.
 function addFood() {
     const foodName = document.getElementById('newFoodName').value.trim();
     const amount = parseFloat(document.getElementById('newFoodAmount').value);
@@ -300,4 +369,3 @@ function addFood() {
     document.getElementById('newFoodProtein').value = '';
     document.getElementById('newFoodFat').value = '';
 }
-
