@@ -178,12 +178,16 @@ function saveTemplate() {
         return;
     }
 
-    // 활동 리스트 데이터 수집
+    // 활동 리스트 데이터 수집(삭제버튼 빼고 강도만)
     const activities = rows.map(row => {
+        const intensityCell = row.children[2];
+        const intensityValue = intensityCell.innerText.trim();
+
         return {
             activity: row.children[0].textContent,
             duration: row.children[1].textContent,
-            intensity: row.children[2].textContent,
+            // intensity: row.children[2].textContent,
+            intensity: intensityValue,
         };
     });
 
