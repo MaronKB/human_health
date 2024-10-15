@@ -1,4 +1,5 @@
 let selectedIntensity = 0; // 전역 변수로 강도 저장
+
 const bmr = JSON.parse(localStorage.getItem("user")).bmr;
 
 // 템플릿 데이터 정의
@@ -179,6 +180,7 @@ function editTemplate(templateName) {
                 templateElement.setAttribute("contenteditable", "false");
                 templateElement.style.borderBottom = "none";
                 
+
                 const newTemplateName = templateElement.textContent.trim();
                 if (newTemplateName !== "" && newTemplateName !== originalTemplateName) {
                     // templates 객체의 키 업데이트
@@ -193,6 +195,7 @@ function editTemplate(templateName) {
                     item.setAttribute('onclick', `applyTemplate('${newTemplateName}')`);
                 }
             };
+
 
             // 수정 완료를 위한 엔터 키 이벤트 추가
             templateElement.addEventListener('keydown', function (event) {
