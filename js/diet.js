@@ -1,119 +1,139 @@
-const savedTemplates = {}; // 날짜별로 저장할 객체
-
+// 음식 데이터 가져오기
 const getFoodData = () => {
-    fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=f1%2BQbUgod6QOKV6u1la%2FM%2FjdVet5FcocsbwQZqd9%2FvsXMpdSf70BOzdBJudiUb%2Bg5%2By96ISpkAlZZm%2FlWRiktg%3D%3D&type=json")
-        .then((response) => response.json())
+    fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=...")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-            console.log(data);
+            console.log(data); // 데이터 출력
+        })
+        .catch(error => {
+            alert('데이터를 가져오는 데 실패했습니다: ' + error.message);
         });
-};
+}
 
+// 모달 열기
 function openModal() {
     const modal = document.getElementById("diet-modal-container");
     if (!modal) return;
     modal.classList.remove("hidden");
 }
 
+// 모달 닫기
 function closeModal() {
     const modal = document.getElementById("diet-modal-container");
     if (!modal) return;
     modal.classList.add("hidden");
 }
 
-let totalCarbs = 0; // 총 탄수화물 초기화
-let totalProtein = 0; // 총 단백질 초기화
-let totalFat = 0; // 총 지방 초기화
-let totalCalories = 0; // 총 칼로리 초기화
+// 영양소 초기화
+let totalCarbs = 0; // 총 탄수화물
+let totalProtein = 0; // 총 단백질
+let totalFat = 0; // 총 지방
+let totalCalories = 0; // 총 칼로리
 
-function saveTemplate() {
+// 현재 날짜 가져오기
+function getCurrentDate() {
     const currentDateInput = document.getElementById('current-date');
-    const currentDate = currentDateInput.value; // 선택된 날짜 가져오기
+    return currentDateInput.value; // YYYY-MM-DD 형식의 날짜 반환
+}
 
-    if (!currentDate) {
-        alert('날짜를 선택하세요!');
-        return;
-    }
+// 로컬 스토리지에 데이터 저장
+function saveToLocalStorage() {
+    const currentDate = getCurrentDate(); // 현재 날짜 가져오기
+    const dietEntries = []; // 식단 데이터를 저장할 배열
 
-    savedTemplates[currentDate] = {
-        totalCarbs,
-        totalProtein,
-        totalFat,
-        totalCalories,
-        dietEntries: []
-    };
-
-    const dietTableItems = document.querySelectorAll('#diet-table .table-item');
-    dietTableItems.forEach(item => {
-        const dietEntry = {
+    const tableItems = document.querySelectorAll('#diet-table .table-item');
+    tableItems.forEach(item => {
+        const dietData = {
             name: item.children[0].innerText,
             mealType: item.children[1].innerText,
             carbs: parseFloat(item.children[2].innerText),
             protein: parseFloat(item.children[3].innerText),
-            fat: parseFloat(item.children[4].innerText),
+            fat: parseFloat(item.children[4].innerText)
         };
-        savedTemplates[currentDate].dietEntries.push(dietEntry);
+        dietEntries.push(dietData); // 배열에 추가
     });
 
-    alert(`템플릿이 ${currentDate}에 저장되었습니다!`);
+    // 총 영양소 데이터 저장
+    const totalData = {
+        totalCalories,
+        totalCarbs,
+        totalProtein,
+        totalFat
+    };
+
+    // 날짜를 키로 하여 로컬 스토리지에 저장
+    localStorage.setItem(`dietEntries_${currentDate}`, JSON.stringify(dietEntries)); 
+    localStorage.setItem(`totalData_${currentDate}`, JSON.stringify(totalData)); 
 }
 
-function loadTemplate() {
-    const currentDateInput = document.getElementById('current-date');
-    const currentDate = currentDateInput.value; // 선택된 날짜 가져오기
+// 로컬 스토리지에서 데이터 불러오기
+function loadFromLocalStorage() {
+    const currentDate = getCurrentDate(); // 현재 날짜 가져오기
+    const dietEntries = JSON.parse(localStorage.getItem(`dietEntries_${currentDate}`)) || [];
+    const totalData = JSON.parse(localStorage.getItem(`totalData_${currentDate}`)) || {};
 
-    if (!currentDate) {
-        alert('날짜를 선택하세요!');
-        return;
-    }
-
-    const template = savedTemplates[currentDate];
-    if (!template) {
-        alert('저장된 템플릿이 없습니다!');
-        return;
-    }
-
-    totalCarbs = template.totalCarbs;
-    totalProtein = template.totalProtein;
-    totalFat = template.totalFat;
-    totalCalories = template.totalCalories;
-
-    // 테이블 초기화
-    const dietTable = document.getElementById('diet-table');
-    dietTable.innerHTML = '';
-
-    template.dietEntries.forEach(entry => {
+    // 식단 데이터 테이블에 추가
+    dietEntries.forEach(entry => {
         addDietToTable(entry);
     });
 
-    updateTotals();
-    alert(`템플릿이 ${currentDate}에서 불러와졌습니다!`);
+    // 총 영양소 업데이트
+    totalCalories = totalData.totalCalories || 0;
+    totalCarbs = totalData.totalCarbs || 0;
+    totalProtein = totalData.totalProtein || 0;
+    totalFat = totalData.totalFat || 0;
+
+    updateTotals(); // 합계 업데이트
 }
 
-function saveDiet() {
-    const dietName = document.getElementById('selectedDiet').textContent;
-    const mealType = document.getElementById('meal-type').value;
-    const quantity = document.getElementById('dietQuantity').value;
+// 날짜 변경 시 데이터 로드
+document.getElementById('current-date').addEventListener('change', () => {
+    clearDietTable(); // 테이블 초기화
+    loadFromLocalStorage(); // 선택한 날짜의 데이터 로드
+});
 
+// 식단 테이블 초기화 함수
+function clearDietTable() {
+    const table = document.getElementById('diet-table');
+    table.innerHTML = ''; // 테이블 내용 초기화
+    totalCalories = 0; 
+    totalCarbs = 0;
+    totalProtein = 0;
+    totalFat = 0;
+    updateTotals(); // 합계 초기화
+}
+
+// 식단 저장 함수
+function saveDiet() {
+    const dietName = document.getElementById('selectedDiet').textContent; // 선택한 음식 이름
+    const mealType = document.getElementById('meal-type').value; // 식사 구분
+    const quantity = document.getElementById('dietQuantity').value; // 수량
+
+    // 입력 필드 확인
     if (dietName === '선택하세요' || mealType === '' || quantity === '') {
         alert('모든 항목을 입력하세요!');
         return;
     }
-    updateGraphs(); // 그래프 업데이트 함수
 
     // 선택한 음식의 영양 정보 가져오기
     const foodItem = foodData.find(item => item.name === dietName);
     const carbs = ((foodItem.carb * quantity) / foodItem.amount).toFixed(2);
     const protein = ((foodItem.protein * quantity) / foodItem.amount).toFixed(2);
     const fat = ((foodItem.fat * quantity) / foodItem.amount).toFixed(2);
-
+    
     // 칼로리 계산
     const calories = (carbs * 4) + (protein * 4) + (fat * 9);
-    totalCalories += parseFloat(calories); // 총 칼로리 업데이트
-
-    // 합계 업데이트
-    totalCarbs += parseFloat(carbs); // 총 탄수화물 업데이트
-    totalProtein += parseFloat(protein); // 총 단백질 업데이트
-    totalFat += parseFloat(fat); // 총 지방 업데이트
+    
+    // 총 영양소 업데이트
+    totalCalories += parseFloat(calories);
+    totalCarbs += parseFloat(carbs);
+    totalProtein += parseFloat(protein);
+    totalFat += parseFloat(fat);
 
     // 음식 데이터를 객체로 저장
     const dietData = {
@@ -127,7 +147,10 @@ function saveDiet() {
 
     // 테이블에 새 항목 추가
     addDietToTable(dietData);
-    updateTotals(); // 합계 업데이트 함수 호출
+    updateTotals(); // 합계 업데이트 호출
+
+    // 로컬 스토리지에 저장
+    saveToLocalStorage();
 
     // 입력 필드 초기화
     document.getElementById('meal-type').value = '';
@@ -135,10 +158,10 @@ function saveDiet() {
     closeModal(); // 모달 닫기
 }
 
-// 총 칼로리를 업데이트하는 함수 추가
+// 총 칼로리를 업데이트하는 함수
 function updateCalories() {
     const totalCaloriesElement = document.querySelector('.diet-kcal span');
-    totalCaloriesElement.innerText = `${totalCalories.toFixed(1)}`; // 소수점 한 자리로 표시
+    totalCaloriesElement.innerText = `${Math.max(0, totalCalories).toFixed(1)}`; // 소수점 한 자리로 표시
 }
 
 // 음식을 테이블에 추가하는 함수
@@ -160,6 +183,7 @@ function addDietToTable(dietData) {
     updateTotals(); // 새 항목 추가 후 합계 업데이트
 }
 
+// 식단 삭제 함수
 function deleteDiet(button) {
     const row = button.parentElement; // 삭제 버튼의 부모 요소 (행) 찾기
     const carbs = parseFloat(row.children[2].innerText); // 탄수화물 값 가져오기
@@ -170,25 +194,30 @@ function deleteDiet(button) {
     totalCarbs -= carbs;
     totalProtein -= protein;
     totalFat -= fat;
+    totalCalories -= (carbs * 4) + (protein * 4) + (fat * 9); // 칼로리 차감
 
     // 테이블에서 행 삭제
     row.remove();
 
     // 합계 업데이트
     updateTotals();
-    updateGraphs();
+
+    // 로컬 스토리지에 저장
+    saveToLocalStorage();
 }
 
+// 합계 업데이트 함수
 function updateTotals() {
     const totalRow = document.querySelector('#diet-total .table-item');
-    totalRow.children[2].innerText = `${totalCarbs.toFixed(1)}g`; // 총 탄수화물 합계 업데이트
-    totalRow.children[3].innerText = `${totalProtein.toFixed(1)}g`; // 총 단백질 합계 업데이트
-    totalRow.children[4].innerText = `${totalFat.toFixed(1)}g`; // 총 지방 합계 업데이트
+    totalRow.children[2].innerText = `${Math.max(0, totalCarbs).toFixed(1)}g`; // 총 탄수화물 합계 업데이트
+    totalRow.children[3].innerText = `${Math.max(0, totalProtein).toFixed(1)}g`; // 총 단백질 합계 업데이트
+    totalRow.children[4].innerText = `${Math.max(0, totalFat).toFixed(1)}g`; // 총 지방 합계 업데이트
 
-    updateCalories(); // 총 칼로리 업데이트 함수 호출
-    updateGraphs(); // 그래프 업데이트 함수 호출
+    updateCalories(); // 총 칼로리 업데이트 호출
+    updateGraphs(); // 그래프 업데이트 호출
 }
 
+// 그래프 업데이트 함수
 function updateGraphs() {
     const carbsCurrent = document.getElementById('carbs-current');
     const proteinCurrent = document.getElementById('protein-current');
@@ -203,15 +232,16 @@ function updateGraphs() {
     proteinCurrent.value = Math.min(totalProtein, proteinTarget); // 단백질 현재값
     fatCurrent.value = Math.min(totalFat, fatTarget); // 지방 현재값
 
-    // 그래프의 최대값을 업데이트
-    carbsCurrent.max = carbsTarget;
-    proteinCurrent.max = proteinTarget;
-    fatCurrent.max = fatTarget;
+    // 그래프 표시
+    carbsCurrent.setAttribute('max', carbsTarget);
+    proteinCurrent.setAttribute('max', proteinTarget);
+    fatCurrent.setAttribute('max', fatTarget);
 }
 
+// 식단 선택 함수
 function selectDiet(name) {
     const foodItem = foodData.find(item => item.name === name);
-    document.getElementById('selectedDiet').innerText = name;
+    document.getElementById('selectedDiet').innerText = name; // 선택한 음식 이름 표시
     document.getElementById('dietQuantity').value = 100; // 기본량 설정
 
     // 영양 성분 업데이트
@@ -227,7 +257,7 @@ function selectDiet(name) {
     fat.innerHTML = foodItem.fat;
 }
 
-// 모달 외부에서 닫기
+// 모달 외부 클릭 시 닫기
 window.onclick = function(event) {
     const modal = document.getElementById("diet-modal-container");
     if (event.target === modal) {
@@ -249,9 +279,10 @@ const foodData = [
     { name: "브로콜리", amount: 100, carb: 7, protein: 2.8, fat: 0.4 },
 ];
 
-let currentPage = 1;
-const rowsPerPage = 5;
+let currentPage = 1; // 현재 페이지
+const rowsPerPage = 5; // 페이지당 행 수
 
+// 페이지 변경 함수
 function changePage(page) {
     if (page === 'prev') {
         currentPage = Math.max(1, currentPage - 1);
@@ -261,10 +292,11 @@ function changePage(page) {
         currentPage = page;
     }
 
-    renderTable();
-    updatePagination();
+    renderTable(); // 테이블 렌더링
+    updatePagination(); // 페이지네이션 업데이트
 }
 
+// 페이지네이션 업데이트 함수
 function updatePagination() {
     const pageNumbersContainer = document.getElementById("page-numbers");
     pageNumbersContainer.innerHTML = ""; // 페이지 번호 초기화
@@ -273,7 +305,7 @@ function updatePagination() {
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement("button");
         button.className = "page-number";
-        button.textContent = i;
+        button.textContent = i; // 페이지 번호 표시
         button.onclick = () => changePage(i);
         if (i === currentPage) {
             button.disabled = true; // 현재 페이지 버튼 비활성화
@@ -282,32 +314,33 @@ function updatePagination() {
     }
 }
 
+// 그래프 애니메이션 초기화
 const graphAnimation = () => {
     const graphs = document.querySelectorAll('.graph-progress');
     graphs.forEach(graph => {
         graph.classList.remove("ready");
-    });
-};
+    })
+}
 
-// 페이지 로드 시 테이블과 페이지네이션 렌더링
+/// 페이지 로드 시 테이블과 페이지네이션 렌더링
 document.addEventListener("DOMContentLoaded", () => {
-    renderTable();
-    updatePagination();
-    setTimeout(graphAnimation, 300);
-
     const currentDateInput = document.getElementById('current-date');
     const today = new Date();
-
-    // 연도, 월, 일 가져오기
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
     const day = String(today.getDate()).padStart(2, '0');
 
-    // 현재 날짜를 "YYYY-MM-DD" 형식으로 설정
-    currentDateInput.value = `${year}-${month}-${day}`;
+    currentDateInput.value = `${year}-${month}-${day}`; // 현재 날짜 설정
+
+    // 로컬 스토리지에서 데이터 로드
+    loadFromLocalStorage(); // 이 부분 추가
+    renderTable(); // 테이블 렌더링
+    updatePagination(); // 페이지네이션 업데이트
+    setTimeout(graphAnimation, 300); // 그래프 애니메이션
 });
 
-// 검색창 키워드 필터링 구현
+
+// 검색 기능 구현
 function filterTable() {
     const searchTerm = document.getElementById('search-food').value.toLowerCase();
     const filteredData = foodData.filter(item => item.name.toLowerCase().includes(searchTerm));
@@ -316,6 +349,7 @@ function filterTable() {
     updatePagination(filteredData);
 }
 
+// 테이블 렌더링 함수
 function renderTable(data = foodData) {
     const foodTbody = document.getElementById("foodTbody");
     foodTbody.innerHTML = ""; // 테이블 내용 초기화
@@ -338,7 +372,7 @@ function renderTable(data = foodData) {
     });
 }
 
-// 사용자가 직접 입력하여 모달 테이블에 데이터 추가.
+// 새로운 음식 추가 함수
 function addFood() {
     const foodName = document.getElementById('newFoodName').value.trim();
     const amount = parseFloat(document.getElementById('newFoodAmount').value);
@@ -346,11 +380,9 @@ function addFood() {
     const protein = parseFloat(document.getElementById('newFoodProtein').value);
     const fat = parseFloat(document.getElementById('newFoodFat').value);
 
-    updateGraphs(); // 합계 업데이트 후 그래프도 업데이트
-    
     // 유효성 검사
-    if (!foodName || isNaN(amount) || isNaN(carb) || isNaN(protein) || isNaN(fat)) {
-        alert('모든 필드를 올바르게 입력하세요.');
+    if (!foodName || isNaN(amount) || isNaN(carb) || isNaN(protein) || isNaN(fat) || amount <= 0 || carb < 0 || protein < 0 || fat < 0) {
+        alert('모든 필드를 올바르게 입력하세요. 수량은 1 이상이어야 하며, 영양 성분은 음수가 될 수 없습니다.');
         return;
     }
 

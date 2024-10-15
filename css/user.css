@@ -30,10 +30,6 @@
     background: #eee;
     padding: 5px 10px;
 }
-.user-info {
-    display: flex;
-    gap: 10px;
-}
 .user-main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -53,7 +49,7 @@
     text-align: center;
 }
 #user-profile {
-    grid-row: 2 / 5;
+    grid-row: span 4;
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -76,16 +72,36 @@
     padding: 0 10px;
     border-radius: 5px;
 }
-.user-input > h4 {
+.user-input.column-2 {
+    grid-column: span 2;
+}
+.user-input > div {
+    flex: 1;
+    max-width: calc(50% - 15px);
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+.user-input > i {
+    flex: none;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.user-input h4 {
     flex: none;
     text-align: right;
     white-space: nowrap;
 }
-.user-input > h4 > i {
+.user-input h4 > i {
     width: 14px;
     margin: 0 3px 0 0;
 }
-.user-input > input {
+.user-input input {
     flex: 1;
     width: 40px;
     height: 20px;
@@ -96,15 +112,17 @@
     border: none;
     border-bottom: 2px solid #aaa;
 }
-.user-input > label {
+.user-input label {
+    flex: none;
+    width: 10px;
     font-size: 10px;
     align-self: flex-end;
     margin: 0 0 10px 0;
 }
-.user-input > input[type="radio"] {
+.user-input input[type="radio"] {
     display: none;
 }
-.user-input > input[type="radio"] + label {
+.user-input input[type="radio"] + label {
     position: relative;
     width: 20px;
     height: 20px;
@@ -118,11 +136,11 @@
     margin: 0;
     opacity: 0.5;
 }
-.user-input > input[type="radio"]:checked + label {
+.user-input input[type="radio"]:checked + label {
     background: white;
     opacity: 1;
 }
-.user-input > input[type="radio"]:checked + label::before {
+.user-input input[type="radio"]:checked + label::before {
     position: absolute;
     left: 0;
     width: 20px;
@@ -133,7 +151,7 @@
     text-align: center;
     color: var(--main-color);
 }
-.user-input > input[type="number"] {
+.user-input input[type="number"] {
     background: transparent;
 }
 .save-button {
@@ -155,34 +173,44 @@
     color: white;
     background: var(--main-color);
 }
-.user-calories {
-}
-.bmr {
+#user-calc {
     display: flex;
-    align-items: flex-end;
-    gap: 5px;
+    flex-direction: column;
+    gap: 10px;
 }
-#kal {
+#user-calories {
+    position: relative;
+    flex: 1;
+}
+#bmr {
     flex: 1;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: var(--gothic-bold);
-    text-align: center;
     color: var(--main-color);
     background: #eee;
     padding: 10px;
     border: none;
     border-radius: 10px;
 }
-#kal > .bmr-main {
+.bmr-main {
+    height: 48px;
+    display: flex;
     font-size: 48px;
 }
-#kal > .bmr-sub {
+.bmr-sub {
+    top: 10px;
+    position: relative;
     font-size: 24px;
 }
-.bmr > h5 {
-    flex: none;
+#user-calories > h5 {
+    position: absolute;
+    bottom: 25px;
+    right: 35px;
     width: 50px;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
 }
 
@@ -239,6 +267,9 @@
     font-size: 10px;
     text-align: center;
 }
+.graph-texts > span.span-2 {
+    flex: 2;
+}
 .graph-body > progress {
     width: 100%;
     border-radius: 4px;
@@ -249,14 +280,6 @@
 }
 .graph-progress::-webkit-progress-bar {
     background: #eeeeee;
-}
-.graph-progress::-webkit-progress-value {
-    transform: scaleX(1);
-    transform-origin: left;
-    transition: transform 1s ease;
-}
-.graph-progress.ready::-webkit-progress-value {
-    transform: scaleX(0);
 }
 .graph-target {
     height: 20px;
@@ -293,13 +316,20 @@
     justify-content: space-between;
 }
 .graph-line > span {
-    width: 1px;
+    flex: 1;
     height: 100%;
-    border: 1px dashed white;
+    border-width: 0 1px;
+    border-style: dashed;
+    border-color: white;
 }
-.graph-line > span:first-child,
+.graph-line > span.span-2 {
+    flex: 2;
+}
+.graph-line > span:first-child {
+    border-left: none;
+}
 .graph-line > span:last-child {
-    opacity: 0;
+    border-right: none;
 }
 .graph-subheader {
     width: 30px;
@@ -327,69 +357,9 @@
     height: 40px;
 }
 
-
-.user-side {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: white;
-    padding: 15px 20px;
-    border: 1px solid #eeeeee;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
-}
-.side-input {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 5px;
-    font-size: 14px;
-    background: #eee;
-    padding: 10px 15px;
-    border-radius: 10px;
-}
-.side-input > h4 {
-    flex: none;
-    font-size: 14px;
-    white-space: nowrap;
-}
-.side-input > input {
-    flex: none;
-    width: 40px;
-    height: 20px;
-    font-family: var(--gothic-bold);
-    text-align: right;
-    border: none;
-    border-bottom: 1px solid gray;
-}
-.side-input > input[type="date"] {
-    width: 110px;
-    background: transparent;
-}
-.side-input > input[type="number"] {
-    background: transparent;
-}
-.side-input > label {
-    font-size: 10px;
-    align-self: flex-end;
-}
-
 @media (max-width: 1050px) {
-    #user-inputs {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    #user-inputs-title {
-        grid-column: 1/4;
-    }
-    #user-profile {
-        grid-row: 2/6;
-    }
     .user-info {
         flex-direction: column;
-    }
-    .user-side {
-        margin: 0;
     }
 }
 @media (max-width: 990px) {
@@ -398,9 +368,6 @@
     }
     #user-inputs-title {
         grid-column: 1/3;
-    }
-    #user-profile {
-        grid-row: 2/5;
     }
 }
 @media (max-width: 790px) {
@@ -416,10 +383,10 @@
         grid-column: 1/4;
     }
     #user-profile {
-        grid-row: 2/6;
+        grid-row: span 5;
     }
 }
-@media (max-width: 500px) {
+@media (max-width: 580px) {
     #user-inputs {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -427,6 +394,6 @@
         grid-column: 1/3;
     }
     #user-profile {
-        grid-row: 2/5;
+        grid-row: span 4;
     }
 }
