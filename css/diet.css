@@ -303,7 +303,26 @@ main > section {
     height: 40px;
 }
 
+.save-button {
+    width: fit-content;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: white;
+    background: #222222;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 5px;
+    margin-left: auto;
+}
 
+.save-button:hover {
+    color: white;
+    background: var(--main-color);
+}
 /* - */
 .search-wrapper {
     position: relative;
