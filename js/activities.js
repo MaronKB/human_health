@@ -34,47 +34,40 @@ function applyTemplate(templateName) {
     const tbody = document.getElementById("act-tbody");
     const templateActivities = templates[templateName];
 
-    // 테이블 초기화 (기존 항목 삭제)
-    tbody.innerHTML = "";
-
     // 템플릿 항목 추가
-    templateActivities.forEach(activity => {
+    const rows = templateActivities.map(activity => {
         const row = document.createElement("tr");
-        // row.innerHTML = `
-        //     <td>${activity.activity}</td>
-        //     <td>${activity.duration}</td>
-        //     <td>${activity.intensity}</td>
-        // `;
+
         const activityCell = document.createElement("td");
-        activityCell.textContent = activity.activity;
-
         const durationCell = document.createElement("td");
-        durationCell.textContent = activity.duration;
-
         const intensityCell = document.createElement("td");
-        intensityCell.style.position = 'relative';  // 삭제 버튼 위치를 설정할 수 있게 position을 설정
-        intensityCell.textContent = activity.intensity;
 
-        // 삭제 버튼 추가
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'x';
-        deleteButton.style.position = 'absolute';
-        deleteButton.style.right = '10px';  // 버튼을 오른쪽 끝으로 배치
-        deleteButton.style.top = '50%';
-        deleteButton.style.transform = 'translateY(-50%)';
-        deleteButton.onclick = function() {
-            row.remove();  // 버튼 클릭 시 해당 행 삭제
-            updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
-        };
-        intensityCell.appendChild(deleteButton);
+        row.append(activityCell, durationCell, intensityCell);
+
+        if (activity.activity) {
+            activityCell.textContent = activity.activity;
+            durationCell.textContent = activity.duration;
+            intensityCell.textContent = activity.intensity;
+
+            // 삭제 버튼 추가
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'x';
+            deleteButton.style.position = 'absolute';
+            deleteButton.style.right = '10px';  // 버튼을 오른쪽 끝으로 배치
+            deleteButton.style.top = '50%';
+            deleteButton.style.transform = 'translateY(-50%)';
+            deleteButton.onclick = function() {
+                row.remove();  // 버튼 클릭 시 해당 행 삭제
+                updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
+            };
+            row.append(deleteButton);
+        }
 
         // 행에 셀 추가
-        row.appendChild(activityCell);
-        row.appendChild(durationCell);
-        row.appendChild(intensityCell);
-
-        tbody.appendChild(row);
+        return row;
     });
+
+    tbody.replaceChildren(...rows);
 
     // 활동수에 따라 빈행 추가 (일단 11개)
     const totalRows = 11;
@@ -178,7 +171,7 @@ function saveTemplate() {
 
     // 활동 리스트 데이터 수집(삭제버튼 빼고 강도만)
     const activities = rows.map(row => {
-
+        if (row.children.length === 0) return;
         return {
             activity: row.children[0].textContent,
             duration: row.children[1].textContent,
@@ -348,7 +341,6 @@ function saveActivity() {
     hoursCell.textContent = hours;
 
     const intensityCell = document.createElement('td');
-    intensityCell.style.position = 'relative';  // 삭제 버튼 위치 설정
     intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
 
     // 삭제 버튼 추가
@@ -362,7 +354,7 @@ function saveActivity() {
         newRow.remove();  // 버튼 클릭 시 해당 행 삭제
         updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
     };
-    intensityCell.appendChild(deleteButton);
+    newRow.appendChild(deleteButton);
 
 
     // 셀을 행에 추가
