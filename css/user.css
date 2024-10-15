@@ -267,6 +267,9 @@
     font-size: 10px;
     text-align: center;
 }
+.graph-texts > span.span-2 {
+    flex: 2;
+}
 .graph-body > progress {
     width: 100%;
     border-radius: 4px;
@@ -277,14 +280,6 @@
 }
 .graph-progress::-webkit-progress-bar {
     background: #eeeeee;
-}
-.graph-progress::-webkit-progress-value {
-    transform: scaleX(1);
-    transform-origin: left;
-    transition: transform 1s ease;
-}
-.graph-progress.ready::-webkit-progress-value {
-    transform: scaleX(0);
 }
 .graph-target {
     height: 20px;
@@ -321,13 +316,20 @@
     justify-content: space-between;
 }
 .graph-line > span {
-    width: 1px;
+    flex: 1;
     height: 100%;
-    border: 1px dashed white;
+    border-width: 0 1px;
+    border-style: dashed;
+    border-color: white;
 }
-.graph-line > span:first-child,
+.graph-line > span.span-2 {
+    flex: 2;
+}
+.graph-line > span:first-child {
+    border-left: none;
+}
 .graph-line > span:last-child {
-    opacity: 0;
+    border-right: none;
 }
 .graph-subheader {
     width: 30px;
