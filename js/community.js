@@ -4,16 +4,16 @@ let pageCount = 1;
 let currentPage = 1;
 
 function CommunityItemData(jsonData) {
-    this.postNumber = jsonData.com_post_number;
-    this.title = jsonData.com_title;
-    this.content = jsonData.com_content;
-    this.date = jsonData.com_post_date;
-    this.nickname = jsonData.usr_nickname;
-    this.viewCount = jsonData.com_view_count || 0;
-    this.imageName = jsonData.com_image_name;
-    this.imagePath = jsonData.com_image_path;
-    this.videoName = jsonData.com_video_name;
-    this.videoPath = jsonData.com_video_path;
+    this.com_post_number = jsonData.com_post_number;
+    this.com_title = jsonData.com_title;
+    this.com_content = jsonData.com_content;
+    this.com_post_date = jsonData.com_post_date;
+    this.usr_nickname = jsonData.usr_nickname;
+    this.com_view_count = jsonData.com_view_count || 0;
+    this.com_image_name = jsonData.com_image_name;
+    this.com_image_path = jsonData.com_image_path;
+    this.com_video_name = jsonData.com_video_name;
+    this.com_video_path = jsonData.com_video_path;
 }
 
 const init = () => {
@@ -40,27 +40,33 @@ const getCommunityList = () => {
         .then(data => {
             const list = data.map(e => new CommunityItemData(e));
 
-            list.sort((a, b) => b.postNumber - a.postNumber);
+            list.sort((a, b) => b.com_post_number - a.com_post_number);
 
             const uniqueMap = new Map();
 
             list.forEach(item => {
-                uniqueMap.set(item.postNumber, item);
+                uniqueMap.set(item.com_post_number, item);
             });
 
             localList.forEach(item => {
-                if (uniqueMap.has(item.postNumber)) {
-                    const existingItem = uniqueMap.get(item.postNumber);
-                    existingItem.viewCount = item.viewCount;
-                    existingItem.title = item.title;
+                if (uniqueMap.has(item.com_post_number)) {
+                    const existingItem = uniqueMap.get(item.com_post_number);
+                    existingItem.com_view_count = item.com_view_count;
+                    existingItem.com_title = item.com_title;
                 } else {
-                    uniqueMap.set(item.postNumber, item);
+                    uniqueMap.set(item.com_post_number, item);
                 }
             });
 
-            communityListData.push(...uniqueMap.values());
+            const uniqueList = Array.from(uniqueMap.values()).filter(item => item.com_post_number);
+            communityListData.unshift(...uniqueList); // 배열의 앞에 추가
 
-            communityListData.sort((a, b) => b.postNumber - a.postNumber);
+            // 로컬 스토리지에 오름차순 정렬하여 저장
+            communityListData.sort((a, b) => a.com_post_number - b.com_post_number);
+            localStorage.setItem('communityList', JSON.stringify(communityListData));
+
+            // 화면에 출력할 때는 내림차순으로 정렬
+            communityListData.sort((a, b) => b.com_post_number - a.com_post_number);
 
             pageCount = Math.ceil(communityListData.length / pageLength);
             refresh();
@@ -70,46 +76,47 @@ const getCommunityList = () => {
 const createCommunityList = () => {
     const firstListIndex = (currentPage - 1) * pageLength;
     const currentPageList = communityListData.slice(firstListIndex, firstListIndex + pageLength);
+    
+    const fragment = document.createDocumentFragment();
 
-    const domList = currentPageList.map(e => {
+    currentPageList.forEach(e => {
+        if (!e.com_post_number) return;
+
         const list = document.createElement("li");
         list.className = "community-item";
 
-        if (!e.postNumber) return list;
-
         const postNumber = document.createElement("span");
         postNumber.className = "community-item-number";
-        postNumber.innerHTML = e.postNumber;
+        postNumber.innerHTML = e.com_post_number;
 
         const title = document.createElement("h5");
         title.className = "community-item-title";
 
         const titleLink = document.createElement("a");
-        titleLink.href = `./community-view.html?postNumber=${e.postNumber}`;
-        titleLink.innerHTML = e.title;
+        titleLink.href = `./community-view.html?postNumber=${e.com_post_number}`;
+        titleLink.innerHTML = e.com_title;
 
         title.appendChild(titleLink);
 
         const nickname = document.createElement("span");
         nickname.className = "community-item-nickname";
-        nickname.innerHTML = e.nickname;
+        nickname.innerHTML = e.usr_nickname;
 
         const date = document.createElement("span");
         date.className = "community-item-date";
-        date.innerHTML = e.date;
+        date.innerHTML = e.com_post_date;
 
         const view = document.createElement("span");
         view.className = "community-item-view";
-        view.innerHTML = e.viewCount;
+        view.innerHTML = e.com_view_count;
 
         list.append(postNumber, title, nickname, date, view);
-
-        return list;
+        fragment.appendChild(list);
     });
 
     const communityListContainer = document.getElementById("community-list");
     communityListContainer.innerHTML = "";
-    communityListContainer.append(...domList);
+    communityListContainer.appendChild(fragment);
 }
 
 const createPagination = () => {
