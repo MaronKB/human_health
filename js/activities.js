@@ -3,9 +3,14 @@ let selectedIntensity = 0; // 전역 변수로 강도 저장
 // 템플릿 데이터 정의
 const templates = {
     "일반 평일 활동": [
-        { activity: "출근", duration: 8, intensity: 1.5 },
-        { activity: "운동", duration: 1, intensity: 5 },
-        { activity: "독서", duration: 1, intensity: 1.2 }
+        { activity: "잠자기", duration: 8, intensity: 0.93 },
+        { activity: "사무업무", duration: 8, intensity: 1.6 },
+        { activity: "식사", duration: 2, intensity: 1.4 },
+        { activity: "대중교통(서서)", duration: 2, intensity: 2 },
+        { activity: "근력운동(중)", duration: 1.5, intensity: 4.5 },
+        { activity: "유산소(약)", duration: 0.5, intensity: 4.5 },
+        { activity: "누워있기", duration: 1, intensity: 1.2 },
+        { activity: "앉아서 TV보기", duration: 1, intensity: 1.57}
     ],
     "일반 휴일 활동": [
         { activity: "산책", duration: 2, intensity: 2 },
@@ -72,7 +77,21 @@ function applyTemplate(templateName) {
 
         tbody.appendChild(row);
     });
-    
+
+    // 활동수에 따라 빈행 추가 (일단 11개)
+    const totalRows = 11;
+    const currentRows = templateActivities.length;
+    if (currentRows < totalRows) {
+        for (let i=currentRows; i<totalRows; i++) {
+            const emptyRow = document.createElement("tr");
+            emptyRow.innerHTML = `
+                <td></td>
+                <td></td>
+                <td></td>
+            `;
+            tbody.appendChild(emptyRow);
+        }
+    }
     // 총 활동 시간 업데이트
     updateTotalActivityHours();
 
@@ -244,7 +263,7 @@ function updateTotalActivityHours() {
 
     // 24시간까지 남은 시간 계산 및 표시
     const remainingHours = 24 - totalHours;
-    const remainingElement = document.querySelector('.act-hours-alert h6');
+    const remainingElement = document.querySelector('.act-hours-alert h5');
     
     if (remainingHours > 0) {
         remainingElement.textContent = `(${remainingHours.toFixed(2)} 시간 부족)`;
@@ -252,6 +271,7 @@ function updateTotalActivityHours() {
     } else {
         remainingElement.textContent = '';
     }
+
 }
 
 
