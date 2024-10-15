@@ -1,12 +1,21 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
 .admin-qna-write {
-    margin: 20px;
-    padding: 0 0 40px 0;
-    position: relative;
-    width: 90vw;
-    max-width: var(--max-width);
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px 30px 30px 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(50, 50, 90, );
+    transition: transform 0.2s;
+}
+
+.admin-qna-write:hover {
+    transform: scale(1.01);
 }
 
 input {
@@ -18,50 +27,62 @@ input {
 
 .admin-qna-write-title {
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    padding: 0 40px;
+    margin-bottom: 23px;
+    padding: 0;
+    box-shadow: #002;
 }
 
 .admin-qna-write-title input {
+    padding: 20px;
     width: 100%;
-    height: 35px;
-    font-size: 25px;
-    border: 2px solid lightslategray;
+    height: 50px;
+    font-size: 20px;
+    border: 2px solid #dee2e6;
     border-radius: 5px;
+    background-color: #fafafa;
 }
 
 .admin-qna-write-content {
-    margin-bottom: 20px;
-    padding: 0 40px;
+    margin-bottom: 17px;
+    padding: 0;
 }
 
 .admin-qna-write-content textarea {
+    padding: 20px;
     width: 100%;
-    height: 400px;
-    font-size: 20px;
-    border: 2px solid lightslategrey;
+    min-height: 450px;
+    font-size: 18px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #fafafa;
 }
 
 .admin-qna-write-button {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.admin-qna-write-button a {
+    display: flex;
+    width: 120px;
 }
 
 .admin-qna-write-button button {
-    width: 12%;
-    height: 35px;
-    border-radius: 5px;
-    border: none;
-    background-color: #222;
+    flex: 1;
+    max-width: 120px;
+    height: 45px;
+    background-color: var(--text-color);
     font-size: 20px;
     color: white;
-    margin: 10px;
-    box-shadow: 2px 5px 10px #0003;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(158, 115, 115, 0.1);
 }
 
 .admin-qna-write-button button:hover {
-    color: white;
-    background: var(--main-color);
+    background-color: var(--main-color);
+    transform: scale(1.05);
 }
