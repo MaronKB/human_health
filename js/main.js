@@ -1,4 +1,5 @@
 let isScrolling = false;
+
 const onScroll = (ev) => {
     if (isScrolling) return;
 
@@ -19,14 +20,16 @@ const onScroll = (ev) => {
 
     scroll(target);
 }
+
 const scroll = (target) => {
-    target.scrollIntoView({behavior: "smooth"});
+    target.scrollIntoView({ behavior: "smooth" });
 
     isScrolling = true;
     setTimeout(() => {
         isScrolling = false;
     }, 500);
 }
+
 const getJsonData = (type) => {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = () => {
@@ -37,10 +40,12 @@ const getJsonData = (type) => {
     xhttp.open("GET", `resources/temp-db/${type}.json`, true);
     xhttp.send();
 }
+
 const injectHtml = (type, data) => {
     const postData = data.sort((a, b) => {
         return b.com_post_number - a.com_post_number;
     }).slice(0, 6);
+
     const _html = postData.map(e => {
         if (type === "community") {
             const index = document.createElement("span");
@@ -67,8 +72,7 @@ const injectHtml = (type, data) => {
             list.append(a);
 
             return list;
-        }
-        else {
+        } else {
             const question = document.createElement("span");
             question.className = "main-qna-q";
             question.innerText = e.title;
@@ -90,6 +94,7 @@ const injectHtml = (type, data) => {
     const target = document.querySelector(`#main-${type}-list`);
     target.replaceChildren(..._html);
 }
+
 const changeCommunity = (ev) => {
     if (!ev.target.classList.contains("main-communication")) return;
 
@@ -102,7 +107,30 @@ const changeCommunity = (ev) => {
     });
     ev.target.classList.add("active");
 }
+
 window.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const loginList = document.querySelector("#login-list");
+
+    if (loggedInUser) {
+        loginList.innerHTML = `
+            <a class="main-button" href="user-info.html">회원정보</a>
+            <a class="main-button" id="logout-button" href="#">로그아웃</a>
+        `;
+
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'main.html';
+        });
+    } else {
+        loginList.innerHTML = `
+            <a class="main-button" href="register.html">회원가입</a>
+            <a class="main-button" href="login.html">로그인</a>
+        `;
+    }
+
     getJsonData("community");
     getJsonData("qna");
 
@@ -125,3 +153,5 @@ window.addEventListener('DOMContentLoaded', () => {
         community.addEventListener("click", (ev) => changeCommunity(ev));
     });
 });
+
+// localStorage.clear();
