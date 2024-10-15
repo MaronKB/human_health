@@ -512,7 +512,7 @@ main > section {
 }
 
 #activityTable th {
-    background-color: #222222;
+    background: var(--text-color);
     color: white;
     border: 1px solid white;
     height: 35px;
