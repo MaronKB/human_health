@@ -90,6 +90,18 @@ const injectHtml = (type, data) => {
     const target = document.querySelector(`#main-${type}-list`);
     target.replaceChildren(..._html);
 }
+const changeCommunity = (ev) => {
+    if (!ev.target.classList.contains("main-communication")) return;
+
+    const communityContainer = document.querySelector("#main-communications");
+    communityContainer.style.transform = (ev.target.id === "main-qna") ? "translateX(-100%)" : "";
+
+    const communities = document.querySelectorAll(".main-communication");
+    communities.forEach(c => {
+        c.classList.remove("active");
+    });
+    ev.target.classList.add("active");
+}
 window.addEventListener('DOMContentLoaded', () => {
     getJsonData("community");
     getJsonData("qna");
@@ -107,4 +119,9 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         guide.classList.add("hidden");
     }, 2000);
+
+    const communities = document.querySelectorAll(".main-communication");
+    communities.forEach((community) => {
+        community.addEventListener("click", (ev) => changeCommunity(ev));
+    });
 });
