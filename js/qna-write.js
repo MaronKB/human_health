@@ -42,7 +42,6 @@ const updateQnaItem = (postNumber) => {
     }
 
     let data = JSON.parse(localStorage.getItem('qnaList')) || [];
-
     const qnaItemIndex = data.findIndex(item => item.qna_post_number === parseInt(postNumber));
 
     if (qnaItemIndex !== -1) {
@@ -59,7 +58,6 @@ const updateQnaItem = (postNumber) => {
         };
 
         localStorage.setItem('qnaList', JSON.stringify(data));
-
         window.location.href = `./qna-view.html?postNumber=${postNumber}`;
     } else {
         alert('해당 Q&A 항목을 찾을 수 없습니다.');
@@ -79,7 +77,6 @@ const addQnaItem = () => {
     }
 
     let data = JSON.parse(localStorage.getItem('qnaList')) || [];
-
     let maxPostNumber = 0;
 
     fetch("../resources/temp-db/qna.json")
@@ -94,21 +91,31 @@ const addQnaItem = () => {
                 maxPostNumber = initialMaxPostNumber;
             }
 
-            const newPostNumber = maxPostNumber + 1;
+            createNewQnaItem(maxPostNumber + 1, title, content, nickname, date, isSecret, data);
+        })
+        .catch(() => {
+            if (data.length > 0) {
+                const localMaxPostNumber = Math.max(0, ...data.map(e => e.qna_post_number));
+                maxPostNumber = localMaxPostNumber;
+            }
 
-            const secretImage = '<img src="../resources/images/lock.png" alt="비밀글" style="width:20px; height:20px;">';
-
-            data.unshift({
-                qna_post_number: newPostNumber,
-                qna_title: (isSecret ? secretImage + ' ' : '') + title,
-                qna_content: content,
-                qna_post_date: date,
-                usr_nickname: nickname,
-                is_secret: isSecret
-            });
-
-            localStorage.setItem('qnaList', JSON.stringify(data));
-
-            window.location.href = `./qna-view.html?postNumber=${newPostNumber}`;
+            createNewQnaItem(maxPostNumber + 1, title, content, nickname, date, isSecret, data);
         });
+};
+
+const createNewQnaItem = (newPostNumber, title, content, nickname, date, isSecret, data) => {
+    const secretImage = '<img src="../resources/images/lock.png" alt="비밀글" style="width:20px; height:20px;">';
+
+    data.unshift({
+        qna_post_number: newPostNumber,
+        qna_title: (isSecret ? secretImage + ' ' : '') + title,
+        qna_content: content,
+        qna_post_date: date,
+        usr_nickname: nickname,
+        is_secret: isSecret,
+        qna_view_count: 0
+    });
+
+    localStorage.setItem('qnaList', JSON.stringify(data));
+    window.location.href = `./qna-view.html?postNumber=${newPostNumber}`;
 };
