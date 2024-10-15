@@ -66,8 +66,6 @@ function applyTemplate(templateName) {
             row.remove();  // 버튼 클릭 시 해당 행 삭제
             updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
         };
-
-
         intensityCell.appendChild(deleteButton);
 
         // 행에 셀 추가
@@ -180,14 +178,12 @@ function saveTemplate() {
 
     // 활동 리스트 데이터 수집(삭제버튼 빼고 강도만)
     const activities = rows.map(row => {
-        const intensityCell = row.children[2];
-        const intensityValue = intensityCell.innerText.trim();
 
         return {
             activity: row.children[0].textContent,
             duration: row.children[1].textContent,
-            // intensity: row.children[2].textContent,
-            intensity: intensityValue,
+            intensity: row.children[2].textContent,
+            // intensity: intensityValue,
         };
     });
 
