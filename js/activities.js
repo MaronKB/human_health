@@ -1,6 +1,6 @@
 let selectedIntensity = 0; // 전역 변수로 강도 저장
 
-const bmr = JSON.parse(localStorage.getItem("user")).bmr;
+const bmr = JSON.parse(localStorage.getItem("user"))?.bmr ?? 2024.69;
 
 // 템플릿 데이터 정의
 const templates = {

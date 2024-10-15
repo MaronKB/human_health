@@ -18,7 +18,7 @@
             <h4 class="vital-header">스트레스 지수</h4>
             <div class="vital-content">
                 <div>
-                    <span  id="stress-content">1</span>
+                    <span id="stress-content">1</span>
                 </div>
                 <span>단계</span>
             </div>
@@ -38,27 +38,31 @@
             <span id="vital-stress-tooltip" class="box hidden"><br/>인생이 행복합니다!</span>
         </form>
         <div class="vital-recommend box">
-            <iframe src="https://www.youtube.com/embed/mUnSpfItRf0?si=JBtlU8LbauLeUy_N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe id="stress-recommend" src="https://www.youtube.com/embed/LzAgYVknNYg" title="추천 영상" allow="accelerometer; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <form id="stretch" class="vital-input box">
             <h4 class="vital-header">스트레칭</h4>
-            <input id="stretching-neck" type="checkbox"/>
+            <input id="stretching-neck" type="checkbox" data-index="0"/>
             <label for="stretching-neck">목</label>
-            <input id="stretching-shoulder" type="checkbox" disabled/>
+            <input id="stretching-shoulder" type="checkbox" data-index="1" disabled/>
             <label for="stretching-shoulder">어깨</label>
-            <input id="stretching-chest" type="checkbox" disabled/>
+            <input id="stretching-chest" type="checkbox" data-index="2" disabled/>
             <label for="stretching-chest">가슴</label>
-            <input id="stretching-wrist" type="checkbox" disabled/>
+            <input id="stretching-wrist" type="checkbox" data-index="3" disabled/>
             <label for="stretching-wrist">손목</label>
-            <input id="stretching-ankle" type="checkbox" disabled/>
+            <input id="stretching-ankle" type="checkbox" data-index="4" disabled/>
             <label for="stretching-ankle">발목</label>
-            <input id="stretching-leg" type="checkbox" disabled/>
+            <input id="stretching-leg" type="checkbox" data-index="5" disabled/>
             <label for="stretching-leg">다리</label>
-            <input id="stretching-waist" type="checkbox" disabled/>
+            <input id="stretching-waist" type="checkbox" data-index="6" disabled/>
             <label for="stretching-waist">허리</label>
         </form>
         <div class="vital-recommend box">
-            <iframe src="https://www.youtube.com/embed/mUnSpfItRf0?si=JBtlU8LbauLeUy_N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe id="stretch-recommend" src="https://www.youtube.com/embed/mUnSpfItRf0" title="추천 영상" allow="accelerometer; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div id="stretch-end" class="end hidden">
+                <i class="fa-solid fa-flag-checkered"></i>
+                <h4>오늘의 스트레칭이 모두 종료되었습니다.</h4>
+            </div>
         </div>
         <form id="sleep" class="vital-input box">
             <h4 class="vital-header">수면 시간</h4>
@@ -75,19 +79,13 @@
                 <span>6</span>
                 <span>8</span>
                 <span>10</span>
-                <span>12</span>
-                <span>14</span>
-                <span>16</span>
-                <span>18</span>
-                <span>20</span>
-                <span>22</span>
-                <span>24</span>
+                <span>12+</span>
             </label>
-            <input id="vital-sleep" type="range" min="0" max="24" value="8" onchange="onRangeChange(this)"/>
+            <input id="vital-sleep" type="range" min="0" max="12" value="8" onchange="onRangeChange(this)"/>
             <span id="vital-sleep-tooltip" class="box hidden">정상적인 수면을 취하고 있습니다.</span>
         </form>
         <div class="vital-recommend box">
-            <iframe src="https://www.youtube.com/embed/mUnSpfItRf0?si=JBtlU8LbauLeUy_N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe id="sleep-recommend" src="https://www.youtube.com/embed/mUnSpfItRf0" title="추천 영상" allow="accelerometer; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </section>
 </main>

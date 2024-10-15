@@ -73,6 +73,11 @@
     height: 20px;
     background: var(--main-color);
     border-radius: 50%;
+    box-shadow: 0 0 5px #0003;
+    transition: 0.3s all;
+}
+.vital-input > input[type="range"]::-webkit-slider-thumb:hover {
+    scale: 1.1;
 }
 .vital-range {
     width: 100%;
@@ -103,35 +108,45 @@
     justify-content: flex-start;
     align-items: center;
     gap: 5px;
+    font-family: var(--gothic-bold);
     font-size: 16px;
     background: #eee;
     padding: 0 10px;
     border-radius: 4px;
     transition: 0.3s all;
 }
+.vital-input > input[type="checkbox"] + label:hover {
+    box-shadow: 0 0 10px #0003;
+    scale: 1.1;
+}
 .vital-input > input[type="checkbox"]:checked + label {
     color: white;
-    text-decoration: line-through;
-    background: var(--main-color);
+    background: var(--another-color);
 }
 .vital-input > input[type="checkbox"]:disabled + label {
     color: gray;
     background: #aaa;
 }
 .vital-input > input[type="checkbox"] + label::before {
-    content: "";
-    display: block;
-    width: 18px;
-    height: 18px;
+    content: "\f04b";
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "FontAwesome";
+    color: var(--text-color);
     background: white;
-    border: 3px solid gray;
-    box-sizing: border-box;
+    border-radius: 15px;
+    margin: 0 5px 0 0;
+    box-shadow: 2px 2px 4px #0003;
     transition: 0.3s all;
 }
 .vital-input > input[type="checkbox"]:checked + label::before {
-    border: 0;
-    margin: 0 auto 0 0;
-    transform: rotate(45deg);
+    content: "\f00c";
+}
+.vital-input > input[type="checkbox"]:disabled + label::before {
+    content: "\f05e";
 }
 .vital-input > span {
     position: absolute;
@@ -172,4 +187,27 @@
     width: 100%;
     height: 100%;
     border: 0;
+}
+.vital-recommend > .end {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--another-color);
+    background: linear-gradient(135deg, white 60%, var(--another-color) 60% 70%, white 70%);
+}
+.vital-recommend > .end > i {
+    font-size: 64px;
+}
+.vital-recommend > .end > h4 {
+    font-size: 24px;
+    background: white;
+    padding: 5px 10px;
+    border: 3px solid var(--another-color);
+}
+.vital-recommend > .hidden {
+    display: none;
 }
