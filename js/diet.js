@@ -2,7 +2,6 @@
 const getFoodData = () => {
     fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=...")
         .then((response) => {
-            // 응답 상태 확인
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -162,7 +161,7 @@ function saveDiet() {
 // 총 칼로리를 업데이트하는 함수
 function updateCalories() {
     const totalCaloriesElement = document.querySelector('.diet-kcal span');
-    totalCaloriesElement.innerText = `${totalCalories.toFixed(1)}`; // 소수점 한 자리로 표시
+    totalCaloriesElement.innerText = `${Math.max(0, totalCalories).toFixed(1)}`; // 소수점 한 자리로 표시
 }
 
 // 음식을 테이블에 추가하는 함수
@@ -210,9 +209,9 @@ function deleteDiet(button) {
 // 합계 업데이트 함수
 function updateTotals() {
     const totalRow = document.querySelector('#diet-total .table-item');
-    totalRow.children[2].innerText = `${totalCarbs.toFixed(1)}g`; // 총 탄수화물 합계 업데이트
-    totalRow.children[3].innerText = `${totalProtein.toFixed(1)}g`; // 총 단백질 합계 업데이트
-    totalRow.children[4].innerText = `${totalFat.toFixed(1)}g`; // 총 지방 합계 업데이트
+    totalRow.children[2].innerText = `${Math.max(0, totalCarbs).toFixed(1)}g`; // 총 탄수화물 합계 업데이트
+    totalRow.children[3].innerText = `${Math.max(0, totalProtein).toFixed(1)}g`; // 총 단백질 합계 업데이트
+    totalRow.children[4].innerText = `${Math.max(0, totalFat).toFixed(1)}g`; // 총 지방 합계 업데이트
 
     updateCalories(); // 총 칼로리 업데이트 호출
     updateGraphs(); // 그래프 업데이트 호출
@@ -323,13 +322,8 @@ const graphAnimation = () => {
     })
 }
 
-// 페이지 로드 시 테이블과 페이지네이션 렌더링
+/// 페이지 로드 시 테이블과 페이지네이션 렌더링
 document.addEventListener("DOMContentLoaded", () => {
-    renderTable(); // 테이블 렌더링
-    updatePagination(); // 페이지네이션 업데이트
-    setTimeout(graphAnimation, 300); // 그래프 애니메이션
-
-    // 현재 날짜 설정
     const currentDateInput = document.getElementById('current-date');
     const today = new Date();
     const year = today.getFullYear();
@@ -337,7 +331,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const day = String(today.getDate()).padStart(2, '0');
 
     currentDateInput.value = `${year}-${month}-${day}`; // 현재 날짜 설정
+
+    // 로컬 스토리지에서 데이터 로드
+    loadFromLocalStorage(); // 이 부분 추가
+    renderTable(); // 테이블 렌더링
+    updatePagination(); // 페이지네이션 업데이트
+    setTimeout(graphAnimation, 300); // 그래프 애니메이션
 });
+
 
 // 검색 기능 구현
 function filterTable() {
