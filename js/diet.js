@@ -277,10 +277,40 @@ const foodData = [
     { name: "연어", amount: 100, carb: 0, protein: 25, fat: 13 },
     { name: "아보카도", amount: 100, carb: 9, protein: 1.5, fat: 15 },
     { name: "브로콜리", amount: 100, carb: 7, protein: 2.8, fat: 0.4 },
+    { name: "스테이크", amount: 200, carb: 0, protein: 30, fat: 20 },
+    { name: "파스타", amount: 150, carb: 75, protein: 10, fat: 5 },
+    { name: "샐러드", amount: 100, carb: 10, protein: 2, fat: 8 },
+    { name: "피자", amount: 150, carb: 40, protein: 12, fat: 15 },
+    { name: "리조또", amount: 200, carb: 50, protein: 8, fat: 10 },
+    { name: "크로와상", amount: 100, carb: 45, protein: 8, fat: 20 },
+    { name: "스프링롤", amount: 100, carb: 25, protein: 2, fat: 5 },
+    { name: "브라우니", amount: 100, carb: 60, protein: 5, fat: 20 },
+    { name: "팬케이크", amount: 100, carb: 40, protein: 5, fat: 10 },
+    { name: "오믈렛", amount: 100, carb: 1, protein: 10, fat: 7 },
+    { name: "볶음밥", amount: 200, carb: 60, protein: 8, fat: 10 },
+    { name: "짜장면", amount: 200, carb: 70, protein: 12, fat: 15 },
+    { name: "탕수육", amount: 150, carb: 30, protein: 20, fat: 25 },
+    { name: "마파두부", amount: 150, carb: 10, protein: 12, fat: 15 },
+    { name: "군만두", amount: 100, carb: 30, protein: 5, fat: 15 },
+    { name: "유린기", amount: 200, carb: 10, protein: 25, fat: 10 },
+    { name: "소고기짬뽕", amount: 250, carb: 50, protein: 15, fat: 20 },
+    { name: "해물탕면", amount: 250, carb: 60, protein: 20, fat: 15 },
+    { name: "간장계란밥", amount: 150, carb: 20, protein: 6, fat: 8 },
+    { name: "냉면", amount: 200, carb: 40, protein: 6, fat: 5 },
+    { name: "비빔밥", amount: 300, carb: 50, protein: 15, fat: 10 },
+    { name: "김치찌개", amount: 200, carb: 15, protein: 12, fat: 8 },
+    { name: "불고기", amount: 150, carb: 10, protein: 25, fat: 20 },
+    { name: "잡채", amount: 200, carb: 40, protein: 5, fat: 10 },
+    { name: "김밥", amount: 250, carb: 40, protein: 10, fat: 5 },
+    { name: "닭갈비", amount: 200, carb: 20, protein: 25, fat: 15 },
+    { name: "순두부찌개", amount: 200, carb: 10, protein: 14, fat: 6 },
+    { name: "된장찌개", amount: 200, carb: 15, protein: 12, fat: 5 },
+    { name: "삼겹살", amount: 150, carb: 0, protein: 20, fat: 30 },
+    { name: "김치볶음밥", amount: 250, carb: 60, protein: 10, fat: 10 }
 ];
 
 let currentPage = 1; // 현재 페이지
-const rowsPerPage = 5; // 페이지당 행 수
+const rowsPerPage = 8; // 페이지당 행 수
 
 // 페이지 변경 함수
 function changePage(page) {
