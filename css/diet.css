@@ -303,7 +303,7 @@ main > section {
     height: 40px;
 }
 
-.save-button {
+/* .load-button {
     width: fit-content;
     height: 32px;
     display: flex;
@@ -317,6 +317,28 @@ main > section {
     border: 0;
     border-radius: 5px;
     margin-left: auto;
+}
+
+.load-button:hover {
+    color: white;
+    background: var(--main-color);
+} */
+.save-button {
+    width: fit-content;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: white;
+    background: #222222;
+    padding:  10px;
+    border: 0;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .save-button:hover {

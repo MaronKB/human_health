@@ -21,57 +21,79 @@
             <h4>로부터 <span id="date-diff">N</span>일째</h4>
         </div>
     </section>
-    <section class="user-info">
-        <section class="user-main">
-            <form id="user-inputs" class="box">
-                <h3 id="user-inputs-title" class="user-title">유저 정보</h3>
-                <div id="user-profile">
-                    <img src="resources/images/blank-profile.jpg" alt="profile image"/>
-                </div>
-                <div class="user-input">
-                    <h4><i class="fa-solid fa-user"></i>이름 : 이용자</h4>
-                </div>
-                <div class="user-input">
-                    <h4><i class="fa-solid fa-venus-mars"></i>성별 : </h4>
-                    <input type="radio" name="sex" id="male" value="male" checked/>
-                    <label for="male">남</label>
-                    <span>/</span>
-                    <input type="radio" name="sex" id="female" value="male"/>
-                    <label for="female">여</label>
-                </div>
-                <div class="user-input">
-                    <h4><i class="fa-solid fa-seedling"></i>나이 : </h4>
-                    <input type="number" id="age" value="28"/>
-                    <label for="age">세</label>
-                </div>
-                <div class="user-input">
-                    <h4><i class="fa-solid fa-ruler"></i>키 : </h4>
-                    <input type="number" id="height" value="182"/>
-                    <label for="height">cm</label>
-                </div>
-                <div class="user-input">
+    <section class="user-main">
+        <form id="user-inputs" class="box">
+            <h3 id="user-inputs-title" class="user-title">유저 정보</h3>
+            <div id="user-profile">
+                <img src="resources/images/blank-profile.jpg" alt="profile image"/>
+            </div>
+            <div class="user-input">
+                <h4><i class="fa-solid fa-user"></i>이름 : 이용자</h4>
+            </div>
+            <div class="user-input">
+                <h4><i class="fa-solid fa-venus-mars"></i>성별 : </h4>
+                <input type="radio" name="sex" id="male" value="male" checked/>
+                <label for="male">남</label>
+                <span>/</span>
+                <input type="radio" name="sex" id="female" value="male"/>
+                <label for="female">여</label>
+            </div>
+            <div class="user-input">
+                <h4><i class="fa-solid fa-seedling"></i>나이 : </h4>
+                <input type="number" id="age" value="28"/>
+                <label for="age">세</label>
+            </div>
+            <div class="user-input">
+                <h4><i class="fa-solid fa-ruler"></i>키 : </h4>
+                <input type="number" id="height" value="182"/>
+                <label for="height">cm</label>
+            </div>
+            <div class="user-input column-2">
+                <div>
                     <h4><i class="fa-solid fa-weight-scale"></i>체중 : </h4>
                     <input type="number" id="weight" value="71"/>
                     <label for="weight">kg</label>
                 </div>
-                <div class="user-input">
+                <i class="fa-solid fa-caret-right"></i>
+                <div>
+                    <h4>목표 : </h4>
+                    <input type="number" id="target-weight" value="65.5"/>
+                    <label for="target-weight">kg</label>
+                </div>
+            </div>
+            <div class="user-input column-2">
+                <div>
                     <h4><i class="fa-solid fa-bacon"></i>체지방률 : </h4>
                     <input type="number" id="fat" value="14"/>
                     <label for="fat">%</label>
                 </div>
-                <div class="user-input">
+                <i class="fa-solid fa-caret-right"></i>
+                <div>
+                    <h4>목표 : </h4>
+                    <input type="number" id="target-fat" value="65.5"/>
+                    <label for="target-fat">%</label>
+                </div>
+            </div>
+            <div class="user-input column-2">
+                <div>
                     <h4><i class="fa-solid fa-hand-fist"></i>골격근량 : </h4>
                     <input type="number" id="skeletal" value="32.8"/>
                     <label for="skeletal">kg</label>
                 </div>
-                <a class="save-button">저장</a>
-            </form>
-            <div class="user-calories box">
-                <h3 class="user-title">기초 대사량</h3>
-                <div class="bmr">
-                    <h4 id="kal">0</h4>
-                    <h5>kcal</h5>
+                <i class="fa-solid fa-caret-right"></i>
+                <div>
+                    <h4>목표 : </h4>
+                    <input type="number" id="target-skeletal" value="65.5"/>
+                    <label for="target-skeletal">kg</label>
                 </div>
+            </div>
+            <a class="save-button">저장</a>
+        </form>
+        <div id="user-calc">
+            <div id="user-calories" class="box">
+                <h3 class="user-title">기초 대사량</h3>
+                <h4 id="bmr">0</h4>
+                <h5>kcal</h5>
             </div>
             <div class="user-graph">
                 <div class="graph">
@@ -153,25 +175,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <aside class="user-side">
-            <div class="side-input">
-                <h4>목표 체중 : </h4>
-                <input type="number" id="target-weight" value="65.5"/>
-                <label for="target-weight">kg</label>
-            </div>
-            <div class="side-input">
-                <h4>목표 체지방률 : </h4>
-                <input type="number" id="target-fat" value="65.5"/>
-                <label for="target-fat">%</label>
-            </div>
-            <div class="side-input">
-                <h4>목표 골격근량 : </h4>
-                <input type="number" id="target-skeletal" value="65.5"/>
-                <label for="target-skeletal">kg</label>
-            </div>
-            <a class="save-button">저장</a>
-        </aside>
+        </div>
     </section>
 </main>
 </body>
