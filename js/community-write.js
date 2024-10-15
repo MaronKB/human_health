@@ -211,7 +211,7 @@ const addCommunityItem = () => {
             });
 
             Promise.all([imagePromise, videoPromise]).then(([imageBase64, videoBase64]) => {
-                data.unshift({
+                data.push({
                     com_post_number: newPostNumber,
                     com_title: title,
                     com_content: content,
