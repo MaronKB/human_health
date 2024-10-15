@@ -223,9 +223,9 @@ function updateGraphs() {
     const proteinCurrent = document.getElementById('protein-current');
     const fatCurrent = document.getElementById('fat-current');
 
-    const carbsTarget = 130; // 권장 탄수화물 목표값
-    const proteinTarget = 70; // 권장 단백질 목표값
-    const fatTarget = 30; // 권장 지방 목표값
+    const carbsTarget = 650; // 권장 탄수화물 목표값
+    const proteinTarget = 170; // 권장 단백질 목표값
+    const fatTarget = 100; // 권장 지방 목표값
 
     // 각 그래프의 현재값과 목표값 설정
     carbsCurrent.value = Math.min(totalCarbs, carbsTarget); // 탄수화물 현재값
