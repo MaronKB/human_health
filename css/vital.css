@@ -1,7 +1,7 @@
 #vital {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 280px 1fr;
     grid-template-rows: repeat(3, 220px);
     gap: 10px;
 }
@@ -114,6 +114,10 @@
     text-decoration: line-through;
     background: var(--main-color);
 }
+.vital-input > input[type="checkbox"]:disabled + label {
+    color: gray;
+    background: #aaa;
+}
 .vital-input > input[type="checkbox"] + label::before {
     content: "";
     display: block;
@@ -133,15 +137,23 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 200px;
+    width: 240px;
     height: 80px;
-    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--gothic-bold);
+    font-size: 14px;
     text-align: center;
     color: #2a2a2a;
     background: white;
+    opacity: 1;
     transform: translate(-50%, -50%);
-    opacity: 0;
+    transition: 0.3s opacity;
     pointer-events: none;
+}
+.vital-input > span.hidden {
+    opacity: 0;
 }
 #recommend {
     display: flex;
