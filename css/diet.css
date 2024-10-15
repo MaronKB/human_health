@@ -17,7 +17,12 @@ main > section {
     box-shadow: 2px 5px 10px #0003;
     z-index: 1;
 }
-
+.diet-kcal {
+    display: flex; /* 가로 정렬 */
+    justify-content: space-between; /* 두 항목 사이에 간격을 둡니다 */
+    align-items: center; /* 수직 가운데 정렬 */
+    margin: 10px 0; /* 위아래 여백 */
+}
 .diet-kcal > h3 {
     font-size: 18px;
     text-align: center;
