@@ -56,6 +56,7 @@ a:hover {
 main {
     position: relative;
     width: 100vw;
+    min-width: 420px;
     max-width: var(--max-width);
     padding: 20px;
 }

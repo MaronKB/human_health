@@ -20,7 +20,7 @@ const calcBMR = () => {
     spanB.className = "bmr-sub";
     spanB.innerText = "." + bmrArr[1];
 
-    const target = document.querySelector("#kal");
+    const target = document.querySelector("#bmr");
     target.replaceChildren(spanA, spanB);
 }
 const calcDate = () => {
