@@ -1,6 +1,6 @@
 let user;
 
-function UserData({name, gender, age, height, weight, targetWeight, fat, targetFat, skeletal, targetSkeletal}) {
+function UserData({name, gender, age, height, weight, targetWeight, fat, targetFat, skeletal, targetSkeletal, bmr}) {
     this.name = name;
     this.gender = gender;
     this.age = age;
@@ -11,6 +11,7 @@ function UserData({name, gender, age, height, weight, targetWeight, fat, targetF
     this.targetFat = targetFat;
     this.skeletal = skeletal;
     this.targetSkeletal = targetSkeletal;
+    this.bmr = bmr;
 
     this.get = () => {
         return JSON.stringify({
@@ -24,6 +25,7 @@ function UserData({name, gender, age, height, weight, targetWeight, fat, targetF
             targetFat: this.targetFat,
             skeletal: this.skeletal,
             targetSkeletal: this.targetSkeletal,
+            bmr: this.bmr,
         });
     }
     this.set = (string, value) => {
@@ -121,6 +123,8 @@ const calcBMR = () => {
 
     const target = document.querySelector("#bmr");
     target.replaceChildren(spanA, spanB);
+
+    user.set("bmr", bmr / 100);
 }
 const onChange = (ev) => {
     const strings = ev.target.id.split("-");
@@ -163,12 +167,13 @@ const init = () => {
         fat: 25,
         targetFat: 11.2,
         skeletal: 38.4,
-        targetSkeletal: 32
+        targetSkeletal: 32,
+        bmr: 2024.69
     }
     user = new UserData(JSON.parse(localStorage.getItem("user")) ?? defData);
     if (user.length === 0 || !user.name) user = new UserData(defData);
 
-    const {gender, get, set, ...data} = user;
+    const {gender, bmr, get, set, ...data} = user;
 
     const input = document.querySelector(`input[name="gender"][value="${gender}"]`);
     input.checked = true;
