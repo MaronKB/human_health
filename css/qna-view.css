@@ -57,14 +57,14 @@ body {
 .qna-view-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
     margin-top: 20px;
 }
 
 .qna-view-buttons button {
     flex: 1;
-    max-width: 120px;
-    height: 45px;
+    max-width: 100px;
+    height: 38px;
     background-color: #222;
     font-size: 16px;
     color: white;
