@@ -335,8 +335,8 @@ function updateTotalActivityHours() {
 
 
 // 모달 열기
-function addRow() {
-    const modal = document.getElementById("actModal");
+function openModal() {
+    const modal = document.getElementById("act-modal");
     modal.classList.remove("hidden");
     renderTable(); // 테이블 렌더링 함수 호출   
     updatePagination();  // 페이지 번호 업데이트 함수 호출
@@ -344,13 +344,13 @@ function addRow() {
 
 // 모달 닫기
 function closeModal() {
-    const modal = document.getElementById("actModal");
+    const modal = document.getElementById("act-modal");
     modal.classList.add("hidden");
 }
 
 // 모달 외부에서 닫기
 window.onclick = function(event) {
-    const modal = document.getElementById("actModal");
+    const modal = document.getElementById("act-modal");
     if (event.target === modal) {
         closeModal();
     }
@@ -557,7 +557,7 @@ function renderTable() {
 
 // 페이지 번호 업데이트 함수
 function updatePagination() {
-    const pageNumbersContainer = document.getElementById("modalPageNumber");
+    const pageNumbersContainer = document.getElementById("page-numbers");
     pageNumbersContainer.innerHTML = ""; // 페이지 번호 초기화
 
     const totalPages = Math.ceil(actData.length / rowsPerPage); // 총 페이지 수 계산
