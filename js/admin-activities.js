@@ -27,13 +27,25 @@ function renderActivityList(activities) {
     paginatedActivities.forEach((activity, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></td>
             <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${activity.activity}" class="edit-input-activity"></td>
             <td><input type="text" value="${activity.intensity}" class="edit-input-intensity"></td>
         `;
         activityListBody.appendChild(row);
     });
+    if (paginatedActivities.length < activitiesPerPage) {
+        for (let i = 0; i < activitiesPerPage - paginatedActivities.length; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td></td>
+                <td class="edit-number"></td>
+                <td></td>
+                <td></td>
+            `;
+            activityListBody.appendChild(row);
+        }
+    }
 
     updateDeleteButtonState();
     createPagination(activities.length);

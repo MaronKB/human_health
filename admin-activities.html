@@ -14,25 +14,24 @@
 
 <body class="admin-activities">
     <header data-include-html="./header.html"></header>
-    <div class="activities-main">
-        <div class="title">
-            <div>활동 목록</div>
-        </div>
-        <div class="list-control"> 
-            <select class="search-category" id="search-category" required>
-                <option value="활동">활동</option>
-                <option value="강도">강도</option>
-            </select>
-            <div class="list-search">
+    <main>
+        <h2 class="title box">활동 목록</h2>
+        <div class="list-control">
+            <div class="search-container box">
+                <select class="search-category" id="search-category" required>
+                    <option value="활동">활동</option>
+                    <option value="강도">강도</option>
+                </select>
                 <input type="text" id="search-input">
-                <button class="search-button" id="search-button">검색</button>
+                <button class="button" id="search-button">검색</button>
             </div>
-            <button class="control-button" id="add-activity">추가</button>
-            <button class="control-button" id="save-activity">저장</button>
-            <button class="control-button" id="delete-activity">삭제</button>
+            <div class="control-buttons box">
+                <button class="control-button button" id="add-activity">추가</button>
+                <button class="control-button button" id="save-activity">저장</button>
+                <button class="control-button button danger" id="delete-activity">삭제</button>
+            </div>
         </div>
-        
-        <div class="activity-list">
+        <div class="activity-list box">
             <table>
                 <thead>
                     <tr>
@@ -46,16 +45,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="bottom">
-            <div id="pagination" class="pagination">
-                <a id="pagination-left" class="pagination-button pagination-arrow">◀</a>
-                <div id="pagination-container" class="pagination-container"></div>
-                <a id="pagination-right" class="pagination-button pagination-arrow">▶</a>
-            </div>
+        <div id="pagination" class="box">
+            <a id="pagination-left" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-left"></i></a>
+            <div id="pagination-container" class="pagination-container"></div>
+            <a id="pagination-right" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-right"></i></a>
         </div>
-
-        <script></script>
-    </div>
+    </main>
 </body>
 
 </html>
