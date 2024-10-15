@@ -21,13 +21,15 @@ const getBMI = () => {
         current : (currentBMI * 100 / 21.5).toFixed(1)
     }
 }
+const getSkeletal = () => {
+    const targetSkeletalValue = document.querySelector('#target-skeletal').value;
+    const currentSkeletalValue = document.querySelector("#skeletal").value;
+}
 const setGraph = () => {
     const bmi = getBMI();
 
     const targetFatValue = document.querySelector('#target-fat').value;
     const currentFatValue = document.querySelector("#fat").value;
-    const targetSkeletalValue = document.querySelector('#target-skeletal').value;
-    const currentSkeletalValue = document.querySelector("#skeletal").value;
     
     const graphs = Array.from(document.querySelectorAll('.graph-progress'));
 
@@ -98,7 +100,9 @@ const init = () => {
     const inputs = document.querySelectorAll('.user-input input');
     inputs.forEach((input) => {
         input.onchange = onChange;
-    })
+    });
+    const date = document.querySelector(".date");
+    date.addEventListener("change", calcDate);
     calcDate();
     calcBMR();
     setTimeout(setGraph, 300);

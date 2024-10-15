@@ -354,14 +354,10 @@ function saveActivity() {
         newRow.remove();  // 버튼 클릭 시 해당 행 삭제
         updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
     };
-    newRow.appendChild(deleteButton);
 
 
     // 셀을 행에 추가
-    newRow.innerHTML = '';
-    newRow.appendChild(activityCell);
-    newRow.appendChild(hoursCell);
-    newRow.appendChild(intensityCell);
+    newRow.replaceChildren(activityCell, hoursCell, intensityCell, deleteButton);
 
     // 행을 테이블에 추가
     // tbody.appendChild(newRow);
