@@ -52,21 +52,73 @@ const comments = {
             url: "dH3dUtbzpUA",
         }
     ],
-    sleep : {
-        0 : "",
-        1 : "",
-        2 : "",
-        3 : "",
-        4 : "",
-        5 : "",
-        6 : "권장 최소 수면시간입니다.",
-        7 : "적정 수면시간입니다.",
-        8 : "정상적인 수면시간입니다.",
-        9 : "",
-        10 : "",
-        11 : "",
-        12 : "",
-    }
+    sleep : [
+        {
+            tier: 0,
+            text: "밤샘은 몸에 지극히 해롭습니다.<br/>즉각적인 수면을 권고합니다.",
+            url: "PAG7hJ9J-zQ",
+        },
+        {
+            tier: 1,
+            text: "수면의 효과를 보기 어렵습니다.<br/>가능하면 더 주무세요.",
+            url: "qWDJVbyX25A",
+        },
+        {
+            tier: 2,
+            text: "불면증이 의심됩니다.<br/>주의하십시오.",
+            url: "uHF0e-TuPeA",
+        },
+        {
+            tier: 3,
+            text: "평균 수면시간이 낮아질 경우<br/>건강이 악화될 수 있습니다.",
+            url: "4MkR-Q5dyU0",
+        },
+        {
+            tier: 4,
+            text: "밤잠을 설쳤나요?<br/>오늘은 일찍 주무셨으면 합니다.",
+            url: "0dNMdD_I0KI",
+        },
+        {
+            tier: 5,
+            text: "조금 부족합니다.<br/>낮잠으로 보충해봅시다.",
+            url: "SVmjYoZlj6I",
+        },
+        {
+            tier: 6,
+            text: "권장 최소 수면시간입니다.<br/>조금 노곤할 수도 있겠네요.",
+            url: "jKQ3nWmSafk",
+        },
+        {
+            tier: 7,
+            text: "적정 수면시간입니다.<br/>잘 하고 있습니다!",
+            url: "O11Ak7YmuZ4",
+        },
+        {
+            tier: 8,
+            text: "정상적인 수면시간입니다.<br/>좋은 꿈 꾸셨나요?",
+            url: "vfWwL4N8CM4",
+        },
+        {
+            tier: 9,
+            text: "푹 주무셨군요.<br/>오늘은 기운차게 시작해봅시다.",
+            url: "pedawjCCEdA",
+        },
+        {
+            tier: 10,
+            text: "너무 오래 자면 더 피곤해요.<br/>힘들어도 열심히 해봐요.",
+            url: "tn89hk2j2-o",
+        },
+        {
+            tier: 11,
+            text: "과수면 기미가 보입니다.<br/>만성피로가 의심됩니다.",
+            url: "-EdU5IeVBtI",
+        },
+        {
+            tier: 12,
+            text: "지속적으로 수면이 장기화된다면,<br/>의사와 상담해보아야 합니다.",
+            url: "0tvrcyZknio",
+        }
+    ]
 }
 const stretchList = [
     {
@@ -156,7 +208,7 @@ const onRangeChange = (input) => {
     tooltip.innerHTML = comment.text;
     tooltip.classList.remove("hidden");
 
-    const video = document.querySelector("#stress-recommend");
+    const video = document.querySelector(`#${string}-recommend`);
     video.src = `https://www.youtube.com/embed/${comment.url}`;
 
     if (count === 0) {
