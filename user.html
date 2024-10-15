@@ -14,7 +14,7 @@
 <header data-include-html="header.html"></header>
 <main>
     <section class="welcome">
-        <h3><span>이용자</span>님, 안녕하세요!</h3>
+        <h3><span id="welcome-name">이용자</span>님, 안녕하세요!</h3>
         <div class="date">
             <h4>관리 시작일</h4>
             <input type="date" id="start-date" value="2024-08-12"/>
@@ -26,13 +26,15 @@
             <h3 id="user-inputs-title" class="user-title">유저 정보</h3>
             <div id="user-profile">
                 <img src="resources/images/blank-profile.jpg" alt="profile image"/>
+                <a id="edit-profile"><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
             <div class="user-input">
-                <h4><i class="fa-solid fa-user"></i>이름 : 이용자</h4>
+                <h4><i class="fa-solid fa-user"></i>이름 : </h4>
+                <input type="text" id="name"/>
             </div>
             <div class="user-input">
                 <h4><i class="fa-solid fa-venus-mars"></i>성별 : </h4>
-                <input type="radio" name="gender" id="male" value="male" checked/>
+                <input type="radio" name="gender" id="male" value="male"/>
                 <label for="male">남</label>
                 <span>/</span>
                 <input type="radio" name="gender" id="female" value="female"/>
@@ -40,54 +42,54 @@
             </div>
             <div class="user-input">
                 <h4><i class="fa-solid fa-seedling"></i>나이 : </h4>
-                <input type="number" id="age" value="28"/>
+                <input type="number" id="age" step="0.1"/>
                 <label for="age">세</label>
             </div>
             <div class="user-input">
                 <h4><i class="fa-solid fa-ruler"></i>키 : </h4>
-                <input type="number" id="height" value="182"/>
+                <input type="number" id="height" step="0.1"/>
                 <label for="height">cm</label>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-weight-scale"></i>체중 : </h4>
-                    <input type="number" id="weight" value="90"/>
+                    <input type="number" id="weight" step="0.1"/>
                     <label for="weight">kg</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-weight" value="65.5"/>
+                    <input type="number" id="target-weight" step="0.1"/>
                     <label for="target-weight">kg</label>
                 </div>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-bacon"></i>체지방률 : </h4>
-                    <input type="number" id="fat" value="25"/>
+                    <input type="number" id="fat" step="0.1"/>
                     <label for="fat">%</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-fat" value="11.2"/>
+                    <input type="number" id="target-fat" step="0.1"/>
                     <label for="target-fat">%</label>
                 </div>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-hand-fist"></i>골격근량 : </h4>
-                    <input type="number" id="skeletal" value="38.4"/>
+                    <input type="number" id="skeletal" step="0.1"/>
                     <label for="skeletal">kg</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-skeletal" value="32"/>
+                    <input type="number" id="target-skeletal" step="0.1"/>
                     <label for="target-skeletal">kg</label>
                 </div>
             </div>
-            <a class="save-button">저장</a>
+            <button id="save" type="submit" class="button">저장</button>
         </form>
         <div id="user-calc">
             <div id="user-calories" class="box">

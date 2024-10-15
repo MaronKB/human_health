@@ -49,6 +49,7 @@
     text-align: center;
 }
 #user-profile {
+    position: relative;
     grid-row: span 4;
     width: 100%;
     height: 100%;
@@ -59,6 +60,23 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+#edit-profile {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    background: #eee;
+    border-radius: 5px;
+    opacity: 0.5;
+}
+#edit-profile:hover {
+    opacity: 1;
 }
 .user-input {
     width: 100%;
@@ -119,6 +137,9 @@
     align-self: flex-end;
     margin: 0 0 10px 0;
 }
+.user-input input[type="text"] {
+    text-align: center;
+}
 .user-input input[type="radio"] {
     display: none;
 }
@@ -154,20 +175,12 @@
 .user-input input[type="number"] {
     background: transparent;
 }
-.save-button {
+#save {
     grid-column: -2/-1;
-    width: 80px;
     height: 30px;
     justify-self: flex-end;
     align-self: flex-end;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--gothic-bold);
-    font-size: 14px;
-    color: white;
-    border-radius: 5px;
-    background: #222;
+    padding: 0 20px;
 }
 .save-button:hover {
     color: white;
@@ -322,17 +335,6 @@
     background: var(--main-color-bright);
     border-radius: 4px;
 }
-/*
-.graph:nth-child(1) .graph-current::-webkit-progress-value {
-    background: var(--another-color);
-}
-.graph:nth-child(2) .graph-current::-webkit-progress-value {
-    background: var(--sub-color);
-}
-.graph:nth-child(3) .graph-current::-webkit-progress-value {
-    background: var(--dark-color);
-}
-*/
 .graph-line {
     position: absolute;
     bottom: 0;

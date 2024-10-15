@@ -130,6 +130,9 @@ progress::-webkit-progress-value {
     color: white;
     background: var(--main-color);
 }
+.button:disabled {
+    background: #aaa;
+}
 .modal-container {
     position: fixed;
     top: 0;
