@@ -21,15 +21,29 @@ const getBMI = () => {
         current : (currentBMI * 100 / 21.5).toFixed(1)
     }
 }
+const getFat = () => {
+    const targetFatValue = document.querySelector('#target-fat').value;
+    const currentFatValue = document.querySelector("#fat").value;
+
+    return {
+        target : (targetFatValue * 100 / 40).toFixed(1),
+        current : (currentFatValue * 100 / 40).toFixed(1)
+    }
+}
 const getSkeletal = () => {
     const targetSkeletalValue = document.querySelector('#target-skeletal').value;
     const currentSkeletalValue = document.querySelector("#skeletal").value;
+    const targetWeightValue = document.querySelector('#target-weight').value;
+    const currentWeightValue = document.querySelector("#weight").value;
+    return {
+        target : ((targetSkeletalValue - targetWeightValue * 0.4) * 100 / (targetWeightValue * 0.1)).toFixed(1),
+        current : ((currentSkeletalValue - currentWeightValue * 0.4) * 100 / (currentWeightValue * 0.1)).toFixed(1),
+    }
 }
 const setGraph = () => {
     const bmi = getBMI();
-
-    const targetFatValue = document.querySelector('#target-fat').value;
-    const currentFatValue = document.querySelector("#fat").value;
+    const fat = getFat();
+    const skeletal = getSkeletal();
     
     const graphs = Array.from(document.querySelectorAll('.graph-progress'));
 
@@ -51,7 +65,6 @@ const setGraph = () => {
         const finalValue = getFinalValue(val).toFixed(1);
 
         const animation = setInterval(() => {
-            console.log(value);
             doc.value = value;
             if (value > finalValue) {
                 value = (value * 10 - 2) / 10;
@@ -65,10 +78,10 @@ const setGraph = () => {
 
     animate(targetWeight, bmi.target);
     animate(currentWeight, bmi.current);
-    animate(targetFat, targetFatValue);
-    animate(currentFat, currentFatValue);
-    animate(targetSkeletal, targetSkeletalValue);
-    animate(currentSkeletal, currentSkeletalValue);
+    animate(targetFat, fat.target);
+    animate(currentFat, fat.current);
+    animate(targetSkeletal, skeletal.target);
+    animate(currentSkeletal, skeletal.current);
 }
 const calcBMR = () => {
     const gender = document.querySelector("[name='gender']:checked").value;
