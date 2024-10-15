@@ -51,9 +51,10 @@ body {
     box-shadow: 0 0 10px #0003;
 }
 .act-kcal {
-    flex: 4;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
 }
 .act-kcal > h3 {
@@ -69,8 +70,8 @@ body {
     margin: 0;
 }
 .act-kcal > span.act-kcal-value {
-    justify-self: flex-end;
-    align-self: flex-end;
+    justify-self: center;
+    align-self: center;
     font-family: var(--gothic-bold);
     font-size: 45px;
     color: var(--main-color);
@@ -87,14 +88,13 @@ body {
     color: var(--main-color-dark);
 }
 .act-recommended-calorie > span {
-    /* align-self: flex-end; */
-    text-align: center;
+    align-self: flex-end;
     font-size: 14px;
     margin: 0;
 }
 .act-recommended-calorie > span.act-recommended-value {
-    /* justify-self: flex-end;
-    align-self: flex-end; */
+    justify-self: center;
+    align-self: center;
     font-family: var(--gothic-bold);
     font-size: 32px;
     color: var(--main-color);
