@@ -50,7 +50,7 @@ const loadQnaItem = (postNumber) => {
                         return;
                     }
 
-                    qnaItem.qna_view_count = 1;
+                    qnaItem.qna_view_count = (qnaItem.qna_view_count || 0) + 1;
                     displayQnaItem(qnaItem);
 
                     localData.push(qnaItem);

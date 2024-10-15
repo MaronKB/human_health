@@ -29,7 +29,7 @@
 .admin-qna-item-number,
 .admin-qna-item-view {
     flex: none;
-    width: 40px;
+    width: 80px;
     text-align: center;
 }
 
@@ -40,13 +40,13 @@
 
 .admin-qna-item-nickname {
     flex: none;
-    width: 60px;
+    width: 180px;
     text-align: center;
 }
 
 .admin-qna-item-date {
     flex: none;
-    width: 100px;
+    width: 120px;
     text-align: center;
 }
 

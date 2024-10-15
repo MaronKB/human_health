@@ -27,7 +27,7 @@
 .community-item-number,
 .community-item-view {
     flex: none;
-    width: 40px;
+    width: 80px;
     text-align: center;
 }
 .community-item-title {
@@ -36,12 +36,12 @@
 }
 .community-item-nickname {
     flex: none;
-    width: 60px;
+    width: 180px;
     text-align: center;
 }
 .community-item-date {
     flex: none;
-    width: 100px;
+    width: 120px;
     text-align: center;
 }
 
