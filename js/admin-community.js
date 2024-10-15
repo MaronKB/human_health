@@ -16,18 +16,18 @@ async function loadCommunityData() {
     }
 }
 
-function renderCommunityList(communityList) {
+function renderCommunityList(communities) {
     const communityListBody = document.getElementById('community-list-body');
     communityListBody.innerHTML = '';
 
     const startIndex = (currentPage - 1) * communitiesPerPage;
-    const endIndex = Math.min(startIndex + communitiesPerPage, communityList.length);
-    const paginatedCommunities = communityList.slice(startIndex, endIndex);
+    const endIndex = Math.min(startIndex + communitiesPerPage, communities.length);
+    const paginatedCommunities = communities.slice(startIndex, endIndex);
 
     paginatedCommunities.forEach((community, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></td>
+            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></label></td>
             <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${community.com_title}" class="edit-input-title"></td>
             <td><input type="text" value="${community.usr_nickname}" class="edit-input-nickname"></td>
@@ -35,22 +35,24 @@ function renderCommunityList(communityList) {
         `;
         communityListBody.appendChild(row);
     });
-    if (paginatedCommunities.length < activitiesPerPage) {
-        for (let i = 0; i < activitiesPerPage - paginatedActivities.length; i++) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+
+    // Fill empty rows if the number of displayed items is less than communitiesPerPage
+    if (paginatedCommunities.length < communitiesPerPage) {
+        for (let i = 0; i < communitiesPerPage - paginatedCommunities.length; i++) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.innerHTML = `
                 <td></td>
                 <td class="edit-number"></td>
                 <td></td>
                 <td></td>
                 <td class="edit-input-date"></td>
             `;
-            paginatedCommunities.appendChild(row);
+            communityListBody.appendChild(emptyRow);
         }
     }
 
     updateDeleteButtonState();
-    createPagination(communityList.length);
+    createPagination(communities.length);
 }
 
 const createPagination = (totalCommunities) => {
@@ -72,7 +74,7 @@ const createPagination = (totalCommunities) => {
 }
 
 const arrow = (direction) => {
-    let next = (direction) ? currentPage + 1 : currentPage - 1;
+    let next = direction ? currentPage + 1 : currentPage - 1;
     next = Math.max(1, Math.min(next, Math.ceil(communityList.length / communitiesPerPage)));
     currentPage = next;
     renderCommunityList(communityList);
@@ -83,7 +85,7 @@ function saveCommunityData() {
     const editNicknames = document.querySelectorAll('.edit-input-nickname');
 
     editTitles.forEach((titleInput, index) => {
-        const globalIndex = (currentPage - 1) * communitiesPerPage + index; // 전체 인덱스 계산
+        const globalIndex = (currentPage - 1) * communitiesPerPage + index;
 
         if (communityList[globalIndex]) {
             communityList[globalIndex] = {
@@ -194,8 +196,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-community').addEventListener('click', saveCommunityData);
     document.getElementById('search-button').addEventListener('click', searchCommunity);
 
-    document.getElementById('list-body').addEventListener('change', updateDeleteButtonState);
-
+    document.getElementById('community-list-body').addEventListener('change', updateDeleteButtonState);
     document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
     document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
 });

@@ -37,18 +37,18 @@ function renderUserList(users) {
         `;
         userListBody.appendChild(row);
     });
-    if (paginatedUsers.length < activitiesPerPage) {
-        for (let i = 0; i < activitiesPerPage - paginatedActivities.length; i++) {
+    if (paginatedUsers.length < usersPerPage) {
+        for (let i = 0; i < usersPerPage - paginatedUsers.length; i++) {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td></td>
-                <td class="edit-number"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="edit-input-date">${user.date}</td>
-            `;
+            <td></td>
+            <td class="edit-number"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        `;
             userListBody.appendChild(row);
         }
     }
@@ -204,7 +204,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-user').addEventListener('click', saveUserData);
     document.getElementById('search-button').addEventListener('click', searchUser);
 
-    document.getElementById('list-body').addEventListener('change', updateDeleteButtonState);
+    document.getElementById('user-list-body').addEventListener('change', updateDeleteButtonState);
 
     document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
     document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
