@@ -33,7 +33,10 @@ const loadQnaItem = (postNumber) => {
         qnaItem.qna_view_count = (qnaItem.qna_view_count || 0) + 1;
         displayQnaItem(qnaItem);
 
-        localStorage.setItem('qnaList', JSON.stringify(localData));
+        const updatedLocalData = localData.map(item =>
+            item.qna_post_number === parseInt(postNumber) ? qnaItem : item
+        );
+        localStorage.setItem('qnaList', JSON.stringify(updatedLocalData));
     } else {
         fetch('../resources/temp-db/qna.json')
             .then(res => res.json())
