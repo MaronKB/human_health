@@ -1,3 +1,6 @@
+body {
+    background: linear-gradient(135deg, transparent 35%, var(--main-color) 35% 65%, transparent 65%);
+}
 .welcome {
     width: 100%;
     display: flex;

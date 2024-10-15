@@ -94,7 +94,7 @@ const changeCommunity = (ev) => {
     if (!ev.target.classList.contains("main-communication")) return;
 
     const communityContainer = document.querySelector("#main-communications");
-    communityContainer.style.transform = (ev.target.id === "main-qna") ? "translateX(-100%)" : "";
+    communityContainer.style.transform = (ev.target.id === "main-qna") ? "translateX(calc(-100% + 30px))" : "";
 
     const communities = document.querySelectorAll(".main-communication");
     communities.forEach(c => {

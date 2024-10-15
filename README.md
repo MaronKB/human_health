@@ -25,5 +25,8 @@ Photo by Mikhail Nilov: https://www.pexels.com/photo/netbook-with-planner-and-jo
 community.jpg
 Photo by Matheus Bertelli: https://www.pexels.com/photo/positive-diverse-people-making-faces-at-camera-3856033/
 
+qna.jpg
+Photo by Bakr Magrabi: https://www.pexels.com/photo/black-magnifying-glass-on-white-table-9329766/
+
 blank-profile
 vecteezy.com
