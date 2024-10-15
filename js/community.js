@@ -59,13 +59,11 @@ const getCommunityList = () => {
             });
 
             const uniqueList = Array.from(uniqueMap.values()).filter(item => item.com_post_number);
-            communityListData.unshift(...uniqueList); // 배열의 앞에 추가
+            communityListData.unshift(...uniqueList);
 
-            // 로컬 스토리지에 오름차순 정렬하여 저장
             communityListData.sort((a, b) => a.com_post_number - b.com_post_number);
             localStorage.setItem('communityList', JSON.stringify(communityListData));
 
-            // 화면에 출력할 때는 내림차순으로 정렬
             communityListData.sort((a, b) => b.com_post_number - a.com_post_number);
 
             pageCount = Math.ceil(communityListData.length / pageLength);
@@ -76,7 +74,7 @@ const getCommunityList = () => {
 const createCommunityList = () => {
     const firstListIndex = (currentPage - 1) * pageLength;
     const currentPageList = communityListData.slice(firstListIndex, firstListIndex + pageLength);
-    
+
     const fragment = document.createDocumentFragment();
 
     currentPageList.forEach(e => {
@@ -113,6 +111,14 @@ const createCommunityList = () => {
         list.append(postNumber, title, nickname, date, view);
         fragment.appendChild(list);
     });
+
+    const emptyItemsCount = pageLength - fragment.childElementCount;
+    for (let i = 0; i < emptyItemsCount; i++) {
+        const emptyItem = document.createElement("li");
+        emptyItem.className = "community-item empty";
+        emptyItem.innerHTML = " ";
+        fragment.appendChild(emptyItem);
+    }
 
     const communityListContainer = document.getElementById("community-list");
     communityListContainer.innerHTML = "";

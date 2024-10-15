@@ -103,6 +103,14 @@ const createQnaList = () => {
         return list;
     });
 
+    const emptyItemsCount = pageLength - domList.length;
+    for (let i = 0; i < emptyItemsCount; i++) {
+        const emptyItem = document.createElement("li");
+        emptyItem.className = "admin-qna-item empty";
+        emptyItem.innerHTML = " ";
+        domList.push(emptyItem);
+    }
+
     const qnaListContainer = document.getElementById("admin-qna-list");
     qnaListContainer.innerHTML = "";
     qnaListContainer.append(...domList);
