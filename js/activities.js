@@ -390,6 +390,61 @@ function selectActivity(activity, intensity, element) {
     // document.getElementById('selectedIntensity').value = intensity;
 }
 
+
+function saveActivitiesToLocalStorage() {
+    const tbody = document.getElementById('act-tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+    const activities = rows.map(row => {
+        const activity = row.children[0].textContent;
+        const hours = row.children[1].textContent;
+        const intensity = row.children[2].textContent;
+        return { activity, hours, intensity };
+    });
+
+    localStorage.setItem('savedActivities', JSON.stringify(activities));
+}
+
+function loadActivitiesFromLocalStorage() {
+    const savedActivities = JSON.parse(localStorage.getItem('savedActivities'));
+
+    if (savedActivities) {
+        const tbody = document.getElementById('act-tbody');
+        tbody.innerHTML = '';  // 기존 내용을 초기화
+
+        savedActivities.forEach(activity => {
+            const row = document.createElement('tr');
+
+            const activityCell = document.createElement('td');
+            activityCell.textContent = activity.activity;
+
+            const hoursCell = document.createElement('td');
+            hoursCell.textContent = activity.hours;
+
+            const intensityCell = document.createElement('td');
+            intensityCell.textContent = activity.intensity;
+
+            // 삭제 버튼 추가
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'x';
+            deleteButton.onclick = function () {
+                row.remove();
+                saveActivitiesToLocalStorage();  // 삭제 후에도 업데이트
+            };
+
+            row.append(activityCell, hoursCell, intensityCell, deleteButton);
+            tbody.appendChild(row);
+        });
+
+        updateTotalActivityHours();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadActivitiesFromLocalStorage();
+});
+
+
 // 활동 저장 및 테이블에 추가
 // 활동 메인 테이블에 추가
 function saveActivity() {
@@ -425,7 +480,7 @@ function saveActivity() {
     const intensityCell = document.createElement('td');
 
     let intensityValue = (selectedIntensity * hours).toFixed(2);
-    intensityValue = parseFloat(intensityValue);
+    // intensityValue = parseFloat(intensityValue);
     intensityCell.textContent = intensityValue;
     // intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
 
@@ -443,6 +498,7 @@ function saveActivity() {
         
         newRow.remove();  // 버튼 클릭 시 해당 행 삭제
         updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
+        saveActivitiesToLocalStorage();
 
         const tbody = document.getElementById("act-tbody");
         const totalRows = 11;
@@ -469,6 +525,7 @@ function saveActivity() {
     if (!emptyRow) {
         tbody.appendChild(newRow);
     }
+    saveActivitiesToLocalStorage();
 
     alert(`${activity}, ${hours}시간이 저장되었습니다.`);
     //입력칸 초기화
