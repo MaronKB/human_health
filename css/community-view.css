@@ -1,59 +1,83 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
 .community-view {
-    margin: 20px;
-    padding: 0 0 40px 0;
-    position: relative;
-    width: 90vw;
-    max-width: var(--max-width);
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(50, 50, 90,);
+    transition: transform 0.2s;
+}
+
+.community-view:hover {
+    transform: scale(1.01);
+}
+
+.community-view-info {
+    margin-bottom: 20px;
 }
 
 .community-view-info table {
-    padding: 20px 60px;
     width: 100%;
+    border-collapse: collapse;
+}
+
+.community-view-info th,
+.community-view-info td {
+    padding: 12px;
     text-align: left;
-    font-size: 20px;
-    line-height: 40px;
 }
 
-.community-view-info table th {
-    width: 10%;
+.community-view-info th {
+    background-color: #e9ecefee;
+    color: #495057;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
 }
 
-.community-view-info table td {
-    width: 30%;
+.community-view-info td {
+    color: #212529;
 }
 
 .community-view-content {
-    margin-bottom: 20px;
-    padding: 0 60px;
-    border: none;
-    width: 100%;
-    height: 500px;
-    font-size: 20px;
-    color: black;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fafafa;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    min-height: 450px;
+    /* text-align: start; */
 }
 
 .community-view-buttons {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .community-view-buttons button {
-    width: 12%;
-    height: 35px;
+    flex: 1;
+    max-width: 120px;
+    height: 45px;
     background-color: #222;
-    font-size: 20px;
+    font-size: 16px;
     color: white;
-    margin: 10px;
     border: none;
     border-radius: 5px;
-    box-shadow: 2px 5px 10px #0003;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(158, 115, 115, 0.1);
 }
 
 .community-view-buttons button:hover {
-    color: white;
-    background: var(--main-color);
+    background-color:rgb(1, 1, 3);
+    transform: scale(1.05);
 }

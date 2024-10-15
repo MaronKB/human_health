@@ -1,5 +1,5 @@
 .community-write {
-    margin: 20px;
+    margin: 40px;
     padding: 0 0 40px 0;
     position: relative;
     width: 90vw;
@@ -18,9 +18,16 @@ input {
 
 .community-write-title {
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 15px;
     padding: 0 40px;
+    box-shadow:  #002;
+}
+#community-title{
+    height: 42px;
+    border-radius: 8px;
+    box-shadow: #002;
+
 }
 
 .community-write-title input {
@@ -39,6 +46,9 @@ input {
 
 .image-input {
     display: none;
+}
+#image-upload{
+    background-color: yellow;
 }
 
 .video-input {
