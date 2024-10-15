@@ -290,6 +290,7 @@ main > section {
     height: 400px;
 }
 .act-table tbody tr {
+    position: relative;
     font-family: var(--gothic-bold);
     height: 30px;
     line-height: 30px;

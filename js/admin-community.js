@@ -1,48 +1,87 @@
-let communityList = [
-    { title: '제목1', nickname: '닉네임1', date: '2024.10.01' },
-    { title: '제목2', nickname: '닉네임2', date: '2024.10.02' },
-    { title: '제목3', nickname: '닉네임3', date: '2024.10.03' },
-    { title: '제목4', nickname: '닉네임4', date: '2024.10.04' },
-    { title: '제목5', nickname: '닉네임5', date: '2024.10.05' },
-    { title: '제목6', nickname: '닉네임6', date: '2024.10.06' },
-    { title: '제목7', nickname: '닉네임7', date: '2024.10.07' },
-    { title: '제목8', nickname: '닉네임8', date: '2024.10.08' },
-    { title: '제목9', nickname: '닉네임9', date: '2024.10.09' },
-    { title: '제목10', nickname: '닉네임10', date: '2024.10.10' },
-    { title: '제목11', nickname: '닉네임11', date: '2024.10.11' },
-];
+let communityList = [];
+let currentPage = 1;
+const communitiesPerPage = 20;
 
-function renderCommunityList(communities) {
+async function loadCommunityData() {
+    const storedCommunityList = localStorage.getItem('communityList');
+
+    if (storedCommunityList) {
+        communityList = JSON.parse(storedCommunityList);
+        renderCommunityList(communityList);
+    } else {
+        const response = await fetch('../resources/temp-db/community.json');
+        communityList = await response.json();
+        localStorage.setItem('communityList', JSON.stringify(communityList));
+        renderCommunityList(communityList);
+    }
+}
+
+function renderCommunityList(communityList) {
     const communityListBody = document.getElementById('community-list-body');
     communityListBody.innerHTML = '';
 
-    communities.forEach((community, index) => {
+    const startIndex = (currentPage - 1) * communitiesPerPage;
+    const endIndex = Math.min(startIndex + communitiesPerPage, communityList.length);
+    const paginatedCommunities = communityList.slice(startIndex, endIndex);
+
+    paginatedCommunities.forEach((community, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td><input type="checkbox" class="edit-check-box" data-index="${index}"></td>
-        <td class="edit-number">${index + 1}</td>
-        <td><input type="text" value="${community.title}" class="edit-input-title"></td>
-        <td><input type="text" value="${community.nickname}" class="edit-input-nickname"></td>
-        <td class="edit-input-date">${community.date}</td>
+            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td class="edit-number">${startIndex + index + 1}</td>
+            <td><input type="text" value="${community.com_title}" class="edit-input-title"></td>
+            <td><input type="text" value="${community.usr_nickname}" class="edit-input-nickname"></td>
+            <td class="edit-input-date">${community.com_post_date}</td>
         `;
         communityListBody.appendChild(row);
     });
 
     updateDeleteButtonState();
+    createPagination(communityList.length);
+}
+
+const createPagination = (totalCommunities) => {
+    const pageCount = Math.ceil(totalCommunities / communitiesPerPage);
+    const paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = '';
+
+    for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement("a");
+        button.className = "pagination-button";
+        if (i === currentPage) button.classList.add("active");
+        button.innerHTML = i;
+        button.onclick = () => {
+            currentPage = i;
+            renderCommunityList(communityList);
+        };
+        paginationContainer.appendChild(button);
+    }
+}
+
+const arrow = (direction) => {
+    let next = (direction) ? currentPage + 1 : currentPage - 1;
+    next = Math.max(1, Math.min(next, Math.ceil(communityList.length / communitiesPerPage)));
+    currentPage = next;
+    renderCommunityList(communityList);
 }
 
 function saveCommunityData() {
-    const editCommunities = document.querySelectorAll('.edit-input-title');
+    const editTitles = document.querySelectorAll('.edit-input-title');
     const editNicknames = document.querySelectorAll('.edit-input-nickname');
 
-    communityList = Array.from(communityList).map((community, index) => {
-        return {
-            title: editCommunities[index] ? editCommunities[index].value : community.title,
-            nickname: editNicknames[index] ? editNicknames[index].value : community.nickname,
-            date: community.date
-        };
+    editTitles.forEach((titleInput, index) => {
+        const globalIndex = (currentPage - 1) * communitiesPerPage + index; // 전체 인덱스 계산
+
+        if (communityList[globalIndex]) {
+            communityList[globalIndex] = {
+                ...communityList[globalIndex],
+                com_title: titleInput.value,
+                usr_nickname: editNicknames[index].value,
+            };
+        }
     });
 
+    localStorage.setItem('communityList', JSON.stringify(communityList));
     alert('저장되었습니다.');
     renderCommunityList(communityList);
 }
@@ -53,8 +92,22 @@ function addCommunity() {
     const date = prompt('날짜를 입력해주세요.');
 
     if (title && nickname && date) {
-        communityList.push({ title, nickname, date });
+        const newPostNumber = communityList.length ? Math.max(...communityList.map(c => c.com_post_number)) + 1 : 1;
+        communityList.push({
+            com_post_number: newPostNumber,
+            com_title: title,
+            com_image_name: null,
+            com_image_path: null,
+            com_video_name: null,
+            com_video_path: null,
+            com_content: '',
+            com_post_date: date,
+            com_view_count: 0,
+            usr_nickname: nickname,
+        });
+        localStorage.setItem('communityList', JSON.stringify(communityList));
         renderCommunityList(communityList);
+        alert('커뮤니티가 추가되었습니다.');
     } else {
         alert('모든 정보를 입력해주세요.');
     }
@@ -70,11 +123,28 @@ function deleteCommunity() {
         }
     });
 
-    for (let i = selectedIndexes.length - 1; i >= 0; i--) {
-        communityList.splice(selectedIndexes[i], 1);
+    if (selectedIndexes.length === 0) {
+        alert('삭제할 커뮤니티를 선택해주세요.');
+        return;
+    }
+
+    const confirmation = confirm('정말로 삭제하시겠습니까?');
+    if (!confirmation) return;
+
+    const selectedCommunities = selectedIndexes.map(index => (currentPage - 1) * communitiesPerPage + index);
+
+    for (let i = selectedCommunities.length - 1; i >= 0; i--) {
+        communityList.splice(selectedCommunities[i], 1);
+    }
+
+    localStorage.setItem('communityList', JSON.stringify(communityList));
+
+    if (communityList.length <= (currentPage - 1) * communitiesPerPage) {
+        currentPage = Math.max(1, currentPage - 1);
     }
 
     renderCommunityList(communityList);
+    alert('선택된 커뮤니티가 삭제되었습니다.');
 }
 
 function searchCommunity() {
@@ -83,11 +153,11 @@ function searchCommunity() {
 
     const filteredCommunities = communityList.filter(community => {
         if (searchCategory === '제목') {
-            return community.title.toLowerCase().includes(searchInput);
+            return community.com_title.toLowerCase().includes(searchInput);
         } else if (searchCategory === '닉네임') {
-            return community.nickname.toLowerCase().includes(searchInput);
+            return community.usr_nickname.toLowerCase().includes(searchInput);
         } else if (searchCategory === '작성일') {
-            return community.date.includes(searchInput);
+            return community.com_post_date.includes(searchInput);
         }
         return false;
     });
@@ -100,12 +170,11 @@ function updateDeleteButtonState() {
     const deleteButton = document.getElementById('delete-community');
 
     const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
     deleteButton.disabled = !anyChecked;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    renderCommunityList(communityList);
+    loadCommunityData();
 
     document.getElementById('add-community').addEventListener('click', addCommunity);
     document.getElementById('delete-community').addEventListener('click', deleteCommunity);
@@ -113,6 +182,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-button').addEventListener('click', searchCommunity);
 
     document.getElementById('community-list-body').addEventListener('change', updateDeleteButtonState);
+
+    document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
+    document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
 });
 
 // localStorage.clear();

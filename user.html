@@ -32,10 +32,10 @@
             </div>
             <div class="user-input">
                 <h4><i class="fa-solid fa-venus-mars"></i>성별 : </h4>
-                <input type="radio" name="sex" id="male" value="male" checked/>
+                <input type="radio" name="gender" id="male" value="male" checked/>
                 <label for="male">남</label>
                 <span>/</span>
-                <input type="radio" name="sex" id="female" value="male"/>
+                <input type="radio" name="gender" id="female" value="female"/>
                 <label for="female">여</label>
             </div>
             <div class="user-input">
@@ -51,7 +51,7 @@
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-weight-scale"></i>체중 : </h4>
-                    <input type="number" id="weight" value="71"/>
+                    <input type="number" id="weight" value="90"/>
                     <label for="weight">kg</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
@@ -64,26 +64,26 @@
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-bacon"></i>체지방률 : </h4>
-                    <input type="number" id="fat" value="14"/>
+                    <input type="number" id="fat" value="25"/>
                     <label for="fat">%</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-fat" value="65.5"/>
+                    <input type="number" id="target-fat" value="11.2"/>
                     <label for="target-fat">%</label>
                 </div>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-hand-fist"></i>골격근량 : </h4>
-                    <input type="number" id="skeletal" value="32.8"/>
+                    <input type="number" id="skeletal" value="36.4"/>
                     <label for="skeletal">kg</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-skeletal" value="65.5"/>
+                    <input type="number" id="target-skeletal" value="32"/>
                     <label for="target-skeletal">kg</label>
                 </div>
             </div>
@@ -105,19 +105,20 @@
                     <div class="graph-body">
                         <div class="graph-texts">
                             <span>저체중</span>
-                            <span>표준</span>
-                            <span>경도 비만</span>
-                            <span>중등도 비만</span>
-                            <span>고도 비만</span>
+                            <span class="span-2">표준</span>
+                            <span>과체중</span>
+                            <span class="span-2">경도</span>
+                            <span class="span-2">중등도</span>
+                            <span>고도</span>
                         </div>
-                        <progress id="weight-target" class="graph-progress graph-target ready" value="30" max="100"></progress>
-                        <progress id="weight-current" class="graph-progress graph-current ready" value="60" max="100"></progress>
+                        <progress id="weight-target" class="graph-progress graph-target ready" max="100"></progress>
+                        <progress id="weight-current" class="graph-progress graph-current ready" max="100"></progress>
                         <div class="graph-line">
                             <span></span>
+                            <span class="span-2"></span>
                             <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span class="span-2"></span>
+                            <span class="span-2"></span>
                             <span></span>
                         </div>
                     </div>
@@ -136,10 +137,9 @@
                             <span>높음</span>
                             <span>매우 높음</span>
                         </div>
-                        <progress id="fat-target" class="graph-progress graph-target ready" value="50" max="100"></progress>
-                        <progress id="fat-current" class="graph-progress graph-current ready" value="65" max="100"></progress>
+                        <progress id="fat-target" class="graph-progress graph-target ready" max="100"></progress>
+                        <progress id="fat-current" class="graph-progress graph-current ready" max="100"></progress>
                         <div class="graph-line">
-                            <span></span>
                             <span></span>
                             <span></span>
                             <span></span>
@@ -162,10 +162,9 @@
                             <span>높음</span>
                             <span>매우 높음</span>
                         </div>
-                        <progress id="skeletal-target" class="graph-progress graph-target ready" value="70" max="100"></progress>
-                        <progress id="skeletal-current" class="graph-progress graph-current ready" value="25" max="100"></progress>
+                        <progress id="skeletal-target" class="graph-progress graph-target ready" max="100"></progress>
+                        <progress id="skeletal-current" class="graph-progress graph-current ready" max="100"></progress>
                         <div class="graph-line">
-                            <span></span>
                             <span></span>
                             <span></span>
                             <span></span>
