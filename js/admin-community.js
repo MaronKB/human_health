@@ -27,7 +27,7 @@ function renderCommunityList(communityList) {
     paginatedCommunities.forEach((community, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></td>
             <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${community.com_title}" class="edit-input-title"></td>
             <td><input type="text" value="${community.usr_nickname}" class="edit-input-nickname"></td>
@@ -35,6 +35,19 @@ function renderCommunityList(communityList) {
         `;
         communityListBody.appendChild(row);
     });
+    if (paginatedCommunities.length < activitiesPerPage) {
+        for (let i = 0; i < activitiesPerPage - paginatedActivities.length; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td></td>
+                <td class="edit-number"></td>
+                <td></td>
+                <td></td>
+                <td class="edit-input-date"></td>
+            `;
+            paginatedCommunities.appendChild(row);
+        }
+    }
 
     updateDeleteButtonState();
     createPagination(communityList.length);
@@ -181,7 +194,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-community').addEventListener('click', saveCommunityData);
     document.getElementById('search-button').addEventListener('click', searchCommunity);
 
-    document.getElementById('community-list-body').addEventListener('change', updateDeleteButtonState);
+    document.getElementById('list-body').addEventListener('change', updateDeleteButtonState);
 
     document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
     document.getElementById('pagination-right').addEventListener('click', () => arrow(true));

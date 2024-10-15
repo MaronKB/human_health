@@ -27,7 +27,7 @@ function renderDietList(diets) {
     paginatedDiets.forEach((diet, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></td>
             <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${diet.food}" class="edit-input-food"></td>
             <td><input type="text" value="${diet.amount}" class="edit-input-amount"></td>
@@ -37,6 +37,21 @@ function renderDietList(diets) {
         `;
         dietListBody.appendChild(row);
     });
+    if (paginatedDiets.length < activitiesPerPage) {
+        for (let i = 0; i < activitiesPerPage - paginatedActivities.length; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td></td>
+                <td class="edit-number"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            `;
+            paginatedDiets.appendChild(row);
+        }
+    }
 
     updateDeleteButtonState();
     createPagination(diets.length);
@@ -181,7 +196,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-diet').addEventListener('click', saveDietData);
     document.getElementById('search-button').addEventListener('click', searchDiet);
 
-    document.getElementById('diet-list-body').addEventListener('change', updateDeleteButtonState);
+    document.getElementById('list-body').addEventListener('change', updateDeleteButtonState);
     document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
     document.getElementById('pagination-right').addEventListener('click', () => arrow(true));
 });
