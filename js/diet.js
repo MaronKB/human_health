@@ -115,10 +115,14 @@ function deleteDiet(button) {
     const protein = parseFloat(row.children[3].innerText); // 단백질 값 가져오기
     const fat = parseFloat(row.children[4].innerText); // 지방 값 가져오기
 
+    // 칼로리 계산
+    const calories = (carbs * 4) + (protein * 4) + (fat * 9);
+    
     // 총합에서 삭제할 값 차감
     totalCarbs -= carbs;
     totalProtein -= protein;
     totalFat -= fat;
+    totalCalories -= calories; // 총 칼로리에서 삭제할 값 차감
 
     // 테이블에서 행 삭제
     row.remove();
