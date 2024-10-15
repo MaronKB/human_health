@@ -27,7 +27,7 @@ function renderUserList(users) {
     paginatedUsers.forEach((user, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="edit-check-box" data-index="${startIndex + index}"></td>
+            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></td>
             <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${user.id}" class="edit-input-id"></td>
             <td><input type="password" value="${user.password}" class="edit-input-password"></td>
@@ -37,6 +37,21 @@ function renderUserList(users) {
         `;
         userListBody.appendChild(row);
     });
+    if (paginatedUsers.length < activitiesPerPage) {
+        for (let i = 0; i < activitiesPerPage - paginatedActivities.length; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td></td>
+                <td class="edit-number"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="edit-input-date">${user.date}</td>
+            `;
+            userListBody.appendChild(row);
+        }
+    }
 
     updateDeleteButtonState();
     createPagination(users.length);
@@ -189,7 +204,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-user').addEventListener('click', saveUserData);
     document.getElementById('search-button').addEventListener('click', searchUser);
 
-    document.getElementById('user-list-body').addEventListener('change', updateDeleteButtonState);
+    document.getElementById('list-body').addEventListener('change', updateDeleteButtonState);
 
     document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
     document.getElementById('pagination-right').addEventListener('click', () => arrow(true));

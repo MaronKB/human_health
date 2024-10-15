@@ -180,7 +180,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-activity').addEventListener('click', saveActivityData);
     document.getElementById('search-button').addEventListener('click', searchActivity);
 
-    document.getElementById('activity-list-body').addEventListener('change', updateDeleteButtonState);
+    document.getElementById('list-body').addEventListener('change', updateDeleteButtonState);
 
     document.getElementById('pagination-left').addEventListener('click', () => arrow(false));
     document.getElementById('pagination-right').addEventListener('click', () => arrow(true));

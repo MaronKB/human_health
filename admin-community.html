@@ -14,26 +14,26 @@
 
 <body class="admin-community">
     <header data-include-html="./header.html"></header>
-    <main class="community-main">
-        <div class="title">
-            <div>커뮤니티 목록</div>
-        </div>
+    <main>
+        <h2 class="title box">커뮤니티 목록</h2>
         <div class="list-control">
-            <select class="search-category" id="search-category" required>
+            <div class="search-container box">
+                <select class="search-category" id="search-category" required>
                 <option value="제목">제목</option>
                 <option value="닉네임">닉네임</option>
                 <option value="작성일">작성일</option>
-            </select>
-            <div class="list-search">
+                </select>
                 <input type="text" id="search-input">
-                <button class="search-button" id="search-button">검색</button>
+                <button class="button" id="search-button">검색</button>
             </div>
-            <button class="control-button" id="add-community">추가</button>
-            <button class="control-button" id="save-community">저장</button>
-            <button class="control-button" id="delete-community">삭제</button>
+            <div class="control-buttons box">
+                <button class="control-button button" id="add-community">추가</button>
+                <button class="control-button button" id="save-community">저장</button>
+                <button class="control-button button danger" id="delete-community">삭제</button>
+            </div>
         </div>
 
-        <div class="community-list">
+        <div class="list box">
             <table>
                 <thead>
                     <tr>
@@ -44,20 +44,16 @@
                         <th class="input-date">작성일</th>
                     </tr>
                 </thead>
-                <tbody class="community-list-body" id="community-list-body">
+                <tbody class="list-body" id="community-list-body">
                 </tbody>
             </table>
         </div>
-        <div class="bottom">
-            <div id="pagination" class="pagination">
-                <a id="pagination-left" class="pagination-button pagination-arrow">◀</a>
-                <div id="pagination-container" class="pagination-container"></div>
-                <a id="pagination-right" class="pagination-button pagination-arrow">▶</a>
-            </div>
+        <div id="pagination" class="box">
+            <a id="pagination-left" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-left"></i></a>
+            <div id="pagination-container" class="pagination-container"></div>
+            <a id="pagination-right" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-right"></i></a>
         </div>
-
-        <script></script>
-    </div>
+    </main>
 </body>
 
 </html>
