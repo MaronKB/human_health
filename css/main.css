@@ -23,11 +23,31 @@ main.fixed {
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-            linear-gradient(135deg, transparent, #fff5 80%, transparent 80% 90%, #fff7 90%),
-            linear-gradient(#0007, transparent, #0007);
-    backdrop-filter: blur(4px) brightness(0.7);
     z-index: 0;
+}
+.main-bg {
+    position: absolute;
+    width: 520px;
+    height: 390px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    transform: translate(-200px, -80px) rotate(-20deg);
+}
+.main-bg > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.main-bg::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, #fff5 80%, transparent 80% 90%, #fff7 90%);
+    z-index: 1;
 }
 .main-box-header {
     width: 100%;
@@ -236,16 +256,55 @@ p {
     background: var(--main-color);
 }
 
-
-#introduce {
-
+#main-communications {
+    display: flex;
+    width: calc(100% - 20px);
+    max-width: 600px;
+    gap: 10px;
+    overflow: visible;
+    transition: 0.3s transform ease;
 }
-
 .main-communication {
     flex: none;
+    width: 100%;
     gap: 0;
     background-color: #eeeeee;
     padding: 0;
+    margin: 0 -20px;
+    opacity: 0.9;
+    scale: 0.9;
+    filter: blur(1px);
+    transition: 0.3s all;
+    z-index: 0;
+}
+.main-communication.active {
+    margin: 0;
+    scale: 1;
+    opacity: 1;
+    filter: none;
+    z-index: 1;
+}
+.main-communication:not(.active):hover {
+    margin: 0 -20px;
+    scale: 1.1;
+    opacity: 1;
+    filter: none;
+    transform: rotate(-10deg);
+    z-index: 2;
+}
+.main-communication:first-child:not(.active):hover {
+    transform: rotate(5deg);
+    box-shadow: 20px 10px 5px #0007;
+}
+.main-communication:last-child:not(.active):hover {
+    transform: rotate(-5deg);
+    box-shadow: -20px 10px 5px #0007;
+}
+.main-communication * {
+    pointer-events: none;
+}
+.main-communication.active * {
+    pointer-events: all;
 }
 .main-communication > h3 {
     font-size: 18px;
