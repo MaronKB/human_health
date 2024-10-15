@@ -106,111 +106,86 @@ function applyTemplate(templateName) {
 
 }
 
-// 저장 템플릿 이름 바꾸기
-// function editTemplate(templateName) {
-//     console.log(`Edit button clicked for: ${templateName}`); // 클릭 이벤트 확인용 로그
+// 템플릿을 로컬스토리지에 저장하는 기능 추가 및 수정
+function saveTemplatesToLocalStorage() {
+    localStorage.setItem('savedTemplates', JSON.stringify(templates));
+}
 
-//     // 템플릿 항목 찾기
-//     const templateElement = document.querySelector(`.template-item span`);
-//     if (templateElement.textContent === templateName) {
-//         // contenteditable 속성 추가
-//         templateElement.setAttribute("contenteditable", "true");
-//         templateElement.focus(); // 요소에 포커스 맞추기
+// 로컬스토리지에서 템플릿 로드
+function loadTemplatesFromLocalStorage() {
+    const savedTemplates = JSON.parse(localStorage.getItem('savedTemplates'));
+    if (savedTemplates) {
+        templates = savedTemplates;
+        updateSidebarWithTemplates();
+    }
+}
 
-//         // 스타일 추가 (밑줄 표시)
-//         templateElement.style.borderBottom = "1px dashed #28a745";
-
-//         // 수정 완료를 위한 엔터 키 이벤트 추가
-//         templateElement.addEventListener("keydown", function (event) {
-//             if (event.key === "Enter") {
-//                 event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
-//                 templateElement.setAttribute("contenteditable", "false");
-//                 templateElement.style.borderBottom = "none";
-
-//                 // 수정된 텍스트 반영
-//                 const newTemplateName = templateElement.textContent.trim();
-//                 if (newTemplateName !== "" && newTemplateName !== templateName) {
-//                     // templates 객체의 키도 업데이트
-//                     if (templates[templateName]) {
-//                         templates[newTemplateName] = templates[templateName];
-//                         delete templates[templateName];
-//                     }
-//                 }
-//             }
-//         });
-
-//         // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
-//         templateElement.addEventListener("blur", function () {
-//             templateElement.setAttribute("contenteditable", "false");
-//             templateElement.style.borderBottom = "none";
-//         });
-//     }
-// }
+// 사이드바 템플릿 업데이트 함수
+function updateSidebarWithTemplates() {
+    const sidebar = document.querySelector('.saved-templates');
+    sidebar.innerHTML = '';
+    for (const templateName in templates) {
+        addTemplateToSidebar(templateName);
+    }
+}
 
 // 저장 템플릿 이름 수정하기
 function editTemplate(templateName) {
-    const templateItems = document.querySelectorAll('.template-item');
+    const templateItems = Array.from(document.querySelectorAll('.template-item'));
 
-    templateItems.forEach(item => {
+    const targetItem = templateItems.find(item => {
         const templateElement = item.querySelector('span');
-
-        // 현재 클릭된 템플릿 항목에 대해서만 동작
-        const originalTemplateName = templateElement.getAttribute('data-original-name') || templateName; // 원래 이름 저장
-        
-        if (templateElement.textContent === templateName || templateElement.textContent === originalTemplateName) {
-            // contenteditable 속성 추가
-            templateElement.setAttribute("contenteditable", "true");
-            templateElement.focus(); // 요소에 포커스 맞추기
-            document.execCommand('selectAll', false, null); // 텍스트 전체 선택
-
-            // 커서를 텍스트 끝으로 이동
-            const range = document.createRange();
-            const selection = window.getSelection();
-            range.selectNodeContents(templateElement);
-            range.collapse(false);
-            selection.removeAllRanges();
-            selection.addRange(range);
-
-            // 스타일 추가 (밑줄 표시)
-            templateElement.style.borderBottom = "2px solid #F4761B";
-            templateElement.style.outline = "none"; // 포커스 스타일 제거
-
-            // 엔터 키나 바깥 클릭으로 수정 완료 처리
-            const saveChanges = () => {
-                templateElement.setAttribute("contenteditable", "false");
-                templateElement.style.borderBottom = "none";
-                
-
-                const newTemplateName = templateElement.textContent.trim();
-                if (newTemplateName !== "" && newTemplateName !== originalTemplateName) {
-                    // templates 객체의 키 업데이트
-                    if (templates[originalTemplateName]) {
-                        templates[newTemplateName] = templates[originalTemplateName];
-                        delete templates[originalTemplateName];
-                    }
-                    templateElement.textContent = newTemplateName;
-                    templateElement.setAttribute('data-original-name', newTemplateName); // 새로운 이름 저장
-
-                    // 이후 다시 applyTemplate 등 기능이 동작하도록 이벤트 다시 바인딩
-                    item.setAttribute('onclick', `applyTemplate('${newTemplateName}')`);
-                }
-            };
-
-
-            // 수정 완료를 위한 엔터 키 이벤트 추가
-            templateElement.addEventListener('keydown', function (event) {
-                if (event.key === "Enter") {
-                    event.preventDefault(); // 엔터 입력 시 줄 바꿈 방지
-                    saveChanges();
-                }
-            });
-
-            // 수정 도중 focusout 이벤트 발생 시에도 수정 완료 처리
-            templateElement.addEventListener('blur', saveChanges);
-        }
+        return templateElement.textContent.trim() === templateName;
     });
-}
 
+    if (targetItem) {
+        const templateElement = targetItem.querySelector('span');
+        const originalTemplateName = templateElement.getAttribute('data-original-name') || templateName;
+
+        // contenteditable 속성 추가
+        templateElement.setAttribute("contenteditable", "true");
+        templateElement.focus();
+        document.execCommand('selectAll', false, null);
+
+        const range = document.createRange();
+        const selection = window.getSelection();
+        range.selectNodeContents(templateElement);
+        range.collapse(false);
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        templateElement.style.borderBottom = "2px solid #F4761B";
+        templateElement.style.outline = "none";
+
+        const saveChanges = () => {
+            templateElement.setAttribute("contenteditable", "false");
+            templateElement.style.borderBottom = "none";
+
+            const newTemplateName = templateElement.textContent.trim();
+            if (newTemplateName !== "" && newTemplateName !== originalTemplateName) {
+                if (templates[originalTemplateName]) {
+                    templates[newTemplateName] = templates[originalTemplateName];
+                    delete templates[originalTemplateName];
+                }
+                templateElement.textContent = newTemplateName;
+                templateElement.setAttribute('data-original-name', newTemplateName);
+
+                targetItem.setAttribute('onclick', `applyTemplate('${newTemplateName}')`);
+                saveTemplatesToLocalStorage();
+                updateSidebarWithTemplates(); // 사이드바 업데이트
+            }
+        };
+
+        templateElement.addEventListener('keydown', function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                saveChanges();
+            }
+        });
+
+        templateElement.addEventListener('blur', saveChanges);
+    }
+}
 
 
 // 템플릿 항목을 삭제
@@ -226,9 +201,17 @@ function deleteTemplate(event, templateName) {
         // templates 객체에서 삭제 
         if (templates[templateName]) {
             delete templates[templateName];
+            saveTemplatesToLocalStorage(); // 삭제 후 로컬스토리지 업데이트
+            updateSidebarWithTemplates(); // 사이드바 업데이트
         }
     }
 }
+
+
+// 페이지 로드 시 로컬스토리지에서 템플릿 로드
+window.addEventListener('DOMContentLoaded', function() {
+    loadTemplatesFromLocalStorage();
+});
 
 
 
@@ -709,7 +692,7 @@ function addCustomActivity() {
 
     // 데이터를 localStorage에 저장
     // saveActData();
-
+    
     const tableBody = document.getElementById('actTbody');
     const newRow = document.createElement('tr');
     newRow.setAttribute('onclick', `selectActivity('${activityName}', ${activityIntensity}, this)`);
@@ -735,3 +718,4 @@ function addCustomActivity() {
 
     alert('활동이 추가되었습니다.');
 }
+

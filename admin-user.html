@@ -14,27 +14,26 @@
 
 <body class="admin-user">
     <header data-include-html="./header.html"></header>
-    <div class="user-main">
-        <div class="title">
-            <div>유저 목록</div>
-        </div>
+    <main>
+        <h2 class="title box">유저 목록</h2>
         <div class="list-control">
-            <select class="search-category" id="search-category" required>
-                <option value="아이디">아이디</option>
-                <option value="닉네임">닉네임</option>
-                <option value="이메일 수신">이메일 수신</option>
-                <option value="가입일">가입일</option>
-            </select>
-            <div class="list-search">
+            <div class="search-container box">
+                <select class="search-category" id="search-category" required>
+                    <option value="아이디">아이디</option>
+                    <option value="닉네임">닉네임</option>
+                    <option value="이메일 수신">이메일 수신</option>
+                    <option value="가입일">가입일</option>
+                </select>
                 <input type="text" id="search-input">
-                <button class="search-button" id="search-button">검색</button>
+                <button class="button" id="search-button">검색</button>
             </div>
-            <button class="control-button" id="add-user">추가</button>
-            <button class="control-button" id="save-user">저장</button>
-            <button class="control-button" id="delete-user">삭제</button>
+            <div class="control-buttons box">
+                <button class="control-button button" id="add-user">추가</button>
+                <button class="control-button button" id="save-user">저장</button>
+                <button class="control-button button danger" id="delete-user">삭제</button>
+            </div>
         </div>
-
-        <div class="user-list">
+        <div class="list box">
             <table>
                 <thead>
                     <tr>
@@ -47,20 +46,16 @@
                         <th class="input-date">가입일</th>
                     </tr>
                 </thead>
-                <tbody class="user-list-body" id="user-list-body">
+                <tbody class="list-body" id="user-list-body">
                 </tbody>
             </table>
         </div>
-        <div class="bottom">
-            <div id="pagination" class="pagination">
-                <a id="pagination-left" class="pagination-button pagination-arrow">◀</a>
-                <div id="pagination-container" class="pagination-container"></div>
-                <a id="pagination-right" class="pagination-button pagination-arrow">▶</a>
-            </div>
+        <div id="pagination" class="box">
+            <a id="pagination-left" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-left"></i></a>
+            <div id="pagination-container" class="pagination-container"></div>
+            <a id="pagination-right" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-right"></i></a>
         </div>
-        
-        <script></script>
-    </div>
+    </main>
 </body>
 
 </html>

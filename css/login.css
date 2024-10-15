@@ -1,3 +1,9 @@
+body {
+    background: linear-gradient(135deg, transparent 35%, var(--main-color) 35% 65%, transparent 65%);
+}
+body::before {
+    content: none;
+}
 #back {
     position: fixed;
     bottom: 10px;
@@ -40,7 +46,6 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background: linear-gradient(135deg, transparent 35%, var(--main-color) 35% 65%, transparent 65%);
 }
 .login-form {
     width: fit-content;

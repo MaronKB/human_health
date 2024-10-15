@@ -14,28 +14,28 @@
 
 <body class="admin-diet">
     <header data-include-html="./header.html"></header>
-    <div class="diet-main">
-        <div class="title">
-            <div>식단 목록</div>
-        </div>
-        <div class="list-control"> 
-            <select class="search-category" id="search-category" required>
-                <option value="음식">음식</option>
-                <option value="기준량">기준량</option>
-                <option value="탄수화물">탄수화물</option>
-                <option value="단백질">단백질</option>
-                <option value="지방">지방</option>
-            </select>
-            <div class="list-search">
+    <main>
+        <h2 class="title box">식단 목록</h2>
+        <div class="list-control">
+            <div class="search-container box">
+                <select class="search-category" id="search-category" required>
+                    <option value="음식">음식</option>
+                    <option value="기준량">기준량</option>
+                    <option value="탄수화물">탄수화물</option>
+                    <option value="단백질">단백질</option>
+                    <option value="지방">지방</option>
+                </select>
                 <input type="text" id="search-input">
-                <button class="search-button" id="search-button">검색</button>
+                <button class="button" id="search-button">검색</button>
             </div>
-            <button class="control-button" id="add-diet">추가</button>
-            <button class="control-button" id="save-diet">저장</button>
-            <button class="control-button" id="delete-diet">삭제</button>
+            <div class="control-buttons box">
+                <button class="control-button button" id="add-diet">추가</button>
+                <button class="control-button button" id="save-diet">저장</button>
+                <button class="control-button button danger" id="delete-diet">삭제</button>
+            </div>
         </div>
 
-        <div class="diet-list">
+        <div class="list box">
             <table>
                 <thead>
                     <tr>
@@ -48,20 +48,16 @@
                         <th class="input-fat">지방(g)</th>
                     </tr>
                 </thead>
-                <tbody class="diet-list-body" id="diet-list-body">
+                <tbody class="list-body" id="diet-list-body">
                 </tbody>
             </table>
         </div>
-        <div class="bottom">
-            <div id="pagination" class="pagination">
-                <a id="pagination-left" class="pagination-button pagination-arrow">◀</a>
-                <div id="pagination-container" class="pagination-container"></div>
-                <a id="pagination-right" class="pagination-button pagination-arrow">▶</a>
-            </div>
+        <div id="pagination" class="box">
+            <a id="pagination-left" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-left"></i></a>
+            <div id="pagination-container" class="pagination-container"></div>
+            <a id="pagination-right" class="pagination-button pagination-arrow"><i class="fa-solid fa-angle-right"></i></a>
         </div>
-
-        <script></script>
-    </div>
+    </main>
 </body>
 
 </html>
