@@ -1,6 +1,12 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 let isNicknameConfirmed = true;
 
+
+const onInput = (ev) => {
+    if (ev.target.value.length > ev.target.maxLength) {
+        ev.target.value = ev.target.value.substring(0, ev.target.maxLength);
+    };
+}
 const onSubmit = (ev) => {
     ev.preventDefault();
 
@@ -22,6 +28,11 @@ const onSubmit = (ev) => {
     const newPassword = document.querySelector("#password");
     const newPasswordConfirm = document.querySelector("#password-confirm");
 
+    if (newPassword.value.length > newPassword.maxLength) {
+        window.alert("비밀번호는 8자 이상 32자 이하입니다.");
+        return;
+    }
+
     if (newPassword.value && newPassword.value !== newPasswordConfirm.value) {
         window.alert("비밀번호가 서로 다릅니다.");
         return;
@@ -42,6 +53,10 @@ const onSubmit = (ev) => {
     localStorage.setItem("users", JSON.stringify(newUsers));
 
     window.alert("저장되었습니다.");
+
+    passwordInput.value = "";
+    newPassword.value = "";
+    newPasswordConfirm.value = "";
 }
 
 const init = () => {
@@ -52,6 +67,11 @@ const init = () => {
 
     const form = document.querySelector(".login-form");
     form.onsubmit = onSubmit;
+
+    const inputs = form.querySelectorAll("input");
+    inputs.forEach(input => {
+        input.oninput = onInput;
+    })
 
     const nickname = document.querySelector("#nickname");
     nickname.value = loggedInUser.nickname;
@@ -78,6 +98,20 @@ const init = () => {
 
     const subscribe = document.querySelector(`input[name='subscribe'][value='${loggedInUser.emailOptOut}']`);
     subscribe.checked = true;
+
+    const out = document.querySelector("#out");
+    out.addEventListener("click", (e) => {
+        const really = confirm("정말 탈퇴하시겠습니까? 유저 정보가 모두 삭제됩니다.");
+        if (really) {
+            let users = JSON.parse(localStorage.getItem("users"));
+            users = users.filter(u => u.id !== loggedInUser.id);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            localStorage.removeItem("user");
+            localStorage.removeItem("loggedInUser");
+            window.location.replace('main.html');
+        }
+    })
 }
 
 window.addEventListener('DOMContentLoaded', init);

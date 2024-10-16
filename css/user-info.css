@@ -1,1 +1,13 @@
 @import "login.css";
+.change-password {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-width: 2px 0;
+    border-style: dashed;
+    border-color: #ccc;
+}
