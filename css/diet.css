@@ -55,24 +55,31 @@ body {
     flex: 1;
     max-width: 240px;
     height: 80px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
 .diet-kcal-box > div > h3 {
     font-size: 18px;
     text-align: center;
     color: var(--main-color-dark);
 }
 .diet-kcal-box > div > p {
-    font-size: 15px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    font-family: var(--gothic-bold);
     margin: 0;
-    font-weight: bold;
-    text-align: center;
 }
-.diet-kcal-box span {
-    font-weight: bold;
+.diet-kcal-box > div > p > span:first-child {
     color: var(--main-color);
-    font-size: 45px;
+    font-size: 42px;
+}
+.diet-kcal-box > div > p > span:last-child {
+    font-size: 15px;
 }
 
 

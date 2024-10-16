@@ -25,7 +25,7 @@
         <form id="user-inputs" class="box">
             <h3 id="user-inputs-title" class="user-title">유저 정보</h3>
             <div id="user-profile">
-                <img src="resources/images/blank-profile.jpg" alt="profile image"/>
+                <img id="user-image" src="resources/images/blank-profile.jpg" alt="profile image"/>
                 <a id="edit-profile"><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
             <div class="user-input">
@@ -98,7 +98,7 @@
                 <h5>kcal</h5>
             </div>
             <div class="user-graph">
-                <div class="graph">
+                <div class="graph box">
                     <h4 class="graph-header"><i class="fa-solid fa-weight-scale"></i>체중</h4>
                     <div class="graph-subheader">
                         <h5>목표</h5>
@@ -123,9 +123,18 @@
                             <span class="span-2"></span>
                             <span></span>
                         </div>
+                        <div class="graph-number">
+                            <span id="weight-current-number"></span>
+                            <span>
+                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </span>
+                            <span id="weight-target-number"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="graph">
+                <div class="graph box">
                     <h4 class="graph-header"><i class="fa-solid fa-bacon"></i>체지방률</h4>
                     <div class="graph-subheader">
                         <h5>목표</h5>
@@ -148,9 +157,18 @@
                             <span></span>
                             <span></span>
                         </div>
+                        <div class="graph-number">
+                            <span id="fat-current-number"></span>
+                            <span>
+                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </span>
+                            <span id="fat-target-number"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="graph">
+                <div class="graph box">
                     <h4 class="graph-header"><i class="fa-solid fa-hand-fist"></i>골격근량</h4>
                     <div class="graph-subheader">
                         <h5>목표</h5>
@@ -172,6 +190,15 @@
                             <span></span>
                             <span></span>
                             <span></span>
+                        </div>
+                        <div class="graph-number">
+                            <span id="skeletal-current-number"></span>
+                            <span>
+                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </span>
+                            <span id="skeletal-target-number"></span>
                         </div>
                     </div>
                 </div>

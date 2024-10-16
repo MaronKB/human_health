@@ -241,25 +241,21 @@ body {
 .graph {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: row;
     gap: 2px;
-    background: white;
-    padding: 10px 15px;
-    border: 1px solid #eeeeee;
-    border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
+    padding: 10px;
 }
 .graph-header {
-    width: 80px;
+    align-self: flex-end;
+    width: 60px;
     height: 62px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    font-size: 16px;
-    margin: auto 0 0 0;
+    font-size: 14px;
+    margin: 0 8px 0 0;
 }
 .graph-header > i {
     font-size: 32px;
@@ -362,6 +358,47 @@ body {
 }
 .graph-line > span:last-child {
     border-right: none;
+}
+.graph-number {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: gray;
+    padding: 5px 0 2px 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+.graph-number > span {
+    font-family: var(--gothic-bold);
+    font-size: 14px;
+}
+.graph-number > span > i {
+    width: 5px;
+    animation: next 1s linear infinite alternate;
+}
+.graph-number > span > i:nth-child(2n) {
+    animation-delay: 0.4s;
+}
+.graph-number > span > i:last-child {
+    animation-delay: 0.8s;
+}
+.graph-number > span:first-child,
+.graph-number > span:last-child {
+    font-size: 24px;
+}
+@keyframes next {
+    from {
+        color: gray;
+    }
+    to {
+        color: white;
+    }
 }
 
 @media (max-width: 1050px) {
