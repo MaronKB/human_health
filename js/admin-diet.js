@@ -110,10 +110,19 @@ function saveDietData() {
 
 function addDiet() {
     const food = prompt('음식명을 입력해주세요.');
+    if (food === null) return;
+
     const amount = prompt('기준량을 입력해주세요.');
+    if (amount === null) return;
+
     const carbs = prompt('탄수화물을 입력해주세요.');
+    if (carbs === null) return;
+
     const protein = prompt('단백질을 입력해주세요.');
+    if (protein === null) return;
+
     const fat = prompt('지방을 입력해주세요.');
+    if (fat === null) return;
 
     if (food && amount && carbs && protein && fat) {
         dietList.push({ food, amount, carbs, protein, fat });

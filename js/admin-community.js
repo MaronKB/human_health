@@ -103,8 +103,13 @@ function saveCommunityData() {
 
 function addCommunity() {
     const title = prompt('제목을 입력해주세요.');
+    if (title === null) return;
+
     const nickname = prompt('닉네임을 입력해주세요.');
+    if (nickname === null) return;
+
     const date = prompt('날짜를 입력해주세요.');
+    if (date === null) return;
 
     if (title && nickname && date) {
         const newPostNumber = communityList.length ? Math.max(...communityList.map(c => c.com_post_number)) + 1 : 1;

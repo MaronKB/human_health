@@ -99,7 +99,10 @@ function saveActivityData() {
 
 function addActivity() {
     const activity = prompt('활동명을 입력해주세요.');
+    if (activity === null) return;
+
     const intensity = prompt('강도를 입력해주세요.');
+    if (intensity === null) return;
 
     if (activity && intensity) {
         activityList.push({ activity, intensity });

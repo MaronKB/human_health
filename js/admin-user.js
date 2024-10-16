@@ -109,10 +109,20 @@ function saveUserData() {
 
 function addUser() {
     const id = prompt('아이디를 입력해주세요.');
+    if (id === null) return;
+
     const password = prompt('비밀번호를 입력해주세요.');
+    if (password === null) return;
+
     const nickname = prompt('닉네임을 입력해주세요.');
-    const emailOptOut = confirm('이메일 수신 동의 여부를 선택하세요. (확인: Y, 취소: N)') ? 'Y' : 'N';
+    if (nickname === null) return;
+
+    const emailOptOut = confirm('이메일 수신 동의 여부를 선택하세요. (확인: 동의, 취소: 비동의)');
+    if (emailOptOut === null) return;
+    const emailOptOutValue = emailOptOut ? 'Y' : 'N';
+
     const date = prompt('날짜를 입력해주세요.');
+    if (date === null) return;
 
     if (id && password && nickname && date) {
         const isIdExist = userList.some(user => user.id === id);
@@ -121,7 +131,7 @@ function addUser() {
             return;
         }
 
-        userList.push({ id, password, nickname, emailOptOut, date });
+        userList.push({ id, password, nickname, emailOptOut: emailOptOutValue, date });
         localStorage.setItem('users', JSON.stringify(userList));
         renderUserList(userList);
         alert('회원가입이 완료되었습니다.');
