@@ -16,7 +16,7 @@ const setBMR = () => {
         targetSkeletal: 32,
         bmr: 2024.69
     };
-    const data = (user && user.length > 0) ? user : defData;
+    const data = (user.length === 0) ? defData : user;
 
     const base = document.querySelector("#base-kcal");
     base.innerHTML = data.bmr;
@@ -57,7 +57,6 @@ function updateActivityCalories() {
     const actKcalElement = document.getElementById('act-kcal');
     actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
 }
-
 // 총 활동 시간 업데이트 함수에 활동 대사량 업데이트 호출 추가
 function updateTotalActivityHours() {
     const tbody = document.getElementById('act-tbody');
@@ -114,24 +113,23 @@ function updateRecommendedCalories() {
 
     const weight = user.weight;
     const targetWeight = user.targetWeight;
-    let recommendMin = 0;
-    let recommendMax = 0;
+    let recommendValue = 0;
 
     // 체중과 목표 체중 비교하여 권장 섭취 칼로리 범위 계산
     if (targetWeight > weight) {
-        recommendMin = activityCalories + 200;
-        recommendMax = activityCalories + 300;
+        recommendValue = activityCalories + 250;
+        // recommendMax = activityCalories + 300;
     } else if (targetWeight < weight) {
-        recommendMin = activityCalories - 700;
-        recommendMax = activityCalories - 500;
+        recommendValue = activityCalories - 600;
+        // recommendMax = activityCalories - 500;
     } else {
-        recommendMin = activityCalories - 200;
-        recommendMax = activityCalories + 200;
+        recommendValue = activityCalories - 0;
+        // recommendMax = activityCalories + 200;
     }
 
     // 권장 섭취 칼로리 값을 업데이트 (소수점 두 자리까지 표시)
     const recommendKcalElement = document.getElementById('recommend-kcal');
-    recommendKcalElement.textContent = `${recommendMin.toFixed(2)} ~ ${recommendMax.toFixed(2)}`;
+    recommendKcalElement.textContent = `${recommendValue.toFixed(2)}`;
 }
 
 // 활동 대사량 업데이트 시, 권장 섭취 칼로리도 업데이트

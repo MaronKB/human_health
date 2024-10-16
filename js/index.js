@@ -29,24 +29,42 @@ const activateNav = () => {
         }
     });
 
-    const topMenu = document.querySelector("#top");
-    topMenu.innerHTML = isLoggedIn ? `
-        <a id="register-button" href="./user-info.html">회원정보</a>
-        <a id="logout-button" href="#">로그아웃</a>
-    ` : `
-        <a id="register-button" href="./register.html">회원가입</a>
-        <a id="login-button" href="./login.html">로그인</a>
-    `;
+    const register = document.createElement("a");
+    register.id = "register-button";
 
-    const logoutButton = document.getElementById('logout-button');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', (event) => {
-            event.preventDefault();
+    const login = document.createElement("a");
+    login.id = "login-button";
+
+    if (isLoggedIn) {
+        register.href = "user-info.html";
+        register.innerHTML = "회원정보";
+
+        login.innerHTML = "로그아웃"
+        login.onclick = (ev) => {
+            ev.preventDefault();
             localStorage.removeItem('loggedInUser');
             isLoggedIn = false;
-            window.location.href = 'main.html';
-        });
+            window.location.replace('main.html');
+
+        }
+    } else {
+        register.href = "register.html";
+        register.innerHTML = "회원가입";
+
+        login.href = "login.html";
+        login.innerHTML = "로그인";
     }
+
+    const topMenu = document.querySelector("#top");
+    topMenu.replaceChildren(register, login);
+
+    const register2 = register.cloneNode(true);
+    register2.id = "";
+    const login2 = login.cloneNode(true);
+    login2.id = "";
+
+    const navTop = document.querySelector("#nav-top");
+    navTop.replaceChildren(register2, login2);
 };
 
 window.addEventListener('DOMContentLoaded', () => {

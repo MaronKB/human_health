@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             window.isLoggedIn = true;
-            window.location.href = 'main.html';
+            window.location.replace("user.html");
         } else {
             alert('아이디 또는 비밀번호가 잘못되었습니다.');
             document.getElementById('password').value = '';
