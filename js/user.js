@@ -144,8 +144,7 @@ const onChange = (ev) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     });
     const string = strings.join("");
-    user.set(string, Number(ev.target.value));
-    console.log(string);
+    user.set(string, ev.target.value);
 
     calcBMR();
     setGraph();
