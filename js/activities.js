@@ -57,7 +57,6 @@ function updateActivityCalories() {
     const actKcalElement = document.getElementById('act-kcal');
     actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
 }
-
 // 총 활동 시간 업데이트 함수에 활동 대사량 업데이트 호출 추가
 function updateTotalActivityHours() {
     const tbody = document.getElementById('act-tbody');
