@@ -138,13 +138,17 @@ const calcBMR = () => {
     user.set("bmr", bmr / 100);
 }
 const onChange = (ev) => {
-    let strings = ev.target.id.split("-");
-    strings = strings.map((str, i) => {
-        if (i === 0) return str;
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    });
-    const string = strings.join("");
-    user.set(string, ev.target.value);
+    if (ev.target.name === "gender") {
+        user.set("gender", ev.target.value);
+    } else {
+        let strings = ev.target.id.split("-");
+        strings = strings.map((str, i) => {
+            if (i === 0) return str;
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        });
+        const string = strings.join("");
+        user.set(string, ev.target.value);
+    }
 
     calcBMR();
     setGraph();
