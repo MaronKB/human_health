@@ -19,7 +19,7 @@ const setBMR = () => {
     const data = (user.length === 0) ? defData : user;
 
     const base = document.querySelector("#base-kcal");
-    base.innerHTML = data.bmr;
+    base.innerHTML = Math.round(data.bmr);
 
     const recommend = document.querySelector("#recommend-kcal");
     recommend.innerHTML = data.weight * 30;
@@ -55,7 +55,7 @@ function updateActivityCalories() {
 
     // 활동 대사량 값 업데이트
     const actKcalElement = document.getElementById('act-kcal');
-    actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
+    actKcalElement.textContent = activityCalories.toFixed(0); // 소수점 두자리까지 표시
 }
 // 총 활동 시간 업데이트 함수에 활동 대사량 업데이트 호출 추가
 function updateTotalActivityHours() {
@@ -129,7 +129,7 @@ function updateRecommendedCalories() {
 
     // 권장 섭취 칼로리 값을 업데이트 (소수점 두 자리까지 표시)
     const recommendKcalElement = document.getElementById('recommend-kcal');
-    recommendKcalElement.textContent = `${recommendValue.toFixed(2)}`;
+    recommendKcalElement.textContent = `${recommendValue.toFixed(0)}`;
 }
 
 // 활동 대사량 업데이트 시, 권장 섭취 칼로리도 업데이트
@@ -154,7 +154,7 @@ function updateActivityCalories() {
 
     // 활동 대사량 값 업데이트
     const actKcalElement = document.getElementById('act-kcal');
-    actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
+    actKcalElement.textContent = activityCalories.toFixed(0); // 소수점 두자리까지 표시
 
     // 권장 섭취 칼로리 업데이트 호출
     updateRecommendedCalories();
@@ -213,7 +213,11 @@ function applyTemplate(templateName) {
         if (activity.activity) {
             activityCell.textContent = activity.activity;
             durationCell.textContent = activity.duration;
-            intensityCell.textContent = activity.intensity;
+            // duration과 intensity를 곱한 값을 셀에 표시
+
+            const calculatedIntensity = (activity.intensity * activity.duration).toFixed(2);
+
+            intensityCell.textContent = calculatedIntensity;
 
             // 삭제 버튼 추가
             const deleteButton = document.createElement('button');
@@ -618,7 +622,7 @@ function saveActivity() {
 
     const intensityCell = document.createElement('td');
 
-    let intensityValue = (selectedIntensity * hours).toFixed(2);
+    let intensityValue = (selectedIntensity * hours).toFixed(0);
     // intensityValue = parseFloat(intensityValue);
     intensityCell.textContent = intensityValue;
     // intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
