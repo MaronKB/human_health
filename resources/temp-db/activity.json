@@ -82,5 +82,77 @@
     {
         "activity": "마라톤 (Marathon Running)",
         "intensity": "21"
+    },
+    {
+        "activity": "크로스핏 (CrossFit)",
+        "intensity": "22"
+    },
+    {
+        "activity": "파쿠르 (Parkour)",
+        "intensity": "23"
+    },
+    {
+        "activity": "복싱 (Boxing, Intense)",
+        "intensity": "24"
+    },
+    {
+        "activity": "서핑 (Surfing)",
+        "intensity": "25"
+    },
+    {
+        "activity": "스케이트보드 (Skateboarding)",
+        "intensity": "26"
+    },
+    {
+        "activity": "조정 (Rowing)",
+        "intensity": "27"
+    },
+    {
+        "activity": "몸짱 만들기 (Bodybuilding)",
+        "intensity": "28"
+    },
+    {
+        "activity": "브레이크 댄스 (Breakdancing)",
+        "intensity": "29"
+    },
+    {
+        "activity": "배드민턴 (Badminton)",
+        "intensity": "30"
+    },
+    {
+        "activity": "자유수영 (Freestyle Swimming)",
+        "intensity": "31"
+    },
+    {
+        "activity": "암벽 등반 (Rock Climbing)",
+        "intensity": "32"
+    },
+    {
+        "activity": "야외 자전거 (Outdoor Cycling)",
+        "intensity": "33"
+    },
+    {
+        "activity": "트레킹 (Trekking)",
+        "intensity": "34"
+    },
+    {
+        "activity": "댄스 (Dance, Intense)",
+        "intensity": "35"
+    },
+    {
+        "activity": "스노우보드 (Snowboarding)",
+        "intensity": "36"
+    },
+    {
+        "activity": "스키 (Skiing)",
+        "intensity": "37"
+    },
+    {
+        "activity": "바이올린 연주 (Violin Playing, Intense)",
+        "intensity": "38"
+    },
+    {
+        "activity": "양궁 (Archery)",
+        "intensity": "39"
     }
 ]
