@@ -102,12 +102,16 @@ const setGraph = () => {
         animate(currentGraph, values.current);
 
         const currentNumber = document.querySelector(`#${string}-current-number`);
-        currentNumber.innerHTML = user[string];
-
-        const upStr = string.charAt(0).toUpperCase() + string.slice(1);
-
         const targetNumber = document.querySelector(`#${string}-target-number`);
-        targetNumber.innerHTML = user["target" + upStr];
+
+        if (string === "skeletal") {
+            currentNumber.innerHTML = String((user.skeletal * 100 / user.weight).toFixed(1)) + "%";
+            targetNumber.innerHTML = String((user.targetSkeletal * 100 / user.targetWeight).toFixed(1)) + "%";
+        } else {
+            const upStr = string.charAt(0).toUpperCase() + string.slice(1);
+            currentNumber.innerHTML = user[string] + ((string === "weight") ? "kg" : "%");
+            targetNumber.innerHTML = user["target" + upStr] + ((string === "weight") ? "kg" : "%");
+        }
     }
 
     set(bmi, "weight");

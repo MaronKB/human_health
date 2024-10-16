@@ -369,10 +369,10 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    color: gray;
+    color: black;
     padding: 5px 0 2px 0;
     pointer-events: none;
-    mix-blend-mode: multiply;
+    opacity: 0.5;
 }
 .graph-number > span {
     font-family: var(--gothic-bold);
