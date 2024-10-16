@@ -17,7 +17,7 @@
         <h3><span id="welcome-name">이용자</span>님, 안녕하세요!</h3>
         <div class="date">
             <h4>관리 시작일</h4>
-            <input type="date" id="start-date" value="2024-08-12"/>
+            <input type="date" id="start-date"/>
             <h4>로부터 <span id="date-diff">N</span>일째</h4>
         </div>
     </section>
@@ -41,50 +41,50 @@
             </div>
             <div class="user-input">
                 <h4><i class="fa-solid fa-seedling"></i>나이 : </h4>
-                <input type="number" id="age" step="0.1"/>
+                <input type="number" id="age" min="8" max="99" step="0.1"/>
                 <label for="age">세</label>
             </div>
             <div class="user-input">
                 <h4><i class="fa-solid fa-ruler"></i>키 : </h4>
-                <input type="number" id="height" step="0.1"/>
+                <input type="number" id="height" min="100" max="300" step="0.1"/>
                 <label for="height">cm</label>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-weight-scale"></i>체중 : </h4>
-                    <input type="number" id="weight" step="0.1"/>
+                    <input type="number" id="weight" min="20" max="300" step="0.1"/>
                     <label for="weight">kg</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-weight" step="0.1"/>
+                    <input type="number" id="target-weight" min="20" max="300" step="0.1"/>
                     <label for="target-weight">kg</label>
                 </div>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-bacon"></i>체지방률 : </h4>
-                    <input type="number" id="fat" step="0.1"/>
+                    <input type="number" id="fat" min="1" max="99" step="0.1"/>
                     <label for="fat">%</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-fat" step="0.1"/>
+                    <input type="number" id="target-fat" min="1" max="99" step="0.1"/>
                     <label for="target-fat">%</label>
                 </div>
             </div>
             <div class="user-input column-2">
                 <div>
                     <h4><i class="fa-solid fa-hand-fist"></i>골격근량 : </h4>
-                    <input type="number" id="skeletal" step="0.1"/>
+                    <input type="number" id="skeletal" min="10" max="150" step="0.1"/>
                     <label for="skeletal">kg</label>
                 </div>
                 <i class="fa-solid fa-caret-right"></i>
                 <div>
                     <h4>목표 : </h4>
-                    <input type="number" id="target-skeletal" step="0.1"/>
+                    <input type="number" id="target-skeletal" min="10" max="150" step="0.1"/>
                     <label for="target-skeletal">kg</label>
                 </div>
             </div>

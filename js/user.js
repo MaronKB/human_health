@@ -1,6 +1,6 @@
 let user;
 
-function UserData({name, img, gender, age, height, weight, targetWeight, fat, targetFat, skeletal, targetSkeletal, bmr}) {
+function UserData({name, img, gender, age, height, weight, targetWeight, fat, targetFat, skeletal, targetSkeletal, bmr, startDate}) {
     this.name = name;
     this.img = img;
     this.gender = gender;
@@ -13,6 +13,7 @@ function UserData({name, img, gender, age, height, weight, targetWeight, fat, ta
     this.skeletal = skeletal;
     this.targetSkeletal = targetSkeletal;
     this.bmr = bmr;
+    this.startDate = startDate;
 
     this.get = () => {
         return JSON.stringify({
@@ -28,13 +29,19 @@ function UserData({name, img, gender, age, height, weight, targetWeight, fat, ta
             skeletal: this.skeletal,
             targetSkeletal: this.targetSkeletal,
             bmr: this.bmr,
+            startDate: this.startDate,
         });
     }
     this.set = (string, value) => {
         this[string] = value;
     }
 }
-const calcDate = () => {
+const calcDate = (ev) => {
+    if (ev) {
+        user.set("startDate", Date.parse(ev.target.value));
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+
     const startDate = new Date(document.querySelector("#start-date").value);
     const today = new Date();
     const diff = Math.abs(today.getTime() - startDate.getTime());
@@ -138,6 +145,12 @@ const calcBMR = () => {
     user.set("bmr", bmr / 100);
 }
 const onChange = (ev) => {
+    if (Number(ev.target.value) > Number(ev.target.max)) {
+        ev.target.value = ev.target.max;
+    }
+    if (Number(ev.target.value) < Number(ev.target.min)) {
+        ev.target.value = ev.target.min;
+    }
     if (ev.target.name === "gender") {
         user.set("gender", ev.target.value);
     } else {
@@ -184,7 +197,8 @@ const init = () => {
         targetFat: 11.2,
         skeletal: 38.4,
         targetSkeletal: 32,
-        bmr: 2024.69
+        bmr: 2024.69,
+        startDate: new Date("2024-09-04").getTime()
     }
     user = new UserData(JSON.parse(localStorage.getItem("user")) ?? defData);
     if (user.length === 0 || !user.name) user = new UserData(defData);
@@ -196,7 +210,7 @@ const init = () => {
         etc[prop] = defData[prop];
     }
 
-    const {name, img, gender, bmr, ...data} = etc;
+    const {name, img, gender, bmr, startDate, ...data} = etc;
 
     const input = document.querySelector(`input[name="gender"][value="${gender}"]`);
     input.checked = true;
@@ -229,8 +243,11 @@ const init = () => {
         input.onchange = (ev) => onChange(ev);
     });
 
-    const date = document.querySelector(".date");
-    date.addEventListener("change", calcDate);
+    const startDay = new Date(startDate).toISOString().slice(0, 10);
+
+    const date = document.querySelector("#start-date");
+    date.value = startDay;
+    date.addEventListener("change", (ev) => calcDate(ev));
 
     const editProfile = document.querySelector("#edit-profile");
     editProfile.addEventListener("click", () => {
