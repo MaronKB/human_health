@@ -15,7 +15,7 @@ const onSubmit = (ev) => {
     const passwordInput = document.querySelector("#current-password");
 
     if (password !== passwordInput.value) {
-        window.alert("비밀번호가 다릅니다.");
+        window.alert("비밀번호가 틀렸습니다.");
         return;
     }
 

@@ -44,9 +44,10 @@ function updateActivityCalories() {
         const hours = parseFloat(row.children[1].textContent);
         const intensity = parseFloat(row.children[2].textContent);
         if (!isNaN(hours) && !isNaN(intensity)) {
-            totalActivityValue += hours * intensity;
+            totalActivityValue += intensity;
         }
     });
+    console.log(totalActivityValue/24)
 
     // 24로 나눈 후, 기초 대사량 값과 곱함
     const bmr = parseFloat(document.getElementById('base-kcal').textContent); // 기초 대사량 값 가져오기
@@ -96,68 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadActivitiesFromLocalStorage();
     updateActivityCalories();  // 페이지 로드 시 활동 대사량 업데이트
 });
-
-// 활동 추가 후에도 업데이트
-function saveActivity() {
-    const activity = document.getElementById('selectedActivity').textContent;
-    const hoursInput = document.getElementById('hours');
-    const hours = parseFloat(hoursInput.value);
-
-    if (activity === "선택하세요" || isNaN(hours) || hours <= 0) {
-        alert('활동을 선택하고, 시간을 정확히 입력해주세요.');
-        return;
-    }
-
-    // 현재 활동 시간 계산하여 24시간 초과 확인
-    const currentTotalHours = parseFloat(document.querySelector('.act-hours-value').textContent);
-    if (currentTotalHours + hours > 24) {
-        alert('총 활동 시간이 24시간을 초과할 수 없습니다.');
-        return;
-    }
-
-    // 메인 테이블에 새 행 추가
-    const tbody = document.getElementById('act-tbody');
-    let emptyRow = Array.from(tbody.children).find(row => row.children[0].textContent === "");
-    const newRow = emptyRow || document.createElement('tr');
-
-    // 새로운 셀 생성
-    const activityCell = document.createElement('td');
-    activityCell.textContent = activity;
-
-    const hoursCell = document.createElement('td');
-    hoursCell.textContent = hours;
-
-    const intensityCell = document.createElement('td');
-    let intensityValue = (selectedIntensity * hours).toFixed(2);
-    intensityCell.textContent = intensityValue;
-
-    // 삭제 버튼 추가
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'x';
-    deleteButton.style.position = 'absolute';
-    deleteButton.style.right = '10px'; // 버튼을 오른쪽에 정렬
-    deleteButton.style.top = '50%';
-    deleteButton.style.transform = 'translateY(-50%)';
-    deleteButton.onclick = function () {
-        newRow.remove();  // 버튼 클릭 시 해당 행 삭제
-        updateTotalActivityHours();  // 삭제 후 총 활동 시간 및 대사량 업데이트
-        saveActivitiesToLocalStorage();
-    };
-
-    // 셀을 행에 추가
-    newRow.replaceChildren(activityCell, hoursCell, intensityCell, deleteButton);
-
-    // 행을 테이블에 추가
-    if (!emptyRow) {
-        tbody.appendChild(newRow);
-    }
-
-    saveActivitiesToLocalStorage();
-
-    alert(`${activity}, ${hours}시간이 저장되었습니다.`);
-    hoursInput.value = ''; // 입력칸 초기화
-    updateTotalActivityHours(); // 총 시간 및 활동 대사량 업데이트
-}
 
 // 템플릿 데이터 정의
 const templates = {
@@ -451,38 +390,6 @@ function addTemplateToSidebar(templateName) {
 
     // 사이드바에 추가
     sidebar.appendChild(templateItem);
-}
-
-// 총 활동 시간 업데이트
-function updateTotalActivityHours() {
-    const tbody = document.getElementById('act-tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-
-    let totalHours = 0;
-
-    // 각 행 시간 합산
-    rows.forEach(row => {
-        const hours = parseFloat(row.children[1].textContent);
-        if (!isNaN(hours)) {
-            totalHours += hours;
-        }
-    });
-
-    // 총 활동 시간 요소 업데이트
-    const totalHoursElement = document.querySelector('.act-hours-value');
-    totalHoursElement.textContent = totalHours.toFixed(2);
-
-    // 24시간까지 남은 시간 계산 및 표시
-    const remainingHours = 24 - totalHours;
-    const remainingElement = document.querySelector('.act-hours-alert h5');
-    
-    if (remainingHours > 0) {
-        remainingElement.textContent = `(${remainingHours.toFixed(2)} 시간 부족)`;
-        remainingElement.style.color = 'red';
-    } else {
-        remainingElement.textContent = '';
-    }
-
 }
 
 
