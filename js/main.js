@@ -31,38 +31,29 @@ const scroll = (target) => {
 }
 
 const getJsonData = (type) => {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = () => {
-        if (xhttp.readyState !== 4 || xhttp.status !== 200) return;
-        const arr = JSON.parse(xhttp.responseText).slice(0, (type === "community") ? 6 : 3);
-        injectHtml(type, arr);
-    }
-    xhttp.open("GET", `resources/temp-db/${type}.json`, true);
-    xhttp.send();
-}
+    const injectHtml = (type, data) => {
+        const str = type.substring(0, 3);
+        const postData = data.sort((a, b) => {
+            return b[str + "_post_number"] - a[str + "_post_number"];
+        }).slice(0, 6);
 
-const injectHtml = (type, data) => {
-    const postData = data.sort((a, b) => {
-        return b.com_post_number - a.com_post_number;
-    }).slice(0, 6);
 
-    const _html = postData.map(e => {
-        if (type === "community") {
+        const _html = postData.map(e => {
             const index = document.createElement("span");
             index.className = "main-community-index";
-            index.innerText = e.com_post_number;
+            index.innerHTML = e[str + "_post_number"];
 
             const title = document.createElement("span");
             title.className = "main-community-title";
-            title.innerText = e.com_title;
+            title.innerHTML = e[str + "_title"];
 
             const nickname = document.createElement("span");
             nickname.className = "main-community-nickname";
-            nickname.innerText = e.usr_nickname;
+            nickname.innerHTML = e.usr_nickname;
 
             const date = document.createElement("span");
             date.className = "main-community-date";
-            date.innerText = e.com_post_date.slice(5);
+            date.innerHTML = e[str + "_post_date"].slice(5);
 
             const a = document.createElement("a");
             a.append(index, title, nickname, date);
@@ -72,28 +63,17 @@ const injectHtml = (type, data) => {
             list.append(a);
 
             return list;
-        } else {
-            const question = document.createElement("span");
-            question.className = "main-qna-q";
-            question.innerText = e.title;
+        });
+        const target = document.querySelector(`#main-${type}-list`);
+        target.replaceChildren(..._html);
+    }
 
-            const answer = document.createElement("span");
-            answer.className = "main-qna-a";
-            answer.innerText = e.answer;
-
-            const a = document.createElement("a");
-            a.append(question, answer);
-
-            const list = document.createElement("li");
-            list.className = "main-qna-entry main-communication-entry";
-            list.append(a);
-
-            return list;
-        }
+    fetch(`resources/temp-db/${type}.json`).then(res => res.json()).then(data => {
+        injectHtml(type, data);
     });
-    const target = document.querySelector(`#main-${type}-list`);
-    target.replaceChildren(..._html);
 }
+
+
 
 const changeCommunity = (ev) => {
     if (!ev.target.classList.contains("main-communication")) return;
