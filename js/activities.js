@@ -2,6 +2,12 @@ let selectedIntensity = 0; // 전역 변수로 강도 저장
 
 const bmr = JSON.parse(localStorage.getItem("user"))?.bmr ?? 2024.69;
 
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    document.getElementById('current-date').value = formattedDate;
+})
+
 // 템플릿 데이터 정의
 const templates = {
     "일반 평일 활동": [
