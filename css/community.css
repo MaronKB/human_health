@@ -91,26 +91,6 @@
     background: var(--main-color);
 }
 
-/* 글쓰기 버튼 스타일 */
-.community-button {
-    position: absolute;
-    right: 0;
-    width: 100px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--text-color);
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.community-button:hover {
-    color: white;
-    background: var(--main-color);
-}
-
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
     .community-title, .community-item {
@@ -127,55 +107,79 @@
     }
 }
 
+.community-post {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
 .post-category {
-    margin-left: 60px;
-    margin-right: 20px;
+    margin-left: 13%;
     width: 150px;
-    height: 40px;
+    height: 30px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    border-width: 2px;
-    border-color: lightslategray;
+    border: none;
     border-radius: 5px;
 }
 
 .post-search {
-    position: relative;
-    margin: 0 20px;
+    display: flex;
     display: inline-block;
 }
 
 .post-search input {
-    margin: 0px;
-    width: 400px;
-    height: 40px;
+    padding: 0 110px 0 10px;
+    width: 450px;
+    height: 30px;
     font-size: 18px;
     border-radius: 5px;
+    line-height: 30px;
 }
 
 .search-button {
-    position: absolute;
-    right: 0%;
+    position: relative;
+    top: -28px;
+    left: 348px;
     width: 100px;
-    height: 40px;
+    height: 26px;
     font-size: 18px;
-    border-color: lightslategrey;
-    background-color: #f4761b;
+    border: none;
+    background-color: var(--text-color);
     color: white;
     border-radius: 5px;
+    font-size: 16px;
+    font-family: var(--gothic-normal);
 }
 
-.post-button {
-    margin-left: 100px;
-    width: 100px;
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    border-radius: 5px;
-    border-color: lightslategrey;
-    background-color: #f4761b;
+.search-button:hover {
     color: white;
+    background: var(--main-color);
+}
+
+/* 글쓰기 버튼 스타일 */
+.community-button {
+    margin-right: 2%;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--text-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    font-size: 16px;
+    font-family: var(--gothic-normal);
+}
+.community-button:hover {
+    color: white;
+    background: var(--main-color);
 }
 
 .post-pagination {
