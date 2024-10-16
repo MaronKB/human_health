@@ -420,7 +420,8 @@ function loadActivitiesFromLocalStorage() {
                 deleteButton.onclick = function () {
                     row.remove();
                     saveActivitiesToLocalStorage();  // 삭제 후에도 업데이트
-                    addEmptyRows();  // 행 삭제 후 빈 행 추가
+                    addEmptyRows();  // 행 삭제 후 빈 행 추가]
+                    updateTotalActivityHours();
                 };
                 row.append(activityCell, hoursCell, intensityCell, deleteButton);
             } else {
