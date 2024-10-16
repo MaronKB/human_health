@@ -53,7 +53,7 @@ body {
 }
 .diet-kcal-box > div {
     flex: 1;
-    max-width: 240px;
+    max-width: 300px;
     height: 80px;
     display: flex;
     flex-direction: column;
