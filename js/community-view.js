@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteCommunityItem(postNumber);
         }
     });
+
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (loggedInUser) {
+        const communityItem = JSON.parse(localStorage.getItem('communityList')).find(item => item.com_post_number === parseInt(postNumber));
+        
+        if (communityItem && (communityItem.usr_nickname === loggedInUser.nickname || loggedInUser.nickname === '관리자')) {
+            document.getElementById('edit-button').style.display = 'inline-block';
+            document.getElementById('delete-button').style.display = 'inline-block';
+        } else {
+            document.getElementById('edit-button').style.display = 'none';
+            document.getElementById('delete-button').style.display = 'none';
+        }
+    } else {
+        document.getElementById('edit-button').style.display = 'none';
+        document.getElementById('delete-button').style.display = 'none';
+    }
 });
 
 const loadCommunityItem = (postNumber) => {

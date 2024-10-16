@@ -15,16 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteQnaItem(postNumber);
         }
     });
-});
 
-const currentUserNickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "관리자";
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (loggedInUser) {
+        const qnaItem = JSON.parse(localStorage.getItem('qnaList')).find(item => item.qna_post_number === parseInt(postNumber));
+        
+        if (qnaItem && (qnaItem.usr_nickname === loggedInUser.nickname || loggedInUser.nickname === '관리자')) {
+            document.getElementById('edit-button').style.display = 'inline-block';
+            document.getElementById('delete-button').style.display = 'inline-block';
+        } else {
+            document.getElementById('edit-button').style.display = 'none';
+            document.getElementById('delete-button').style.display = 'none';
+        }
+    } else {
+        document.getElementById('edit-button').style.display = 'none';
+        document.getElementById('delete-button').style.display = 'none';
+    }
+});
 
 const loadQnaItem = (postNumber) => {
     const localData = JSON.parse(localStorage.getItem('qnaList')) || [];
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     let qnaItem = localData.find(item => item.qna_post_number === parseInt(postNumber));
 
     if (qnaItem) {
-        if (qnaItem.is_secret && qnaItem.usr_nickname !== currentUserNickname && currentUserNickname !== "관리자") {
+        if (qnaItem.is_secret && (!loggedInUser || (qnaItem.usr_nickname !== loggedInUser.nickname && loggedInUser.nickname !== "관리자"))) {
             alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
             window.location.href = './qna.html';
             return;
@@ -44,7 +60,7 @@ const loadQnaItem = (postNumber) => {
                 qnaItem = jsonData.find(item => item.qna_post_number === parseInt(postNumber));
 
                 if (qnaItem) {
-                    if (qnaItem.is_secret && qnaItem.usr_nickname !== currentUserNickname && currentUserNickname !== "관리자") {
+                    if (qnaItem.is_secret && (!loggedInUser || (qnaItem.usr_nickname !== loggedInUser.nickname && loggedInUser.nickname !== "관리자"))) {
                         alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
                         window.location.href = './qna.html';
                         return;
@@ -64,12 +80,6 @@ const loadQnaItem = (postNumber) => {
 };
 
 const displayQnaItem = (qnaItem) => {
-    if (qnaItem.is_secret && qnaItem.usr_nickname !== currentUserNickname && currentUserNickname !== "관리자") {
-        alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
-        window.location.href = './qna.html';
-        return;
-    }
-
     document.getElementById('qna-title').innerHTML = qnaItem.qna_title;
     document.getElementById('qna-content').innerText = qnaItem.qna_content;
     document.getElementById('qna-date').innerText = qnaItem.qna_post_date;
