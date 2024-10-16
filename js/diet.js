@@ -259,9 +259,9 @@ function updateGraphs() {
     fatCurrent.value = Math.min(totalFat, fatTarget);
 
     // 총합 표시
-    carbsTotalDisplay.textContent = `${totalCarbs}g`; // 추가된 부분
-    proteinTotalDisplay.textContent = `${totalProtein}g`; // 추가된 부분
-    fatTotalDisplay.textContent = `${totalFat}g`; // 추가된 부분
+    carbsTotalDisplay.textContent = `${totalCarbs.toFixed(2)}g`; // 추가된 부분
+    proteinTotalDisplay.textContent = `${totalProtein.toFixed(2)}g`; // 추가된 부분
+    fatTotalDisplay.textContent = `${totalFat.toFixed(2)}g`; // 추가된 부분
 
     // 그래프 표시
     carbsCurrent.setAttribute('max', carbsTarget);

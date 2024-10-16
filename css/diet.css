@@ -283,6 +283,7 @@ body {
     left: 50%; /* 중앙 정렬 */
     transform: translateX(-50%); /* 중앙 정렬 */
     color: rgba(0, 0, 0, 0.5); /* 반투명 색상 */
+    font-family: var(--gothic-bold);
     font-size: 30px; /* 폰트 크기 조절 */
     pointer-events: none; /* 클릭 방지 */
 }
