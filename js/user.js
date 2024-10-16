@@ -1,7 +1,8 @@
 let user;
 
-function UserData({name, gender, age, height, weight, targetWeight, fat, targetFat, skeletal, targetSkeletal, bmr}) {
+function UserData({name, img, gender, age, height, weight, targetWeight, fat, targetFat, skeletal, targetSkeletal, bmr}) {
     this.name = name;
+    this.img = img;
     this.gender = gender;
     this.age = age;
     this.height = height;
@@ -16,6 +17,7 @@ function UserData({name, gender, age, height, weight, targetWeight, fat, targetF
     this.get = () => {
         return JSON.stringify({
             name: this.name,
+            img: this.img,
             gender: this.gender,
             age: this.age,
             height: this.height,
@@ -68,44 +70,53 @@ const setGraph = () => {
     const bmi = getBMI();
     const fat = getFat();
     const skeletal = getSkeletal();
-    
-    const graphs = Array.from(document.querySelectorAll('.graph-progress'));
 
-    const targetWeight = graphs.find(g => g.id === 'weight-target');
-    const currentWeight = graphs.find(g => g.id === 'weight-current');
-    const targetFat = graphs.find(g => g.id === 'fat-target');
-    const currentFat = graphs.find(g => g.id === 'fat-current');
-    const targetSkeletal = graphs.find(g => g.id === 'skeletal-target');
-    const currentSkeletal = graphs.find(g => g.id === 'skeletal-current');
+    const set = (values, string) => {
+        const animate = (doc, val) => {
+            const getFinalValue = (float) => {
+                let n = Math.round(float * 10);
+                if (n % 2 !== 0) n += 1;
+                return n / 10;
+            }
 
-    const animate = (doc, val) => {
-        const getFinalValue = (float) => {
-            let n = Math.round(float * 10);
-            if (n % 2 !== 0) n += 1;
-            return n / 10;
+            let value = (doc.value) ? Number(Number(doc.value).toFixed(1)) : 0;
+            const finalValue = getFinalValue(val).toFixed(1);
+
+            const animation = setInterval(() => {
+                doc.value = value;
+                if (value > finalValue) {
+                    value = (value * 10 - 2) / 10;
+                } else if (value < finalValue) {
+                    value = (value * 10 + 2) / 10;
+                } else {
+                    clearInterval(animation);
+                }
+            }, 1);
         }
 
-        let value = (doc.value) ? Number(Number(doc.value).toFixed(1)) : 0;
-        const finalValue = getFinalValue(val).toFixed(1);
+        const graphs = Array.from(document.querySelectorAll('.graph-progress'));
+        const targetGraph = graphs.find(g => g.id === `${string}-target`);
+        const currentGraph = graphs.find(g => g.id === `${string}-current`);
 
-        const animation = setInterval(() => {
-            doc.value = value;
-            if (value > finalValue) {
-                value = (value * 10 - 2) / 10;
-            } else if (value < finalValue) {
-                value = (value * 10 + 2) / 10;
-            } else {
-                clearInterval(animation);
-            }
-        }, 1);
+        animate(targetGraph, values.target);
+        animate(currentGraph, values.current);
+
+        const currentNumber = document.querySelector(`#${string}-current-number`);
+        const targetNumber = document.querySelector(`#${string}-target-number`);
+
+        if (string === "skeletal") {
+            currentNumber.innerHTML = String((user.skeletal * 100 / user.weight).toFixed(1)) + "%";
+            targetNumber.innerHTML = String((user.targetSkeletal * 100 / user.targetWeight).toFixed(1)) + "%";
+        } else {
+            const upStr = string.charAt(0).toUpperCase() + string.slice(1);
+            currentNumber.innerHTML = user[string] + ((string === "weight") ? "kg" : "%");
+            targetNumber.innerHTML = user["target" + upStr] + ((string === "weight") ? "kg" : "%");
+        }
     }
 
-    animate(targetWeight, bmi.target);
-    animate(currentWeight, bmi.current);
-    animate(targetFat, fat.target);
-    animate(currentFat, fat.current);
-    animate(targetSkeletal, skeletal.target);
-    animate(currentSkeletal, skeletal.current);
+    set(bmi, "weight");
+    set(fat, "fat");
+    set(skeletal, "skeletal");
 }
 const calcBMR = () => {
     const bmr = (user.gender === "male")
@@ -159,6 +170,7 @@ const onSubmit = (ev) => {
 const init = () => {
     const defData = {
         name: "김이름",
+        img: "resources/images/male.jpg",
         gender: "male",
         age: 28,
         height: 182,
@@ -172,8 +184,14 @@ const init = () => {
     }
     user = new UserData(JSON.parse(localStorage.getItem("user")) ?? defData);
     if (user.length === 0 || !user.name) user = new UserData(defData);
+    const {get, set, ...etc} = user;
+    for (let prop in etc) {
+        if (etc[prop]) continue;
+        user.set(prop, defData[prop]);
+        etc[prop] = defData[prop];
+    }
 
-    const {gender, bmr, get, set, ...data} = user;
+    const {img, gender, bmr, ...data} = etc;
 
     const input = document.querySelector(`input[name="gender"][value="${gender}"]`);
     input.checked = true;
@@ -192,6 +210,9 @@ const init = () => {
     const title = document.querySelector("#welcome-name");
     title.innerHTML = data.name;
 
+    const image = document.querySelector("#user-image");
+    image.src = img;
+
     const form = document.querySelector("#user-inputs");
     form.onsubmit = (ev) => onSubmit(ev);
 
@@ -202,6 +223,17 @@ const init = () => {
 
     const date = document.querySelector(".date");
     date.addEventListener("change", calcDate);
+
+    const editProfile = document.querySelector("#edit-profile");
+    editProfile.addEventListener("click", () => {
+        const imgPath = user.img.split("/");
+        let imgName = imgPath[imgPath.length - 1];
+        imgName = (imgName === "male.jpg") ? "female.jpg" : "male.jpg";
+        const newImage = `resources/images/${imgName}`;
+        user.set("img", newImage);
+
+        image.src = newImage;
+    })
 
     calcDate();
     calcBMR();

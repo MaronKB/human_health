@@ -1,4 +1,5 @@
 const communityListData = [];
+const originalCommunityListData = [];
 const pageLength = 15;
 let pageCount = 1;
 let currentPage = 1;
@@ -24,6 +25,33 @@ const init = () => {
 
     const right = document.querySelector("#pagination-right");
     right.addEventListener("click", () => arrow(true));
+
+    const searchButton = document.querySelector(".search-button");
+    searchButton.addEventListener("click", handleSearch);
+}
+
+const handleSearch = () => {
+    const searchInput = document.querySelector(".post-search input").value;
+    const selectedCategory = document.querySelector(".post-category").value;
+    currentPage = 1;
+    searchCommunityList(searchInput, selectedCategory);
+}
+
+const searchCommunityList = (searchTerm, category) => {
+    const filteredList = originalCommunityListData.filter(item => {
+        if (category === "제목") {
+            return item.com_title.includes(searchTerm);
+        } else if (category === "닉네임") {
+            return item.usr_nickname.includes(searchTerm);
+        }
+        return false;
+    });
+
+    communityListData.length = 0;
+    communityListData.push(...filteredList);
+
+    pageCount = Math.ceil(communityListData.length / pageLength);
+    refresh();
 }
 
 const refresh = () => {
@@ -60,6 +88,7 @@ const getCommunityList = () => {
 
             const uniqueList = Array.from(uniqueMap.values()).filter(item => item.com_post_number);
             communityListData.unshift(...uniqueList);
+            originalCommunityListData.push(...uniqueList);
 
             communityListData.sort((a, b) => a.com_post_number - b.com_post_number);
             localStorage.setItem('communityList', JSON.stringify(communityListData));

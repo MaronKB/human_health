@@ -28,5 +28,11 @@ Photo by Matheus Bertelli: https://www.pexels.com/photo/positive-diverse-people-
 qna.jpg
 Photo by Bakr Magrabi: https://www.pexels.com/photo/black-magnifying-glass-on-white-table-9329766/
 
+male.jpg
+Photo by Creation Hill: https://www.pexels.com/photo/man-in-red-jacket-1681010/
+
+female.jpg
+Photo by Chuot  Anhls: https://www.pexels.com/photo/soft-portrait-of-young-woman-in-natural-light-28866379/
+
 blank-profile
 vecteezy.com
