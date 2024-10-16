@@ -327,6 +327,9 @@ p {
     display: flex;
 }
 .main-communication-entry > a > span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 14px;
 }
 .main-community-entry {
