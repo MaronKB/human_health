@@ -1,3 +1,26 @@
+const user = JSON.parse(localStorage.getItem("user"));
+const setBMR = () => {
+    const defData = {
+        name: "김이름",
+            img: "resources/images/male.jpg",
+            gender: "male",
+            age: 28,
+            height: 182,
+            weight: 90,
+            targetWeight: 65.5,
+            fat: 25,
+            targetFat: 11.2,
+            skeletal: 38.4,
+            targetSkeletal: 32,
+            bmr: 2024.69
+    };
+    const data = (user.length === 0) ? defData : user;
+    const kcal = data.weight * 30;
+
+    const target = document.querySelector("#recommend-kcal");
+    target.innerHTML = kcal.toFixed(1);
+}
+
 // 음식 데이터 가져오기
 const getFoodData = () => {
     fetch("https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01?serviceKey=...")
@@ -367,6 +390,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTable(); // 테이블 렌더링
     updatePagination(); // 페이지네이션 업데이트
     setTimeout(graphAnimation, 300); // 그래프 애니메이션
+
+    setBMR();
 });
 
 
