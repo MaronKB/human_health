@@ -16,7 +16,7 @@ const setBMR = () => {
         targetSkeletal: 32,
         bmr: 2024.69
     };
-    const data = (user && user.length > 0) ? user : defData;
+    const data = (user.length === 0) ? defData : user;
 
     const base = document.querySelector("#base-kcal");
     base.innerHTML = data.bmr;
