@@ -282,12 +282,16 @@ body {
         white-space: nowrap; */
 }
 .act-table button {
-    background-color: rgba(244, 27, 27, 0.966);
+    position: absolute;
+    right: 10px;
+    top: 50%;
     color: white;
-    border: 0px solid ;
+    background-color: rgba(244, 27, 27, 0.966);
+    padding-bottom: 3px;
+    border: 0;
     border-radius: 5px;
     cursor: pointer;
-    padding-bottom: 3px;
+    transform: translateY(-50%);
 }
 .act-table button:hover {
     background-color: #c42e2e;

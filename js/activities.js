@@ -84,10 +84,6 @@ function applyTemplate(templateName) {
             // 삭제 버튼 추가
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'x';
-            deleteButton.style.position = 'absolute';
-            deleteButton.style.right = '10px';  // 버튼을 오른쪽 끝으로 배치
-            deleteButton.style.top = '50%';
-            deleteButton.style.transform = 'translateY(-50%)';
             deleteButton.onclick = function() {
                 row.remove();  // 버튼 클릭 시 해당 행 삭제
                 updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
@@ -528,10 +524,6 @@ function saveActivity() {
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'x';
-    deleteButton.style.position = 'absolute';
-    deleteButton.style.right = '10px';  // 버튼을 오른쪽에 정렬
-    deleteButton.style.top = '50%';
-    deleteButton.style.transform = 'translateY(-50%)';
     deleteButton.onclick = function() {
         // row.children[0].textContent = '';
         // row.children[1].textContent = '';
