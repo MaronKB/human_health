@@ -1,11 +1,35 @@
 let selectedIntensity = 0; // 전역 변수로 강도 저장
+const user = JSON.parse(localStorage.getItem("user"));
 
-const bmr = JSON.parse(localStorage.getItem("user"))?.bmr ?? 2024.69;
+const setBMR = () => {
+    const defData = {
+        name: "김이름",
+        img: "resources/images/male.jpg",
+        gender: "male",
+        age: 28,
+        height: 182,
+        weight: 90,
+        targetWeight: 65.5,
+        fat: 25,
+        targetFat: 11.2,
+        skeletal: 38.4,
+        targetSkeletal: 32,
+        bmr: 2024.69
+    };
+    const data = (user.length === 0) ? defData : user;
+
+    const base = document.querySelector("#base-kcal");
+    base.innerHTML = data.bmr;
+
+    const recommend = document.querySelector("#recommend-kcal");
+    recommend.innerHTML = data.weight * 30;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
     document.getElementById('current-date').value = formattedDate;
+    setBMR();
 })
 
 // 템플릿 데이터 정의
