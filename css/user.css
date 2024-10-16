@@ -205,21 +205,12 @@ body {
     justify-content: center;
     align-items: center;
     font-family: var(--gothic-bold);
+    font-size: 48px;
     color: var(--main-color);
     background: #eee;
     padding: 10px;
     border: none;
     border-radius: 10px;
-}
-.bmr-main {
-    height: 48px;
-    display: flex;
-    font-size: 48px;
-}
-.bmr-sub {
-    top: 10px;
-    position: relative;
-    font-size: 24px;
 }
 #user-calories > h5 {
     position: absolute;

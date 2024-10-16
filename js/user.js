@@ -129,20 +129,12 @@ const calcBMR = () => {
     const bmr = (user.gender === "male")
         ? 6647 + (1375 * user.weight) + (500 * user.height) - (676 * user.age)
         : 65510 + (956 * user.weight) + (185 * user.height) - (468 * user.age);
-    const bmrArr = String(bmr / 100).split(".");
-
-    const spanA = document.createElement("span");
-    spanA.className = "bmr-main";
-    spanA.innerText = bmrArr[0];
-
-    const spanB = document.createElement("span");
-    spanB.className = "bmr-sub";
-    spanB.innerText = "." + bmrArr[1];
+    const bmrValue = Math.round(bmr / 100);
 
     const target = document.querySelector("#bmr");
-    target.replaceChildren(spanA, spanB);
+    target.innerHTML = String(bmrValue);
 
-    user.set("bmr", bmr / 100);
+    user.set("bmr", bmrValue);
 }
 const onChange = (ev) => {
     if (Number(ev.target.value) > Number(ev.target.max)) {
@@ -197,7 +189,7 @@ const init = () => {
         targetFat: 11.2,
         skeletal: 38.4,
         targetSkeletal: 32,
-        bmr: 2024.69,
+        bmr: 2025,
         startDate: new Date("2024-09-04").getTime()
     }
     user = new UserData(JSON.parse(localStorage.getItem("user")) ?? defData);
