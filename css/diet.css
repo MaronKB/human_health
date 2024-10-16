@@ -276,6 +276,16 @@ body {
     background: var(--main-color-bright);
     border-radius: 4px;
 }
+.graph-total {
+
+    position: absolute; /* 그래프 위에 위치하게 함 */
+    top: 40%;
+    left: 50%; /* 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬 */
+    color: rgba(0, 0, 0, 0.5); /* 반투명 색상 */
+    font-size: 30px; /* 폰트 크기 조절 */
+    pointer-events: none; /* 클릭 방지 */
+}
 /*
 .graph:nth-child(1) .graph-current::-webkit-progress-value {
     background: var(--another-color);
