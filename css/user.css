@@ -394,10 +394,10 @@ body {
 }
 @keyframes next {
     from {
-        color: gray;
+        opacity: 1;
     }
     to {
-        color: white;
+        opacity: 0;
     }
 }
 
