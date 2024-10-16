@@ -1,86 +1,86 @@
 [
     {
-        "activity": "활동1",
+        "activity": "산책 (Walking)",
         "intensity": "1"
     },
     {
-        "activity": "활동2",
+        "activity": "가벼운 스트레칭 (Light Stretching)",
         "intensity": "2"
     },
     {
-        "activity": "활동3",
+        "activity": "요가 (Yoga)",
         "intensity": "3"
     },
     {
-        "activity": "활동4",
+        "activity": "필라테스 (Pilates)",
         "intensity": "4"
     },
     {
-        "activity": "활동5",
+        "activity": "하이킹 (Hiking)",
         "intensity": "5"
     },
     {
-        "activity": "활동6",
+        "activity": "자전거 타기 (Leisure Cycling)",
         "intensity": "6"
     },
     {
-        "activity": "활동7",
+        "activity": "실내 사이클 (Indoor Cycling, Moderate)",
         "intensity": "7"
     },
     {
-        "activity": "활동8",
+        "activity": "런닝 (Light Jogging)",
         "intensity": "8"
     },
     {
-        "activity": "활동9",
+        "activity": "수영 (Leisure Swimming)",
         "intensity": "9"
     },
     {
-        "activity": "활동10",
+        "activity": "킥복싱 (Light Kickboxing)",
         "intensity": "10"
     },
     {
-        "activity": "활동11",
+        "activity": "인터벌 트레이닝 (HIIT, Light)",
         "intensity": "11"
     },
     {
-        "activity": "활동12",
+        "activity": "웨이트 리프팅 (Weight Lifting, Moderate)",
         "intensity": "12"
     },
     {
-        "activity": "활동13",
+        "activity": "줄넘기 (Jump Rope, Moderate)",
         "intensity": "13"
     },
     {
-        "activity": "활동14",
+        "activity": "테니스 (Tennis)",
         "intensity": "14"
     },
     {
-        "activity": "활동15",
+        "activity": "축구 (Soccer, Casual Play)",
         "intensity": "15"
     },
     {
-        "activity": "활동16",
+        "activity": "농구 (Basketball, Casual Play)",
         "intensity": "16"
     },
     {
-        "activity": "활동17",
+        "activity": "달리기 (Running, 6-8 km/h)",
         "intensity": "17"
     },
     {
-        "activity": "활동18",
+        "activity": "스피닝 (Spinning, High Intensity)",
         "intensity": "18"
     },
     {
-        "activity": "활동19",
+        "activity": "수영 (Intense Swimming)",
         "intensity": "19"
     },
     {
-        "activity": "활동20",
+        "activity": "킥복싱 (Kickboxing, High Intensity)",
         "intensity": "20"
     },
     {
-        "activity": "활동21",
+        "activity": "마라톤 (Marathon Running)",
         "intensity": "21"
     }
 ]
