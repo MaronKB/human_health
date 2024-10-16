@@ -244,11 +244,20 @@ function applyTemplate(templateName) {
 }
 
 
-// 템플릿 리스트 클릭 시 색상 효과 추가 및 테이블 내용 적용
+let isTemplateClicked = false; // 템플릿이 클릭되었는지 여부를 추적
+
+let isInitializedOnce = false; // 한 번 초기화가 되었는지 여부를 추적
+// 템플릿 리스트 클릭 시 색상 효과 추가 및 테이블 내용 적용`
 
 document.querySelectorAll('.template-item').forEach(item => {
 
-    item.addEventListener('click', function() {
+    item.addEventListener('click', function(event) {
+
+        // 템플릿이 클릭되었음을 표시
+
+        isTemplateClicked = true;
+
+        isInitializedOnce = false; // 초기화 여부를 초기화
 
         // 기존 선택된 템플릿에서 selected 클래스 제거
 
@@ -257,7 +266,6 @@ document.querySelectorAll('.template-item').forEach(item => {
             template.classList.remove('selected');
 
         });
-
 
 
         // 현재 클릭한 템플릿에 selected 클래스 추가
@@ -272,6 +280,10 @@ document.querySelectorAll('.template-item').forEach(item => {
 
         applyTemplate(templateName);
 
+        // 이벤트 버블링 방지 (.template-item 내부에서 발생한 클릭 이벤트는 무시)
+
+        event.stopPropagation();
+
     });
 
 });
@@ -282,31 +294,57 @@ document.querySelectorAll('.template-item').forEach(item => {
 
 document.addEventListener('click', function(event) {
 
-    // .template-item 내부 클릭은 무시
+    // .template-item이 아닌 다른 곳을 클릭했을 때만 처리
 
-    if (event.target.closest('.template-item')) return;
+    if (!event.target.closest('.template-item') &&
+        !event.target.closest('#current-date') &&
+        !event.target.closest('.act-table') &&
+        !event.target.closest('.template-save-btn') &&
+        !event.target.closest('#add-act') &&
+        !event.target.closest('.modal-box') &&
+        !event.target.closest('.act-modal') &&
+
+        isTemplateClicked && !isInitializedOnce) {
 
 
+        // 선택된 템플릿의 selected 클래스 제거
 
-    // 선택된 템플릿의 selected 클래스 제거
+        document.querySelectorAll('.template-item').forEach(template => {
 
-    document.querySelectorAll('.template-item').forEach(template => {
+            template.classList.remove('selected');
 
-        template.classList.remove('selected');
+        });
+
+        // 테이블 초기화
+
+        const tbody = document.getElementById("act-tbody");
+
+        tbody.innerHTML = '';
+
+        addEmptyRows(); // 빈 행 추가
+
+        updateTotalActivityHours();
+
+        // 초기화가 한 번 이루어졌음을 표시
+
+        isInitializedOnce = true;
+
+    }
+
+});
+
+
+// 특정 요소 클릭 시 이벤트 버블링 방지 (초기화가 되지 않도록 설정)
+
+document.querySelectorAll('#current-date, .act-table, .template-save-btn, #add-act, .modal-box, .act-modal').forEach(element => {
+
+    element.addEventListener('click', function(event) {
+
+        // 특정 요소를 클릭해도 초기화되지 않도록 설정
+
+        event.stopPropagation();
 
     });
-
-
-
-    // 테이블 초기화
-
-    const tbody = document.getElementById("act-tbody");
-
-    tbody.innerHTML = '';
-
-    addEmptyRows();  // 빈 행 추가
-
-    updateTotalActivityHours();
 
 });
 
