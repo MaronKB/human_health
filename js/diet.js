@@ -145,9 +145,9 @@ function saveDiet() {
 
     // 선택한 음식의 영양 정보 가져오기
     const foodItem = foodData.find(item => item.name === dietName);
-    const carbs = ((foodItem.carb * quantity) / foodItem.amount).toFixed(2);
-    const protein = ((foodItem.protein * quantity) / foodItem.amount).toFixed(2);
-    const fat = ((foodItem.fat * quantity) / foodItem.amount).toFixed(2);
+    const carbs = ((foodItem.carb * quantity) / foodItem.amount).toFixed(1);
+    const protein = ((foodItem.protein * quantity) / foodItem.amount).toFixed(1);
+    const fat = ((foodItem.fat * quantity) / foodItem.amount).toFixed(1);
     
     // 칼로리 계산
     const calories = (carbs * 4) + (protein * 4) + (fat * 9);
@@ -259,9 +259,9 @@ function updateGraphs() {
     fatCurrent.value = Math.min(totalFat, fatTarget);
 
     // 총합 표시
-    carbsTotalDisplay.textContent = `${totalCarbs.toFixed(2)}g`; // 추가된 부분
-    proteinTotalDisplay.textContent = `${totalProtein.toFixed(2)}g`; // 추가된 부분
-    fatTotalDisplay.textContent = `${totalFat.toFixed(2)}g`; // 추가된 부분
+    carbsTotalDisplay.textContent = `${totalCarbs.toFixed(1)}g`; // 추가된 부분
+    proteinTotalDisplay.textContent = `${totalProtein.toFixed(1)}g`; // 추가된 부분
+    fatTotalDisplay.textContent = `${totalFat.toFixed(1)}g`; // 추가된 부분
 
     // 그래프 표시
     carbsCurrent.setAttribute('max', carbsTarget);
