@@ -333,7 +333,9 @@ body {
 
 
 /* 모달창 스타일 */
-
+#act-modal-box {
+    max-width: 600px;
+}
 .act-search {
     position: relative;
     width: 100%;
