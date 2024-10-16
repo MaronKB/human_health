@@ -192,6 +192,7 @@ function addDietToTable(dietData) {
     const table = document.getElementById('diet-table');
     const newRow = document.createElement('div');
     newRow.className = "table-item";
+    newRow.setAttribute('draggable', true); // 드래그 가능 설정
 
     newRow.innerHTML = `
         <span>${dietData.name}</span>
@@ -201,6 +202,42 @@ function addDietToTable(dietData) {
         <span>${dietData.fat}g</span>
         <button class="delete-button" onclick="deleteDiet(this)">X</button>
     `;
+    // 드래그 이벤트 핸들러 추가
+    newRow.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', newRow.innerHTML);
+        newRow.classList.add('dragging');
+    });
+
+    newRow.addEventListener('dragend', () => {
+        newRow.classList.remove('dragging');
+    });
+
+    newRow.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const draggingItem = document.querySelector('.dragging');
+        if (newRow !== draggingItem) {
+            newRow.classList.add('over');
+        }
+    });
+
+    newRow.addEventListener('dragleave', () => {
+        newRow.classList.remove('over');
+    });
+
+    newRow.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const draggingItem = document.querySelector('.dragging');
+        if (newRow !== draggingItem) {
+            const draggingItemContent = draggingItem.innerHTML;
+            draggingItem.innerHTML = newRow.innerHTML;
+            newRow.innerHTML = draggingItemContent;
+
+            // 재배치 후 총합 업데이트
+            updateTotals();
+            saveToLocalStorage(); // 새로운 순서를 로컬 스토리지에 저장
+        }
+        newRow.classList.remove('over');
+    });
     
     table.appendChild(newRow);
     updateTotals(); // 새 항목 추가 후 합계 업데이트
