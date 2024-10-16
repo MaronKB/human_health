@@ -168,8 +168,13 @@ const onSubmit = (ev) => {
     }, 1000);
 }
 const init = () => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser || !loggedInUser.length === 0) {
+        window.alert("로그인하십시오.");
+        window.location.replace("login.html");
+    }
     const defData = {
-        name: "김이름",
+        name: loggedInUser.nickname,
         img: "resources/images/male.jpg",
         gender: "male",
         age: 28,
@@ -184,6 +189,7 @@ const init = () => {
     }
     user = new UserData(JSON.parse(localStorage.getItem("user")) ?? defData);
     if (user.length === 0 || !user.name) user = new UserData(defData);
+    user.set("name", loggedInUser.nickname);
     const {get, set, ...etc} = user;
     for (let prop in etc) {
         if (etc[prop]) continue;
@@ -191,7 +197,7 @@ const init = () => {
         etc[prop] = defData[prop];
     }
 
-    const {img, gender, bmr, ...data} = etc;
+    const {name, img, gender, bmr, ...data} = etc;
 
     const input = document.querySelector(`input[name="gender"][value="${gender}"]`);
     input.checked = true;
@@ -208,7 +214,10 @@ const init = () => {
     }
 
     const title = document.querySelector("#welcome-name");
-    title.innerHTML = data.name;
+    title.innerHTML = name;
+
+    const nickname = document.querySelector("#name");
+    nickname.innerHTML = name;
 
     const image = document.querySelector("#user-image");
     image.src = img;

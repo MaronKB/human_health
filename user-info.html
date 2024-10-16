@@ -6,6 +6,7 @@
     <link rel="icon" href="resources/images/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/index.js"></script>
+    <script src="js/user-info.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/user-info.css"/>
 </head>
@@ -19,26 +20,26 @@
             <div class="login-input">
                 <label for="nickname">닉네임</label>
                 <input id="nickname" type="text" placeholder="nickname" required/>
-                <button id="change-nickname">변경</button>
+                <button type="button" id="change-nickname">변경</button>
             </div>
             <div class="login-input">
                 <label for="current-password">현재 비밀번호</label>
-                <input id="current-password" type="text" value=""/>
+                <input id="current-password" type="text" value="" required/>
             </div>
             <div class="login-input">
                 <label for="password">비밀번호</label>
-                <input id="password" type="password" placeholder="password" required/>
+                <input id="password" type="password" placeholder="password"/>
             </div>
             <div class="login-input">
                 <label for="password-confirm">비밀번호 확인</label>
-                <input id="password-confirm" type="password" placeholder="password" required/>
+                <input id="password-confirm" type="password" placeholder="password"/>
             </div>
             <div class="login-input">
                 <span>이메일 수신 동의</span>
                 <div>
-                    <input id="agree" name="subscribe" type="radio" placeholder="text" value="true" checked/>
+                    <input id="agree" name="subscribe" type="radio" placeholder="text" value="Y"/>
                     <label for="agree">동의</label>
-                    <input id="disagree" name="subscribe" type="radio" placeholder="text" value="false"/>
+                    <input id="disagree" name="subscribe" type="radio" placeholder="text" value="N"/>
                     <label for="disagree">거부</label>
                 </div>
             </div>
