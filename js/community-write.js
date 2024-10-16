@@ -16,7 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('image-upload').addEventListener('change', handleImageUpload);
     document.getElementById('video-upload').addEventListener('change', handleVideoUpload);
+
+    document.querySelector('button[type="reset"]').addEventListener('click', resetForm);
 });
+
+const resetForm = () => {
+    document.getElementById('community-title').value = '';
+    document.getElementById('community-content').value = '';
+    document.getElementById('image-upload').value = '';
+    document.getElementById('video-upload').value = '';
+    document.getElementById('image-preview').innerHTML = '';
+    document.getElementById('video-preview').innerHTML = '';
+};
 
 const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -26,12 +37,24 @@ const handleImageUpload = (event) => {
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
+            const imgWrapper = document.createElement('div');
+            imgWrapper.style.position = 'relative';
+            imgWrapper.style.display = 'inline-block';
+
             const imgElement = document.createElement('img');
             imgElement.src = e.target.result;
             imgElement.alt = file.name;
             imgElement.style.maxWidth = '100%';
             imgElement.style.height = 'auto';
-            previewContainer.appendChild(imgElement);
+
+            const closeButton = createCloseButton(() => {
+                previewContainer.innerHTML = '';
+                document.getElementById('image-upload').value = '';
+            });
+
+            imgWrapper.appendChild(imgElement);
+            imgWrapper.appendChild(closeButton);
+            previewContainer.appendChild(imgWrapper);
         };
         reader.readAsDataURL(file);
     }
@@ -45,15 +68,46 @@ const handleVideoUpload = (event) => {
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
+            const videoWrapper = document.createElement('div');
+            videoWrapper.style.position = 'relative';
+            videoWrapper.style.display = 'inline-block';
+
             const videoElement = document.createElement('video');
             videoElement.src = e.target.result;
             videoElement.controls = true;
             videoElement.style.maxWidth = '100%';
             videoElement.style.height = 'auto';
-            videoPreviewContainer.appendChild(videoElement);
+
+            const closeButton = createCloseButton(() => {
+                videoPreviewContainer.innerHTML = '';
+                document.getElementById('video-upload').value = '';
+            });
+
+            videoWrapper.appendChild(videoElement);
+            videoWrapper.appendChild(closeButton);
+            videoPreviewContainer.appendChild(videoWrapper);
         };
         reader.readAsDataURL(file);
     }
+};
+
+const createCloseButton = (onClickHandler) => {
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'X';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '5px';
+    closeButton.style.right = '5px';
+    closeButton.style.backgroundColor = 'red';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '50%';
+    closeButton.style.width = '25px';
+    closeButton.style.height = '25px';
+    closeButton.style.cursor = 'pointer';
+
+    closeButton.addEventListener('click', onClickHandler);
+
+    return closeButton;
 };
 
 const loadCommunityItem = (postNumber) => {
@@ -68,19 +122,43 @@ const loadCommunityItem = (postNumber) => {
         document.getElementById('video-upload').value = '';
 
         if (communityItem.com_image_path) {
+            const imgWrapper = document.createElement('div');
+            imgWrapper.style.position = 'relative';
+            imgWrapper.style.display = 'inline-block';
+
             const imgPreview = document.createElement('img');
             imgPreview.src = communityItem.com_image_path;
             imgPreview.style.maxWidth = '100%';
             imgPreview.style.height = 'auto';
-            document.getElementById('image-preview').appendChild(imgPreview);
+
+            const imageCloseButton = createCloseButton(() => {
+                document.getElementById('image-preview').innerHTML = '';
+                document.getElementById('image-upload').value = '';
+            });
+
+            imgWrapper.appendChild(imgPreview);
+            imgWrapper.appendChild(imageCloseButton);
+            document.getElementById('image-preview').appendChild(imgWrapper);
         }
 
         if (communityItem.com_video_path) {
+            const videoWrapper = document.createElement('div');
+            videoWrapper.style.position = 'relative';
+            videoWrapper.style.display = 'inline-block';
+
             const videoPreview = document.createElement('video');
             videoPreview.src = communityItem.com_video_path;
             videoPreview.controls = true;
             videoPreview.style.maxWidth = '100%';
-            document.getElementById('video-preview').appendChild(videoPreview);
+
+            const videoCloseButton = createCloseButton(() => {
+                document.getElementById('video-preview').innerHTML = '';
+                document.getElementById('video-upload').value = '';
+            });
+
+            videoWrapper.appendChild(videoPreview);
+            videoWrapper.appendChild(videoCloseButton);
+            document.getElementById('video-preview').appendChild(videoWrapper);
         }
     } else {
         alert('해당 커뮤니티 항목을 찾을 수 없습니다.');
@@ -149,6 +227,8 @@ const saveDataAndRedirect = (data, communityItemIndex, postNumber, title, conten
         com_content: content,
         com_post_date: date,
         usr_nickname: nickname,
+        com_image_path: data[communityItemIndex].com_image_path,
+        com_video_path: data[communityItemIndex].com_video_path,
         com_view_count: data[communityItemIndex].com_view_count,
     };
 
@@ -161,7 +241,7 @@ const addCommunityItem = () => {
     const content = document.getElementById('community-content').value;
     const imageFile = document.getElementById('image-upload').files[0];
     const videoFile = document.getElementById('video-upload').files[0];
-    const nickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "유저"; // 수정된 부분
+    const nickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "유저";
     const date = new Date().toISOString().split('T')[0];
 
     if (!title || !content) {
