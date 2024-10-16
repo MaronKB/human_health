@@ -240,20 +240,28 @@ function updateTotals() {
     updateGraphs(); // 그래프 업데이트 호출
 }
 
-// 그래프 업데이트 함수
 function updateGraphs() {
     const carbsCurrent = document.getElementById('carbs-current');
     const proteinCurrent = document.getElementById('protein-current');
     const fatCurrent = document.getElementById('fat-current');
+
+    const carbsTotalDisplay = document.getElementById('carbs-total'); // 추가된 부분
+    const proteinTotalDisplay = document.getElementById('protein-total'); // 추가된 부분
+    const fatTotalDisplay = document.getElementById('fat-total'); // 추가된 부분
 
     const carbsTarget = 650; // 권장 탄수화물 목표값
     const proteinTarget = 170; // 권장 단백질 목표값
     const fatTarget = 100; // 권장 지방 목표값
 
     // 각 그래프의 현재값과 목표값 설정
-    carbsCurrent.value = Math.min(totalCarbs, carbsTarget); // 탄수화물 현재값
-    proteinCurrent.value = Math.min(totalProtein, proteinTarget); // 단백질 현재값
-    fatCurrent.value = Math.min(totalFat, fatTarget); // 지방 현재값
+    carbsCurrent.value = Math.min(totalCarbs, carbsTarget);
+    proteinCurrent.value = Math.min(totalProtein, proteinTarget);
+    fatCurrent.value = Math.min(totalFat, fatTarget);
+
+    // 총합 표시
+    carbsTotalDisplay.textContent = `${totalCarbs}g`; // 추가된 부분
+    proteinTotalDisplay.textContent = `${totalProtein}g`; // 추가된 부분
+    fatTotalDisplay.textContent = `${totalFat}g`; // 추가된 부분
 
     // 그래프 표시
     carbsCurrent.setAttribute('max', carbsTarget);
