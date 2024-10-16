@@ -92,7 +92,7 @@ const updateCommunityItem = (postNumber) => {
     const content = document.getElementById('community-content').value;
     const imageFile = document.getElementById('image-upload').files[0];
     const videoFile = document.getElementById('video-upload').files[0];
-    const nickname = "유저";
+    const nickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "유저";
     const date = new Date().toISOString().split('T')[0];
 
     if (!title || !content) {
@@ -110,7 +110,7 @@ const updateCommunityItem = (postNumber) => {
             if (imageFile) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    data[communityItemIndex].com_image_path = e.target.result; // Base64 URL
+                    data[communityItemIndex].com_image_path = e.target.result;
                     resolve();
                 };
                 reader.readAsDataURL(imageFile);
@@ -124,7 +124,7 @@ const updateCommunityItem = (postNumber) => {
             if (videoFile) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    data[communityItemIndex].com_video_path = e.target.result; // Base64 URL
+                    data[communityItemIndex].com_video_path = e.target.result;
                     resolve();
                 };
                 reader.readAsDataURL(videoFile);
@@ -161,7 +161,7 @@ const addCommunityItem = () => {
     const content = document.getElementById('community-content').value;
     const imageFile = document.getElementById('image-upload').files[0];
     const videoFile = document.getElementById('video-upload').files[0];
-    const nickname = "유저";
+    const nickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "유저"; // 수정된 부분
     const date = new Date().toISOString().split('T')[0];
 
     if (!title || !content) {

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const currentUserNickname = "유저";
+const currentUserNickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "관리자";
 
 const loadQnaItem = (postNumber) => {
     const localData = JSON.parse(localStorage.getItem('qnaList')) || [];

@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const loadQnaItem = (postNumber) => {
     const data = JSON.parse(localStorage.getItem('qnaList')) || [];
-
     const qnaItem = data.find(item => item.qna_post_number === parseInt(postNumber));
 
     if (qnaItem) {
@@ -32,7 +31,7 @@ const loadQnaItem = (postNumber) => {
 const updateQnaItem = (postNumber) => {
     const title = document.getElementById('qna-title').value;
     const content = document.getElementById('qna-content').value;
-    const nickname = "유저";
+    const nickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "관리자";
     const date = new Date().toISOString().split('T')[0];
     const isSecret = document.getElementById('qna-check').checked;
 
@@ -67,7 +66,7 @@ const updateQnaItem = (postNumber) => {
 const addQnaItem = () => {
     const title = document.getElementById('qna-title').value;
     const content = document.getElementById('qna-content').value;
-    const nickname = "유저";
+    const nickname = JSON.parse(localStorage.getItem('loggedInUser')).nickname || "유저"; // 수정된 부분
     const date = new Date().toISOString().split('T')[0];
     const isSecret = document.getElementById('qna-check').checked;
 
