@@ -26,23 +26,32 @@
 
 .community-item-number,
 .community-item-view {
+    display: block;
     flex: none;
-    width: 80px;
+    width: 12%;
     text-align: center;
+    white-space: normal;
 }
 .community-item-title {
-    flex: 1;
+    display: block;
+    flex: none;
     text-align: left;
+    width: 46%;
+    white-space: normal;
 }
 .community-item-nickname {
+    display: block;
     flex: none;
-    width: 180px;
+    width: 15%;
     text-align: center;
+    white-space: normal;
 }
 .community-item-date {
+    display: block;
     flex: none;
-    width: 120px;
+    width: 15%;
     text-align: center;
+    white-space: normal;
 }
 
 /* 네비게이션 타이틀 (번호, 제목, 닉네임, 작성일) 스타일 */

@@ -33,26 +33,35 @@ main {
 
 .qna-item-number,
 .qna-item-view {
+    display: block;
     flex: none;
-    width: 80px;
+    width: 12%;
     text-align: center;
+    white-space: normal;
 }
 
 .qna-item-title {
-    flex: 1;
+    display: block;
+    flex: none;
     text-align: left;
+    width: 46%;
+    white-space: normal;
 }
 
 .qna-item-nickname {
+    display: block;
     flex: none;
-    width: 180px;
+    width: 15%;
     text-align: center;
+    white-space: normal;
 }
 
 .qna-item-date {
+    display: block;
     flex: none;
-    width: 120px;
+    width: 15%;
     text-align: center;
+    white-space: normal;
 }
 
 #qna-title {
