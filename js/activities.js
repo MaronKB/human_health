@@ -19,7 +19,7 @@ const setBMR = () => {
     const data = (user.length === 0) ? defData : user;
 
     const base = document.querySelector("#base-kcal");
-    base.innerHTML = data.bmr;
+    base.innerHTML = Math.round(data.bmr);
 
     const recommend = document.querySelector("#recommend-kcal");
     recommend.innerHTML = data.weight * 30;
@@ -55,7 +55,7 @@ function updateActivityCalories() {
 
     // 활동 대사량 값 업데이트
     const actKcalElement = document.getElementById('act-kcal');
-    actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
+    actKcalElement.textContent = activityCalories.toFixed(0); // 소수점 두자리까지 표시
 }
 // 총 활동 시간 업데이트 함수에 활동 대사량 업데이트 호출 추가
 function updateTotalActivityHours() {
@@ -129,7 +129,7 @@ function updateRecommendedCalories() {
 
     // 권장 섭취 칼로리 값을 업데이트 (소수점 두 자리까지 표시)
     const recommendKcalElement = document.getElementById('recommend-kcal');
-    recommendKcalElement.textContent = `${recommendValue.toFixed(2)}`;
+    recommendKcalElement.textContent = `${recommendValue.toFixed(0)}`;
 }
 
 // 활동 대사량 업데이트 시, 권장 섭취 칼로리도 업데이트
@@ -154,7 +154,7 @@ function updateActivityCalories() {
 
     // 활동 대사량 값 업데이트
     const actKcalElement = document.getElementById('act-kcal');
-    actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
+    actKcalElement.textContent = activityCalories.toFixed(0); // 소수점 두자리까지 표시
 
     // 권장 섭취 칼로리 업데이트 호출
     updateRecommendedCalories();
@@ -213,7 +213,11 @@ function applyTemplate(templateName) {
         if (activity.activity) {
             activityCell.textContent = activity.activity;
             durationCell.textContent = activity.duration;
-            intensityCell.textContent = activity.intensity;
+            // duration과 intensity를 곱한 값을 셀에 표시
+
+            const calculatedIntensity = (activity.intensity * activity.duration).toFixed(2);
+
+            intensityCell.textContent = calculatedIntensity;
 
             // 삭제 버튼 추가
             const deleteButton = document.createElement('button');
@@ -222,20 +226,7 @@ function applyTemplate(templateName) {
                 row.remove();  // 버튼 클릭 시 해당 행 삭제
                 updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
         
-                const tbody = document.getElementById("act-tbody");
-                const totalRows = 11;
-                const currentRows = tbody.querySelectorAll("tr").length;
-                if (currentRows < totalRows) {
-                    for (let i = currentRows; i < totalRows; i++) {
-                        const emptyRow = document.createElement("tr");
-                        emptyRow.innerHTML = `
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        `;
-                        tbody.appendChild(emptyRow);
-                    }
-                }
+                addEmptyRows();  // 삭제 후 빈 행 추가
             };
 
             row.append(deleteButton);
@@ -246,25 +237,118 @@ function applyTemplate(templateName) {
     });
 
     tbody.replaceChildren(...rows);
+    addEmptyRows();  // 필요한 빈 행 추가
 
-    // 활동수에 따라 빈행 추가 (일단 11개)
-    const totalRows = 11;
-    const currentRows = templateActivities.length;
-    if (currentRows < totalRows) {
-        for (let i=currentRows; i<totalRows; i++) {
-            const emptyRow = document.createElement("tr");
-            emptyRow.innerHTML = `
-                <td></td>
-                <td></td>
-                <td></td>
-            `;
-            tbody.appendChild(emptyRow);
-        }
-    }
-    // 총 활동 시간 업데이트
     updateTotalActivityHours();
 
 }
+
+
+let isTemplateClicked = false; // 템플릿이 클릭되었는지 여부를 추적
+
+let isInitializedOnce = false; // 한 번 초기화가 되었는지 여부를 추적
+// 템플릿 리스트 클릭 시 색상 효과 추가 및 테이블 내용 적용`
+
+document.querySelectorAll('.template-item').forEach(item => {
+
+    item.addEventListener('click', function(event) {
+
+        // 템플릿이 클릭되었음을 표시
+
+        isTemplateClicked = true;
+
+        isInitializedOnce = false; // 초기화 여부를 초기화
+
+        // 기존 선택된 템플릿에서 selected 클래스 제거
+
+        document.querySelectorAll('.template-item').forEach(template => {
+
+            template.classList.remove('selected');
+
+        });
+
+
+        // 현재 클릭한 템플릿에 selected 클래스 추가
+
+        item.classList.add('selected');
+
+
+
+        // 선택한 템플릿 리스트 이름을 가져와 적용
+
+        const templateName = item.querySelector('span').textContent.trim();
+
+        applyTemplate(templateName);
+
+        // 이벤트 버블링 방지 (.template-item 내부에서 발생한 클릭 이벤트는 무시)
+
+        event.stopPropagation();
+
+    });
+
+});
+
+
+
+// 화면에서 .template-item 외 다른 곳을 클릭하면 색상 및 테이블 내용 초기화
+
+document.addEventListener('click', function(event) {
+
+    // .template-item이 아닌 다른 곳을 클릭했을 때만 처리
+
+    if (!event.target.closest('.template-item') &&
+        !event.target.closest('#current-date') &&
+        !event.target.closest('.act-table') &&
+        !event.target.closest('.template-save-btn') &&
+        !event.target.closest('#add-act') &&
+        !event.target.closest('.modal-box') &&
+        !event.target.closest('.act-modal') &&
+
+        isTemplateClicked && !isInitializedOnce) {
+
+
+        // 선택된 템플릿의 selected 클래스 제거
+
+        document.querySelectorAll('.template-item').forEach(template => {
+
+            template.classList.remove('selected');
+
+        });
+
+        // 테이블 초기화
+
+        const tbody = document.getElementById("act-tbody");
+
+        tbody.innerHTML = '';
+
+        addEmptyRows(); // 빈 행 추가
+
+        updateTotalActivityHours();
+
+        // 초기화가 한 번 이루어졌음을 표시
+
+        isInitializedOnce = true;
+
+    }
+
+});
+
+
+// 특정 요소 클릭 시 이벤트 버블링 방지 (초기화가 되지 않도록 설정)
+
+document.querySelectorAll('#current-date, .act-table, .template-save-btn, #add-act, .modal-box, .act-modal').forEach(element => {
+
+    element.addEventListener('click', function(event) {
+
+        // 특정 요소를 클릭해도 초기화되지 않도록 설정
+
+        event.stopPropagation();
+
+    });
+
+});
+
+
 
 // 템플릿을 로컬스토리지에 저장하는 기능 추가 및 수정
 function saveTemplatesToLocalStorage() {
@@ -618,7 +702,7 @@ function saveActivity() {
 
     const intensityCell = document.createElement('td');
 
-    let intensityValue = (selectedIntensity * hours).toFixed(2);
+    let intensityValue = (selectedIntensity * hours).toFixed(0);
     // intensityValue = parseFloat(intensityValue);
     intensityCell.textContent = intensityValue;
     // intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
