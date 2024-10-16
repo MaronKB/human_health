@@ -1,149 +1,338 @@
 [
     {
-        "food": "음식1",
+        "food": "마라닭가슴살",
         "amount": "100",
-        "carbs": "1",
-        "protein": "1",
-        "fat": "1"
+        "carbs": "3.5",
+        "protein": "24",
+        "fat": "1.4"
     },
     {
-        "food": "음식2",
-        "amount": "100",
-        "carbs": "2",
-        "protein": "2",
-        "fat": "2"
+        "food": "햇반",
+        "amount": "210",
+        "carbs": "70",
+        "protein": "5",
+        "fat": "1.5"
     },
     {
-        "food": "음식3",
+        "food": "그릭 요거트",
         "amount": "100",
         "carbs": "3",
         "protein": "3",
         "fat": "3"
     },
     {
-        "food": "음식4",
+        "food": "삶은 계란",
         "amount": "100",
         "carbs": "4",
         "protein": "4",
         "fat": "4"
     },
     {
-        "food": "음식5",
+        "food": "아몬드",
         "amount": "100",
         "carbs": "5",
         "protein": "5",
         "fat": "5"
     },
     {
-        "food": "음식6",
+        "food": "치즈 스틱",
         "amount": "100",
         "carbs": "6",
         "protein": "6",
         "fat": "6"
     },
     {
-        "food": "음식7",
+        "food": "고구마",
         "amount": "100",
         "carbs": "7",
         "protein": "7",
         "fat": "7"
     },
     {
-        "food": "음식8",
+        "food": "퀴노아",
         "amount": "100",
         "carbs": "8",
         "protein": "8",
         "fat": "8"
     },
     {
-        "food": "음식9",
+        "food": "렌틸콩",
         "amount": "100",
         "carbs": "9",
         "protein": "9",
         "fat": "9"
     },
     {
-        "food": "음식10",
+        "food": "두부",
         "amount": "100",
         "carbs": "10",
         "protein": "10",
         "fat": "10"
     },
     {
-        "food": "음식11",
+        "food": "브로콜리",
         "amount": "100",
         "carbs": "11",
         "protein": "11",
         "fat": "11"
     },
     {
-        "food": "음식12",
+        "food": "시금치",
         "amount": "100",
         "carbs": "12",
         "protein": "12",
         "fat": "12"
     },
     {
-        "food": "음식13",
+        "food": "사과",
         "amount": "100",
         "carbs": "13",
         "protein": "13",
         "fat": "13"
     },
     {
-        "food": "음식14",
+        "food": "바나나",
         "amount": "100",
         "carbs": "14",
         "protein": "14",
         "fat": "14"
     },
     {
-        "food": "음식15",
+        "food": "오렌지",
         "amount": "100",
         "carbs": "15",
         "protein": "15",
         "fat": "15"
     },
     {
-        "food": "음식16",
+        "food": "블루베리",
         "amount": "100",
         "carbs": "16",
         "protein": "16",
         "fat": "16"
     },
     {
-        "food": "음식17",
+        "food": "체리",
         "amount": "100",
         "carbs": "17",
         "protein": "17",
         "fat": "17"
     },
     {
-        "food": "음식18",
+        "food": "배",
         "amount": "100",
         "carbs": "18",
         "protein": "18",
         "fat": "18"
     },
     {
-        "food": "음식19",
+        "food": "파인애플",
         "amount": "100",
         "carbs": "19",
         "protein": "19",
         "fat": "19"
     },
     {
-        "food": "음식20",
+        "food": "키위",
         "amount": "100",
         "carbs": "20",
         "protein": "20",
         "fat": "20"
     },
     {
-        "food": "음식21",
+        "food": "포도",
         "amount": "100",
         "carbs": "21",
         "protein": "21",
         "fat": "21"
+    },
+    {
+        "food": "계란프라이",
+        "amount": "100",
+        "carbs": "2",
+        "protein": "9",
+        "fat": "7"
+    },
+    {
+        "food": "닭가슴살 구이",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "31",
+        "fat": "3.6"
+    },
+    {
+        "food": "연어",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "20",
+        "fat": "13"
+    },
+    {
+        "food": "지방이 적은 소고기",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "26",
+        "fat": "10"
+    },
+    {
+        "food": "콩나물",
+        "amount": "100",
+        "carbs": "6",
+        "protein": "4",
+        "fat": "0.2"
+    },
+    {
+        "food": "당근",
+        "amount": "100",
+        "carbs": "10",
+        "protein": "1",
+        "fat": "0.2"
+    },
+    {
+        "food": "피스타치오",
+        "amount": "100",
+        "carbs": "28",
+        "protein": "20",
+        "fat": "45"
+    },
+    {
+        "food": "카제인 단백질",
+        "amount": "30",
+        "carbs": "2",
+        "protein": "25",
+        "fat": "1"
+    },
+    {
+        "food": "흰 쌀밥",
+        "amount": "100",
+        "carbs": "28",
+        "protein": "2.7",
+        "fat": "0.3"
+    },
+    {
+        "food": "연두부",
+        "amount": "100",
+        "carbs": "2",
+        "protein": "8",
+        "fat": "4"
+    },
+    {
+        "food": "조리된 브로콜리",
+        "amount": "100",
+        "carbs": "7",
+        "protein": "3",
+        "fat": "0.4"
+    },
+    {
+        "food": "볶음밥",
+        "amount": "100",
+        "carbs": "28",
+        "protein": "5",
+        "fat": "10"
+    },
+    {
+        "food": "조기",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "22",
+        "fat": "4"
+    },
+    {
+        "food": "샐러드",
+        "amount": "100",
+        "carbs": "5",
+        "protein": "1",
+        "fat": "0.3"
+    },
+    {
+        "food": "크림 치즈",
+        "amount": "100",
+        "carbs": "4",
+        "protein": "5",
+        "fat": "34"
+    },
+    {
+        "food": "버터",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "1",
+        "fat": "81"
+    },
+    {
+        "food": "올리브",
+        "amount": "100",
+        "carbs": "6",
+        "protein": "0.8",
+        "fat": "11"
+    },
+    {
+        "food": "훈제 연어",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "25",
+        "fat": "10"
+    },
+    {
+        "food": "다크 초콜릿",
+        "amount": "100",
+        "carbs": "46",
+        "protein": "5",
+        "fat": "30"
+    },
+    {
+        "food": "스무디",
+        "amount": "250",
+        "carbs": "35",
+        "protein": "5",
+        "fat": "2"
+    },
+    {
+        "food": "미역국",
+        "amount": "100",
+        "carbs": "5",
+        "protein": "1",
+        "fat": "0.5"
+    },
+    {
+        "food": "김밥",
+        "amount": "100",
+        "carbs": "28",
+        "protein": "7",
+        "fat": "6"
+    },
+    {
+        "food": "떡볶이",
+        "amount": "100",
+        "carbs": "40",
+        "protein": "5",
+        "fat": "5"
+    },
+    {
+        "food": "막걸리",
+        "amount": "100",
+        "carbs": "18",
+        "protein": "0.5",
+        "fat": "0.5"
+    },
+    {
+        "food": "연어 스테이크",
+        "amount": "100",
+        "carbs": "0",
+        "protein": "25",
+        "fat": "14"
+    },
+    {
+        "food": "감자",
+        "amount": "100",
+        "carbs": "17",
+        "protein": "2",
+        "fat": "0.2"
+    },
+    {
+        "food": "무",
+        "amount": "100",
+        "carbs": "4",
+        "protein": "1",
+        "fat": "0.1"
     }
 ]
