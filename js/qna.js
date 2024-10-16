@@ -10,6 +10,7 @@ function QnaItemData(jsonData) {
     this.date = jsonData.qna_post_date;
     this.nickname = jsonData.usr_nickname;
     this.viewCount = jsonData.qna_view_count || 0;
+    this.isSecret = jsonData.is_secret || false;
 }
 
 const init = () => {
@@ -28,39 +29,45 @@ const refresh = () => {
 }
 
 const getQnaList = () => {
-    const existingQnaList = JSON.parse(localStorage.getItem('qnaList')) || [];
-    const localList = existingQnaList.map(e => new QnaItemData(e));
+    const existingQnaList = JSON.parse(localStorage.getItem('qnaList'));
 
-    fetch("../resources/temp-db/qna.json")
-        .then(res => res.json())
-        .then(data => {
-            const list = data.map(e => new QnaItemData(e));
+    if (existingQnaList) {
+        const localList = existingQnaList.map(e => new QnaItemData(e));
+        qnaListData.push(...localList);
+        pageCount = Math.ceil(qnaListData.length / pageLength);
+        refresh();
+    } else {
+        fetch("../resources/temp-db/qna.json")
+            .then(res => res.json())
+            .then(data => {
+                const list = data.map(e => new QnaItemData(e));
 
-            list.sort((a, b) => b.postNumber - a.postNumber);
+                list.sort((a, b) => b.postNumber - a.postNumber);
 
-            const uniqueMap = new Map();
+                qnaListData.push(...list);
 
-            list.forEach(item => {
-                uniqueMap.set(item.postNumber, item);
-            });
+                saveToLocalStorage();
 
-            localList.forEach(item => {
-                if (uniqueMap.has(item.postNumber)) {
-                    const existingItem = uniqueMap.get(item.postNumber);
-                    existingItem.viewCount = item.viewCount;
-                    existingItem.title = item.title;
-                } else {
-                    uniqueMap.set(item.postNumber, item);
-                }
-            });
+                pageCount = Math.ceil(qnaListData.length / pageLength);
+                refresh();
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }
+}
 
-            qnaListData.push(...uniqueMap.values());
-
-            qnaListData.sort((a, b) => b.postNumber - a.postNumber);
-
-            pageCount = Math.ceil(qnaListData.length / pageLength);
-            refresh();
-        })
+const saveToLocalStorage = () => {
+    const dataToSave = qnaListData.map(item => {
+        return {
+            qna_post_number: item.postNumber,
+            qna_title: item.title,
+            qna_content: item.content,
+            qna_post_date: item.date,
+            usr_nickname: item.nickname,
+            qna_view_count: item.viewCount,
+            is_secret: item.isSecret
+        };
+    });
+    localStorage.setItem('qnaList', JSON.stringify(dataToSave));
 }
 
 const createQnaList = () => {
@@ -75,7 +82,8 @@ const createQnaList = () => {
 
         const postNumber = document.createElement("span");
         postNumber.className = "qna-item-number";
-        postNumber.innerHTML = e.postNumber;
+
+        postNumber.innerHTML = Number.isInteger(e.postNumber) ? e.postNumber : "　ㄴ";
 
         const title = document.createElement("h5");
         title.className = "qna-item-title";

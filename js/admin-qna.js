@@ -75,7 +75,12 @@ const createQnaList = () => {
 
         const postNumber = document.createElement("span");
         postNumber.className = "admin-qna-item-number";
-        postNumber.innerHTML = e.postNumber;
+
+        if (Number.isInteger(e.postNumber)) {
+            postNumber.innerHTML = e.postNumber;
+        } else {
+            postNumber.innerHTML = "　ㄴ";
+        }
 
         const title = document.createElement("h5");
         title.className = "admin-qna-item-title";

@@ -42,6 +42,10 @@ input {
     background-color: #fafafa;
 }
 
+.admin-qna-write-check {
+    display: none;
+}
+
 .admin-qna-write-content {
     margin-bottom: 17px;
     padding: 0;

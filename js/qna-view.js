@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
     if (loggedInUser) {
-        const qnaItem = JSON.parse(localStorage.getItem('qnaList')).find(item => item.qna_post_number === parseInt(postNumber));
-        
+        const qnaItem = JSON.parse(localStorage.getItem('qnaList')).find(item => item.qna_post_number === parseFloat(postNumber));
+
         if (qnaItem && (qnaItem.usr_nickname === loggedInUser.nickname || loggedInUser.nickname === '관리자')) {
             document.getElementById('edit-button').style.display = 'inline-block';
             document.getElementById('delete-button').style.display = 'inline-block';
@@ -37,10 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
 const loadQnaItem = (postNumber) => {
     const localData = JSON.parse(localStorage.getItem('qnaList')) || [];
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    let qnaItem = localData.find(item => item.qna_post_number === parseInt(postNumber));
+    let qnaItem = localData.find(item => item.qna_post_number === parseFloat(postNumber));
 
     if (qnaItem) {
-        if (qnaItem.is_secret && (!loggedInUser || (qnaItem.usr_nickname !== loggedInUser.nickname && loggedInUser.nickname !== "관리자"))) {
+        const previousIndex = localData.findIndex(item => item.qna_post_number === parseFloat(postNumber)) - 1;
+        const previousQnaItem = previousIndex >= 0 ? localData[previousIndex] : null;
+
+        const canViewSecret =
+            (loggedInUser && (qnaItem.usr_nickname === loggedInUser.nickname || loggedInUser.nickname === "관리자")) ||
+            (previousQnaItem && previousQnaItem.usr_nickname === loggedInUser.nickname);
+
+        if (qnaItem.is_secret && !canViewSecret) {
             alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
             window.location.href = './qna.html';
             return;
@@ -50,17 +57,24 @@ const loadQnaItem = (postNumber) => {
         displayQnaItem(qnaItem);
 
         const updatedLocalData = localData.map(item =>
-            item.qna_post_number === parseInt(postNumber) ? qnaItem : item
+            item.qna_post_number === parseFloat(postNumber) ? qnaItem : item
         );
         localStorage.setItem('qnaList', JSON.stringify(updatedLocalData));
     } else {
         fetch('../resources/temp-db/qna.json')
             .then(res => res.json())
             .then(jsonData => {
-                qnaItem = jsonData.find(item => item.qna_post_number === parseInt(postNumber));
+                qnaItem = jsonData.find(item => item.qna_post_number === parseFloat(postNumber));
 
                 if (qnaItem) {
-                    if (qnaItem.is_secret && (!loggedInUser || (qnaItem.usr_nickname !== loggedInUser.nickname && loggedInUser.nickname !== "관리자"))) {
+                    const previousIndex = localData.findIndex(item => item.qna_post_number === parseFloat(postNumber)) - 1;
+                    const previousQnaItem = previousIndex >= 0 ? localData[previousIndex] : null;
+
+                    const canViewSecret =
+                        (loggedInUser && (qnaItem.usr_nickname === loggedInUser.nickname || loggedInUser.nickname === "관리자")) ||
+                        (previousQnaItem && previousQnaItem.usr_nickname === loggedInUser.nickname);
+
+                    if (qnaItem.is_secret && !canViewSecret) {
                         alert("이 글은 비밀글로 작성되어 있습니다. 작성자 또는 관리자만 볼 수 있습니다.");
                         window.location.href = './qna.html';
                         return;
@@ -75,6 +89,10 @@ const loadQnaItem = (postNumber) => {
                     alert('해당 Q&A 항목을 찾을 수 없습니다.');
                     window.location.href = './qna.html';
                 }
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                alert('데이터를 가져오는 중 오류가 발생했습니다.');
             });
     }
 };
@@ -89,7 +107,7 @@ const displayQnaItem = (qnaItem) => {
 
 const deleteQnaItem = (postNumber) => {
     let data = JSON.parse(localStorage.getItem('qnaList')) || [];
-    data = data.filter(item => item.qna_post_number !== parseInt(postNumber));
+    data = data.filter(item => item.qna_post_number !== parseFloat(postNumber));
     localStorage.setItem('qnaList', JSON.stringify(data));
     alert('글이 삭제되었습니다.');
     window.location.href = './qna.html';
