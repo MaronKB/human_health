@@ -16,7 +16,7 @@ const setBMR = () => {
         targetSkeletal: 32,
         bmr: 2024.69
     };
-    const data = (user.length === 0) ? defData : user;
+    const data = (user && user.length > 0) ? user : defData;
 
     const base = document.querySelector("#base-kcal");
     base.innerHTML = data.bmr;
@@ -94,8 +94,71 @@ function updateTotalActivityHours() {
 
 // 삭제 버튼이나 활동 추가 시에도 활동 대사량 업데이트 반영
 document.addEventListener('DOMContentLoaded', function() {
-    loadActivitiesFromLocalStorage();
+    // loadActivitiesFromLocalStorage();
     updateActivityCalories();  // 페이지 로드 시 활동 대사량 업데이트
+});
+
+// 권장 섭취 칼로리 계산 함수
+function updateRecommendedCalories() {
+    const activityCalories = parseFloat(document.getElementById('act-kcal').textContent); // 활동 대사량 가져오기
+    const user = JSON.parse(localStorage.getItem("user")); // 사용자 데이터 로드
+
+    if (!user) return;
+
+    const weight = user.weight;
+    const targetWeight = user.targetWeight;
+    let recommendMin = 0;
+    let recommendMax = 0;
+
+    // 체중과 목표 체중 비교하여 권장 섭취 칼로리 범위 계산
+    if (targetWeight > weight) {
+        recommendMin = activityCalories + 200;
+        recommendMax = activityCalories + 300;
+    } else if (targetWeight < weight) {
+        recommendMin = activityCalories - 700;
+        recommendMax = activityCalories - 500;
+    } else {
+        recommendMin = activityCalories - 200;
+        recommendMax = activityCalories + 200;
+    }
+
+    // 권장 섭취 칼로리 값을 업데이트 (소수점 두 자리까지 표시)
+    const recommendKcalElement = document.getElementById('recommend-kcal');
+    recommendKcalElement.textContent = `${recommendMin.toFixed(2)} ~ ${recommendMax.toFixed(2)} Kcal`;
+}
+
+// 활동 대사량 업데이트 시, 권장 섭취 칼로리도 업데이트
+function updateActivityCalories() {
+    const tbody = document.getElementById('act-tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    let totalActivityValue = 0;
+
+    // 각 행의 시간과 강도를 곱한 값을 합산
+    rows.forEach(row => {
+        const hours = parseFloat(row.children[1].textContent);
+        const intensity = parseFloat(row.children[2].textContent);
+        if (!isNaN(hours) && !isNaN(intensity)) {
+            totalActivityValue += intensity;
+        }
+    });
+
+    // 24로 나눈 후, 기초 대사량 값과 곱함
+    const bmr = parseFloat(document.getElementById('base-kcal').textContent); // 기초 대사량 값 가져오기
+    const activityCalories = (totalActivityValue / 24) * bmr;
+
+    // 활동 대사량 값 업데이트
+    const actKcalElement = document.getElementById('act-kcal');
+    actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
+
+    // 권장 섭취 칼로리 업데이트 호출
+    updateRecommendedCalories();
+}
+
+// 페이지 로드 시 권장 섭취 칼로리 및 활동 대사량 업데이트
+document.addEventListener('DOMContentLoaded', function() {
+    loadActivitiesFromLocalStorage();
+    updateActivityCalories();  // 활동 대사량 업데이트
 });
 
 // 템플릿 데이터 정의
