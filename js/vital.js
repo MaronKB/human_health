@@ -191,7 +191,7 @@ const progressing = (ev) => {
     const nextInput = elements.find(e => Number(e.dataset.index) === next);
     nextInput.disabled = !checked;
 
-    const url = stretchList.find(s => s.index === next).url;
+    const url = stretchList.find(s => s.index === (checked ? next : index)).url;
     const target = document.querySelector("#stretch-recommend");
     target.src = `https://www.youtube.com/embed/${url}`;
 }

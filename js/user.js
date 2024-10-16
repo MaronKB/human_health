@@ -138,18 +138,14 @@ const calcBMR = () => {
     user.set("bmr", bmr / 100);
 }
 const onChange = (ev) => {
-    const strings = ev.target.id.split("-");
-    strings.forEach((str, i) => {
-        if (i === 0) return;
-        str = str.charAt(i).toUpperCase() + str.slice(1);
+    let strings = ev.target.id.split("-");
+    strings = strings.map((str, i) => {
+        if (i === 0) return str;
+        return str.charAt(0).toUpperCase() + str.slice(1);
     });
     const string = strings.join("");
-    user.set(string, ev.target.value);
-
-    if (string === "name") {
-        const title = document.querySelector("#welcome-name");
-        title.innerHTML = user.name;
-    }
+    user.set(string, Number(ev.target.value));
+    console.log(string);
 
     calcBMR();
     setGraph();
