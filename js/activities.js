@@ -102,6 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateRecommendedCalories() {
     const activityCalories = parseFloat(document.getElementById('act-kcal').textContent); // 활동 대사량 가져오기
     const user = JSON.parse(localStorage.getItem("user")); // 사용자 데이터 로드
+    const totalHours = parseFloat(document.querySelector('.act-hours-value').textContent); // 총 활동 시간 가져오기
+
+    if (totalHours < 24) {
+        // 총 활동 시간이 24시간 미만일 때 권장 섭취 칼로리 0으로 설정
+        document.getElementById('recommend-kcal').textContent = "0 Kcal";
+        return; // 24시간 이하일 경우 계산 중단
+    }
 
     if (!user) return;
 
@@ -124,7 +131,7 @@ function updateRecommendedCalories() {
 
     // 권장 섭취 칼로리 값을 업데이트 (소수점 두 자리까지 표시)
     const recommendKcalElement = document.getElementById('recommend-kcal');
-    recommendKcalElement.textContent = `${recommendMin.toFixed(2)} ~ ${recommendMax.toFixed(2)} Kcal`;
+    recommendKcalElement.textContent = `${recommendMin.toFixed(2)} ~ ${recommendMax.toFixed(2)}`;
 }
 
 // 활동 대사량 업데이트 시, 권장 섭취 칼로리도 업데이트
