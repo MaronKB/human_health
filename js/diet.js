@@ -18,7 +18,7 @@ const setBMR = () => {
     const kcal = data.weight * 30;
 
     const target = document.querySelector("#recommend-kcal");
-    target.innerHTML = kcal.toFixed(1);
+    target.innerHTML = kcal;
 }
 
 // 음식 데이터 가져오기
@@ -184,7 +184,7 @@ function saveDiet() {
 // 총 칼로리를 업데이트하는 함수
 function updateCalories() {
     const totalCaloriesElement = document.querySelector('.diet-kcal-box span');
-    totalCaloriesElement.innerText = `${Math.max(0, totalCalories).toFixed(1)}`; // 소수점 한 자리로 표시
+    totalCaloriesElement.innerText = `${Math.max(0, totalCalories).toFixed(0)}`; // 소수점 한 자리로 표시
 }
 
 // 음식을 테이블에 추가하는 함수
