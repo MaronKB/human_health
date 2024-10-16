@@ -226,20 +226,7 @@ function applyTemplate(templateName) {
                 row.remove();  // 버튼 클릭 시 해당 행 삭제
                 updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
         
-                const tbody = document.getElementById("act-tbody");
-                const totalRows = 11;
-                const currentRows = tbody.querySelectorAll("tr").length;
-                if (currentRows < totalRows) {
-                    for (let i = currentRows; i < totalRows; i++) {
-                        const emptyRow = document.createElement("tr");
-                        emptyRow.innerHTML = `
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        `;
-                        tbody.appendChild(emptyRow);
-                    }
-                }
+                addEmptyRows();  // 삭제 후 빈 행 추가
             };
 
             row.append(deleteButton);
@@ -250,25 +237,80 @@ function applyTemplate(templateName) {
     });
 
     tbody.replaceChildren(...rows);
+    addEmptyRows();  // 필요한 빈 행 추가
 
-    // 활동수에 따라 빈행 추가 (일단 11개)
-    const totalRows = 11;
-    const currentRows = templateActivities.length;
-    if (currentRows < totalRows) {
-        for (let i=currentRows; i<totalRows; i++) {
-            const emptyRow = document.createElement("tr");
-            emptyRow.innerHTML = `
-                <td></td>
-                <td></td>
-                <td></td>
-            `;
-            tbody.appendChild(emptyRow);
-        }
-    }
-    // 총 활동 시간 업데이트
     updateTotalActivityHours();
 
 }
+
+
+// 템플릿 리스트 클릭 시 색상 효과 추가 및 테이블 내용 적용
+
+document.querySelectorAll('.template-item').forEach(item => {
+
+    item.addEventListener('click', function() {
+
+        // 기존 선택된 템플릿에서 selected 클래스 제거
+
+        document.querySelectorAll('.template-item').forEach(template => {
+
+            template.classList.remove('selected');
+
+        });
+
+
+
+        // 현재 클릭한 템플릿에 selected 클래스 추가
+
+        item.classList.add('selected');
+
+
+
+        // 선택한 템플릿 리스트 이름을 가져와 적용
+
+        const templateName = item.querySelector('span').textContent.trim();
+
+        applyTemplate(templateName);
+
+    });
+
+});
+
+
+
+// 화면에서 .template-item 외 다른 곳을 클릭하면 색상 및 테이블 내용 초기화
+
+document.addEventListener('click', function(event) {
+
+    // .template-item 내부 클릭은 무시
+
+    if (event.target.closest('.template-item')) return;
+
+
+
+    // 선택된 템플릿의 selected 클래스 제거
+
+    document.querySelectorAll('.template-item').forEach(template => {
+
+        template.classList.remove('selected');
+
+    });
+
+
+
+    // 테이블 초기화
+
+    const tbody = document.getElementById("act-tbody");
+
+    tbody.innerHTML = '';
+
+    addEmptyRows();  // 빈 행 추가
+
+    updateTotalActivityHours();
+
+});
+
+
 
 // 템플릿을 로컬스토리지에 저장하는 기능 추가 및 수정
 function saveTemplatesToLocalStorage() {
