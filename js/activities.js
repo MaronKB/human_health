@@ -32,6 +32,72 @@ document.addEventListener('DOMContentLoaded', function() {
     setBMR();
 })
 
+// 활동 대사량 계산 함수 추가
+function updateActivityCalories() {
+    const tbody = document.getElementById('act-tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    let totalActivityValue = 0;
+
+    // 각 행의 시간과 강도를 곱한 값을 합산
+    rows.forEach(row => {
+        const hours = parseFloat(row.children[1].textContent);
+        const intensity = parseFloat(row.children[2].textContent);
+        if (!isNaN(hours) && !isNaN(intensity)) {
+            totalActivityValue += intensity;
+        }
+    });
+    console.log(totalActivityValue/24)
+
+    // 24로 나눈 후, 기초 대사량 값과 곱함
+    const bmr = parseFloat(document.getElementById('base-kcal').textContent); // 기초 대사량 값 가져오기
+    const activityCalories = (totalActivityValue / 24) * bmr;
+
+    // 활동 대사량 값 업데이트
+    const actKcalElement = document.getElementById('act-kcal');
+    actKcalElement.textContent = activityCalories.toFixed(2); // 소수점 두자리까지 표시
+}
+
+// 총 활동 시간 업데이트 함수에 활동 대사량 업데이트 호출 추가
+function updateTotalActivityHours() {
+    const tbody = document.getElementById('act-tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    let totalHours = 0;
+
+    // 각 행 시간 합산
+    rows.forEach(row => {
+        const hours = parseFloat(row.children[1].textContent);
+        if (!isNaN(hours)) {
+            totalHours += hours;
+        }
+    });
+
+    // 총 활동 시간 요소 업데이트
+    const totalHoursElement = document.querySelector('.act-hours-value');
+    totalHoursElement.textContent = totalHours.toFixed(2);
+
+    // 24시간까지 남은 시간 계산 및 표시
+    const remainingHours = 24 - totalHours;
+    const remainingElement = document.querySelector('.act-hours-alert h5');
+
+    if (remainingHours > 0) {
+        remainingElement.textContent = `(${remainingHours.toFixed(2)} 시간 부족)`;
+        remainingElement.style.color = 'red';
+    } else {
+        remainingElement.textContent = '';
+    }
+
+    // 활동 대사량 업데이트 호출
+    updateActivityCalories();
+}
+
+// 삭제 버튼이나 활동 추가 시에도 활동 대사량 업데이트 반영
+document.addEventListener('DOMContentLoaded', function() {
+    loadActivitiesFromLocalStorage();
+    updateActivityCalories();  // 페이지 로드 시 활동 대사량 업데이트
+});
+
 // 템플릿 데이터 정의
 const templates = {
     "일반 평일 활동": [
@@ -324,38 +390,6 @@ function addTemplateToSidebar(templateName) {
 
     // 사이드바에 추가
     sidebar.appendChild(templateItem);
-}
-
-// 총 활동 시간 업데이트
-function updateTotalActivityHours() {
-    const tbody = document.getElementById('act-tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-
-    let totalHours = 0;
-
-    // 각 행 시간 합산
-    rows.forEach(row => {
-        const hours = parseFloat(row.children[1].textContent);
-        if (!isNaN(hours)) {
-            totalHours += hours;
-        }
-    });
-
-    // 총 활동 시간 요소 업데이트
-    const totalHoursElement = document.querySelector('.act-hours-value');
-    totalHoursElement.textContent = totalHours.toFixed(2);
-
-    // 24시간까지 남은 시간 계산 및 표시
-    const remainingHours = 24 - totalHours;
-    const remainingElement = document.querySelector('.act-hours-alert h5');
-    
-    if (remainingHours > 0) {
-        remainingElement.textContent = `(${remainingHours.toFixed(2)} 시간 부족)`;
-        remainingElement.style.color = 'red';
-    } else {
-        remainingElement.textContent = '';
-    }
-
 }
 
 
