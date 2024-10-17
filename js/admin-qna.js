@@ -31,6 +31,13 @@ const getQnaList = () => {
     const existingQnaList = JSON.parse(localStorage.getItem('qnaList')) || [];
     const localList = existingQnaList.map(e => new QnaItemData(e));
 
+    if (localList.length > 0) {
+        qnaListData.push(...localList);
+        pageCount = Math.ceil(qnaListData.length / pageLength);
+        refresh();
+        return;
+    }
+
     fetch("../resources/temp-db/qna.json")
         .then(res => res.json())
         .then(data => {
@@ -38,30 +45,14 @@ const getQnaList = () => {
 
             list.sort((a, b) => b.postNumber - a.postNumber);
 
-            const uniqueMap = new Map();
-
-            list.forEach(item => {
-                uniqueMap.set(item.postNumber, item);
-            });
-
-            localList.forEach(item => {
-                if (uniqueMap.has(item.postNumber)) {
-                    const existingItem = uniqueMap.get(item.postNumber);
-                    existingItem.viewCount = item.viewCount;
-                    existingItem.title = item.title;
-                } else {
-                    uniqueMap.set(item.postNumber, item);
-                }
-            });
-
-            qnaListData.push(...uniqueMap.values());
-
-            qnaListData.sort((a, b) => b.postNumber - a.postNumber);
-
+            qnaListData.push(...list);
             pageCount = Math.ceil(qnaListData.length / pageLength);
+
             refresh();
-        })
-}
+
+            localStorage.setItem('qnaList', JSON.stringify(qnaListData));
+        });
+};
 
 const createQnaList = () => {
     const firstListIndex = (currentPage - 1) * pageLength;

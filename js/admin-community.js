@@ -28,7 +28,7 @@ function renderCommunityList(communities) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></label></td>
-            <td class="edit-number">${startIndex + index + 1}</td>
+            <td class="edit-number">${community.com_post_number}</td>
             <td><input type="text" value="${community.com_title}" class="edit-input-title"></td>
             <td><input type="text" value="${community.usr_nickname}" class="edit-input-nickname"></td>
             <td class="edit-input-date">${community.com_post_date}</td>
@@ -36,7 +36,6 @@ function renderCommunityList(communities) {
         communityListBody.appendChild(row);
     });
 
-    // Fill empty rows if the number of displayed items is less than communitiesPerPage
     if (paginatedCommunities.length < communitiesPerPage) {
         for (let i = 0; i < communitiesPerPage - paginatedCommunities.length; i++) {
             const emptyRow = document.createElement('tr');

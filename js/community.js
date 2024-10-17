@@ -61,43 +61,35 @@ const refresh = () => {
 
 const getCommunityList = () => {
     const existingCommunityList = JSON.parse(localStorage.getItem('communityList')) || [];
-    const localList = existingCommunityList.map(e => new CommunityItemData(e));
 
-    fetch("../resources/temp-db/community.json")
-        .then(res => res.json())
-        .then(data => {
-            const list = data.map(e => new CommunityItemData(e));
+    if (existingCommunityList.length > 0) {
+        const localList = existingCommunityList.map(e => new CommunityItemData(e));
+        communityListData.push(...localList);
+        originalCommunityListData.push(...localList);
 
-            list.sort((a, b) => b.com_post_number - a.com_post_number);
+        communityListData.sort((a, b) => b.com_post_number - a.com_post_number);
 
-            const uniqueMap = new Map();
+        pageCount = Math.ceil(communityListData.length / pageLength);
+        refresh();
+    } else {
+        fetch("../resources/temp-db/community.json")
+            .then(res => res.json())
+            .then(data => {
+                const list = data.map(e => new CommunityItemData(e));
 
-            list.forEach(item => {
-                uniqueMap.set(item.com_post_number, item);
+                list.sort((a, b) => b.com_post_number - a.com_post_number);
+
+                communityListData.push(...list);
+                originalCommunityListData.push(...list);
+
+                communityListData.sort((a, b) => b.com_post_number - a.com_post_number);
+
+                localStorage.setItem('communityList', JSON.stringify(communityListData));
+
+                pageCount = Math.ceil(communityListData.length / pageLength);
+                refresh();
             });
-
-            localList.forEach(item => {
-                if (uniqueMap.has(item.com_post_number)) {
-                    const existingItem = uniqueMap.get(item.com_post_number);
-                    existingItem.com_view_count = item.com_view_count;
-                    existingItem.com_title = item.com_title;
-                } else {
-                    uniqueMap.set(item.com_post_number, item);
-                }
-            });
-
-            const uniqueList = Array.from(uniqueMap.values()).filter(item => item.com_post_number);
-            communityListData.unshift(...uniqueList);
-            originalCommunityListData.push(...uniqueList);
-
-            communityListData.sort((a, b) => a.com_post_number - b.com_post_number);
-            localStorage.setItem('communityList', JSON.stringify(communityListData));
-
-            communityListData.sort((a, b) => b.com_post_number - a.com_post_number);
-
-            pageCount = Math.ceil(communityListData.length / pageLength);
-            refresh();
-        });
+    }
 }
 
 const createCommunityList = () => {
