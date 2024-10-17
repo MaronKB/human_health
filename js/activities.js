@@ -709,42 +709,283 @@ function saveActivity() {
 }
 
 // 모달창 pagination
-const actData = [
-    { name: "잠자기", intensity: 0.93},
-    { name: "누워있기", intensity: 1.2},
-    { name: "읽기", intensity: 1.3},
-    { name: "앉아서 TV", intensity: 1.57},
-    { name: "사무업무", intensity: 1.6},
-    { name: "대중교통(앉음)", intensity: 1.72},
-    { name: "대중교통(서서)", intensity: 2},
-    { name: "식사", intensity: 1.4},
-    { name: "서서 돌아다니는 업무", intensity: 2.5},
-    { name: "주방일", intensity: 2.7},
-    { name: "느리게 걷기", intensity: 2.8},
-    { name: "집안일", intensity: 3.1},
-    { name: "빠르게 걷기", intensity: 3.8},
-    { name: "유산소(약)", intensity: 4.5},
-    { name: "유산소(중)", intensity: 6},
-    { name: "유산소(강)", intensity: 9},
-    { name: "근력운동(약)", intensity: 3},
-    { name: "근력운동(중)", intensity: 4.5},
-    { name: "근력운동(강)", intensity: 6},
-    { name: "운동1", intensity: 4.4},
-    { name: "운동2", intensity: 2.5},
-    { name: "운동3", intensity: 2.2},
-    { name: "운동4", intensity: 2},
-    { name: "운동5", intensity: 1.9},
-    { name: "걷기", intensity: 3.5},   // 30분
-    { name: "달리기", intensity: 9.0}, // 45분
-    { name: "수영", intensity: 6.0},   // 60분
-    { name: "요가", intensity: 2.5},   // 40분
-    { name: "자전거 타기", intensity: 7.5}, // 50분
-    { name: "등산", intensity: 8.0},   // 70분
-    { name: "스쿼트", intensity: 5.0},  // 20분
-    { name: "술먹기", intensity: 5.0},
-    { name: "놀기", intensity: 5.0},
-    { name: "공부하기", intensity: 5.0},
-];
+let actData = JSON.parse(localStorage.getItem('activities'));
+if (!actData || actData.length === 0) {
+    actData = [
+        {
+            "activity": "산책",
+            "intensity": 3.5
+        },
+        {
+            "activity": "가벼운 스트레칭",
+            "intensity": 4
+        },
+        {
+            "activity": "요가",
+            "intensity": 5
+        },
+        {
+            "activity": "필라테스",
+            "intensity": 6
+        },
+        {
+            "activity": "하이킹",
+            "intensity": 8
+        },
+        {
+            "activity": "자전거 타기",
+            "intensity": 7
+        },
+        {
+            "activity": "실내 사이클",
+            "intensity": 7
+        },
+        {
+            "activity": "런닝",
+            "intensity": 8
+        },
+        {
+            "activity": "수영",
+            "intensity": 6
+        },
+        {
+            "activity": "킥복싱",
+            "intensity": 8
+        },
+        {
+            "activity": "인터벌 트레이닝",
+            "intensity": 10
+        },
+        {
+            "activity": "웨이트 리프팅",
+            "intensity": 10
+        },
+        {
+            "activity": "줄넘기",
+            "intensity": 11
+        },
+        {
+            "activity": "테니스",
+            "intensity": 8
+        },
+        {
+            "activity": "축구",
+            "intensity": 7
+        },
+        {
+            "activity": "농구",
+            "intensity": 7
+        },
+        {
+            "activity": "달리기",
+            "intensity": 10
+        },
+        {
+            "activity": "스피닝",
+            "intensity": 12
+        },
+        {
+            "activity": "수영",
+            "intensity": 8
+        },
+        {
+            "activity": "킥복싱",
+            "intensity": 10
+        },
+        {
+            "activity": "마라톤",
+            "intensity": 12
+        },
+        {
+            "activity": "크로스핏",
+            "intensity": 12
+        },
+        {
+            "activity": "파쿠르",
+            "intensity": 11
+        },
+        {
+            "activity": "복싱",
+            "intensity": 12
+        },
+        {
+            "activity": "서핑",
+            "intensity": 10
+        },
+        {
+            "activity": "스케이트보드",
+            "intensity": 8
+        },
+        {
+            "activity": "조정",
+            "intensity": 10
+        },
+        {
+            "activity": "몸짱 만들기",
+            "intensity": 10
+        },
+        {
+            "activity": "브레이크 댄스",
+            "intensity": 11
+        },
+        {
+            "activity": "배드민턴",
+            "intensity": 8
+        },
+        {
+            "activity": "자유수영",
+            "intensity": 10
+        },
+        {
+            "activity": "암벽 등반",
+            "intensity": 10
+        },
+        {
+            "activity": "야외 자전거",
+            "intensity": 8
+        },
+        {
+            "activity": "트레킹",
+            "intensity": 8
+        },
+        {
+            "activity": "댄스",
+            "intensity": 10
+        },
+        {
+            "activity": "스노우보드",
+            "intensity": 12
+        },
+        {
+            "activity": "스키",
+            "intensity": 12
+        },
+        {
+            "activity": "바이올린 연주",
+            "intensity": 5
+        },
+        {
+            "activity": "양궁",
+            "intensity": 4
+        },
+        {
+            "activity": "잠자기",
+            "intensity": 0.93
+        },
+        {
+            "activity": "누워있기",
+            "intensity": 1.2
+        },
+        {
+            "activity": "읽기",
+            "intensity": 1.3
+        },
+        {
+            "activity": "앉아서 TV",
+            "intensity": 1.57
+        },
+        {
+            "activity": "사무업무",
+            "intensity": 1.6
+        },
+        {
+            "activity": "대중교통(앉음)",
+            "intensity": 1.72
+        },
+        {
+            "activity": "대중교통(서서)",
+            "intensity": 2
+        },
+        {
+            "activity": "식사",
+            "intensity": 1.4
+        },
+        {
+            "activity": "서서 돌아다니는 업무",
+            "intensity": 2.5
+        },
+        {
+            "activity": "주방일",
+            "intensity": 2.7
+        },
+        {
+            "activity": "느리게 걷기",
+            "intensity": 2.8
+        },
+        {
+            "activity": "집안일",
+            "intensity": 3.1
+        },
+        {
+            "activity": "빠르게 걷기",
+            "intensity": 3.8
+        },
+        {
+            "activity": "유산소(약)",
+            "intensity": 4.5
+        },
+        {
+            "activity": "유산소(중)",
+            "intensity": 6
+        },
+        {
+            "activity": "유산소(강)",
+            "intensity": 9
+        },
+        {
+            "activity": "근력운동(약)",
+            "intensity": 3
+        },
+        {
+            "activity": "근력운동(중)",
+            "intensity": 4.5
+        },
+        {
+            "activity": "근력운동(강)",
+            "intensity": 6
+        },
+        {
+            "activity": "걷기",
+            "intensity": 3.5
+        },
+        {
+            "activity": "달리기",
+            "intensity": 9.0
+        },
+        {
+            "activity": "수영",
+            "intensity": 6.0
+        },
+        {
+            "activity": "요가",
+            "intensity": 2.5
+        },
+        {
+            "activity": "자전거 타기",
+            "intensity": 7.5
+        },
+        {
+            "activity": "등산",
+            "intensity": 8.0
+        },
+        {
+            "activity": "스쿼트",
+            "intensity": 5.0
+        },
+        {
+            "activity": "술먹기",
+            "intensity": 5.0
+        },
+        {
+            "activity": "놀기",
+            "intensity": 5.0
+        },
+        {
+            "activity": "공부하기",
+            "intensity": 5.0
+        }
+    ];
+}
 
 let currentPage = 1; // 현재 페이지 초기값
 const rowsPerPage = 7; // 페이지당 표시할 행 수
@@ -782,8 +1023,8 @@ function changePage(page) {
 
 // 테이블 렌더링 함수
 function renderTable() {
-    const filter = document.getElementById('act-search').value;
-    const filteredData = actData.filter(e => e.name.includes(filter));
+    const filter = document.getElementById('act-search').value ?? "";
+    const filteredData = actData.filter(e => e.activity.includes(filter));
 
     const actTbody = document.getElementById("actTbody");
 
@@ -795,10 +1036,10 @@ function renderTable() {
     // 추출한 데이터로 테이블 행 생성
     const data = paginatedData.map(item => {
         const row = document.createElement("tr");
-        row.onclick = () => selectActivity(item.name, item.intensity, row);
+        row.onclick = () => selectActivity(item.activity, item.intensity, row);
 
         const name = document.createElement("td");
-        name.textContent = item.name;
+        name.textContent = item.activity;
 
         const intensity = document.createElement("td");
         intensity.textContent = item.intensity;
@@ -818,7 +1059,6 @@ function renderTable() {
 
             data.push(row);
         }
-        console.log(data);
     }
     actTbody.replaceChildren(...data);
 }
@@ -826,7 +1066,7 @@ function renderTable() {
 // 페이지 번호 업데이트 함수
 function updatePagination() {
     const filter = document.getElementById('act-search').value;
-    const filteredData = actData.filter(e => e.name.includes(filter));
+    const filteredData = actData.filter(e => e.activity.includes(filter));
 
     const pageNumbersContainer = document.getElementById("page-numbers");
     pageNumbersContainer.innerHTML = ""; // 페이지 번호 초기화
@@ -879,7 +1119,8 @@ function addCustomActivity() {
     }
 
     // 새로운 데이터를 actData 배열에 추가 (배열 맽 끝에)
-    actData.push({ name: activityName, intensity: activityIntensity });
+    actData.push({ activity: activityName, intensity: activityIntensity });
+    localStorage.setItem('activities', JSON.stringify(actData));
     
     const tableBody = document.getElementById('actTbody');
     const newRow = document.createElement('tr');
