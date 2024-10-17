@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/index.js"></script>
     <script src="js/vital.js"></script>
-    <link rel="stylesheet" href="css/index.css"/>
-    <link rel="stylesheet" href="css/vital.css"/>
+    <link rel="stylesheet" href="css/index.css"></button>
+    <link rel="stylesheet" href="css/vital.css"></button>
 </head>
 <body style="background-image: url('resources/images/vital.jpg')">
 <header data-include-html="header.html"></header>
@@ -34,28 +34,21 @@
                 <span>9</span>
                 <span>10</span>
             </label>
-            <input id="vital-stress" type="range" min="1" max="10" value="1" onchange="onRangeChange(this)"/>
-            <span id="vital-stress-tooltip" class="box hidden"><br/>인생이 행복합니다!</span>
+            <input id="vital-stress" type="range" min="1" max="10" value="1" onchange="onRangeChange(this)"></input>
+            <span id="vital-stress-tooltip" class="box hidden">인생이 행복합니다!</span>
         </form>
         <div class="vital-recommend box">
             <iframe id="stress-recommend" src="https://www.youtube.com/embed/LzAgYVknNYg" title="추천 영상" allow="accelerometer; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <form id="stretch" class="vital-input box">
             <h4 class="vital-header">스트레칭</h4>
-            <input id="stretching-neck" type="checkbox" data-index="0"/>
-            <label for="stretching-neck">목</label>
-            <input id="stretching-shoulder" type="checkbox" data-index="1" disabled/>
-            <label for="stretching-shoulder">어깨</label>
-            <input id="stretching-chest" type="checkbox" data-index="2" disabled/>
-            <label for="stretching-chest">가슴</label>
-            <input id="stretching-wrist" type="checkbox" data-index="3" disabled/>
-            <label for="stretching-wrist">손목</label>
-            <input id="stretching-ankle" type="checkbox" data-index="4" disabled/>
-            <label for="stretching-ankle">발목</label>
-            <input id="stretching-leg" type="checkbox" data-index="5" disabled/>
-            <label for="stretching-leg">다리</label>
-            <input id="stretching-waist" type="checkbox" data-index="6" disabled/>
-            <label for="stretching-waist">허리</label>
+            <button type="button" id="stretching-neck" data-index="0" data-current="playing">목</button>
+            <button type="button" id="stretching-shoulder" data-index="1" data-current="yet">어깨</button>
+            <button type="button" id="stretching-chest" data-index="2" data-current="yet">가슴</button>
+            <button type="button" id="stretching-wrist" data-index="3" data-current="yet">손목</button>
+            <button type="button" id="stretching-ankle" data-index="4" data-current="yet">발목</button>
+            <button type="button" id="stretching-leg" data-index="5" data-current="yet">다리</button>
+            <button type="button" id="stretching-waist" data-index="6" data-current="yet">허리</button>
         </form>
         <div class="vital-recommend box">
             <iframe id="stretch-recommend" src="https://www.youtube.com/embed/mUnSpfItRf0" title="추천 영상" allow="accelerometer; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -81,7 +74,7 @@
                 <span>10</span>
                 <span>12+</span>
             </label>
-            <input id="vital-sleep" type="range" min="0" max="12" value="8" onchange="onRangeChange(this)"/>
+            <input id="vital-sleep" type="range" min="0" max="12" value="8" onchange="onRangeChange(this)"></input>
             <span id="vital-sleep-tooltip" class="box hidden">정상적인 수면을 취하고 있습니다.</span>
         </form>
         <div class="vital-recommend box">

@@ -160,32 +160,42 @@ const stretchList = [
 
 
 const progressing = (ev) => {
+    const buttons = Array.from(document.querySelectorAll(".vital-input > button"));
     const index = Number(ev.target.dataset.index);
-    const checked = ev.target.checked;
+    const current = ev.target.dataset.current;
+
+    const playing = buttons.filter(b => b.dataset.current === "playing" && b.id !== ev.target.id);
+    playing.forEach(p => p.dataset.current = "yet");
+
+    switch (current) {
+        case "yet":
+            ev.target.dataset.current = "playing";
+            break;
+        case "playing":
+            ev.target.dataset.current = "finished";
+            break;
+        case "finished":
+            ev.target.dataset.current = "yet";
+            break;
+        default:
+            break;
+    }
 
     const video = document.querySelector("#stretch-recommend");
     const text = document.querySelector("#stretch-end");
 
-    video.classList.remove("hidden");
-    text.classList.add("hidden");
+    if (document.querySelectorAll("button[data-current='finished']").length === buttons.length) {
+        video.classList.add("hidden");
+        text.classList.remove("hidden");
+    } else {
+        const url = stretchList.find(s => s.index === index).url;
+        const src = `https://www.youtube.com/embed/${url}`;
+        if (video.src !== src) video.src = src;
 
-    const url = stretchList.find(s => s.index === index).url;
-    const target = document.querySelector("#stretch-recommend");
-    target.src = `https://www.youtube.com/embed/${url}`;
+        video.classList.remove("hidden");
+        text.classList.add("hidden");
+    }
 };
-
-const init = () => {
-    const checkboxes = document.querySelectorAll("#stretch > input");
-    checkboxes.forEach(checkbox => {
-        checkbox.onchange = ev => progressing(ev);
-    });
-
-    checkboxes.forEach(e => {
-        e.disabled = false;
-    });
-};
-
-window.addEventListener('DOMContentLoaded', init);
 
 const onRangeChange = (input) => {
     const val = input.value;
@@ -217,3 +227,12 @@ const onRangeChange = (input) => {
         count = 20;
     }
 };
+
+const init = () => {
+    const buttons = document.querySelectorAll("#stretch > button");
+    buttons.forEach(button => {
+        button.onclick = ev => progressing(ev);
+    });
+};
+
+window.addEventListener('DOMContentLoaded', init);
