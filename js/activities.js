@@ -1074,6 +1074,8 @@ function updatePagination() {
     const totalPages = Math.ceil(filteredData.length / rowsPerPage); // 총 페이지 수 계산
     
     for (let i = 1; i <= totalPages; i++) {
+        if (i < currentPage - 2 || i > currentPage + 2) continue;
+
         const button = document.createElement("button");
         button.className = "page-number";
         button.textContent = i; // 페이지 번호 설정

@@ -402,6 +402,8 @@ function updatePagination() {
 
     const totalPages = Math.ceil(foodData.length / rowsPerPage);
     for (let i = 1; i <= totalPages; i++) {
+        if (i < currentPage - 2 || i > currentPage + 2) continue;
+
         const button = document.createElement("button");
         button.className = "page-number";
         button.textContent = i; // 페이지 번호 표시

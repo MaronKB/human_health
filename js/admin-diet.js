@@ -95,9 +95,9 @@ function saveDietData() {
 
     dietList = Array.from(dietList).map((diet, index) => {
         return {
-            food: editFoods[index] ? editFoods[index].value : diet.name,
+            name: editFoods[index] ? editFoods[index].value : diet.name,
             amount: editAmounts[index] ? editAmounts[index].value : diet.amount,
-            carbs: editCarbs[index] ? editCarbs[index].value : diet.carb,
+            carb: editCarbs[index] ? editCarbs[index].value : diet.carb,
             protein: editProteins[index] ? editProteins[index].value : diet.protein,
             fat: editFats[index] ? editFats[index].value : diet.fat
         };
