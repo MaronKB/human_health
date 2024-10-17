@@ -69,8 +69,8 @@ const getFat = () => {
 }
 const getSkeletal = () => {
     return {
-        target : ((user.targetSkeletal - user.targetWeight * 0.4) * 100 / (user.targetWeight * 0.1)).toFixed(1),
-        current : ((user.skeletal - user.weight * 0.4) * 100 / (user.weight * 0.1)).toFixed(1),
+        target: (user.targetSkeletal * 100 / user.targetWeight).toFixed(1),
+        current: (user.skeletal * 100 / user.weight).toFixed(1),
     }
 }
 // todo: 그래프 목표치 user에서 최신 값 받아오게 get 함수 만들기
@@ -113,8 +113,8 @@ const setGraph = () => {
         const targetNumber = document.querySelector(`#${string}-target-number`);
 
         if (string === "skeletal") {
-            currentNumber.innerHTML = String((user.skeletal * 100 / user.weight).toFixed(1)) + "%";
-            targetNumber.innerHTML = String((user.targetSkeletal * 100 / user.targetWeight).toFixed(1)) + "%";
+            currentNumber.innerHTML = String(user.skeletal.toFixed(1)) + "kg";
+            targetNumber.innerHTML = String(parseFloat(user.targetSkeletal).toFixed(1)) + "kg";
         } else {
             const upStr = string.charAt(0).toUpperCase() + string.slice(1);
             currentNumber.innerHTML = user[string] + ((string === "weight") ? "kg" : "%");
