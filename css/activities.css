@@ -347,7 +347,7 @@ body {
     border-radius: 25px;
     overflow: hidden;
 }
-#actSearch {
+#act-search {
     flex: 1;
     height: 40px;
     font-size: 16px;
@@ -381,15 +381,21 @@ body {
     border-spacing: 0;
     table-layout: fixed;
 }
+#activity-table tr:hover {
+    background: #eee;
+}
+#activity-table tr.selected {
+    background-color: var(--main-color-bright);
+}
 #activity-table th {
     height: 35px;
     background: var(--text-color);
     color: white;
 }
 #activity-table td {
-    border: 1px solid white;
-    padding: 10px;
+    height: 40px;
     text-align: center;
+    border: 0;
 }
 .activity-details {
     flex: none;
@@ -399,14 +405,6 @@ body {
 }
 
  /* 클릭 선택시 이펙트 */
-#actTbody tr {
-    cursor: pointer;
-    padding: 10px;
-}
-#actTbody tr.selected {
-    background-color: #a2a2a3;
-    color: white;
-}
 
 /* 페이지네이션 스타일 */
 .act-modal-pagination {

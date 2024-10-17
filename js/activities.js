@@ -25,13 +25,6 @@ const setBMR = () => {
     recommend.innerHTML = data.weight * 30;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const today = new Date();
-    const formattedDate = today.toISOString().split('T')[0];
-    document.getElementById('current-date').value = formattedDate;
-    setBMR();
-})
-
 // 활동 대사량 계산 함수 추가
 function updateActivityCalories() {
     const tbody = document.getElementById('act-tbody');
@@ -91,11 +84,6 @@ function updateTotalActivityHours() {
     updateActivityCalories();
 }
 
-// 삭제 버튼이나 활동 추가 시에도 활동 대사량 업데이트 반영
-document.addEventListener('DOMContentLoaded', function() {
-    // loadActivitiesFromLocalStorage();
-    updateActivityCalories();  // 페이지 로드 시 활동 대사량 업데이트
-});
 
 // 권장 섭취 칼로리 계산 함수
 function updateRecommendedCalories() {
@@ -160,11 +148,8 @@ function updateActivityCalories() {
     updateRecommendedCalories();
 }
 
-// 페이지 로드 시 권장 섭취 칼로리 및 활동 대사량 업데이트
-document.addEventListener('DOMContentLoaded', function() {
-    loadActivitiesFromLocalStorage();
-    updateActivityCalories();  // 활동 대사량 업데이트
-});
+
+
 
 // 템플릿 데이터 정의
 const templates = {
@@ -358,10 +343,12 @@ function saveTemplatesToLocalStorage() {
 // 로컬스토리지에서 템플릿 로드
 function loadTemplatesFromLocalStorage() {
     const savedTemplates = JSON.parse(localStorage.getItem('savedTemplates'));
-    if (savedTemplates) {
-        templates = savedTemplates;
-        updateSidebarWithTemplates();
+    if (!savedTemplates) return
+
+    for (let arg in savedTemplates) {
+        templates[arg] = savedTemplates[arg];
     }
+    updateSidebarWithTemplates();
 }
 
 // 사이드바 템플릿 업데이트 함수
@@ -452,10 +439,6 @@ function deleteTemplate(event, templateName) {
 }
 
 
-// 페이지 로드 시 로컬스토리지에서 템플릿 로드
-window.addEventListener('DOMContentLoaded', function() {
-    loadTemplatesFromLocalStorage();
-});
 
 
 
@@ -662,12 +645,6 @@ function addEmptyRows() {
     }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    loadActivitiesFromLocalStorage();
-});
-
-
 // 활동 저장 및 테이블에 추가
 // 활동 메인 테이블에 추가
 function saveActivity() {
@@ -827,32 +804,56 @@ function changePage(page) {
 
 // 테이블 렌더링 함수
 function renderTable() {
+    const filter = document.getElementById('act-search').value;
+    const filteredData = actData.filter(e => e.name.includes(filter));
+
     const actTbody = document.getElementById("actTbody");
-    actTbody.innerHTML = ""; // 테이블 내용 초기화
 
     // 현재 페이지에 맞는 데이터의 시작과 끝 인덱스 계산
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const paginatedData = actData.slice(start, end); // 현재 페이지의 데이터만 추출
+    const paginatedData = filteredData.slice(start, end); // 현재 페이지의 데이터만 추출
 
     // 추출한 데이터로 테이블 행 생성
-    paginatedData.forEach(item => {
-        const row = `
-            <tr onclick="selectActivity('${item.name}', ${item.intensity}, this)">
-                <td>${item.name}</td>
-                <td>${item.intensity}</td>
-            </tr>
-        `;
-        actTbody.innerHTML += row; // 행 추가
+    const data = paginatedData.map(item => {
+        const row = document.createElement("tr");
+        row.onclick = () => selectActivity(item.name, item.intensity, row);
+
+        const name = document.createElement("td");
+        name.textContent = item.name;
+
+        const intensity = document.createElement("td");
+        intensity.textContent = item.intensity;
+
+        row.append(name, intensity);
+
+        return row;
     });
+
+    if (data.length < rowsPerPage) {
+        const target = rowsPerPage - data.length;
+        for (let i = 0; i < target; i++) {
+            const row = document.createElement("tr");
+            const name = document.createElement("td");
+            const intensity = document.createElement("td");
+            row.append(name, intensity);
+
+            data.push(row);
+        }
+        console.log(data);
+    }
+    actTbody.replaceChildren(...data);
 }
 
 // 페이지 번호 업데이트 함수
 function updatePagination() {
+    const filter = document.getElementById('act-search').value;
+    const filteredData = actData.filter(e => e.name.includes(filter));
+
     const pageNumbersContainer = document.getElementById("page-numbers");
     pageNumbersContainer.innerHTML = ""; // 페이지 번호 초기화
 
-    const totalPages = Math.ceil(actData.length / rowsPerPage); // 총 페이지 수 계산
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage); // 총 페이지 수 계산
     
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement("button");
@@ -867,6 +868,8 @@ function updatePagination() {
         pageNumbersContainer.appendChild(button); // 페이지 번호 버튼 추가
     }
 }
+
+/* 이 부분 뭔데 밖에 나와있나요...?
 
 // 이전, 다음 버튼도 업데이트
 const prevButton = document.getElementById("pagePrev");
@@ -885,6 +888,7 @@ function nextBtn() {
         link[currentValue-1].classList.add("active");
     }
 }
+*/
 
 //사용자 입력을 통해 활동을 추가하는 함수
 function addCustomActivity() {
@@ -928,3 +932,24 @@ function addCustomActivity() {
     alert('활동이 추가되었습니다.');
 }
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const date = document.getElementById('current-date')
+    date.value = today.toISOString().split('T')[0];
+
+    const searchInput = document.getElementById('act-search');
+    searchInput.onkeydown = (ev) => {
+        if (ev.key !== 'Enter') return;
+        renderTable();
+        updatePagination();
+    }
+
+    const searchButton = document.getElementById('search-button');
+    searchButton.addEventListener("click", renderTable);
+
+    setBMR();
+    loadTemplatesFromLocalStorage();
+    loadActivitiesFromLocalStorage();
+    updateActivityCalories();  // 활동 대사량 업데이트
+});
