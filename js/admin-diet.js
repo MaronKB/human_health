@@ -29,9 +29,9 @@ function renderDietList(diets) {
         row.innerHTML = `
             <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></label></td>
             <td class="edit-number">${startIndex + index + 1}</td>
-            <td><input type="text" value="${diet.food}" class="edit-input-food"></td>
+            <td><input type="text" value="${diet.name}" class="edit-input-food"></td>
             <td><input type="text" value="${diet.amount}" class="edit-input-amount"></td>
-            <td><input type="text" value="${diet.carbs}" class="edit-input-carbs"></td>
+            <td><input type="text" value="${diet.carb}" class="edit-input-carbs"></td>
             <td><input type="text" value="${diet.protein}" class="edit-input-protein"></td>
             <td><input type="text" value="${diet.fat}" class="edit-input-fat"></td>
         `;
@@ -95,9 +95,9 @@ function saveDietData() {
 
     dietList = Array.from(dietList).map((diet, index) => {
         return {
-            food: editFoods[index] ? editFoods[index].value : diet.food,
+            food: editFoods[index] ? editFoods[index].value : diet.name,
             amount: editAmounts[index] ? editAmounts[index].value : diet.amount,
-            carbs: editCarbs[index] ? editCarbs[index].value : diet.carbs,
+            carbs: editCarbs[index] ? editCarbs[index].value : diet.carb,
             protein: editProteins[index] ? editProteins[index].value : diet.protein,
             fat: editFats[index] ? editFats[index].value : diet.fat
         };
@@ -115,8 +115,8 @@ function addDiet() {
     const amount = prompt('기준량을 입력해주세요.');
     if (amount === null) return;
 
-    const carbs = prompt('탄수화물을 입력해주세요.');
-    if (carbs === null) return;
+    const carb = prompt('탄수화물을 입력해주세요.');
+    if (carb === null) return;
 
     const protein = prompt('단백질을 입력해주세요.');
     if (protein === null) return;
@@ -124,8 +124,8 @@ function addDiet() {
     const fat = prompt('지방을 입력해주세요.');
     if (fat === null) return;
 
-    if (food && amount && carbs && protein && fat) {
-        dietList.push({ food, amount, carbs, protein, fat });
+    if (food && amount && carb && protein && fat) {
+        dietList.push({ food, amount, carb, protein, fat });
         localStorage.setItem('diets', JSON.stringify(dietList));
         renderDietList(dietList);
         alert('음식이 추가되었습니다.');
@@ -174,11 +174,11 @@ function searchDiet() {
 
     const filteredDiets = dietList.filter(diet => {
         if (searchCategory === '음식') {
-            return diet.food.toLowerCase().includes(searchInput);
+            return diet.name.toLowerCase().includes(searchInput);
         } else if (searchCategory === '기준량') {
             return diet.amount.toLowerCase().includes(searchInput);
         } else if (searchCategory === '탄수화물') {
-            return diet.carbs.toLowerCase().includes(searchInput);
+            return diet.carb.toLowerCase().includes(searchInput);
         } else if (searchCategory === '단백질') {
             return diet.protein.toLowerCase().includes(searchInput);
         } else if (searchCategory === '지방') {

@@ -334,7 +334,8 @@ window.onclick = function(event) {
 }
 
 // 페이지네이션 구현
-const foodData = [
+let foodData = JSON.parse(localStorage.getItem("diets"));
+if (!foodData || foodData.length === 0) foodData = [
     { name: "밥", amount: 100, carb: 28, protein: 2, fat: 0.3 },
     { name: "닭가슴살", amount: 100, carb: 0, protein: 24, fat: 1.5 },
     { name: "사과", amount: 100, carb: 12, protein: 0.3, fat: 0.2 },
@@ -489,6 +490,7 @@ function addFood() {
     // 새로운 음식 데이터 객체 생성
     const newFood = { name: foodName, amount: amount, carb: carb, protein: protein, fat: fat };
     foodData.push(newFood); // foodData 배열에 추가
+    localStorage.setItem("diets", JSON.stringify(foodData));
 
     // 테이블 업데이트
     renderTable();

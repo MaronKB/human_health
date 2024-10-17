@@ -1,365 +1,365 @@
 [
     {
-        "food": "밥",
+        "name": "밥",
         "amount": "100",
-        "carbs": "28",
+        "carb": "28",
         "protein": "2",
         "fat": "0.3"
     },
     {
-        "food": "닭가슴살",
+        "name": "닭가슴살",
         "amount": "100",
-        "carbs": "0",
+        "carb": "0",
         "protein": "24",
         "fat": "1.4"
     },
     {
-        "food": "사과",
+        "name": "사과",
         "amount": "100",
-        "carbs": "13",
+        "carb": "13",
         "protein": "13",
         "fat": "0.3"
     },
     {
-        "food": "계란",
+        "name": "계란",
         "amount": "100",
-        "carbs": "1",
+        "carb": "1",
         "protein": "6",
         "fat": "5"
     },
     {
-        "food": "고구마",
+        "name": "고구마",
         "amount": "100",
-        "carbs": "7",
+        "carb": "7",
         "protein": "7",
         "fat": "0.1"
     },
     {
-        "food": "바나나",
+        "name": "바나나",
         "amount": "100",
-        "carbs": "14",
+        "carb": "14",
         "protein": "14",
         "fat": "0.3"
     },
     {
-        "food": "치킨",
+        "name": "치킨",
         "amount": "100",
-        "carbs": "0",
+        "carb": "0",
         "protein": "31",
         "fat": "10"
     },
     {
-        "food": "연어",
+        "name": "연어",
         "amount": "100",
-        "carbs": "0",
+        "carb": "0",
         "protein": "20",
         "fat": "13"
     },
     {
-        "food": "아보카도",
+        "name": "아보카도",
         "amount": "100",
-        "carbs": "9",
+        "carb": "9",
         "protein": "1.5",
         "fat": "15"
     },
     {
-        "food": "브로콜리",
+        "name": "브로콜리",
         "amount": "100",
-        "carbs": "11",
+        "carb": "11",
         "protein": "11",
         "fat": "0.4"
     },
     {
-        "food": "스테이크",
+        "name": "스테이크",
         "amount": "100",
-        "carbs": "0",
+        "carb": "0",
         "protein": "30",
         "fat": "20"
     },
     {
-        "food": "파스타",
+        "name": "파스타",
         "amount": "100",
-        "carbs": "50",
+        "carb": "50",
         "protein": "10",
         "fat": "5"
     },
     {
-        "food": "샐러드",
+        "name": "샐러드",
         "amount": "100",
-        "carbs": "5",
+        "carb": "5",
         "protein": "1",
         "fat": "0.3"
     },
     {
-        "food": "피자",
+        "name": "피자",
         "amount": "100",
-        "carbs": "40",
+        "carb": "40",
         "protein": "12",
         "fat": "15"
     },
     {
-        "food": "리조또",
+        "name": "리조또",
         "amount": "100",
-        "carbs": "50",
+        "carb": "50",
         "protein": "8",
         "fat": "10"
     },
     {
-        "food": "크로와상",
+        "name": "크로와상",
         "amount": "100",
-        "carbs": "45",
+        "carb": "45",
         "protein": "8",
         "fat": "20"
     },
     {
-        "food": "스프링롤",
+        "name": "스프링롤",
         "amount": "100",
-        "carbs": "25",
+        "carb": "25",
         "protein": "2",
         "fat": "5"
     },
     {
-        "food": "브라우니",
+        "name": "브라우니",
         "amount": "100",
-        "carbs": "60",
+        "carb": "60",
         "protein": "5",
         "fat": "20"
     },
     {
-        "food": "팬케이크",
+        "name": "팬케이크",
         "amount": "100",
-        "carbs": "40",
+        "carb": "40",
         "protein": "5",
         "fat": "10"
     },
     {
-        "food": "오믈렛",
+        "name": "오믈렛",
         "amount": "100",
-        "carbs": "1",
+        "carb": "1",
         "protein": "10",
         "fat": "7"
     },
     {
-        "food": "볶음밥",
+        "name": "볶음밥",
         "amount": "100",
-        "carbs": "60",
+        "carb": "60",
         "protein": "8",
         "fat": "10"
     },
     {
-        "food": "짜장면",
+        "name": "짜장면",
         "amount": "100",
-        "carbs": "70",
+        "carb": "70",
         "protein": "12",
         "fat": "15"
     },
     {
-        "food": "탕수육",
+        "name": "탕수육",
         "amount": "100",
-        "carbs": "30",
+        "carb": "30",
         "protein": "20",
         "fat": "25"
     },
     {
-        "food": "마파두부",
+        "name": "마파두부",
         "amount": "100",
-        "carbs": "10",
+        "carb": "10",
         "protein": "12",
         "fat": "15"
     },
     {
-        "food": "군만두",
+        "name": "군만두",
         "amount": "100",
-        "carbs": "30",
+        "carb": "30",
         "protein": "5",
         "fat": "15"
     },
     {
-        "food": "유린기",
+        "name": "유린기",
         "amount": "100",
-        "carbs": "10",
+        "carb": "10",
         "protein": "25",
         "fat": "10"
     },
     {
-        "food": "소고기짬뽕",
+        "name": "소고기짬뽕",
         "amount": "100",
-        "carbs": "50",
+        "carb": "50",
         "protein": "15",
         "fat": "20"
     },
     {
-        "food": "해물탕면",
+        "name": "해물탕면",
         "amount": "100",
-        "carbs": "60",
+        "carb": "60",
         "protein": "20",
         "fat": "15"
     },
     {
-        "food": "간장계란밥",
+        "name": "간장계란밥",
         "amount": "100",
-        "carbs": "20",
+        "carb": "20",
         "protein": "6",
         "fat": "8"
     },
     {
-        "food": "냉면",
+        "name": "냉면",
         "amount": "100",
-        "carbs": "40",
+        "carb": "40",
         "protein": "6",
         "fat": "5"
     },
     {
-        "food": "비빔밥",
+        "name": "비빔밥",
         "amount": "100",
-        "carbs": "50",
+        "carb": "50",
         "protein": "15",
         "fat": "10"
     },
     {
-        "food": "김치찌개",
+        "name": "김치찌개",
         "amount": "100",
-        "carbs": "15",
+        "carb": "15",
         "protein": "12",
         "fat": "8"
     },
     {
-        "food": "불고기",
+        "name": "불고기",
         "amount": "100",
-        "carbs": "10",
+        "carb": "10",
         "protein": "25",
         "fat": "20"
     },
     {
-        "food": "잡채",
+        "name": "잡채",
         "amount": "100",
-        "carbs": "40",
+        "carb": "40",
         "protein": "5",
         "fat": "10"
     },
     {
-        "food": "김밥",
+        "name": "김밥",
         "amount": "100",
-        "carbs": "40",
+        "carb": "40",
         "protein": "10",
         "fat": "5"
     },
     {
-        "food": "닭갈비",
+        "name": "닭갈비",
         "amount": "100",
-        "carbs": "20",
+        "carb": "20",
         "protein": "25",
         "fat": "15"
     },
     {
-        "food": "순두부찌개",
+        "name": "순두부찌개",
         "amount": "100",
-        "carbs": "10",
+        "carb": "10",
         "protein": "14",
         "fat": "6"
     },
     {
-        "food": "된장찌개",
+        "name": "된장찌개",
         "amount": "100",
-        "carbs": "15",
+        "carb": "15",
         "protein": "12",
         "fat": "5"
     },
     {
-        "food": "삼겹살",
+        "name": "삼겹살",
         "amount": "100",
-        "carbs": "0",
+        "carb": "0",
         "protein": "20",
         "fat": "30"
     },
     {
-        "food": "김치볶음밥",
+        "name": "김치볶음밥",
         "amount": "100",
-        "carbs": "60",
+        "carb": "60",
         "protein": "10",
         "fat": "10"
     },
     {
-        "food": "마라닭가슴살",
+        "name": "마라닭가슴살",
         "amount": "100",
-        "carbs": "3.5",
+        "carb": "3.5",
         "protein": "24",
         "fat": "1.4"
     },
     {
-        "food": "햇반",
+        "name": "햇반",
         "amount": "100",
-        "carbs": "70",
+        "carb": "70",
         "protein": "5",
         "fat": "1.5"
     },
     {
-        "food": "그릭 요거트",
+        "name": "그릭 요거트",
         "amount": "100",
-        "carbs": "3",
+        "carb": "3",
         "protein": "3",
         "fat": "3"
     },
     {
-        "food": "삶은 계란",
+        "name": "삶은 계란",
         "amount": "100",
-        "carbs": "4",
+        "carb": "4",
         "protein": "4",
         "fat": "4"
     },
     {
-        "food": "아몬드",
+        "name": "아몬드",
         "amount": "100",
-        "carbs": "5",
+        "carb": "5",
         "protein": "5",
         "fat": "5"
     },
     {
-        "food": "치즈 스틱",
+        "name": "치즈 스틱",
         "amount": "100",
-        "carbs": "2",
+        "carb": "2",
         "protein": "6",
         "fat": "5"
     },
     {
-        "food": "생선구이",
+        "name": "생선구이",
         "amount": "100",
-        "carbs": "0",
+        "carb": "0",
         "protein": "20",
         "fat": "10"
     },
     {
-        "food": "채소 스틱",
+        "name": "채소 스틱",
         "amount": "100",
-        "carbs": "8",
+        "carb": "8",
         "protein": "2",
         "fat": "0.5"
     },
     {
-        "food": "초콜릿",
+        "name": "초콜릿",
         "amount": "100",
-        "carbs": "50",
+        "carb": "50",
         "protein": "4",
         "fat": "15"
     },
     {
-        "food": "밀크티",
+        "name": "밀크티",
         "amount": "100",
-        "carbs": "15",
+        "carb": "15",
         "protein": "4",
         "fat": "1"
     },
     {
-        "food": "아이스크림",
+        "name": "아이스크림",
         "amount": "100",
-        "carbs": "22",
+        "carb": "22",
         "protein": "2",
         "fat": "7"
     },
     {
-        "food": "마카롱",
+        "name": "마카롱",
         "amount": "100",
-        "carbs": "30",
+        "carb": "30",
         "protein": "2",
         "fat": "10"
     }
