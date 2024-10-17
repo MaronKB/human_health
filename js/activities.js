@@ -1,5 +1,43 @@
 let selectedIntensity = 0; // 전역 변수로 강도 저장
 const user = JSON.parse(localStorage.getItem("user"));
+const defTemplates = {
+    "일반 평일 활동": [
+        { activity: "잠자기", duration: 8, intensity: 0.93 },
+        { activity: "사무업무", duration: 8, intensity: 1.6 },
+        { activity: "식사", duration: 2, intensity: 1.4 },
+        { activity: "대중교통(서서)", duration: 2, intensity: 2 },
+        { activity: "근력운동(중)", duration: 1.5, intensity: 4.5 },
+        { activity: "유산소(약)", duration: 0.5, intensity: 4.5 },
+        { activity: "누워있기", duration: 1, intensity: 1.2 },
+        { activity: "앉아서 TV보기", duration: 1, intensity: 1.57}
+    ],
+    "일반 휴일 활동": [
+        { activity: "산책", duration: 2, intensity: 2 },
+        { activity: "영화 보기", duration: 3, intensity: 1.3 },
+        { activity: "가사일", duration: 2, intensity: 3 }
+    ],
+    "일반 학업 활동": [
+        { activity: "강의 듣기", duration: 4, intensity: 1.5 },
+        { activity: "스터디", duration: 3, intensity: 2 },
+        { activity: "도서관 공부", duration: 2, intensity: 1.8 }
+    ],
+    "집에만 있는 날": [
+        { activity: "TV 시청", duration: 4, intensity: 1.2 },
+        { activity: "요리", duration: 2, intensity: 2.5 },
+        { activity: "휴식", duration: 3, intensity: 1 }
+    ]
+};
+let templates = JSON.parse(localStorage.getItem("activityTemplates"));
+if (!templates || templates.length === 0) {
+    templates = defTemplates;
+}
+
+let savedActivities = JSON.parse(localStorage.getItem("savedActivities"));
+if (!savedActivities || savedActivities.length === 0) {
+    savedActivities = [];
+}
+
+let currentDate = new Date().toISOString().slice(0, 10);
 
 const setBMR = () => {
     const defData = {
@@ -25,31 +63,6 @@ const setBMR = () => {
     recommend.innerHTML = data.weight * 30;
 }
 
-// 활동 대사량 계산 함수 추가
-function updateActivityCalories() {
-    const tbody = document.getElementById('act-tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-
-    let totalActivityValue = 0;
-
-    // 각 행의 시간과 강도를 곱한 값을 합산
-    rows.forEach(row => {
-        const hours = parseFloat(row.children[1].textContent);
-        const intensity = parseFloat(row.children[2].textContent);
-        if (!isNaN(hours) && !isNaN(intensity)) {
-            totalActivityValue += intensity;
-        }
-    });
-    console.log(totalActivityValue/24)
-
-    // 24로 나눈 후, 기초 대사량 값과 곱함
-    const bmr = parseFloat(document.getElementById('base-kcal').textContent); // 기초 대사량 값 가져오기
-    const activityCalories = (totalActivityValue / 24) * bmr;
-
-    // 활동 대사량 값 업데이트
-    const actKcalElement = document.getElementById('act-kcal');
-    actKcalElement.textContent = activityCalories.toFixed(0); // 소수점 두자리까지 표시
-}
 // 총 활동 시간 업데이트 함수에 활동 대사량 업데이트 호출 추가
 function updateTotalActivityHours() {
     const tbody = document.getElementById('act-tbody');
@@ -151,38 +164,6 @@ function updateActivityCalories() {
     updateRecommendedCalories();
 }
 
-
-
-
-// 템플릿 데이터 정의
-const templates = {
-    "일반 평일 활동": [
-        { activity: "잠자기", duration: 8, intensity: 0.93 },
-        { activity: "사무업무", duration: 8, intensity: 1.6 },
-        { activity: "식사", duration: 2, intensity: 1.4 },
-        { activity: "대중교통(서서)", duration: 2, intensity: 2 },
-        { activity: "근력운동(중)", duration: 1.5, intensity: 4.5 },
-        { activity: "유산소(약)", duration: 0.5, intensity: 4.5 },
-        { activity: "누워있기", duration: 1, intensity: 1.2 },
-        { activity: "앉아서 TV보기", duration: 1, intensity: 1.57}
-    ],
-    "일반 휴일 활동": [
-        { activity: "산책", duration: 2, intensity: 2 },
-        { activity: "영화 보기", duration: 3, intensity: 1.3 },
-        { activity: "가사일", duration: 2, intensity: 3 }
-    ],
-    "일반 학업 활동": [
-        { activity: "강의 듣기", duration: 4, intensity: 1.5 },
-        { activity: "스터디", duration: 3, intensity: 2 },
-        { activity: "도서관 공부", duration: 2, intensity: 1.8 }
-    ],
-    "집에만 있는 날": [
-        { activity: "TV 시청", duration: 4, intensity: 1.2 },
-        { activity: "요리", duration: 2, intensity: 2.5 },
-        { activity: "휴식", duration: 3, intensity: 1 }
-    ]
-};
-
 // 템플릿을 테이블에 적용
 function applyTemplate(templateName) {
     const tbody = document.getElementById("act-tbody");
@@ -228,6 +209,7 @@ function applyTemplate(templateName) {
     addEmptyRows();  // 필요한 빈 행 추가
 
     updateTotalActivityHours();
+    saveActivitiesToLocalStorage();
 
 }
 
@@ -340,20 +322,8 @@ document.querySelectorAll('#current-date, .act-table, .template-save-btn, #add-a
 
 // 템플릿을 로컬스토리지에 저장하는 기능 추가 및 수정
 function saveTemplatesToLocalStorage() {
-    localStorage.setItem('savedTemplates', JSON.stringify(templates));
+    localStorage.setItem('activityTemplates', JSON.stringify(templates));
 }
-
-// 로컬스토리지에서 템플릿 로드
-function loadTemplatesFromLocalStorage() {
-    const savedTemplates = JSON.parse(localStorage.getItem('savedTemplates'));
-    if (!savedTemplates) return
-
-    for (let arg in savedTemplates) {
-        templates[arg] = savedTemplates[arg];
-    }
-    updateSidebarWithTemplates();
-}
-
 // 사이드바 템플릿 업데이트 함수
 function updateSidebarWithTemplates() {
     const sidebar = document.querySelector('.saved-templates');
@@ -362,7 +332,6 @@ function updateSidebarWithTemplates() {
         addTemplateToSidebar(templateName);
     }
 }
-
 // 저장 템플릿 이름 수정하기
 function editTemplate(templateName) {
     const templateItems = Array.from(document.querySelectorAll('.template-item'));
@@ -440,12 +409,6 @@ function deleteTemplate(event, templateName) {
         }
     }
 }
-
-
-
-
-
-
 // 현재 목록 템플릿 리스트에 저장
 function saveTemplate() {
     const tbody = document.getElementById('act-tbody');
@@ -477,6 +440,7 @@ function saveTemplate() {
 
     // 템플릿 저장 (templates 객체에 추가)
     templates[templateName] = activities;
+    saveTemplatesToLocalStorage();
 
     // 리스트에 새로운 템플릿 추가
     addTemplateToSidebar(templateName);
@@ -573,59 +537,78 @@ function selectActivity(activity, intensity, element) {
 
 
 function saveActivitiesToLocalStorage() {
+    const date = document.querySelector("#current-date").value;
+
     const tbody = document.getElementById('act-tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
     
-    const activities = rows.map(row => {
+    const content = rows.map(row => {
         const activity = row.children[0].textContent;
         const hours = row.children[1].textContent;
         const intensity = row.children[2].textContent;
         return { activity, hours, intensity };
     });
 
-    localStorage.setItem('savedActivities', JSON.stringify(activities));
+    const activities = {
+        date: date,
+        content: content,
+    }
+
+    savedActivities = savedActivities.filter(e => e.date !== date);
+    savedActivities.push(activities);
+    localStorage.setItem('savedActivities', JSON.stringify(savedActivities));
 }
 
 function loadActivitiesFromLocalStorage() {
-    const savedActivities = JSON.parse(localStorage.getItem('savedActivities'));
+    const date = document.querySelector("#current-date").value;
+    const activities = savedActivities.find(a => a.date === date)?.content;
 
-    if (savedActivities) {
-        const tbody = document.getElementById('act-tbody');
-        tbody.innerHTML = '';  // 기존 내용을 초기화
+    const tbody = document.getElementById('act-tbody');
+    tbody.innerHTML = '';  // 기존 내용을 초기화
 
-        savedActivities.forEach(activity => {
-            const row = document.createElement('tr');
+    const loadActivity = (activity = {
+        activity: "",
+        hours: "",
+        intensity: "",
+    }) => {
+        const row = document.createElement('tr');
 
-            const activityCell = document.createElement('td');
-            activityCell.textContent = activity.activity;
+        const activityCell = document.createElement('td');
+        activityCell.textContent = activity.activity;
 
-            const hoursCell = document.createElement('td');
-            hoursCell.textContent = activity.hours;
+        const hoursCell = document.createElement('td');
+        hoursCell.textContent = activity.hours;
 
-            const intensityCell = document.createElement('td');
-            intensityCell.textContent = activity.intensity;
+        const intensityCell = document.createElement('td');
+        intensityCell.textContent = activity.intensity;
 
-            // 삭제 버튼 추가 (빈 활동에는 버튼 추가하지 않음)
-            if (activity.activity && activity.hours && activity.intensity) {
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'x';
-                deleteButton.onclick = function () {
-                    row.remove();
-                    saveActivitiesToLocalStorage();  // 삭제 후에도 업데이트
-                    addEmptyRows();  // 행 삭제 후 빈 행 추가]
-                    updateTotalActivityHours();
-                };
-                row.append(activityCell, hoursCell, intensityCell, deleteButton);
-            } else {
-                row.append(activityCell, hoursCell, intensityCell);  // 빈 셀만 추가
-            }
+        // 삭제 버튼 추가 (빈 활동에는 버튼 추가하지 않음)
+        if (activity.activity && activity.hours && activity.intensity) {
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'x';
+            deleteButton.onclick = function () {
+                row.remove();
+                saveActivitiesToLocalStorage();  // 삭제 후에도 업데이트
+                addEmptyRows();  // 행 삭제 후 빈 행 추가]
+                updateTotalActivityHours();
+            };
+            row.append(activityCell, hoursCell, intensityCell, deleteButton);
+        } else {
+            row.append(activityCell, hoursCell, intensityCell);  // 빈 셀만 추가
+        }
 
-            tbody.appendChild(row);
-        });
-
-        addEmptyRows();  // 데이터 불러온 후 빈 행 추가
-        updateTotalActivityHours();  // 총 활동 시간 업데이트
+        tbody.appendChild(row);
     }
+
+    if (activities) {
+        activities.forEach(activity => loadActivity(activity));
+    } else {
+        for (let i = 0; i < 11; i++) {
+            loadActivity();
+        }
+    }
+    addEmptyRows();  // 데이터 불러온 후 빈 행 추가
+    updateTotalActivityHours();  // 총 활동 시간 업데이트
 }
 
 // 테이블에 빈 행 추가
@@ -678,23 +661,15 @@ function saveActivity() {
     activityCell.textContent = activity;
 
     const hoursCell = document.createElement('td');
-    hoursCell.textContent = hours;
+    hoursCell.textContent = String(hours);
 
     const intensityCell = document.createElement('td');
-
-    let intensityValue = (selectedIntensity * hours).toFixed(0);
-    // intensityValue = parseFloat(intensityValue);
-    intensityCell.textContent = intensityValue;
-    // intensityCell.textContent = `${(selectedIntensity * hours).toFixed(2)} `; // 활동량 계산
+    intensityCell.textContent = (selectedIntensity * hours).toFixed(0);
 
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'x';
     deleteButton.onclick = function() {
-        // row.children[0].textContent = '';
-        // row.children[1].textContent = '';
-        // row.children[2].textContent = '';
-        
         newRow.remove();  // 버튼 클릭 시 해당 행 삭제
         updateTotalActivityHours();  // 삭제 후 총 활동 시간 업데이트
         saveActivitiesToLocalStorage();
@@ -905,9 +880,6 @@ function addCustomActivity() {
 
     // 새로운 데이터를 actData 배열에 추가 (배열 맽 끝에)
     actData.push({ name: activityName, intensity: activityIntensity });
-
-    // 데이터를 localStorage에 저장
-    // saveActData();
     
     const tableBody = document.getElementById('actTbody');
     const newRow = document.createElement('tr');
@@ -940,6 +912,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date();
     const date = document.getElementById('current-date')
     date.value = today.toISOString().split('T')[0];
+    date.onchange = () => {
+        loadActivitiesFromLocalStorage();
+        updateActivityCalories();
+    }
 
     const searchInput = document.getElementById('act-search');
     searchInput.onkeydown = (ev) => {
@@ -952,7 +928,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchButton.addEventListener("click", renderTable);
 
     setBMR();
-    loadTemplatesFromLocalStorage();
+    updateSidebarWithTemplates();
     loadActivitiesFromLocalStorage();
     updateActivityCalories();  // 활동 대사량 업데이트
 });
