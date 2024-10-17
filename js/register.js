@@ -1,36 +1,31 @@
-    function showTerms(type) {
-        const popup = document.getElementById('popup');
-        const title = document.getElementById('popup-title');
-        const terms = document.getElementById('popup-text-terms');
-        const privacy = document.getElementById('popup-text-privacy');
+function showTerms(type) {
+    const popup = document.getElementById('popup');
+    const title = document.getElementById('popup-title');
+    const terms = document.getElementById('popup-text-terms');
+    const privacy = document.getElementById('popup-text-privacy');
 
-        terms.classList.add('hidden');
-        privacy.classList.add('hidden');
+    terms.classList.add('hidden');
+    privacy.classList.add('hidden');
 
-        if (type === 'terms') {
-            title.innerText = "이용약관";
-            terms.classList.remove('hidden');
-        } else if (type === 'privacy') {
-            title.innerText = '개인정보 취급방침';
-            privacy.classList.remove('hidden');
-        }
-
-        popup.classList.remove("hidden");
+    if (type === 'terms') {
+        title.innerText = "이용약관";
+        terms.classList.remove('hidden');
+    } else if (type === 'privacy') {
+        title.innerText = '개인정보 취급방침';
+        privacy.classList.remove('hidden');
     }
 
-    function closePopup() {
-        const popup = document.getElementById('popup');
-        popup.classList.add("hidden");
+    popup.classList.remove("hidden");
+}
+
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.classList.add("hidden");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('popup-close-button').addEventListener('click', closePopup);
 });
-
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.querySelector('.login-form');
@@ -51,8 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const passwordConfirm = document.getElementById('password-confirm').value;
         const nickname = document.getElementById('nickname').value;
 
-        const emailOptOut = document.querySelector('input[name="subscribe"]:checked');
-        const emailOptOutValue = emailOptOut ? (emailOptOut.value === 'true' ? 'Y' : 'N') : 'N';
+        const emailOptOutValue = document.querySelector('input[name="subscribe"]:checked').value;
 
         const acceptTerms = document.getElementById('accept').checked;
 

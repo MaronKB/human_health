@@ -27,7 +27,7 @@ function renderUserList(users) {
     paginatedUsers.forEach((user, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></td>
+            <td><input type="checkbox" id="${startIndex + index}" class="edit-check-box" data-index="${startIndex + index}"><label for="${startIndex + index}"></label></td>
             <td class="edit-number">${startIndex + index + 1}</td>
             <td><input type="text" value="${user.id}" class="edit-input-id"></td>
             <td><input type="password" value="${user.password}" class="edit-input-password"></td>
@@ -37,18 +37,19 @@ function renderUserList(users) {
         `;
         userListBody.appendChild(row);
     });
+
     if (paginatedUsers.length < usersPerPage) {
         for (let i = 0; i < usersPerPage - paginatedUsers.length; i++) {
             const row = document.createElement('tr');
             row.innerHTML = `
-            <td></td>
-            <td class="edit-number"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        `;
+                <td></td>
+                <td class="edit-number"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            `;
             userListBody.appendChild(row);
         }
     }
@@ -91,18 +92,17 @@ function saveUserData() {
     const editNicknames = document.querySelectorAll('.edit-input-nickname');
     const editEmailOptOuts = document.querySelectorAll('.edit-input-emailOptOut');
 
-    userList = Array.from(userList).map((user, index) => {
-        return {
-            id: editIds[index] ? editIds[index].value : user.id,
-            password: editPasswords[index] ? editPasswords[index].value : user.password,
-            nickname: editNicknames[index] ? editNicknames[index].value : user.nickname,
-            emailOptOut: editEmailOptOuts[index] ? editEmailOptOuts[index].value : user.emailOptOut,
-            date: user.date
+    editIds.forEach((input, index) => {
+        userList[(currentPage - 1) * usersPerPage + index] = {
+            ...userList[(currentPage - 1) * usersPerPage + index],
+            id: input.value,
+            password: editPasswords[index].value,
+            nickname: editNicknames[index].value,
+            emailOptOut: editEmailOptOuts[index].value,
         };
     });
 
     localStorage.setItem('users', JSON.stringify(userList));
-
     alert('저장되었습니다.');
     renderUserList(userList);
 }
@@ -118,10 +118,9 @@ function addUser() {
     if (nickname === null) return;
 
     const emailOptOut = confirm('이메일 수신 동의 여부를 선택하세요. (확인: 동의, 취소: 비동의)');
-    if (emailOptOut === null) return;
     const emailOptOutValue = emailOptOut ? 'Y' : 'N';
 
-    const date = prompt('날짜를 입력해주세요.');
+    const date = prompt('가입일을 입력해주세요. (예: YYYY-MM-DD)');
     if (date === null) return;
 
     if (id && password && nickname && date) {
@@ -131,8 +130,15 @@ function addUser() {
             return;
         }
 
-        userList.push({ id, password, nickname, emailOptOut: emailOptOutValue, date });
+        const newUser = { id, password, nickname, emailOptOut: emailOptOutValue, date };
+
+        userList.push(newUser);
         localStorage.setItem('users', JSON.stringify(userList));
+
+        if (userList.length % usersPerPage === 1) {
+            currentPage = Math.ceil(userList.length / usersPerPage);
+        }
+
         renderUserList(userList);
         alert('회원가입이 완료되었습니다.');
     } else {
@@ -161,11 +167,10 @@ function deleteUser() {
         return;
     }
 
-    const selectedUsers = selectedIndexes.map(index => (currentPage - 1) * usersPerPage + index);
-
-    for (let i = selectedUsers.length - 1; i >= 0; i--) {
-        userList.splice(selectedUsers[i], 1);
-    }
+    selectedIndexes.sort((a, b) => b - a);
+    selectedIndexes.forEach(index => {
+        userList.splice((currentPage - 1) * usersPerPage + index, 1);
+    });
 
     localStorage.setItem('users', JSON.stringify(userList));
 
