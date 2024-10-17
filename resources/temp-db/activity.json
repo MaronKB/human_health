@@ -1,161 +1,5 @@
 [
     {
-        "activity": "산책",
-        "intensity": 3.5
-    },
-    {
-        "activity": "가벼운 스트레칭",
-        "intensity": 4
-    },
-    {
-        "activity": "요가",
-        "intensity": 5
-    },
-    {
-        "activity": "필라테스",
-        "intensity": 6
-    },
-    {
-        "activity": "하이킹",
-        "intensity": 8
-    },
-    {
-        "activity": "자전거 타기",
-        "intensity": 7
-    },
-    {
-        "activity": "실내 사이클",
-        "intensity": 7
-    },
-    {
-        "activity": "런닝",
-        "intensity": 8
-    },
-    {
-        "activity": "수영",
-        "intensity": 6
-    },
-    {
-        "activity": "킥복싱",
-        "intensity": 8
-    },
-    {
-        "activity": "인터벌 트레이닝",
-        "intensity": 10
-    },
-    {
-        "activity": "웨이트 리프팅",
-        "intensity": 10
-    },
-    {
-        "activity": "줄넘기",
-        "intensity": 11
-    },
-    {
-        "activity": "테니스",
-        "intensity": 8
-    },
-    {
-        "activity": "축구",
-        "intensity": 7
-    },
-    {
-        "activity": "농구",
-        "intensity": 7
-    },
-    {
-        "activity": "달리기",
-        "intensity": 10
-    },
-    {
-        "activity": "스피닝",
-        "intensity": 12
-    },
-    {
-        "activity": "수영",
-        "intensity": 8
-    },
-    {
-        "activity": "킥복싱",
-        "intensity": 10
-    },
-    {
-        "activity": "마라톤",
-        "intensity": 12
-    },
-    {
-        "activity": "크로스핏",
-        "intensity": 12
-    },
-    {
-        "activity": "파쿠르",
-        "intensity": 11
-    },
-    {
-        "activity": "복싱",
-        "intensity": 12
-    },
-    {
-        "activity": "서핑",
-        "intensity": 10
-    },
-    {
-        "activity": "스케이트보드",
-        "intensity": 8
-    },
-    {
-        "activity": "조정",
-        "intensity": 10
-    },
-    {
-        "activity": "몸짱 만들기",
-        "intensity": 10
-    },
-    {
-        "activity": "브레이크 댄스",
-        "intensity": 11
-    },
-    {
-        "activity": "배드민턴",
-        "intensity": 8
-    },
-    {
-        "activity": "자유수영",
-        "intensity": 10
-    },
-    {
-        "activity": "암벽 등반",
-        "intensity": 10
-    },
-    {
-        "activity": "야외 자전거",
-        "intensity": 8
-    },
-    {
-        "activity": "트레킹",
-        "intensity": 8
-    },
-    {
-        "activity": "댄스",
-        "intensity": 10
-    },
-    {
-        "activity": "스노우보드",
-        "intensity": 12
-    },
-    {
-        "activity": "스키",
-        "intensity": 12
-    },
-    {
-        "activity": "바이올린 연주",
-        "intensity": 5
-    },
-    {
-        "activity": "양궁",
-        "intensity": 4
-    },
-    {
         "activity": "잠자기",
         "intensity": 0.93
     },
@@ -192,20 +36,48 @@
         "intensity": 2.5
     },
     {
+        "activity": "활동적인 업무",
+        "intensity": 3.5
+    },
+    {
         "activity": "주방일",
         "intensity": 2.7
+    },
+    {
+        "activity": "청소",
+        "intensity": 5
     },
     {
         "activity": "느리게 걷기",
         "intensity": 2.8
     },
     {
+        "activity": "빠르게 걷기",
+        "intensity": 3.8
+    },
+    {
         "activity": "집안일",
         "intensity": 3.1
     },
     {
-        "activity": "빠르게 걷기",
-        "intensity": 3.8
+        "activity": "카페에서 시간보내기",
+        "intensity": 1.7
+    },
+    {
+        "activity": "등산",
+        "intensity": 6
+    },
+    {
+        "activity": "수영",
+        "intensity": 6
+    },
+    {
+        "activity": "배드민턴",
+        "intensity": 6.5
+    },
+    {
+        "activity": "축구 경기",
+        "intensity": 8
     },
     {
         "activity": "유산소(약)",
@@ -230,45 +102,5 @@
     {
         "activity": "근력운동(강)",
         "intensity": 6
-    },
-    {
-        "activity": "걷기",
-        "intensity": 3.5
-    },
-    {
-        "activity": "달리기",
-        "intensity": 9.0
-    },
-    {
-        "activity": "수영",
-        "intensity": 6.0
-    },
-    {
-        "activity": "요가",
-        "intensity": 2.5
-    },
-    {
-        "activity": "자전거 타기",
-        "intensity": 7.5
-    },
-    {
-        "activity": "등산",
-        "intensity": 8.0
-    },
-    {
-        "activity": "스쿼트",
-        "intensity": 5.0
-    },
-    {
-        "activity": "술먹기",
-        "intensity": 5.0
-    },
-    {
-        "activity": "놀기",
-        "intensity": 5.0
-    },
-    {
-        "activity": "공부하기",
-        "intensity": 5.0
     }
 ]
