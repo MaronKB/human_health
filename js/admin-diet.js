@@ -109,8 +109,8 @@ function saveDietData() {
 }
 
 function addDiet() {
-    const food = prompt('음식명을 입력해주세요.');
-    if (food === null) return;
+    const name = prompt('음식명을 입력해주세요.');
+    if (name === null) return;
 
     const amount = prompt('기준량을 입력해주세요.');
     if (amount === null) return;
@@ -124,8 +124,8 @@ function addDiet() {
     const fat = prompt('지방을 입력해주세요.');
     if (fat === null) return;
 
-    if (food && amount && carb && protein && fat) {
-        dietList.push({ food, amount, carb, protein, fat });
+    if (name && amount && carb && protein && fat) {
+        dietList.push({ name, amount, carb, protein, fat });
         localStorage.setItem('diets', JSON.stringify(dietList));
         renderDietList(dietList);
         alert('음식이 추가되었습니다.');
