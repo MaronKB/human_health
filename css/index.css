@@ -130,7 +130,7 @@ progress::-webkit-progress-value {
     background: white;
     padding: 15px 20px;
     border-radius: 10px;
-    box-shadow: 2px 5px 10px #0003;
+    box-shadow: 0 0 4px #0003, 2px 5px 10px #0003;
     overflow: hidden;
 }
 .button {

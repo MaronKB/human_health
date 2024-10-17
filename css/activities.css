@@ -89,6 +89,25 @@ body {
 .act-sub-kcal > .act-kcal > span.act-kcal-value {
     font-size: 32px;
 }
+#not-yet {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    align-items: center;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+#not-yet.hidden {
+    opacity: 0;
+}
+#not-yet > h4 {
+    font-size: 16px;
+}
+#not-yet > span {
+    font-size: 14px;
+}
 
 .act-hours-alert {
     grid-column: -1 / -2;
@@ -153,12 +172,14 @@ body {
     align-items: center;
     background-color: #eee;
     padding: 10px;
-    border: 0px solid #e0e0e0;
     border-radius: 10px;
     width: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     font-weight: bold;
+}
+.template-item:hover {
+    background-color: var(--main-color-bright);
 }
 .template-item.selected {
     background-color: #f2d95b;

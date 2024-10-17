@@ -93,9 +93,12 @@ function updateRecommendedCalories() {
 
     if (totalHours < 24) {
         // 총 활동 시간이 24시간 미만일 때 권장 섭취 칼로리 0으로 설정
-        document.getElementById('recommend-kcal').textContent = "0 Kcal";
+        document.getElementById('recommend-kcal').textContent = "0";
+        document.getElementById('not-yet').classList.remove("hidden");
         return; // 24시간 이하일 경우 계산 중단
     }
+
+    document.getElementById('not-yet').classList.add("hidden");
 
     if (!user) return;
 
