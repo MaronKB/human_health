@@ -1,5 +1,12 @@
 [
     {
+        "id": "admin@humanhealth.com",
+        "password": "humanhealth",
+        "nickname": "관리자",
+        "emailOptOut": "Y",
+        "date": "2024-09-24"
+    },
+    {
         "id": "user01@gmail.com",
         "password": "user01",
         "nickname": "푸른하늘",
