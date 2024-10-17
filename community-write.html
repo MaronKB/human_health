@@ -15,7 +15,7 @@
 <main class="community-write">
     <form id="community-form">
         <div class="community-write-title">
-            <input type="text" id="community-title">
+            <input type="text" id="community-title" maxlength="100">
         </div>
         <div class="community-write-upload">
             <input type="file" accept="image/*" id="image-upload" class="image-input">
@@ -24,7 +24,7 @@
             <label for="video-upload">비디오 첨부</label>
         </div>
         <div class="community-write-content">
-            <textarea id="community-content" placeholder="내용을 입력해주세요."></textarea>
+            <textarea id="community-content" placeholder="내용을 입력해주세요." maxlength="1000"></textarea>
         </div>
         <div class="community-write-button">
             <a href="./community.html"><button type="button">취소</button></a>

@@ -19,21 +19,21 @@
             <h2>USER <span>INFO</span></h2>
             <div class="login-input">
                 <label for="nickname">닉네임</label>
-                <input id="nickname" type="text" placeholder="nickname" maxlength="8" required/>
+                <input id="nickname" type="text" placeholder="nickname" maxlength="50" required/>
                 <button type="button" id="change-nickname">변경</button>
             </div>
             <div class="login-input">
                 <label for="current-password">현재 비밀번호</label>
-                <input id="current-password" type="password" value="" maxlength="32" placeholder="비밀번호로 인증하십시오" required/>
+                <input id="current-password" type="password" value="" minlength="8" maxlength="16" placeholder="비밀번호로 인증하십시오" required/>
             </div>
             <div class="change-password">
                 <div class="login-input">
                     <label for="password">비밀번호 변경</label>
-                    <input id="password" type="password" minlength="8" maxlength="32" placeholder="변경할 비밀번호 입력"/>
+                    <input id="password" type="password" minlength="8" maxlength="16" placeholder="변경할 비밀번호 입력"/>
                 </div>
                 <div class="login-input">
                     <label for="password-confirm">비밀번호 변경 확인</label>
-                    <input id="password-confirm" type="password" minlength="8" maxlength="32" placeholder="변경할 비밀번호 재입력"/>
+                    <input id="password-confirm" type="password" minlength="8" maxlength="16" placeholder="변경할 비밀번호 재입력"/>
                 </div>
             </div>
             <div class="login-input">
