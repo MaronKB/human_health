@@ -158,43 +158,35 @@ const stretchList = [
     }
 ];
 
-const progressing = (ev) => {
-    const elements = Array.from(document.querySelectorAll("#stretch > input"));
 
+const progressing = (ev) => {
     const index = Number(ev.target.dataset.index);
-    const next = index + 1;
     const checked = ev.target.checked;
 
     const video = document.querySelector("#stretch-recommend");
     const text = document.querySelector("#stretch-end");
 
-    if (next > 6) {
-        video.classList.add("hidden");
-        text.classList.remove("hidden");
-        return;
-    }
-
     video.classList.remove("hidden");
     text.classList.add("hidden");
 
-    const prevElements = elements.filter(e => Number(e.dataset.index) < index);
-    prevElements.forEach(e => {
-        e.checked = true;
-    });
-
-    const nextElements = elements.filter(e => Number(e.dataset.index) > index);
-    nextElements.forEach(e => {
-        e.checked = false;
-        e.disabled = true;
-    });
-
-    const nextInput = elements.find(e => Number(e.dataset.index) === next);
-    nextInput.disabled = !checked;
-
-    const url = stretchList.find(s => s.index === (checked ? next : index)).url;
+    const url = stretchList.find(s => s.index === index).url;
     const target = document.querySelector("#stretch-recommend");
     target.src = `https://www.youtube.com/embed/${url}`;
-}
+};
+
+const init = () => {
+    const checkboxes = document.querySelectorAll("#stretch > input");
+    checkboxes.forEach(checkbox => {
+        checkbox.onchange = ev => progressing(ev);
+    });
+
+    checkboxes.forEach(e => {
+        e.disabled = false;
+    });
+};
+
+window.addEventListener('DOMContentLoaded', init);
+
 const onRangeChange = (input) => {
     const val = input.value;
     const string = input.id.split("-")[1];
@@ -224,11 +216,4 @@ const onRangeChange = (input) => {
     } else {
         count = 20;
     }
-}
-const init = () => {
-    const checkboxes = document.querySelectorAll("#stretch > input");
-    checkboxes.forEach(checkbox => {
-        checkbox.onchange = ev => progressing(ev);
-    })
-}
-window.addEventListener('DOMContentLoaded', init);
+};
