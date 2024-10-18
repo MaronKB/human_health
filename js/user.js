@@ -69,8 +69,8 @@ const getFat = () => {
 }
 const getSkeletal = () => {
     return {
-        target : ((user.targetSkeletal - user.targetWeight * 0.4) * 100 / (user.targetWeight * 0.1)).toFixed(1),
-        current : ((user.skeletal - user.weight * 0.4) * 100 / (user.weight * 0.1)).toFixed(1),
+        target : ((user.targetSkeletal - user.targetWeight * 0.38) * 100 / (user.targetWeight * 0.1)).toFixed(1),
+        current : ((user.skeletal - user.weight * 0.38) * 100 / (user.weight * 0.1)).toFixed(1),
     }
 }
 // todo: 그래프 목표치 user에서 최신 값 받아오게 get 함수 만들기
