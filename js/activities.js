@@ -54,8 +54,7 @@ const setBMR = () => {
         targetSkeletal: 32,
         bmr: 2024.69
     };
-    const data = (!user || user?.length === 0) ? dfData : user;
-    e
+    const data = (!user || user?.length === 0) ? defData : user;
     const base = document.querySelector("#base-kcal");
     base.innerHTML = Math.round(data.bmr);
 
