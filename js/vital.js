@@ -14,12 +14,12 @@ const comments = {
         {
             tier: 3,
             text: "일상이 힘들고 지칠 땐,<br/>휴일을 떠올려봐요.",
-            url: "-FoLIeLo3eQ",
+            url: "sifMD_Sqe_A",
         },
         {
             tier: 4,
             text: "아직 경미한 수준입니다.<br/>천천히 심호흡을 해봐요.",
-            url: "2aFXEDNQB4A",
+            url: "dZewQEbQQM0",
         },
         {
             tier: 5,
@@ -34,7 +34,7 @@ const comments = {
         {
             tier: 7,
             text: "안 좋은 일이 있었나봐요.<br/>가족이나 친구들과 이야기해봐요.",
-            url: "uc3dpkLTYzQ",
+            url: "TFBuCo-Yh_4",
         },
         {
             tier: 8,
@@ -71,7 +71,7 @@ const comments = {
         {
             tier: 3,
             text: "평균 수면시간이 낮아질 경우<br/>건강이 악화될 수 있습니다.",
-            url: "4MkR-Q5dyU0",
+            url: "rmJ7IauMbG0",
         },
         {
             tier: 4,
@@ -91,7 +91,7 @@ const comments = {
         {
             tier: 7,
             text: "적정 수면시간입니다.<br/>잘 하고 있습니다!",
-            url: "O11Ak7YmuZ4",
+            url: "PgW7wVqXdWw",
         },
         {
             tier: 8,
